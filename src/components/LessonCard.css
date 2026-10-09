@@ -1,0 +1,77 @@
+.lesson-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 176px;
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow 0.18s var(--ease),
+    transform 0.18s var(--ease);
+}
+.lesson-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+.lesson-card.is-recommended {
+  border: 2px solid var(--accent);
+  box-shadow:
+    0 0 0 4px var(--accent-soft),
+    var(--shadow-card);
+}
+.lesson-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.lesson-code {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+.lesson-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lesson-title {
+  font-size: var(--fs-nl-lg);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.lesson-zh {
+  color: var(--text-2);
+  font-size: var(--fs-md);
+}
+.lesson-en {
+  font-size: var(--fs-en-sm);
+}
+.lesson-card-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.lesson-card-progress .progress {
+  flex: 1;
+  height: 6px;
+}
+.lesson-card[data-status="mastered"] .progress > span {
+  background: var(--success-text);
+}
+.lesson-card.is-recommended .progress > span {
+  background: var(--accent);
+}
+.lesson-pct {
+  min-width: 36px;
+  text-align: right;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}

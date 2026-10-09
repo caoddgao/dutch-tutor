@@ -88,6 +88,8 @@
   --on-primary: #ffffff;
   --primary-text: #1e3a8a;
   --primary-soft: #e8edfa;
+  /* fills for progress bars, sliders, switches */
+  --primary-fill: #1e3a8a;
 
   --accent: #ff7a1a;
   --accent-hover: #f06b0c;
@@ -123,6 +125,7 @@
   --on-primary: #ffffff;
   --primary-text: #9db3f2;
   --primary-soft: rgba(61, 95, 196, 0.22);
+  --primary-fill: #4a6fd8;
 
   --accent: #ff7a1a;
   --accent-hover: #ff8b36;
