@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "own-lesson.schema.json",
+  "title": "content/a1/lessons/*.json：发音入门课，或正课的“我们这一半”",
+  "type": "object",
+  "required": ["id", "kind"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "kind": { "enum": ["phonics", "main"] },
+    "title": { "$ref": "common.schema.json#/$defs/trilingual" },
+    "pack_lesson": { "$ref": "common.schema.json#/$defs/id" },
+    "nn_lessons": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "sounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["grapheme", "note_zh", "word_ids"],
+        "additionalProperties": false,
+        "properties": {
+          "grapheme": { "type": "string", "minLength": 1 },
+          "note_zh": { "type": "string" },
+          "note_en": { "type": "string" },
+          "word_ids": { "type": "array", "minItems": 1, "items": { "$ref": "common.schema.json#/$defs/id" } }
+        }
+      }
+    },
+    "sentence_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "sentences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "nl", "zh", "en"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "nl": { "$ref": "common.schema.json#/$defs/text" },
+          "zh": { "$ref": "common.schema.json#/$defs/text" },
+          "en": { "$ref": "common.schema.json#/$defs/text" },
+          "speaker": { "type": ["string", "null"] },
+          "voice": { "enum": ["default", "male"] }
+        }
+      }
+    },
+    "word_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "tips": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "exercises": { "type": "array", "items": { "$ref": "#/$defs/exercise" } }
+  },
+  "$defs": {
+    "sample": {
+      "type": "object",
+      "required": ["nl", "zh", "en"],
+      "additionalProperties": false,
+      "properties": {
+        "nl": { "$ref": "common.schema.json#/$defs/text" },
+        "zh": { "$ref": "common.schema.json#/$defs/text" },
+        "en": { "$ref": "common.schema.json#/$defs/text" }
+      }
+    },
+    "exercise": {
+      "type": "object",
+      "required": ["id", "type", "instruction", "items"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "type": { "enum": ["listen_choose", "choose_audio", "order", "oral_complete", "oral_answer"] },
+        "instruction": { "$ref": "common.schema.json#/$defs/trilingual" },
+        "extra": { "type": "boolean" },
+        "items": { "type": "array", "minItems": 1 }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "listen_choose" } } },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "type": "object",
+                  "required": ["id", "word_id", "options", "answer"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": { "$ref": "common.schema.json#/$defs/id" },
+                    "word_id": { "$ref": "common.schema.json#/$defs/id" },
+                    "options": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+                    "answer": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "choose_audio" } } },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "type": "object",
+                  "required": ["id", "word_id", "options"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": { "$ref": "common.schema.json#/$defs/id" },
+                    "word_id": { "$ref": "common.schema.json#/$defs/id" },
+                    "options": { "type": "array", "minItems": 2, "items": { "$ref": "common.schema.json#/$defs/id" } }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "order" } } },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "type": "object",
+                  "required": ["id", "sentence_id"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": { "$ref": "common.schema.json#/$defs/id" },
+                    "sentence_id": { "$ref": "common.schema.json#/$defs/id" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "oral_complete" } } },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "type": "object",
+                  "required": ["id", "context", "start", "sample_answers"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": { "$ref": "common.schema.json#/$defs/id" },
+                    "context": { "$ref": "#/$defs/sample" },
+                    "start": { "$ref": "#/$defs/sample" },
+                    "sample_answers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/sample" } }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "oral_answer" } } },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "type": "object",
+                  "required": ["id", "question", "sample_answers"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": { "$ref": "common.schema.json#/$defs/id" },
+                    "question": { "$ref": "#/$defs/sample" },
+                    "sample_answers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/sample" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

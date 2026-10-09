@@ -1,0 +1,66 @@
+{
+  "id": "P01",
+  "kind": "phonics",
+  "title": {
+    "nl": "a · e · i",
+    "zh": "短元音 a、e、i",
+    "en": "Short vowels a, e, i"
+  },
+  "nn_lessons": ["NN05"],
+  "sounds": [
+    {
+      "grapheme": "a",
+      "note_zh": "短 a，短促。",
+      "word_ids": ["w_tas", "w_pan"]
+    },
+    {
+      "grapheme": "i",
+      "note_zh": "短 i，短促。",
+      "word_ids": ["w_vis"]
+    }
+  ],
+  "word_ids": ["w_tas", "w_pan", "w_vis"],
+  "sentences": [
+    {
+      "id": "P01-S01",
+      "nl": "De vis is in de pan.",
+      "zh": "鱼在锅里。",
+      "en": "The fish is in the pan."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P01-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister.",
+        "zh": "听一听。",
+        "en": "Listen."
+      },
+      "items": [
+        {
+          "id": "P01-E1-1",
+          "word_id": "w_tas",
+          "options": ["tas", "tis"],
+          "answer": "tas"
+        }
+      ]
+    },
+    {
+      "id": "P01-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees.",
+        "zh": "看拼写选读音。",
+        "en": "Read."
+      },
+      "items": [
+        {
+          "id": "P01-E2-1",
+          "word_id": "w_vis",
+          "options": ["w_vis", "w_tas"]
+        }
+      ]
+    }
+  ]
+}

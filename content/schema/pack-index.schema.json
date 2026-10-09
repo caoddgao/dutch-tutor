@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pack-index.schema.json",
+  "title": "资料包 index.json / 仓库 nn-index.json",
+  "type": "object",
+  "required": ["format_version", "lessons"],
+  "properties": {
+    "format_version": { "type": "integer" },
+    "lessons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "sentence_count",
+          "new_word_count",
+          "total_seconds",
+          "max_sentence_seconds",
+          "over_5s_count",
+          "exercise_count",
+          "skipped_exercises",
+          "new_lemmas"
+        ],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "kind": { "enum": ["main", "phonics", "reading", "test"] },
+          "title": { "$ref": "common.schema.json#/$defs/trilingual" },
+          "sentence_count": { "type": "integer", "minimum": 0 },
+          "new_word_count": { "type": "integer", "minimum": 0 },
+          "total_seconds": { "type": "number", "minimum": 0 },
+          "max_sentence_seconds": { "type": "number", "minimum": 0 },
+          "over_5s_count": { "type": "integer", "minimum": 0 },
+          "exercise_count": { "type": "integer", "minimum": 0 },
+          "skipped_exercises": { "type": "integer", "minimum": 0 },
+          "new_lemmas": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "course.schema.json",
+  "title": "content/a1/course.json：课程编排",
+  "type": "object",
+  "required": ["level", "limits", "sections"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "level": { "const": "A1" },
+    "limits": {
+      "type": "object",
+      "required": ["max_sentences", "max_new_words"],
+      "additionalProperties": false,
+      "properties": {
+        "max_sentences": { "type": "integer", "minimum": 1 },
+        "max_new_words": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "lessons"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "enum": ["phonics", "main", "tests"] },
+          "title": { "type": "string", "minLength": 1 },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "source"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "$ref": "common.schema.json#/$defs/id" },
+                "source": { "enum": ["own", "pack"] },
+                "pack_id": { "$ref": "common.schema.json#/$defs/id" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

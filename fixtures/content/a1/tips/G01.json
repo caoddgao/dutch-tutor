@@ -1,0 +1,24 @@
+{
+  "id": "G01",
+  "title": {
+    "zh": "人称代词",
+    "en": "Personal pronouns"
+  },
+  "body_zh": ["荷兰语的“你”有两种：对熟人用 jij，对陌生人、长辈用 u。", "jij 的弱读形式是 je，口语里很常见。"],
+  "examples": [
+    {
+      "id": "G01-X1",
+      "nl": "Wat wilt u?",
+      "zh": "您要什么？",
+      "en": "What would you like?"
+    }
+  ],
+  "table": {
+    "head": ["荷兰语", "中文"],
+    "rows": [
+      ["ik", "我"],
+      ["jij / je", "你"],
+      ["u", "您"]
+    ]
+  }
+}

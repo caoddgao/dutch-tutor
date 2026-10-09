@@ -1,0 +1,18 @@
+{
+  "format_version": 1,
+  "source": "Dutch Tutor test fixture (self-written content, placeholder audio)",
+  "created_at": "2026-10-09T12:00:00+02:00",
+  "producer": "fixture",
+  "lessons": ["NN05", "NN21", "NN22"],
+  "counts": {
+    "lessons": 3,
+    "sentences": 21,
+    "words": 55,
+    "exercises": 12,
+    "audio_files": 86
+  },
+  "tts_voices": {
+    "default": "nl-NL-FennaNeural",
+    "male": "nl-NL-MaartenNeural"
+  }
+}

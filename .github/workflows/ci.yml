@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   web:
-    name: 前端：类型检查 · lint · 单元测试
+    name: 前端：类型检查 · lint · 单元测试 · 内容校验
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +23,11 @@ jobs:
       - run: npm run lint
       - run: npm run format:check
       - run: npm test
+      - name: 内容校验（仓库内容 + 假资料包）
+        run: |
+          npm run validate
+          npm run validate -- --pack fixtures/nn-pack
+          npm run validate -- --content fixtures/content --pack fixtures/nn-pack
       - run: npm run build
 
   rust:

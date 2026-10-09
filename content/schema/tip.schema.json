@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tip.schema.json",
+  "title": "content/a1/tips/*.json：小贴士",
+  "type": "object",
+  "required": ["id", "title", "body_zh", "examples"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^G[0-9]{2}$" },
+    "title": {
+      "type": "object",
+      "required": ["zh"],
+      "additionalProperties": false,
+      "properties": { "zh": { "type": "string", "minLength": 1 }, "en": { "type": "string" } }
+    },
+    "body_zh": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string", "minLength": 1 } },
+    "body_en": { "type": "array", "items": { "type": "string" } },
+    "examples": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["id", "nl", "zh", "en"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "nl": { "$ref": "common.schema.json#/$defs/text" },
+          "zh": { "$ref": "common.schema.json#/$defs/text" },
+          "en": { "$ref": "common.schema.json#/$defs/text" }
+        }
+      }
+    },
+    "table": {
+      "type": "object",
+      "required": ["head", "rows"],
+      "additionalProperties": false,
+      "properties": {
+        "head": { "type": "array", "items": { "type": "string" } },
+        "rows": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } }
+      }
+    }
+  }
+}

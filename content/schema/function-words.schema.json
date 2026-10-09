@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "function-words.schema.json",
+  "title": "content/a1/function-words.json：功能词白名单（生词规则不计）",
+  "type": "object",
+  "required": ["lemmas"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "lemmas": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+  }
+}

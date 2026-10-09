@@ -1,0 +1,92 @@
+{
+  "id": "NN21",
+  "kind": "main",
+  "pack_lesson": "NN21",
+  "tips": ["G01"],
+  "sentences": [
+    {
+      "id": "NN21-A01",
+      "nl": "Een brood, graag.",
+      "zh": "请来一个面包。",
+      "en": "A loaf, please."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN21-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "把句子说完整。",
+        "en": "Finish the sentence."
+      },
+      "items": [
+        {
+          "id": "NN21-O1-1",
+          "context": {
+            "nl": "U bent bij de bakker.",
+            "zh": "您在面包店。",
+            "en": "You are at the baker's."
+          },
+          "start": {
+            "nl": "Een brood, ...",
+            "zh": "一个面包，……",
+            "en": "A loaf, ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Een brood, alstublieft.",
+              "zh": "请给我一个面包。",
+              "en": "A loaf, please."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN21-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "口头回答。",
+        "en": "Answer aloud."
+      },
+      "items": [
+        {
+          "id": "NN21-O2-1",
+          "question": {
+            "nl": "Wat wilt u?",
+            "zh": "您要什么？",
+            "en": "What would you like?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Een brood, graag.",
+              "zh": "请来一个面包。",
+              "en": "A loaf, please."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN21-O3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "NN21-O3-1",
+          "sentence_id": "NN21-S03"
+        },
+        {
+          "id": "NN21-O3-2",
+          "sentence_id": "NN21-A01"
+        }
+      ]
+    }
+  ]
+}

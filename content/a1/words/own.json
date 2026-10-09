@@ -1,0 +1,269 @@
+[
+  {
+    "id": "w_dag",
+    "lemma": "dag",
+    "pos": "tw",
+    "zh": "你好；再见（打招呼用）",
+    "en": "hello; bye"
+  },
+  {
+    "id": "w_ik",
+    "lemma": "ik",
+    "pos": "vnw",
+    "zh": "我",
+    "en": "I"
+  },
+  {
+    "id": "w_jij",
+    "lemma": "jij",
+    "pos": "vnw",
+    "forms_seen": ["je"],
+    "zh": "你",
+    "en": "you (informal)"
+  },
+  {
+    "id": "w_u",
+    "lemma": "u",
+    "pos": "vnw",
+    "zh": "您",
+    "en": "you (polite)"
+  },
+  {
+    "id": "w_zijn",
+    "lemma": "zijn",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "ben",
+      "jij": "bent",
+      "hij": "is",
+      "wij": "zijn",
+      "pp": "geweest",
+      "aux": "zijn"
+    },
+    "zh": "是",
+    "en": "to be"
+  },
+  {
+    "id": "w_en",
+    "lemma": "en",
+    "pos": "vw",
+    "zh": "和；那么",
+    "en": "and"
+  },
+  {
+    "id": "w_dank_je",
+    "lemma": "dank je",
+    "pos": "uitdr",
+    "zh": "谢谢（对熟人）",
+    "en": "thank you (informal)"
+  },
+  {
+    "id": "w_wat",
+    "lemma": "wat",
+    "pos": "vnw",
+    "zh": "什么",
+    "en": "what"
+  },
+  {
+    "id": "w_dat",
+    "lemma": "dat",
+    "pos": "vnw",
+    "zh": "那，那个",
+    "en": "that"
+  },
+  {
+    "id": "w_een",
+    "lemma": "een",
+    "pos": "lidw",
+    "zh": "一个（不定冠词）",
+    "en": "a, an"
+  },
+  {
+    "id": "w_kam",
+    "lemma": "kam",
+    "pos": "zn",
+    "article": "de",
+    "plural": "kammen",
+    "zh": "梳子",
+    "en": "comb"
+  },
+  {
+    "id": "w_bal",
+    "lemma": "bal",
+    "pos": "zn",
+    "article": "de",
+    "plural": "ballen",
+    "zh": "球",
+    "en": "ball"
+  },
+  {
+    "id": "w_man",
+    "lemma": "man",
+    "pos": "zn",
+    "article": "de",
+    "plural": "mannen",
+    "zh": "男人",
+    "en": "man"
+  },
+  {
+    "id": "w_mes",
+    "lemma": "mes",
+    "pos": "zn",
+    "article": "het",
+    "plural": "messen",
+    "zh": "刀",
+    "en": "knife"
+  },
+  {
+    "id": "w_bel",
+    "lemma": "bel",
+    "pos": "zn",
+    "article": "de",
+    "plural": "bellen",
+    "zh": "铃，门铃",
+    "en": "bell, doorbell"
+  },
+  {
+    "id": "w_pen",
+    "lemma": "pen",
+    "pos": "zn",
+    "article": "de",
+    "plural": "pennen",
+    "zh": "笔",
+    "en": "pen"
+  },
+  {
+    "id": "w_kip",
+    "lemma": "kip",
+    "pos": "zn",
+    "article": "de",
+    "plural": "kippen",
+    "zh": "鸡",
+    "en": "chicken"
+  },
+  {
+    "id": "w_lip",
+    "lemma": "lip",
+    "pos": "zn",
+    "article": "de",
+    "plural": "lippen",
+    "zh": "嘴唇",
+    "en": "lip"
+  },
+  {
+    "id": "w_anna",
+    "lemma": "Anna",
+    "pos": "eigen",
+    "zh": "安娜（人名）",
+    "en": "Anna (name)"
+  },
+  {
+    "id": "w_sam",
+    "lemma": "Sam",
+    "pos": "eigen",
+    "zh": "萨姆（人名）",
+    "en": "Sam (name)"
+  },
+  {
+    "id": "w_uw",
+    "lemma": "uw",
+    "pos": "vnw",
+    "zh": "您的",
+    "en": "your (polite)"
+  },
+  {
+    "id": "w_mijn",
+    "lemma": "mijn",
+    "pos": "vnw",
+    "zh": "我的",
+    "en": "my"
+  },
+  {
+    "id": "w_naam",
+    "lemma": "naam",
+    "pos": "zn",
+    "article": "de",
+    "plural": "namen",
+    "zh": "名字",
+    "en": "name"
+  },
+  {
+    "id": "w_maan",
+    "lemma": "maan",
+    "pos": "zn",
+    "article": "de",
+    "plural": "manen",
+    "zh": "月亮",
+    "en": "moon"
+  },
+  {
+    "id": "w_taal",
+    "lemma": "taal",
+    "pos": "zn",
+    "article": "de",
+    "plural": "talen",
+    "zh": "语言",
+    "en": "language"
+  },
+  {
+    "id": "w_ja",
+    "lemma": "ja",
+    "pos": "tw",
+    "zh": "是，对",
+    "en": "yes"
+  },
+  {
+    "id": "w_nee",
+    "lemma": "nee",
+    "pos": "tw",
+    "zh": "不，不是",
+    "en": "no"
+  },
+  {
+    "id": "w_twee",
+    "lemma": "twee",
+    "pos": "telw",
+    "zh": "二，两个",
+    "en": "two"
+  },
+  {
+    "id": "w_thee",
+    "lemma": "thee",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "茶",
+    "en": "tea"
+  },
+  {
+    "id": "w_graag",
+    "lemma": "graag",
+    "pos": "bw",
+    "zh": "乐意；（点东西时）劳驾",
+    "en": "gladly; please (when ordering)"
+  },
+  {
+    "id": "w_leren",
+    "lemma": "leren",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "leer",
+      "jij": "leert",
+      "hij": "leert",
+      "wij": "leren",
+      "pp": "geleerd",
+      "aux": "hebben"
+    },
+    "zh": "学，学习",
+    "en": "to learn"
+  },
+  {
+    "id": "w_nederlands",
+    "lemma": "Nederlands",
+    "pos": "zn",
+    "article": "het",
+    "plural": null,
+    "zh": "荷兰语",
+    "en": "Dutch (language)"
+  }
+]

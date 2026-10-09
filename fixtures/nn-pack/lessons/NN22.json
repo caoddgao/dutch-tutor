@@ -1,0 +1,425 @@
+{
+  "id": "NN22",
+  "nn_lesson": 22,
+  "kind": "main",
+  "title": {
+    "nl": "Mijn buurman",
+    "zh": "我的邻居",
+    "en": "My neighbour"
+  },
+  "pdf_pages": [904, 906],
+  "text_type": "text",
+  "audio_full": "audio/NN22/full.mp3",
+  "sentences": [
+    {
+      "id": "NN22-S00",
+      "role": "title",
+      "nl": "Les 22. Mijn buurman.",
+      "zh": "第 22 课。我的邻居。",
+      "en": "Lesson 22. My neighbour.",
+      "speaker": null,
+      "audio": "audio/NN22/S00.mp3",
+      "start": 0.6,
+      "end": 2.82,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": []
+    },
+    {
+      "id": "NN22-S01",
+      "role": "line",
+      "nl": "Dit is mijn buurman Karel.",
+      "zh": "这是我的邻居卡雷尔。",
+      "en": "This is my neighbour Karel.",
+      "speaker": null,
+      "audio": "audio/NN22/S01.mp3",
+      "start": 3.27,
+      "end": 5.87,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Dit",
+          "word_id": "w_dit"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "mijn",
+          "word_id": "w_mijn"
+        },
+        {
+          "t": "buurman",
+          "word_id": "w_buurman"
+        },
+        {
+          "t": "Karel",
+          "word_id": "w_karel"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S02",
+      "role": "line",
+      "nl": "Hij woont in Utrecht.",
+      "zh": "他住在乌得勒支。",
+      "en": "He lives in Utrecht.",
+      "speaker": null,
+      "audio": "audio/NN22/S02.mp3",
+      "start": 6.32,
+      "end": 8.54,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "woont",
+          "word_id": "w_wonen"
+        },
+        {
+          "t": "in",
+          "word_id": "w_in"
+        },
+        {
+          "t": "Utrecht",
+          "word_id": "w_utrecht"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S03",
+      "role": "line",
+      "nl": "Hij werkt bij een bank.",
+      "zh": "他在一家银行工作。",
+      "en": "He works at a bank.",
+      "speaker": null,
+      "audio": "audio/NN22/S03.mp3",
+      "start": 8.99,
+      "end": 11.59,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "werkt",
+          "word_id": "w_werken"
+        },
+        {
+          "t": "bij",
+          "word_id": "w_bij"
+        },
+        {
+          "t": "een",
+          "word_id": "w_een"
+        },
+        {
+          "t": "bank",
+          "word_id": "w_bank"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S04",
+      "role": "line",
+      "nl": "Elke ochtend fietst hij naar zijn werk.",
+      "zh": "他每天早上骑车去上班。",
+      "en": "Every morning he cycles to work.",
+      "speaker": null,
+      "audio": "audio/NN22/S04.mp3",
+      "start": 12.04,
+      "end": 15.4,
+      "duration": 3.36,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Elke",
+          "word_id": "w_elk"
+        },
+        {
+          "t": "ochtend",
+          "word_id": "w_ochtend"
+        },
+        {
+          "t": "fietst",
+          "word_id": "w_fietsen"
+        },
+        {
+          "t": "hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "naar",
+          "word_id": "w_naar"
+        },
+        {
+          "t": "zijn",
+          "word_id": "w_zijn_vnw"
+        },
+        {
+          "t": "werk",
+          "word_id": "w_werk"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S05",
+      "role": "line",
+      "nl": "Hij belt mij vaak op.",
+      "zh": "他经常给我打电话。",
+      "en": "He often calls me.",
+      "speaker": null,
+      "audio": "audio/NN22/S05.mp3",
+      "start": 15.85,
+      "end": 18.45,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "belt",
+          "word_id": "w_opbellen"
+        },
+        {
+          "t": "mij",
+          "word_id": "w_mij"
+        },
+        {
+          "t": "vaak",
+          "word_id": "w_vaak"
+        },
+        {
+          "t": "op",
+          "word_id": "w_opbellen"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S06",
+      "role": "line",
+      "nl": "Karel is aardig en grappig.",
+      "zh": "卡雷尔人很好，也很风趣。",
+      "en": "Karel is kind and funny.",
+      "speaker": null,
+      "audio": "audio/NN22/S06.mp3",
+      "start": 18.9,
+      "end": 21.5,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Karel",
+          "word_id": "w_karel"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "aardig",
+          "word_id": "w_aardig"
+        },
+        {
+          "t": "en",
+          "word_id": "w_en"
+        },
+        {
+          "t": "grappig",
+          "word_id": "w_grappig"
+        }
+      ]
+    }
+  ],
+  "word_ids": [
+    "w_dit",
+    "w_zijn",
+    "w_mijn",
+    "w_buurman",
+    "w_karel",
+    "w_hij",
+    "w_wonen",
+    "w_in",
+    "w_utrecht",
+    "w_werken",
+    "w_bij",
+    "w_een",
+    "w_bank",
+    "w_elk",
+    "w_ochtend",
+    "w_fietsen",
+    "w_naar",
+    "w_zijn_vnw",
+    "w_werk",
+    "w_opbellen",
+    "w_mij",
+    "w_vaak",
+    "w_aardig",
+    "w_en",
+    "w_grappig",
+    "w_ik",
+    "w_jij"
+  ],
+  "exercises": [
+    {
+      "id": "NN22-E1",
+      "nn_number": 1,
+      "type": "true_false",
+      "instruction": {
+        "nl": "Waar of niet waar?",
+        "zh": "对还是不对？",
+        "en": "True or false?"
+      },
+      "extra": true,
+      "items": [
+        {
+          "id": "NN22-E1-1",
+          "prompt": "Karel woont in Utrecht.",
+          "options": ["waar", "niet waar"],
+          "answer": "waar",
+          "zh": "卡雷尔住在乌得勒支。",
+          "en": "Karel lives in Utrecht."
+        },
+        {
+          "id": "NN22-E1-2",
+          "prompt": "Karel werkt bij een bakker.",
+          "options": ["waar", "niet waar"],
+          "answer": "niet waar",
+          "zh": "卡雷尔在面包店工作。",
+          "en": "Karel works at a baker's."
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN22-E2",
+      "nn_number": 2,
+      "type": "choose_one",
+      "instruction": {
+        "nl": "Omcirkel het goede antwoord.",
+        "zh": "圈出正确答案。",
+        "en": "Circle the correct answer."
+      },
+      "items": [
+        {
+          "id": "NN22-E2-1",
+          "prompt": "Hij ..... in Utrecht.",
+          "options": ["woon", "woont", "wonen"],
+          "answer": "woont",
+          "answer_by": "DS"
+        },
+        {
+          "id": "NN22-E2-2",
+          "prompt": "Karel is .....",
+          "options": ["aardig", "bank", "ochtend"],
+          "answer": "aardig"
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    }
+  ],
+  "extras": [
+    {
+      "id": "NN22-X1",
+      "pdf_page": 999,
+      "sentences": [
+        {
+          "id": "NN22-X1-1",
+          "nl": "Ik woon in Utrecht.",
+          "zh": "我住在乌得勒支。",
+          "en": "I live in Utrecht.",
+          "audio": "audio/tts/82ae783d5ee50364.mp3",
+          "audio_source": "tts:nl-NL-FennaNeural",
+          "tokens": [
+            {
+              "t": "Ik",
+              "word_id": "w_ik"
+            },
+            {
+              "t": "woon",
+              "word_id": "w_wonen"
+            },
+            {
+              "t": "in",
+              "word_id": "w_in"
+            },
+            {
+              "t": "Utrecht",
+              "word_id": "w_utrecht"
+            }
+          ]
+        },
+        {
+          "id": "NN22-X1-2",
+          "nl": "Jij woont in Utrecht.",
+          "zh": "你住在乌得勒支。",
+          "en": "You live in Utrecht.",
+          "audio": "audio/tts/30cbc45e537588d3.mp3",
+          "audio_source": "tts:nl-NL-FennaNeural",
+          "tokens": [
+            {
+              "t": "Jij",
+              "word_id": "w_jij"
+            },
+            {
+              "t": "woont",
+              "word_id": "w_wonen"
+            },
+            {
+              "t": "in",
+              "word_id": "w_in"
+            },
+            {
+              "t": "Utrecht",
+              "word_id": "w_utrecht"
+            }
+          ]
+        },
+        {
+          "id": "NN22-X1-3",
+          "nl": "Woon jij in Utrecht?",
+          "zh": "你住在乌得勒支吗？",
+          "en": "Do you live in Utrecht?",
+          "audio": "audio/tts/f1436284c61ce913.mp3",
+          "audio_source": "tts:nl-NL-FennaNeural",
+          "tokens": [
+            {
+              "t": "Woon",
+              "word_id": "w_wonen"
+            },
+            {
+              "t": "jij",
+              "word_id": "w_jij"
+            },
+            {
+              "t": "in",
+              "word_id": "w_in"
+            },
+            {
+              "t": "Utrecht",
+              "word_id": "w_utrecht"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": ""
+}
