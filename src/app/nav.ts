@@ -16,6 +16,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export function titleForPath(pathname: string): string {
+  if (pathname.startsWith("/lesson/")) return "上课";
   const item = NAV_ITEMS.find((n) => n.path === pathname);
   return item?.label ?? "首页";
 }

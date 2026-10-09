@@ -2,6 +2,7 @@ import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { AppShell } from "./app/AppShell";
 import { AudioProvider } from "./audio/AudioProvider";
 import { ContentProvider } from "./content/ContentProvider";
+import { LessonPage } from "./lesson/LessonPage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { ExamPage } from "./pages/ExamPage";
 import { HomePage } from "./pages/HomePage";
@@ -23,6 +24,7 @@ export function App({ services }: { services: AppServices }) {
                 <Route element={<AppShell />}>
                   <Route index element={<HomePage />} />
                   <Route path="courses" element={<CoursesPage />} />
+                  <Route path="lesson/:id" element={<LessonPage />} />
                   <Route path="review" element={<ReviewPage />} />
                   <Route path="practice" element={<PracticePage />} />
                   <Route path="exam" element={<ExamPage />} />
