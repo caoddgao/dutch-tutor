@@ -1,0 +1,103 @@
+{
+  "format_version": 1,
+  "lessons": [
+    {
+      "id": "NN05",
+      "kind": "phonics",
+      "title": {
+        "nl": "Klinkers: a, e, i",
+        "zh": "元音 a、e、i",
+        "en": "Vowels a, e, i"
+      },
+      "sentence_count": 1,
+      "new_word_count": 10,
+      "total_seconds": 4.82,
+      "max_sentence_seconds": 2.98,
+      "over_5s_count": 0,
+      "exercise_count": 2,
+      "skipped_exercises": 1,
+      "new_lemmas": ["de", "vis", "zijn", "in", "het", "net", "tas", "pan", "bed", "pin"]
+    },
+    {
+      "id": "NN21",
+      "kind": "main",
+      "title": {
+        "nl": "Bij de bakker",
+        "zh": "在面包店",
+        "en": "At the baker's"
+      },
+      "sentence_count": 11,
+      "new_word_count": 21,
+      "total_seconds": 23.32,
+      "max_sentence_seconds": 5.3,
+      "over_5s_count": 1,
+      "exercise_count": 8,
+      "skipped_exercises": 2,
+      "new_lemmas": [
+        "goedemorgen",
+        "mevrouw",
+        "wat",
+        "willen",
+        "u",
+        "een",
+        "bruin",
+        "brood",
+        "alstublieft",
+        "anders nog iets",
+        "nee",
+        "dank u wel",
+        "dat",
+        "drie",
+        "euro",
+        "niet",
+        "dollar",
+        "dank u",
+        "tot ziens",
+        "vier",
+        "vijf"
+      ]
+    },
+    {
+      "id": "NN22",
+      "kind": "main",
+      "title": {
+        "nl": "Mijn buurman",
+        "zh": "我的邻居",
+        "en": "My neighbour"
+      },
+      "sentence_count": 6,
+      "new_word_count": 24,
+      "total_seconds": 18.2,
+      "max_sentence_seconds": 3.36,
+      "over_5s_count": 0,
+      "exercise_count": 2,
+      "skipped_exercises": 0,
+      "new_lemmas": [
+        "dit",
+        "mijn",
+        "buurman",
+        "Karel",
+        "hij",
+        "wonen",
+        "Utrecht",
+        "werken",
+        "bij",
+        "bank",
+        "elk",
+        "ochtend",
+        "fietsen",
+        "naar",
+        "zijn",
+        "werk",
+        "opbellen",
+        "mij",
+        "vaak",
+        "aardig",
+        "en",
+        "grappig",
+        "ik",
+        "jij"
+      ]
+    }
+  ]
+}

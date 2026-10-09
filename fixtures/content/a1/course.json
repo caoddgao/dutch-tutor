@@ -1,0 +1,42 @@
+{
+  "level": "A1",
+  "limits": {
+    "max_sentences": 24,
+    "max_new_words": 45
+  },
+  "sections": [
+    {
+      "id": "phonics",
+      "title": "发音入门",
+      "lessons": [
+        {
+          "id": "P01",
+          "source": "own"
+        }
+      ]
+    },
+    {
+      "id": "main",
+      "title": "正课",
+      "lessons": [
+        {
+          "id": "NN21",
+          "source": "pack"
+        },
+        {
+          "id": "NN22",
+          "source": "pack"
+        },
+        {
+          "id": "NN23",
+          "source": "pack"
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "title": "阶段测验",
+      "lessons": []
+    }
+  ]
+}

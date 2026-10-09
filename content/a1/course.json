@@ -1,0 +1,228 @@
+{
+  "$schema": "../schema/course.schema.json",
+  "level": "A1",
+  "limits": {
+    "max_sentences": 24,
+    "max_new_words": 45
+  },
+  "sections": [
+    {
+      "id": "phonics",
+      "title": "发音入门",
+      "lessons": [
+        {
+          "id": "P01",
+          "source": "own"
+        },
+        {
+          "id": "P02",
+          "source": "own"
+        }
+      ]
+    },
+    {
+      "id": "main",
+      "title": "正课",
+      "lessons": [
+        {
+          "id": "NN21",
+          "source": "pack"
+        },
+        {
+          "id": "NN22",
+          "source": "pack"
+        },
+        {
+          "id": "NN23",
+          "source": "pack"
+        },
+        {
+          "id": "NN24",
+          "source": "pack"
+        },
+        {
+          "id": "NN25",
+          "source": "pack"
+        },
+        {
+          "id": "NN26",
+          "source": "pack"
+        },
+        {
+          "id": "NN27",
+          "source": "pack"
+        },
+        {
+          "id": "NN28",
+          "source": "pack"
+        },
+        {
+          "id": "NN29",
+          "source": "pack"
+        },
+        {
+          "id": "NN30",
+          "source": "pack"
+        },
+        {
+          "id": "NN31",
+          "source": "pack"
+        },
+        {
+          "id": "NN32",
+          "source": "pack"
+        },
+        {
+          "id": "NN33",
+          "source": "pack"
+        },
+        {
+          "id": "NN34",
+          "source": "pack"
+        },
+        {
+          "id": "NN35",
+          "source": "pack"
+        },
+        {
+          "id": "NN36",
+          "source": "pack"
+        },
+        {
+          "id": "NN37",
+          "source": "pack"
+        },
+        {
+          "id": "NN38",
+          "source": "pack"
+        },
+        {
+          "id": "NN39",
+          "source": "pack"
+        },
+        {
+          "id": "NN40",
+          "source": "pack"
+        },
+        {
+          "id": "NN41",
+          "source": "pack"
+        },
+        {
+          "id": "NN42",
+          "source": "pack"
+        },
+        {
+          "id": "NN43",
+          "source": "pack"
+        },
+        {
+          "id": "NN44",
+          "source": "pack"
+        },
+        {
+          "id": "NN45",
+          "source": "pack"
+        },
+        {
+          "id": "NN46",
+          "source": "pack"
+        },
+        {
+          "id": "NN47",
+          "source": "pack"
+        },
+        {
+          "id": "NN48",
+          "source": "pack"
+        },
+        {
+          "id": "NN49",
+          "source": "pack"
+        },
+        {
+          "id": "NN50",
+          "source": "pack"
+        },
+        {
+          "id": "NN51",
+          "source": "pack"
+        },
+        {
+          "id": "NN52",
+          "source": "pack"
+        },
+        {
+          "id": "NN53",
+          "source": "pack"
+        },
+        {
+          "id": "NN54",
+          "source": "pack"
+        },
+        {
+          "id": "NN55",
+          "source": "pack"
+        },
+        {
+          "id": "NN56",
+          "source": "pack"
+        },
+        {
+          "id": "NN57",
+          "source": "pack"
+        },
+        {
+          "id": "NN58",
+          "source": "pack"
+        },
+        {
+          "id": "NN59",
+          "source": "pack"
+        },
+        {
+          "id": "NN60",
+          "source": "pack"
+        },
+        {
+          "id": "NN61",
+          "source": "pack"
+        },
+        {
+          "id": "NN62",
+          "source": "pack"
+        },
+        {
+          "id": "NN63",
+          "source": "pack"
+        },
+        {
+          "id": "NN64",
+          "source": "pack"
+        },
+        {
+          "id": "NN65",
+          "source": "pack"
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "title": "阶段测验",
+      "lessons": [
+        {
+          "id": "TT1",
+          "source": "pack"
+        },
+        {
+          "id": "TT2",
+          "source": "pack"
+        },
+        {
+          "id": "TT3",
+          "source": "pack"
+        }
+      ]
+    }
+  ]
+}

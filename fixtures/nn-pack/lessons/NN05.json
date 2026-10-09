@@ -1,0 +1,201 @@
+{
+  "id": "NN05",
+  "nn_lesson": 5,
+  "kind": "phonics",
+  "title": {
+    "nl": "Klinkers: a, e, i",
+    "zh": "元音 a、e、i",
+    "en": "Vowels a, e, i"
+  },
+  "pdf_pages": [30, 33],
+  "audio_full": "audio/NN05/full.mp3",
+  "sounds": [
+    {
+      "grapheme": "a",
+      "keywords": ["K01", "K02"],
+      "note_zh": ""
+    },
+    {
+      "grapheme": "e",
+      "keywords": ["K03", "K04"],
+      "note_zh": ""
+    },
+    {
+      "grapheme": "i",
+      "keywords": ["K05", "K06"],
+      "note_zh": ""
+    }
+  ],
+  "keywords": [
+    {
+      "id": "NN05-K01",
+      "nl": "tas",
+      "word_id": "w_tas",
+      "audio": "audio/NN05/K01.mp3",
+      "start": 3,
+      "end": 3.8,
+      "align_score": 0.95,
+      "flags": []
+    },
+    {
+      "id": "NN05-K02",
+      "nl": "pan",
+      "word_id": "w_pan",
+      "audio": "audio/NN05/K02.mp3",
+      "start": 5.1,
+      "end": 5.9,
+      "align_score": 0.95,
+      "flags": []
+    },
+    {
+      "id": "NN05-K03",
+      "nl": "net",
+      "word_id": "w_net",
+      "audio": "audio/NN05/K03.mp3",
+      "start": 7.2,
+      "end": 8,
+      "align_score": 0.95,
+      "flags": []
+    },
+    {
+      "id": "NN05-K04",
+      "nl": "bed",
+      "word_id": "w_bed",
+      "audio": "audio/NN05/K04.mp3",
+      "start": 9.3,
+      "end": 10.1,
+      "align_score": 0.95,
+      "flags": []
+    },
+    {
+      "id": "NN05-K05",
+      "nl": "vis",
+      "word_id": "w_vis",
+      "audio": "audio/NN05/K05.mp3",
+      "start": 11.4,
+      "end": 12.2,
+      "align_score": 0.95,
+      "flags": []
+    },
+    {
+      "id": "NN05-K06",
+      "nl": "pin",
+      "word_id": "w_pin",
+      "audio": null,
+      "start": 13.5,
+      "end": 14.3,
+      "align_score": 0.95,
+      "flags": ["no_audio"]
+    }
+  ],
+  "sentences": [
+    {
+      "id": "NN05-S00",
+      "role": "title",
+      "nl": "Les 5. Klinkers.",
+      "zh": "第 5 课。元音。",
+      "en": "Lesson 5. Vowels.",
+      "speaker": null,
+      "audio": "audio/NN05/S00.mp3",
+      "start": 0.6,
+      "end": 2.44,
+      "duration": 1.84,
+      "align_score": 0.97,
+      "flags": []
+    },
+    {
+      "id": "NN05-S01",
+      "role": "line",
+      "nl": "De vis is in het net.",
+      "zh": "鱼在网里。",
+      "en": "The fish is in the net.",
+      "speaker": null,
+      "audio": "audio/NN05/S01.mp3",
+      "start": 2.89,
+      "end": 5.87,
+      "duration": 2.98,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "De",
+          "word_id": "w_de"
+        },
+        {
+          "t": "vis",
+          "word_id": "w_vis"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "in",
+          "word_id": "w_in"
+        },
+        {
+          "t": "het",
+          "word_id": "w_het"
+        },
+        {
+          "t": "net",
+          "word_id": "w_net"
+        }
+      ]
+    }
+  ],
+  "word_ids": ["w_de", "w_vis", "w_zijn", "w_in", "w_het", "w_net", "w_tas", "w_pan", "w_bed", "w_pin"],
+  "exercises": [
+    {
+      "id": "NN05-E1",
+      "nn_number": 1,
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister en kies.",
+        "zh": "听录音，选出正确的写法。",
+        "en": "Listen and choose."
+      },
+      "items": [
+        {
+          "id": "NN05-E1-1",
+          "audio": "audio/NN05/K01.mp3",
+          "options": ["tas", "tes", "tis"],
+          "answer": "tas"
+        },
+        {
+          "id": "NN05-E1-2",
+          "audio": "audio/NN05/K03.mp3",
+          "options": ["nat", "net", "nit"],
+          "answer": "net"
+        },
+        {
+          "id": "NN05-E1-3",
+          "audio": "audio/tts/d7ca6e4ac48cf051.mp3",
+          "options": ["vas", "ves", "vis"],
+          "answer": "vis",
+          "example": true
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN05-E2",
+      "nn_number": 2,
+      "type": "other",
+      "instruction": {
+        "nl": "Teken de route.",
+        "zh": "画出路线。",
+        "en": "Draw the route."
+      },
+      "items": [
+        {
+          "id": "NN05-E2-1",
+          "raw": "Schrijf de letters."
+        }
+      ],
+      "skip": true,
+      "skip_reason": "unsupported"
+    }
+  ]
+}

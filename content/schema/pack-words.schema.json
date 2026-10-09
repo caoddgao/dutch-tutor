@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pack-words.schema.json",
+  "title": "资料包 words.json",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "lemma",
+      "pos",
+      "article",
+      "plural",
+      "verb_forms",
+      "separable",
+      "forms_seen",
+      "zh",
+      "en",
+      "audio",
+      "flags"
+    ],
+    "properties": {
+      "id": { "$ref": "common.schema.json#/$defs/id" },
+      "lemma": { "$ref": "common.schema.json#/$defs/text" },
+      "pos": { "$ref": "common.schema.json#/$defs/pos" },
+      "article": { "$ref": "common.schema.json#/$defs/article" },
+      "plural": { "type": ["string", "null"] },
+      "verb_forms": { "$ref": "common.schema.json#/$defs/verbForms" },
+      "separable": { "type": ["string", "null"], "pattern": "^[^|]+\\|[^|]+$" },
+      "forms_seen": { "type": "array", "items": { "type": "string" } },
+      "zh": { "type": "string" },
+      "en": { "type": "string" },
+      "zh_nn": { "type": "string" },
+      "en_nn": { "type": "string" },
+      "first_lesson": { "type": "string" },
+      "lessons": { "type": "array", "items": { "type": "string" } },
+      "audio": { "oneOf": [{ "$ref": "common.schema.json#/$defs/relPath" }, { "type": "null" }] },
+      "audio_source": { "type": "string", "pattern": "^(nn:|tts:)" },
+      "flags": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

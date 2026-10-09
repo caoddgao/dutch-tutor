@@ -1,0 +1,43 @@
+{
+  "voices": {
+    "default": "nl-NL-FennaNeural",
+    "male": "nl-NL-MaartenNeural"
+  },
+  "entries": {
+    "188da1383054cdd0": {
+      "text": "Een brood, graag.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.44
+    },
+    "1f49da6d53b918bd": {
+      "text": "Een brood, ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.44
+    },
+    "2063422c360b6a44": {
+      "text": "De vis is in de pan.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.35
+    },
+    "6e7e5fd0de78cb82": {
+      "text": "U bent bij de bakker.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.04
+    },
+    "741bb109a4013b0d": {
+      "text": "Wat wilt u?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.44
+    },
+    "c919e5ea7859c7d0": {
+      "text": "graag",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 0.84
+    },
+    "ccb24136476fa5ce": {
+      "text": "Een brood, alstublieft.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.44
+    }
+  }
+}

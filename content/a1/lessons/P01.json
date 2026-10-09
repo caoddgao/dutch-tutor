@@ -1,0 +1,178 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P01",
+  "kind": "phonics",
+  "title": {
+    "nl": "a · e · i",
+    "zh": "短元音 a、e、i",
+    "en": "Short vowels a, e, i"
+  },
+  "nn_lessons": ["NN05"],
+  "sounds": [
+    {
+      "grapheme": "a",
+      "note_zh": "短 a：嘴张大，声音短促，比汉语“啊”更短、更靠后。写一个 a、后面跟辅音时读短音：kam、bal、man。",
+      "note_en": "Short a: open mouth, short and a bit further back than English 'father'. One a before a consonant is short.",
+      "word_ids": ["w_kam", "w_bal", "w_man", "w_dag"]
+    },
+    {
+      "grapheme": "e",
+      "note_zh": "短 e：像汉语“哎”的开头，嘴角略向两边拉，一发就收：mes、bel、pen。",
+      "note_en": "Short e: like the e in English 'bed', cut short.",
+      "word_ids": ["w_mes", "w_bel", "w_pen"]
+    },
+    {
+      "grapheme": "i",
+      "note_zh": "短 i：比汉语“衣”更短、更松，接近英语 sit 里的 i：kip、lip、ik。",
+      "note_en": "Short i: like the i in English 'sit', short and relaxed.",
+      "word_ids": ["w_kip", "w_lip", "w_ik"]
+    }
+  ],
+  "word_ids": [
+    "w_dag",
+    "w_kam",
+    "w_bal",
+    "w_man",
+    "w_mes",
+    "w_bel",
+    "w_pen",
+    "w_kip",
+    "w_lip",
+    "w_ik",
+    "w_zijn",
+    "w_wat",
+    "w_dank_je"
+  ],
+  "sentences": [
+    {
+      "id": "P01-S01",
+      "nl": "Dag!",
+      "zh": "你好！（也可以表示再见）",
+      "en": "Hello! (also: bye!)"
+    },
+    {
+      "id": "P01-S02",
+      "nl": "Dag, Anna!",
+      "zh": "你好，安娜！",
+      "en": "Hello, Anna!"
+    },
+    {
+      "id": "P01-S03",
+      "nl": "Ik ben Sam.",
+      "zh": "我是萨姆。",
+      "en": "I am Sam."
+    },
+    {
+      "id": "P01-S04",
+      "nl": "En jij?",
+      "zh": "你呢？",
+      "en": "And you?"
+    },
+    {
+      "id": "P01-S05",
+      "nl": "Ik ben Anna.",
+      "zh": "我是安娜。",
+      "en": "I am Anna."
+    },
+    {
+      "id": "P01-S06",
+      "nl": "Wat is dat?",
+      "zh": "那是什么？",
+      "en": "What is that?"
+    },
+    {
+      "id": "P01-S07",
+      "nl": "Dat is een kam.",
+      "zh": "那是一把梳子。",
+      "en": "That is a comb."
+    },
+    {
+      "id": "P01-S08",
+      "nl": "Dank je!",
+      "zh": "谢谢！",
+      "en": "Thanks!"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P01-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P01-E1-1",
+          "word_id": "w_kam",
+          "options": ["kam", "kem", "kim"],
+          "answer": "kam"
+        },
+        {
+          "id": "P01-E1-2",
+          "word_id": "w_bel",
+          "options": ["bal", "bel", "bil"],
+          "answer": "bel"
+        },
+        {
+          "id": "P01-E1-3",
+          "word_id": "w_kip",
+          "options": ["kap", "kep", "kip"],
+          "answer": "kip"
+        },
+        {
+          "id": "P01-E1-4",
+          "word_id": "w_mes",
+          "options": ["mas", "mes", "mis"],
+          "answer": "mes"
+        }
+      ]
+    },
+    {
+      "id": "P01-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P01-E2-1",
+          "word_id": "w_bal",
+          "options": ["w_bal", "w_bel", "w_kip"]
+        },
+        {
+          "id": "P01-E2-2",
+          "word_id": "w_lip",
+          "options": ["w_kam", "w_lip", "w_mes"]
+        },
+        {
+          "id": "P01-E2-3",
+          "word_id": "w_pen",
+          "options": ["w_pen", "w_man", "w_kip"]
+        }
+      ]
+    },
+    {
+      "id": "P01-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P01-E3-1",
+          "sentence_id": "P01-S07"
+        },
+        {
+          "id": "P01-E3-2",
+          "sentence_id": "P01-S06"
+        }
+      ]
+    }
+  ]
+}

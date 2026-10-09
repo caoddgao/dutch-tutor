@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pack-manifest.schema.json",
+  "title": "资料包 manifest.json",
+  "type": "object",
+  "required": ["format_version", "source", "created_at", "producer", "lessons", "counts", "tts_voices"],
+  "properties": {
+    "format_version": { "type": "integer" },
+    "source": { "type": "string" },
+    "created_at": { "type": "string", "minLength": 10 },
+    "producer": { "type": "string" },
+    "lessons": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "counts": {
+      "type": "object",
+      "required": ["lessons", "sentences", "words", "exercises", "audio_files"],
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "tts_voices": {
+      "type": "object",
+      "required": ["default", "male"],
+      "properties": { "default": { "type": "string" }, "male": { "type": "string" } }
+    }
+  }
+}

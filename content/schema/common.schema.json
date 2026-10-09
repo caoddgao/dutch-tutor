@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
+    "text": { "type": "string", "minLength": 1 },
+    "trilingual": {
+      "type": "object",
+      "required": ["nl", "zh", "en"],
+      "properties": { "nl": { "type": "string" }, "zh": { "type": "string" }, "en": { "type": "string" } }
+    },
+    "pos": { "enum": ["zn", "ww", "bn", "bw", "vnw", "lidw", "vz", "vw", "telw", "tw", "eigen", "uitdr"] },
+    "article": { "enum": ["de", "het", "de/het", null] },
+    "verbForms": {
+      "type": ["object", "null"],
+      "properties": {
+        "ik": { "type": "string" },
+        "jij": { "type": "string" },
+        "hij": { "type": "string" },
+        "wij": { "type": "string" },
+        "pp": { "type": "string" },
+        "aux": { "enum": ["hebben", "zijn", "hebben/zijn"] }
+      },
+      "additionalProperties": false
+    },
+    "sentenceFlags": {
+      "type": "array",
+      "items": { "enum": ["over_5s", "low_align", "manual_fixed", "no_audio"] }
+    },
+    "relPath": { "type": "string", "pattern": "^[A-Za-z0-9_./-]+$" }
+  }
+}

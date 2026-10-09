@@ -1,0 +1,552 @@
+{
+  "id": "NN21",
+  "nn_lesson": 21,
+  "kind": "main",
+  "title": {
+    "nl": "Bij de bakker",
+    "zh": "在面包店",
+    "en": "At the baker's"
+  },
+  "pdf_pages": [900, 903],
+  "text_type": "dialogue",
+  "audio_full": "audio/NN21/full.mp3",
+  "sentences": [
+    {
+      "id": "NN21-S00",
+      "role": "title",
+      "nl": "Les 21. Bij de bakker.",
+      "zh": "第 21 课。在面包店。",
+      "en": "Lesson 21. At the baker's.",
+      "speaker": null,
+      "audio": "audio/NN21/S00.mp3",
+      "start": 0.6,
+      "end": 3.2,
+      "duration": 2.6,
+      "align_score": 0.99,
+      "flags": []
+    },
+    {
+      "id": "NN21-S01",
+      "role": "line",
+      "nl": "Goedemorgen!",
+      "zh": "早上好！",
+      "en": "Good morning!",
+      "speaker": "A",
+      "audio": "audio/NN21/S01.mp3",
+      "start": 3.65,
+      "end": 4.73,
+      "duration": 1.08,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Goedemorgen",
+          "word_id": "w_goedemorgen"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S02",
+      "role": "line",
+      "nl": "Goedemorgen, mevrouw. Wat wilt u?",
+      "zh": "早上好，女士。您要什么？",
+      "en": "Good morning, madam. What would you like?",
+      "speaker": "B",
+      "audio": "audio/NN21/S02.mp3",
+      "start": 5.18,
+      "end": 7.78,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Goedemorgen",
+          "word_id": "w_goedemorgen"
+        },
+        {
+          "t": "mevrouw",
+          "word_id": "w_mevrouw"
+        },
+        {
+          "t": "Wat",
+          "word_id": "w_wat"
+        },
+        {
+          "t": "wilt",
+          "word_id": "w_willen"
+        },
+        {
+          "t": "u",
+          "word_id": "w_u"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S03",
+      "role": "line",
+      "nl": "Een bruin brood, alstublieft.",
+      "zh": "请给我一个黑面包。",
+      "en": "A brown loaf, please.",
+      "speaker": "A",
+      "audio": "audio/NN21/S03.mp3",
+      "start": 8.23,
+      "end": 10.45,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Een",
+          "word_id": "w_een"
+        },
+        {
+          "t": "bruin",
+          "word_id": "w_bruin"
+        },
+        {
+          "t": "brood",
+          "word_id": "w_brood"
+        },
+        {
+          "t": "alstublieft",
+          "word_id": "w_alstublieft"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S04",
+      "role": "line",
+      "nl": "Anders nog iets?",
+      "zh": "还要别的吗？",
+      "en": "Anything else?",
+      "speaker": "B",
+      "audio": "audio/NN21/S04.mp3",
+      "start": 10.9,
+      "end": 12.74,
+      "duration": 1.84,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Anders nog iets",
+          "word_id": "w_anders_nog_iets"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S05",
+      "role": "line",
+      "nl": "Nee, dank u wel.",
+      "zh": "不用了，谢谢。",
+      "en": "No, thank you very much.",
+      "speaker": "A",
+      "audio": "audio/NN21/S05.mp3",
+      "start": 13.19,
+      "end": 15.41,
+      "duration": 2.22,
+      "align_score": 0.86,
+      "flags": ["low_align", "manual_fixed"],
+      "tokens": [
+        {
+          "t": "Nee",
+          "word_id": "w_nee"
+        },
+        {
+          "t": "dank u wel",
+          "word_id": "w_dank_u_wel"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S06",
+      "role": "line",
+      "nl": "Dat is drie euro, mevrouw. De euro, niet de dollar!",
+      "zh": "一共三欧元，女士。是欧元，不是美元！",
+      "en": "That is three euros, madam. Euros, not dollars!",
+      "speaker": "B",
+      "audio": "audio/NN21/S06.mp3",
+      "start": 15.86,
+      "end": 21.16,
+      "duration": 5.3,
+      "align_score": 0.97,
+      "flags": ["over_5s"],
+      "tokens": [
+        {
+          "t": "Dat",
+          "word_id": "w_dat"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "drie",
+          "word_id": "w_drie"
+        },
+        {
+          "t": "euro",
+          "word_id": "w_euro"
+        },
+        {
+          "t": "mevrouw",
+          "word_id": "w_mevrouw"
+        },
+        {
+          "t": "De",
+          "word_id": "w_de"
+        },
+        {
+          "t": "euro",
+          "word_id": "w_euro"
+        },
+        {
+          "t": "niet",
+          "word_id": "w_niet"
+        },
+        {
+          "t": "de",
+          "word_id": "w_de"
+        },
+        {
+          "t": "dollar",
+          "word_id": "w_dollar"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S07",
+      "role": "line",
+      "nl": "Alstublieft.",
+      "zh": "给您。",
+      "en": "Here you are.",
+      "speaker": "A",
+      "audio": "audio/NN21/S07.mp3",
+      "start": 21.61,
+      "end": 22.69,
+      "duration": 1.08,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Alstublieft",
+          "word_id": "w_alstublieft"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S08",
+      "role": "line",
+      "nl": "Dank u. Tot ziens!",
+      "zh": "谢谢您。再见！",
+      "en": "Thank you. Goodbye!",
+      "speaker": "B",
+      "audio": "audio/NN21/S08.mp3",
+      "start": 23.14,
+      "end": 25.36,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Dank u",
+          "word_id": "w_dank_u"
+        },
+        {
+          "t": "Tot ziens",
+          "word_id": "w_tot_ziens"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S09",
+      "role": "line",
+      "nl": "Tot ziens!",
+      "zh": "再见！",
+      "en": "Goodbye!",
+      "speaker": "B",
+      "audio": null,
+      "flags": ["no_audio"],
+      "tokens": [
+        {
+          "t": "Tot ziens",
+          "word_id": "w_tot_ziens"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S10",
+      "role": "extra",
+      "nl": "vier",
+      "zh": "四",
+      "en": "four",
+      "speaker": null,
+      "audio": "audio/NN21/S10.mp3",
+      "start": 27.72,
+      "end": 28.8,
+      "duration": 1.08,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "vier",
+          "word_id": "w_vier"
+        }
+      ]
+    },
+    {
+      "id": "NN21-S11",
+      "role": "extra",
+      "nl": "vijf",
+      "zh": "五",
+      "en": "five",
+      "speaker": null,
+      "audio": "audio/NN21/S11.mp3",
+      "start": 29.25,
+      "end": 30.33,
+      "duration": 1.08,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "vijf",
+          "word_id": "w_vijf"
+        }
+      ]
+    }
+  ],
+  "word_ids": [
+    "w_goedemorgen",
+    "w_mevrouw",
+    "w_wat",
+    "w_willen",
+    "w_u",
+    "w_een",
+    "w_bruin",
+    "w_brood",
+    "w_alstublieft",
+    "w_anders_nog_iets",
+    "w_nee",
+    "w_dank_u_wel",
+    "w_dat",
+    "w_zijn",
+    "w_drie",
+    "w_euro",
+    "w_de",
+    "w_niet",
+    "w_dollar",
+    "w_dank_u",
+    "w_tot_ziens",
+    "w_vier",
+    "w_vijf"
+  ],
+  "exercises": [
+    {
+      "id": "NN21-E1",
+      "nn_number": 1,
+      "type": "true_false",
+      "instruction": {
+        "nl": "Waar of niet waar?",
+        "zh": "对还是不对？",
+        "en": "True or false?"
+      },
+      "items": [
+        {
+          "id": "NN21-E1-1",
+          "prompt": "De vrouw wil een brood.",
+          "options": ["waar", "niet waar"],
+          "answer": "waar",
+          "zh": "这位女士要一个面包。",
+          "en": "The woman wants a loaf.",
+          "audio": null
+        },
+        {
+          "id": "NN21-E1-2",
+          "prompt": "Het brood kost vijf euro.",
+          "options": ["waar", "niet waar"],
+          "answer": "niet waar",
+          "zh": "面包要五欧元。",
+          "en": "The bread costs five euros.",
+          "audio": null
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN21-E2",
+      "nn_number": 2,
+      "type": "choose_one",
+      "instruction": {
+        "nl": "Omcirkel het goede antwoord.",
+        "zh": "圈出正确答案。",
+        "en": "Circle the correct answer."
+      },
+      "items": [
+        {
+          "id": "NN21-E2-1",
+          "prompt": "Goedemorgen, ..... .",
+          "options": ["meneer", "mevrouw"],
+          "answer": "mevrouw",
+          "example": true
+        },
+        {
+          "id": "NN21-E2-2",
+          "prompt": "Wat ..... u?",
+          "options": ["wil", "wilt"],
+          "answer": "wilt",
+          "zh": "您要什么？",
+          "en": "What would you like?"
+        },
+        {
+          "id": "NN21-E2-3",
+          "prompt": "Een ..... brood.",
+          "options": ["bruin", "drie"],
+          "answer": "bruin",
+          "extra": true
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN21-E3",
+      "nn_number": 3,
+      "type": "match",
+      "instruction": {
+        "nl": "Wat hoort bij elkaar?",
+        "zh": "把相配的连起来。",
+        "en": "Match the pairs."
+      },
+      "items": [
+        {
+          "id": "NN21-E3-1",
+          "left": ["Goedemorgen!", "Dank u wel.", "Anders nog iets?"],
+          "right": ["Nee, dank u.", "Goedemorgen!", "Graag gedaan."],
+          "pairs": [
+            [0, 1],
+            [1, 2],
+            [2, 0]
+          ]
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN21-E4",
+      "nn_number": 4,
+      "type": "fill_choice",
+      "instruction": {
+        "nl": "Vul in.",
+        "zh": "选词填空。",
+        "en": "Fill in the blanks."
+      },
+      "bank": ["Dank", "wilt", "is"],
+      "items": [
+        {
+          "id": "NN21-E4-1",
+          "prompt": "..... u wel.",
+          "answer": "Dank",
+          "example": true
+        },
+        {
+          "id": "NN21-E4-2",
+          "prompt": "Wat ..... u?",
+          "answer": "wilt"
+        },
+        {
+          "id": "NN21-E4-3",
+          "prompt": "Dat ..... drie euro.",
+          "answer": "is",
+          "answer_by": "DS"
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN21-E5",
+      "nn_number": 5,
+      "type": "order",
+      "instruction": {
+        "nl": "Zet in de goede volgorde.",
+        "zh": "按正确顺序排列。",
+        "en": "Put in the right order."
+      },
+      "items": [
+        {
+          "id": "NN21-E5-1",
+          "tokens": ["Wat", "wilt", "u?"]
+        },
+        {
+          "id": "NN21-E5-2",
+          "tokens": ["Een", "bruin", "brood,", "alstublieft."]
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN21-E6",
+      "nn_number": 6,
+      "type": "answer_oral",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "口头回答。",
+        "en": "Answer aloud."
+      },
+      "items": [
+        {
+          "id": "NN21-E6-1",
+          "prompt": "Wat wilt u?",
+          "sample_answers": ["Een brood, alstublieft.", "Een bruin brood, graag."],
+          "zh": "您要什么？",
+          "en": "What would you like?",
+          "audio": "audio/tts/741bb109a4013b0d.mp3"
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN21-E7",
+      "nn_number": 7,
+      "type": "other",
+      "instruction": {
+        "nl": "Teken de route.",
+        "zh": "画出路线。",
+        "en": "Draw the route."
+      },
+      "items": [
+        {
+          "id": "NN21-E7-1",
+          "raw": "Teken de route van huis naar de bakker."
+        }
+      ],
+      "skip": true,
+      "skip_reason": "unsupported"
+    },
+    {
+      "id": "NN21-E8",
+      "nn_number": 8,
+      "type": "choose_one",
+      "instruction": {
+        "nl": "Kijk naar de foto.",
+        "zh": "看照片。",
+        "en": "Look at the photo."
+      },
+      "items": [
+        {
+          "id": "NN21-E8-1",
+          "prompt": "Foto 1: .....",
+          "options": ["brood", "euro"],
+          "answer": "brood"
+        }
+      ],
+      "skip": true,
+      "skip_reason": "needs_image"
+    }
+  ],
+  "extras": [],
+  "notes": "Fixture: self-written content for tests."
+}

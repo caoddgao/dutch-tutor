@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "own-words.schema.json",
+  "title": "content/a1/words/own.json：我们自己内容里用到的词",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "lemma", "pos", "zh", "en"],
+    "additionalProperties": false,
+    "properties": {
+      "id": { "type": "string", "pattern": "^w_[A-Za-z0-9_-]+$" },
+      "lemma": { "$ref": "common.schema.json#/$defs/text" },
+      "pos": { "$ref": "common.schema.json#/$defs/pos" },
+      "article": { "$ref": "common.schema.json#/$defs/article" },
+      "plural": { "type": ["string", "null"] },
+      "verb_forms": { "$ref": "common.schema.json#/$defs/verbForms" },
+      "separable": { "type": ["string", "null"], "pattern": "^[^|]+\\|[^|]+$" },
+      "forms_seen": { "type": "array", "items": { "type": "string" } },
+      "zh": { "$ref": "common.schema.json#/$defs/text" },
+      "en": { "$ref": "common.schema.json#/$defs/text" },
+      "flags": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

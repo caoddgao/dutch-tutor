@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tts-manifest.schema.json",
+  "title": "content/audio/tts/manifest.json：合成音缓存（由工作流写入）",
+  "type": "object",
+  "required": ["voices", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "voices": {
+      "type": "object",
+      "required": ["default", "male"],
+      "additionalProperties": false,
+      "properties": { "default": { "type": "string" }, "male": { "type": "string" } }
+    },
+    "entries": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[0-9a-f]{16}$" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["text", "voice", "duration"],
+        "additionalProperties": false,
+        "properties": {
+          "text": { "type": "string", "minLength": 1 },
+          "voice": { "type": "string" },
+          "duration": { "type": "number", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

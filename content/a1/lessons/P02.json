@@ -1,0 +1,187 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P02",
+  "kind": "phonics",
+  "title": {
+    "nl": "aa · ee",
+    "zh": "长元音 aa、ee",
+    "en": "Long vowels aa, ee"
+  },
+  "sounds": [
+    {
+      "grapheme": "aa",
+      "note_zh": "长 aa：嘴张大，把“啊”拉长，口形不变。写成两个 a 就读长音。对比：man（男人）↔ maan（月亮）。",
+      "note_en": "Long aa: an open, long 'ah'. Compare man (man) and maan (moon).",
+      "word_ids": ["w_naam", "w_maan", "w_taal"]
+    },
+    {
+      "grapheme": "ee",
+      "note_zh": "长 ee：像汉语“诶”拉长，结尾嘴角往两边、略带一点 i 的滑音。对比：bel ↔ twee。",
+      "note_en": "Long ee: a long 'ay' with a slight glide at the end. Compare bel and twee.",
+      "word_ids": ["w_twee", "w_nee", "w_thee"]
+    }
+  ],
+  "word_ids": [
+    "w_naam",
+    "w_maan",
+    "w_taal",
+    "w_twee",
+    "w_thee",
+    "w_mijn",
+    "w_uw",
+    "w_graag",
+    "w_leren",
+    "w_nederlands"
+  ],
+  "sentences": [
+    {
+      "id": "P02-S01",
+      "nl": "Wat is uw naam?",
+      "zh": "您叫什么名字？",
+      "en": "What is your name?"
+    },
+    {
+      "id": "P02-S02",
+      "nl": "Mijn naam is Sam.",
+      "zh": "我的名字是萨姆。",
+      "en": "My name is Sam."
+    },
+    {
+      "id": "P02-S03",
+      "nl": "Nee, dank je.",
+      "zh": "不用了，谢谢。",
+      "en": "No, thank you."
+    },
+    {
+      "id": "P02-S04",
+      "nl": "Twee thee, graag.",
+      "zh": "请来两杯茶。",
+      "en": "Two teas, please."
+    },
+    {
+      "id": "P02-S05",
+      "nl": "Ja, graag!",
+      "zh": "好的，谢谢！",
+      "en": "Yes, please!"
+    },
+    {
+      "id": "P02-S06",
+      "nl": "Ik leer Nederlands.",
+      "zh": "我在学荷兰语。",
+      "en": "I am learning Dutch."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P02-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P02-E1-1",
+          "word_id": "w_maan",
+          "options": ["man", "maan"],
+          "answer": "maan"
+        },
+        {
+          "id": "P02-E1-2",
+          "word_id": "w_man",
+          "options": ["man", "maan"],
+          "answer": "man"
+        },
+        {
+          "id": "P02-E1-3",
+          "word_id": "w_taal",
+          "options": ["tal", "taal"],
+          "answer": "taal"
+        },
+        {
+          "id": "P02-E1-4",
+          "word_id": "w_nee",
+          "options": ["ne", "nee"],
+          "answer": "nee"
+        }
+      ]
+    },
+    {
+      "id": "P02-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P02-E2-1",
+          "word_id": "w_maan",
+          "options": ["w_man", "w_maan", "w_naam"]
+        },
+        {
+          "id": "P02-E2-2",
+          "word_id": "w_twee",
+          "options": ["w_thee", "w_nee", "w_twee"]
+        },
+        {
+          "id": "P02-E2-3",
+          "word_id": "w_bel",
+          "options": ["w_bel", "w_twee", "w_taal"]
+        }
+      ]
+    },
+    {
+      "id": "P02-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P02-E3-1",
+          "sentence_id": "P02-S02"
+        },
+        {
+          "id": "P02-E3-2",
+          "sentence_id": "P02-S06"
+        }
+      ]
+    },
+    {
+      "id": "P02-E4",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "P02-E4-1",
+          "question": {
+            "nl": "Wat is uw naam?",
+            "zh": "您叫什么名字？",
+            "en": "What is your name?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn naam is Sam.",
+              "zh": "我的名字是萨姆。",
+              "en": "My name is Sam."
+            },
+            {
+              "nl": "Ik ben Anna.",
+              "zh": "我是安娜。",
+              "en": "I am Anna."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

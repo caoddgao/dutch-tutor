@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pack-lesson.schema.json",
+  "title": "资料包 lessons/*.json",
+  "type": "object",
+  "required": ["id", "nn_lesson", "kind", "title", "sentences", "exercises"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "nn_lesson": { "type": "integer", "minimum": 0 },
+    "kind": { "enum": ["main", "phonics", "reading", "test"] },
+    "title": { "$ref": "common.schema.json#/$defs/trilingual" },
+    "pdf_pages": { "type": "array", "items": { "type": "integer" } },
+    "text_type": { "enum": ["dialogue", "text", "mixed"] },
+    "audio_full": { "oneOf": [{ "$ref": "common.schema.json#/$defs/relPath" }, { "type": "null" }] },
+    "sentences": { "type": "array", "items": { "$ref": "#/$defs/sentence" } },
+    "word_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "exercises": { "type": "array", "items": { "$ref": "#/$defs/exercise" } },
+    "extras": { "type": "array", "items": { "$ref": "#/$defs/extra" } },
+    "sounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["grapheme", "keywords"],
+        "properties": {
+          "grapheme": { "type": "string", "minLength": 1 },
+          "keywords": { "type": "array", "items": { "type": "string" } },
+          "note_zh": { "type": "string" }
+        }
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "nl", "word_id", "audio", "flags"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "nl": { "type": "string" },
+          "word_id": { "$ref": "common.schema.json#/$defs/id" },
+          "audio": { "oneOf": [{ "$ref": "common.schema.json#/$defs/relPath" }, { "type": "null" }] },
+          "start": { "type": "number" },
+          "end": { "type": "number" },
+          "align_score": { "type": "number", "minimum": 0, "maximum": 1 },
+          "flags": { "$ref": "common.schema.json#/$defs/sentenceFlags" }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "token": {
+      "type": "object",
+      "required": ["t", "word_id"],
+      "properties": { "t": { "type": "string", "minLength": 1 }, "word_id": { "$ref": "common.schema.json#/$defs/id" } }
+    },
+    "sentence": {
+      "type": "object",
+      "required": ["id", "role", "nl", "zh", "en", "speaker", "audio", "flags"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "role": { "enum": ["title", "line", "extra"] },
+        "nl": { "type": "string" },
+        "zh": { "type": "string" },
+        "en": { "type": "string" },
+        "speaker": { "type": ["string", "null"] },
+        "audio": { "oneOf": [{ "$ref": "common.schema.json#/$defs/relPath" }, { "type": "null" }] },
+        "start": { "type": "number", "minimum": 0 },
+        "end": { "type": "number", "minimum": 0 },
+        "duration": { "type": "number", "minimum": 0 },
+        "align_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "tokens": { "type": "array", "items": { "$ref": "#/$defs/token" } },
+        "flags": { "$ref": "common.schema.json#/$defs/sentenceFlags" }
+      }
+    },
+    "extra": {
+      "type": "object",
+      "required": ["id", "sentences"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "pdf_page": { "type": "integer" },
+        "sentences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "nl", "zh", "en", "audio"],
+            "properties": {
+              "id": { "$ref": "common.schema.json#/$defs/id" },
+              "nl": { "type": "string" },
+              "zh": { "type": "string" },
+              "en": { "type": "string" },
+              "audio": { "oneOf": [{ "$ref": "common.schema.json#/$defs/relPath" }, { "type": "null" }] },
+              "audio_source": { "type": "string" },
+              "tokens": { "type": "array", "items": { "$ref": "#/$defs/token" } }
+            }
+          }
+        }
+      }
+    },
+    "exercise": {
+      "type": "object",
+      "required": ["id", "type", "instruction", "items", "skip", "skip_reason"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "nn_number": { "type": "integer" },
+        "type": {
+          "enum": ["true_false", "choose_one", "match", "fill_choice", "answer_oral", "order", "listen_choose", "other"]
+        },
+        "instruction": { "$ref": "common.schema.json#/$defs/trilingual" },
+        "bank": { "type": "array", "items": { "type": "string" } },
+        "extra": { "type": "boolean" },
+        "skip": { "type": "boolean" },
+        "skip_reason": { "type": ["string", "null"] },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "$ref": "common.schema.json#/$defs/id" },
+              "prompt": { "type": "string" },
+              "options": { "type": "array", "items": { "type": "string" } },
+              "answer": { "type": "string" },
+              "zh": { "type": "string" },
+              "en": { "type": "string" },
+              "audio": { "oneOf": [{ "$ref": "common.schema.json#/$defs/relPath" }, { "type": "null" }] },
+              "example": { "type": "boolean" },
+              "extra": { "type": "boolean" },
+              "answer_by": { "type": "string" },
+              "left": { "type": "array", "items": { "type": "string" } },
+              "right": { "type": "array", "items": { "type": "string" } },
+              "pairs": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [{ "type": "integer" }, { "type": "integer" }],
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "sample_answers": { "type": "array", "items": { "type": "string" } },
+              "tokens": { "type": "array", "items": { "type": "string" } },
+              "raw": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
