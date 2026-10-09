@@ -14,7 +14,15 @@ export function AppShell() {
   const renderLink = (item: (typeof NAV_ITEMS)[number]) => {
     const Icon = item.icon;
     return (
-      <NavLink key={item.path} to={item.path} end className="nav-link" title={item.label}>
+      <NavLink
+        key={item.path}
+        to={item.path}
+        end={item.path === "/"}
+        className={({ isActive }) =>
+          `nav-link${isActive || (item.path === "/courses" && pathname.startsWith("/lesson/")) ? " active" : ""}`
+        }
+        title={item.label}
+      >
         <Icon size={20} strokeWidth={2} aria-hidden />
         <span className="nav-label">{item.label}</span>
       </NavLink>

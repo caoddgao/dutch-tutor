@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { DEMO_CONTINUE, DEMO_SECTIONS } from "./demoCourse";
 import { countByStatus, displayStatus, recommendNext, type CourseSection } from "./types";
 
 const mk = (id: string, status: "new" | "studied" | "mastered") => ({
@@ -33,19 +32,12 @@ describe("displayStatus", () => {
   });
 });
 
-describe("demo course", () => {
-  it("has unique ids and progress within 0–1", () => {
-    const all = DEMO_SECTIONS.flatMap((s) => s.lessons);
-    expect(new Set(all.map((l) => l.id)).size).toBe(all.length);
-    for (const l of all) expect(l.progress).toBeGreaterThanOrEqual(0);
-    for (const l of all) expect(l.progress).toBeLessThanOrEqual(1);
-  });
-
-  it("continues the recommended lesson", () => {
-    expect(recommendNext(DEMO_SECTIONS)?.id).toBe(DEMO_CONTINUE.lessonId);
-  });
-
-  it("counts statuses", () => {
-    expect(countByStatus(DEMO_SECTIONS[0].lessons)).toEqual({ new: 0, studied: 6, mastered: 4 });
+describe("countByStatus", () => {
+  it("counts each status", () => {
+    expect(countByStatus([mk("a", "new"), mk("b", "studied"), mk("c", "mastered"), mk("d", "studied")])).toEqual({
+      new: 1,
+      studied: 2,
+      mastered: 1,
+    });
   });
 });

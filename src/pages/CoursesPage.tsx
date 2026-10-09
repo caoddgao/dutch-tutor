@@ -1,12 +1,17 @@
-import { LockOpen } from "lucide-react";
+import { LockOpen, PackageOpen } from "lucide-react";
+import { Link } from "react-router";
 import { LessonCard } from "../components/LessonCard";
-import { DEMO_SECTIONS } from "../course/demoCourse";
+import { useContent } from "../content/context";
+import { missingRanges } from "../course/progress";
 import { countByStatus, displayStatus, LEVELS, recommendNext } from "../course/types";
+import { useCourseData } from "../course/useCourseData";
 import "./CoursesPage.css";
 
 export function CoursesPage() {
-  const sections = DEMO_SECTIONS;
-  const recommended = recommendNext(sections);
+  const data = useCourseData();
+  const { course, packStatus } = useContent();
+  if (!data) return <p className="muted lesson-loading">正在读取…</p>;
+  const recommended = recommendNext(data.sections);
 
   return (
     <div className="courses">
@@ -33,23 +38,49 @@ export function CoursesPage() {
         </p>
       </div>
 
-      {sections.map((section) => {
+      {data.sections.map((section) => {
+        const view = course.find((s) => s.id === section.id)!;
         const counts = countByStatus(section.lessons);
+        const missing = view.missing;
+        if (section.lessons.length === 0 && missing.length === 0) return null;
         return (
           <section key={section.id} className="course-section" aria-labelledby={`sec-${section.id}`}>
             <div className="course-section-head">
               <h2 id={`sec-${section.id}`} className="section-title">
                 {section.title}
               </h2>
-              <span className="muted course-section-meta">
-                {section.lessons.length} 课 · 已掌握 {counts.mastered} · 学过 {counts.studied}
-              </span>
+              {section.lessons.length > 0 && (
+                <span className="muted course-section-meta">
+                  {section.lessons.length} 课 · 已掌握 {counts.mastered} · 学过 {counts.studied}
+                </span>
+              )}
             </div>
-            <div className="lesson-grid">
-              {section.lessons.map((lesson) => (
-                <LessonCard key={lesson.id} lesson={lesson} status={displayStatus(lesson, recommended?.id)} />
+            {section.lessons.length > 0 && (
+              <div className="lesson-grid">
+                {section.lessons.map((lesson) => (
+                  <LessonCard key={lesson.id} lesson={lesson} status={displayStatus(lesson, recommended?.id)} />
+                ))}
+              </div>
+            )}
+            {missing.length > 0 &&
+              (packStatus === "ready" ? (
+                <p className="muted course-missing">资料包里还没有：{missingRanges(missing)}</p>
+              ) : (
+                <div className="card needs-pack">
+                  <span className="stat-icon stat-icon-accent">
+                    <PackageOpen size={20} aria-hidden />
+                  </span>
+                  <div className="needs-pack-text">
+                    <p className="stat-title">需要资料包</p>
+                    <p className="muted">
+                      {missingRanges(missing)}的课文、原版录音和练习在 Naar Nederland 资料包里，导入一次就能学。
+                    </p>
+                  </div>
+                  <Link to="/settings" className="btn btn-primary">
+                    去导入
+                  </Link>
+                </div>
               ))}
-            </div>
           </section>
         );
       })}

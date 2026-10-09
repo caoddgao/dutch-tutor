@@ -49,6 +49,7 @@
   border: 1px solid transparent;
   font-size: var(--fs-md);
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition:
     background 0.15s var(--ease),
@@ -197,6 +198,10 @@
 .switch[aria-checked="true"] {
   background: var(--primary-fill);
 }
+.switch:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
 .switch[aria-checked="true"]::after {
   transform: translateX(18px);
 }
@@ -259,4 +264,8 @@
   background: var(--neutral-soft);
   color: var(--text-disabled);
   cursor: default;
+}
+.btn-danger {
+  background: #e5484d;
+  color: #fff;
 }
