@@ -1,0 +1,75 @@
+.courses {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.courses-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.level-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+.level-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 0 var(--space-5);
+  border: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-2);
+  font-weight: 800;
+  cursor: pointer;
+}
+.level-tab[aria-selected="true"] {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.level-tab:disabled {
+  cursor: default;
+  color: var(--text-disabled);
+}
+.level-name {
+  font-size: var(--fs-md);
+}
+.level-soon {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+.courses-note {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+}
+.course-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.course-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.course-section-meta {
+  font-size: var(--fs-sm);
+}
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: var(--space-4);
+}
