@@ -228,3 +228,35 @@
 .shell-notice {
   margin-bottom: var(--space-5) !important;
 }
+
+/* Small play button */
+.audio-btn {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  cursor: pointer;
+  transition:
+    background 0.15s var(--ease),
+    transform 0.15s var(--ease);
+}
+.audio-btn-md {
+  width: 40px;
+  height: 40px;
+}
+.audio-btn-sm {
+  width: 30px;
+  height: 30px;
+}
+.audio-btn:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.audio-btn:disabled {
+  background: var(--neutral-soft);
+  color: var(--text-disabled);
+  cursor: default;
+}

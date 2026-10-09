@@ -57,3 +57,9 @@ jobs:
         working-directory: src-tauri
       - run: cargo test
         working-directory: src-tauri
+      - name: Windows 目标编译检查（含 WebView2 麦克风权限代码）
+        run: |
+          sudo apt-get install -y gcc-mingw-w64-x86-64
+          rustup target add x86_64-pc-windows-gnu
+          cargo clippy --target x86_64-pc-windows-gnu -- -D warnings
+        working-directory: src-tauri

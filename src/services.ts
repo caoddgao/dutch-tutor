@@ -1,3 +1,4 @@
+import type { RecordingFiles } from "./audio/recordings";
 import type { ContentBundle } from "./content/ownTypes";
 import type { PackBackend } from "./pack/backend";
 import type { SqlDb } from "./storage/db";
@@ -12,4 +13,5 @@ export interface AppServices {
   content: ContentBundle;
   /** Our synthesized audio: cache key → URL */
   ttsUrls: Record<string, string>;
+  recordingFiles: RecordingFiles;
 }

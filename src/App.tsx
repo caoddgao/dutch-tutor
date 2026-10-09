@@ -1,5 +1,6 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { AppShell } from "./app/AppShell";
+import { AudioProvider } from "./audio/AudioProvider";
 import { ContentProvider } from "./content/ContentProvider";
 import { CoursesPage } from "./pages/CoursesPage";
 import { ExamPage } from "./pages/ExamPage";
@@ -16,19 +17,21 @@ export function App({ services }: { services: AppServices }) {
     <ServicesContext.Provider value={services}>
       <SettingsProvider store={services.settings}>
         <ContentProvider bundle={services.content} backend={services.pack} ttsUrls={services.ttsUrls}>
-          <HashRouter>
-            <Routes>
-              <Route element={<AppShell />}>
-                <Route index element={<HomePage />} />
-                <Route path="courses" element={<CoursesPage />} />
-                <Route path="review" element={<ReviewPage />} />
-                <Route path="practice" element={<PracticePage />} />
-                <Route path="exam" element={<ExamPage />} />
-                <Route path="settings" element={<SettingsPage />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Route>
-            </Routes>
-          </HashRouter>
+          <AudioProvider>
+            <HashRouter>
+              <Routes>
+                <Route element={<AppShell />}>
+                  <Route index element={<HomePage />} />
+                  <Route path="courses" element={<CoursesPage />} />
+                  <Route path="review" element={<ReviewPage />} />
+                  <Route path="practice" element={<PracticePage />} />
+                  <Route path="exam" element={<ExamPage />} />
+                  <Route path="settings" element={<SettingsPage />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Route>
+              </Routes>
+            </HashRouter>
+          </AudioProvider>
         </ContentProvider>
       </SettingsProvider>
     </ServicesContext.Provider>
