@@ -1,0 +1,34 @@
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 44px;
+  min-width: 0;
+  flex: 1;
+}
+.waveform > span {
+  flex: 1;
+  min-width: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.32);
+  transition: background 0.12s linear;
+}
+.waveform-original > span.is-played {
+  background: linear-gradient(180deg, #ffb27a, var(--brand-orange));
+  box-shadow: 0 0 8px rgba(255, 122, 26, 0.45);
+}
+.waveform-mine > span {
+  background: rgba(157, 179, 242, 0.42);
+}
+.waveform-mine > span.is-played {
+  background: #b8c9ff;
+}
+.waveform-light > span {
+  background: var(--track);
+}
+.waveform-light > span.is-played {
+  background: var(--accent);
+}
+.waveform.is-empty > span {
+  opacity: 0.6;
+}

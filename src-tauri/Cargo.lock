@@ -804,6 +804,7 @@ dependencies = [
  "tauri-build",
  "tauri-plugin-dialog",
  "tauri-plugin-sql",
+ "webview2-com",
 ]
 
 [[package]]

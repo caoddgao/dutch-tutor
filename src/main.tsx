@@ -8,6 +8,7 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App";
 import { applySettings, normalizeSettings } from "./settings/settings";
 import { isTauri } from "@tauri-apps/api/core";
+import { createDefaultRecordingFiles } from "./audio/recordings";
 import { CONTENT, TTS_URLS } from "./content/bundle";
 import { createDefaultPackBackend } from "./pack/backend";
 import type { AppServices } from "./services";
@@ -30,6 +31,7 @@ const services: AppServices = {
   pack: createDefaultPackBackend(),
   content: CONTENT,
   ttsUrls: TTS_URLS,
+  recordingFiles: createDefaultRecordingFiles(),
 };
 
 createRoot(document.getElementById("root")!).render(

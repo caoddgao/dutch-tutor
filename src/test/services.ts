@@ -1,6 +1,7 @@
 // Test doubles for AppServices: fixture pack read from disk, in-memory SQLite, memory settings.
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { createMemoryRecordingFiles } from "../audio/recordings";
 import type { ContentBundle } from "../content/ownTypes";
 import { CONTENT } from "../content/bundle";
 import type { PackBackend } from "../pack/backend";
@@ -52,6 +53,7 @@ export function testServices(over: Partial<AppServices> & { settingsData?: Recor
     pack: fsPackBackend(),
     content: CONTENT,
     ttsUrls: {},
+    recordingFiles: createMemoryRecordingFiles(),
     ...over,
   };
   return { services, settingsData: data, db, raw };
