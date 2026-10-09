@@ -1,0 +1,196 @@
+/* Shared building blocks */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-6);
+}
+
+.immersive {
+  background: var(--immersive-gradient);
+  color: var(--immersive-text);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-immersive);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.immersive::before {
+  /* soft light bloom */
+  content: "";
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 60%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(255, 122, 26, 0.22), transparent 62%);
+  z-index: -1;
+}
+
+.section-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text);
+}
+.muted {
+  color: var(--text-3);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s var(--ease),
+    transform 0.15s var(--ease),
+    box-shadow 0.15s var(--ease);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+.btn-accent {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 6px 18px rgba(255, 122, 26, 0.35);
+}
+.btn-accent:hover {
+  background: var(--accent-hover);
+}
+.btn-ghost {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  background: var(--surface-hover);
+}
+
+/* Glowing orange play button (immersive zones) */
+.play-button {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background: radial-gradient(circle at 35% 30%, #ffa05a 0%, var(--brand-orange) 55%, #ef6400 100%);
+  box-shadow:
+    0 0 0 6px rgba(255, 122, 26, 0.16),
+    0 0 28px rgba(255, 122, 26, 0.6),
+    0 8px 20px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.15s var(--ease),
+    box-shadow 0.2s var(--ease);
+}
+.play-button:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 0 0 8px rgba(255, 122, 26, 0.2),
+    0 0 36px rgba(255, 122, 26, 0.75),
+    0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Progress */
+.progress {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--track);
+  overflow: hidden;
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+  transition: width 0.3s var(--ease);
+}
+.immersive .progress {
+  background: var(--immersive-track);
+}
+.immersive .progress > span {
+  background: linear-gradient(90deg, #ff9a4d, var(--brand-orange));
+}
+
+/* Tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tag-mastered {
+  background: var(--success-soft);
+  color: var(--success-text);
+}
+.tag-studied {
+  background: var(--primary-soft);
+  color: var(--primary-text);
+}
+.tag-recommended {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.tag-new {
+  background: var(--neutral-soft);
+  color: var(--text-3);
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 26px;
+  flex: none;
+  border-radius: var(--radius-pill);
+  border: none;
+  padding: 0;
+  background: var(--track);
+  cursor: pointer;
+  transition: background 0.15s var(--ease);
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.18s var(--ease);
+}
+.switch[aria-checked="true"] {
+  background: var(--primary);
+}
+:root[data-theme="dark"] .switch[aria-checked="true"] {
+  background: #3d5fc4;
+}
+.switch[aria-checked="true"]::after {
+  transform: translateX(18px);
+}

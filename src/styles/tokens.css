@@ -1,0 +1,142 @@
+/*
+ * Design tokens. Style "A+C": light grey canvas, white cards, large radii, soft shadows;
+ * immersive dark-gradient zones (player bar, "continue" card) with a glowing orange play button.
+ * Theme: <html data-theme="light|dark">, resolved from the setting (light / dark / system).
+ * Font scales: --scale-nl / --scale-zh / --scale-en (0.8–1.5), set from settings.
+ */
+:root {
+  --scale-nl: 1;
+  --scale-zh: 1;
+  --scale-en: 1;
+
+  /* Brand (same in both themes) */
+  --brand-blue: #1e3a8a;
+  --brand-orange: #ff7a1a;
+  --immersive-from: #101935;
+  --immersive-to: #233a86;
+  --immersive-gradient: linear-gradient(135deg, var(--immersive-from) 0%, var(--immersive-to) 100%);
+  --immersive-text: #ffffff;
+  --immersive-text-2: rgba(255, 255, 255, 0.74);
+  --immersive-track: rgba(255, 255, 255, 0.18);
+
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans Variable", "Noto Sans SC Variable", system-ui, sans-serif;
+  --font-zh: "Noto Sans SC Variable", "Plus Jakarta Sans Variable", system-ui, sans-serif;
+
+  /* UI / Chinese text sizes follow the Chinese scale */
+  --fs-xs: calc(12px * var(--scale-zh));
+  --fs-sm: calc(13px * var(--scale-zh));
+  --fs-md: calc(15px * var(--scale-zh));
+  --fs-lg: calc(17px * var(--scale-zh));
+  --fs-xl: calc(21px * var(--scale-zh));
+  --fs-2xl: calc(26px * var(--scale-zh));
+  --fs-stat: calc(40px * var(--scale-zh));
+
+  /* Dutch text */
+  --fs-nl-sm: calc(14px * var(--scale-nl));
+  --fs-nl-md: calc(17px * var(--scale-nl));
+  --fs-nl-lg: calc(22px * var(--scale-nl));
+  /* Sentence display: also adapts to window width */
+  --fs-nl-sentence: calc(clamp(26px, 14px + 2.2vw, 52px) * var(--scale-nl));
+
+  /* English text */
+  --fs-en-sm: calc(12px * var(--scale-en));
+  --fs-en-md: calc(14px * var(--scale-en));
+  --fs-en-lg: calc(17px * var(--scale-en));
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Radii */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-card: 24px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --sidebar-width: 236px;
+  --sidebar-collapsed: 76px;
+  --topbar-height: 64px;
+  --content-max: 1180px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f3f4f7;
+  --surface: #ffffff;
+  --surface-2: #f6f7fa;
+  --surface-hover: #eef0f5;
+  --border: #e3e6ee;
+  --text: #121826;
+  --text-2: #4b5263;
+  --text-3: #6b7385;
+  --text-disabled: #a3a9b6;
+
+  --primary: #1e3a8a;
+  --primary-hover: #1a3279;
+  --on-primary: #ffffff;
+  --primary-text: #1e3a8a;
+  --primary-soft: #e8edfa;
+
+  --accent: #ff7a1a;
+  --accent-hover: #f06b0c;
+  --on-accent: #ffffff;
+  --accent-text: #b24a00;
+  --accent-soft: #fff1e6;
+
+  --success-text: #12703a;
+  --success-soft: #e4f5ea;
+  --neutral-soft: #eceef3;
+
+  --track: #e6e9f0;
+  --focus-ring: 0 0 0 3px rgba(30, 58, 138, 0.28);
+  --shadow-card: 0 1px 2px rgba(18, 24, 38, 0.04), 0 10px 28px rgba(18, 24, 38, 0.06);
+  --shadow-card-hover: 0 2px 4px rgba(18, 24, 38, 0.05), 0 16px 36px rgba(18, 24, 38, 0.1);
+  --shadow-immersive: 0 18px 40px rgba(16, 25, 53, 0.28);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0e15;
+  --surface: #10141d;
+  --surface-2: #151a25;
+  --surface-hover: #1a2030;
+  --border: #222938;
+  --text: #eef1f7;
+  --text-2: #b6bdcc;
+  --text-3: #8f97a9;
+  --text-disabled: #5d6577;
+
+  --primary: #1e3a8a;
+  --primary-hover: #2647a6;
+  --on-primary: #ffffff;
+  --primary-text: #9db3f2;
+  --primary-soft: rgba(61, 95, 196, 0.22);
+
+  --accent: #ff7a1a;
+  --accent-hover: #ff8b36;
+  --on-accent: #ffffff;
+  --accent-text: #ffa25c;
+  --accent-soft: rgba(255, 122, 26, 0.14);
+
+  --success-text: #6fd69a;
+  --success-soft: rgba(52, 168, 98, 0.16);
+  --neutral-soft: #1c2230;
+
+  --track: #232a3a;
+  --focus-ring: 0 0 0 3px rgba(157, 179, 242, 0.4);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.45), 0 16px 36px rgba(0, 0, 0, 0.45);
+  --shadow-immersive: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
