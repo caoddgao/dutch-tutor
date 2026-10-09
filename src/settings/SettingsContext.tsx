@@ -3,7 +3,6 @@ import { readCachedSettings, writeCachedSettings, type SettingsStore } from "../
 import { SettingsContext } from "./context";
 import { applySettings, DEFAULT_SETTINGS, normalizeSettings, type SettingKey, type Settings } from "./settings";
 
-
 const DARK_QUERY = "(prefers-color-scheme: dark)";
 
 function systemPrefersDark(): boolean {
