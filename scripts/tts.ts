@@ -24,6 +24,12 @@ export function ssml(voice: string, text: string): string {
   return `<speak version="1.0" xml:lang="nl-NL"><voice name="${voice}">${esc}</voice></speak>`;
 }
 
+/** "East US" / " eastus\n" / "eastus.api.cognitive.microsoft.com" → "eastus" */
+export function normalizeRegion(raw: string | undefined): string | undefined {
+  const r = raw?.trim().toLowerCase().replace(/\s+/g, "").split(".")[0];
+  return r || undefined;
+}
+
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 function arg(name: string): string | undefined {
@@ -95,6 +101,11 @@ async function azure(voice: string, text: string, output: string, region: string
       await sleep(RETRY_WAIT_MS);
       continue;
     }
+    if (res.status === 401 || res.status === 403)
+      throw new Error(
+        `Azure TTS refused the key (HTTP ${res.status}). Check that AZURE_SPEECH_KEY belongs to a Speech resource in ` +
+          `region "${region}" (key length ${key.length}).`,
+      );
     if (!res.ok) throw new Error(`Azure TTS failed: HTTP ${res.status} for "${text}"`);
     const raw = `${output}.raw.mp3`;
     writeFileSync(raw, Buffer.from(await res.arrayBuffer()));
@@ -127,8 +138,8 @@ async function main() {
   }
   console.log(`${todo.size} texts to synthesize${usePlaceholder ? " (placeholder tones)" : ""}`);
 
-  const key = process.env.AZURE_SPEECH_KEY;
-  const region = process.env.AZURE_SPEECH_REGION;
+  const key = process.env.AZURE_SPEECH_KEY?.trim();
+  const region = normalizeRegion(process.env.AZURE_SPEECH_REGION);
   if (!usePlaceholder && todo.size > 0 && (!key || !region))
     throw new Error("AZURE_SPEECH_KEY and AZURE_SPEECH_REGION must be set (or use --placeholder)");
 
