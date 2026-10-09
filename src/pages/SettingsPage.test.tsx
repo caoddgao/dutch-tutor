@@ -1,14 +1,14 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { App } from "../App";
-import { memoryStore } from "../test/memoryStore";
+import { testServices } from "../test/services";
 
 async function renderSettings(initial: Record<string, unknown> = {}) {
-  const mem = memoryStore(initial);
+  const mem = testServices({ settingsData: initial });
   await act(async () => {
-    render(<App store={mem.store} />);
+    render(<App services={mem.services} />);
   });
-  return mem;
+  return { data: mem.settingsData, ...mem };
 }
 
 describe("SettingsPage", () => {

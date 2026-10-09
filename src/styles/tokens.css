@@ -99,6 +99,8 @@
 
   --success-text: #12703a;
   --success-soft: #e4f5ea;
+  --danger-text: #b42318;
+  --danger-soft: #fdecea;
   --neutral-soft: #eceef3;
 
   --track: #e6e9f0;
@@ -135,6 +137,8 @@
 
   --success-text: #6fd69a;
   --success-soft: rgba(52, 168, 98, 0.16);
+  --danger-text: #ff8a80;
+  --danger-soft: rgba(229, 72, 77, 0.16);
   --neutral-soft: #1c2230;
 
   --track: #232a3a;

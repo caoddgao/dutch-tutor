@@ -1,30 +1,36 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { AppShell } from "./app/AppShell";
+import { ContentProvider } from "./content/ContentProvider";
 import { CoursesPage } from "./pages/CoursesPage";
 import { ExamPage } from "./pages/ExamPage";
 import { HomePage } from "./pages/HomePage";
 import { PracticePage } from "./pages/PracticePage";
 import { ReviewPage } from "./pages/ReviewPage";
 import { SettingsPage } from "./pages/SettingsPage";
+import type { AppServices } from "./services";
+import { ServicesContext } from "./servicesContext";
 import { SettingsProvider } from "./settings/SettingsContext";
-import type { SettingsStore } from "./storage/settingsStore";
 
-export function App({ store }: { store: SettingsStore }) {
+export function App({ services }: { services: AppServices }) {
   return (
-    <SettingsProvider store={store}>
-      <HashRouter>
-        <Routes>
-          <Route element={<AppShell />}>
-            <Route index element={<HomePage />} />
-            <Route path="courses" element={<CoursesPage />} />
-            <Route path="review" element={<ReviewPage />} />
-            <Route path="practice" element={<PracticePage />} />
-            <Route path="exam" element={<ExamPage />} />
-            <Route path="settings" element={<SettingsPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </HashRouter>
-    </SettingsProvider>
+    <ServicesContext.Provider value={services}>
+      <SettingsProvider store={services.settings}>
+        <ContentProvider bundle={services.content} backend={services.pack} ttsUrls={services.ttsUrls}>
+          <HashRouter>
+            <Routes>
+              <Route element={<AppShell />}>
+                <Route index element={<HomePage />} />
+                <Route path="courses" element={<CoursesPage />} />
+                <Route path="review" element={<ReviewPage />} />
+                <Route path="practice" element={<PracticePage />} />
+                <Route path="exam" element={<ExamPage />} />
+                <Route path="settings" element={<SettingsPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Route>
+            </Routes>
+          </HashRouter>
+        </ContentProvider>
+      </SettingsProvider>
+    </ServicesContext.Provider>
   );
 }

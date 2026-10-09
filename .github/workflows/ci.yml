@@ -31,7 +31,7 @@ jobs:
       - run: npm run build
 
   rust:
-    name: 后端：格式 · clippy
+    name: 后端：格式 · clippy · 测试
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -54,4 +54,6 @@ jobs:
       - run: cargo fmt --check
         working-directory: src-tauri
       - run: cargo clippy --all-targets -- -D warnings
+        working-directory: src-tauri
+      - run: cargo test
         working-directory: src-tauri

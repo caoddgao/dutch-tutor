@@ -1,4 +1,5 @@
-import { NavLink, Outlet, useLocation } from "react-router";
+import { Link, NavLink, Outlet, useLocation } from "react-router";
+import { useContent } from "../content/context";
 import { useSettings } from "../settings/context";
 import { NAV_ITEMS, titleForPath } from "./nav";
 import "./AppShell.css";
@@ -6,6 +7,7 @@ import "./AppShell.css";
 export function AppShell() {
   const { pathname } = useLocation();
   const { settings, update } = useSettings();
+  const { packUpdate } = useContent();
   const mainItems = NAV_ITEMS.filter((n) => n.path !== "/settings");
   const settingsItem = NAV_ITEMS.find((n) => n.path === "/settings")!;
 
@@ -53,6 +55,14 @@ export function AppShell() {
           </div>
         </header>
         <main className="content">
+          {packUpdate && pathname !== "/settings" && (
+            <div className="notice notice-accent shell-notice" role="status">
+              <span>资料包有新版本，重新导入后才能看到新内容。</span>
+              <Link to="/settings" className="btn btn-accent btn-small">
+                去重新导入
+              </Link>
+            </div>
+          )}
           <Outlet />
         </main>
       </div>

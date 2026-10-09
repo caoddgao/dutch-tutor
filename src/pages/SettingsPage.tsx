@@ -2,6 +2,7 @@ import { getVersion } from "@tauri-apps/api/app";
 import { isTauri } from "@tauri-apps/api/core";
 import { useEffect, useState } from "react";
 import { Segmented } from "../components/Segmented";
+import { PackSection } from "./PackSection";
 import { useSettings } from "../settings/context";
 import {
   DEFAULT_SETTINGS,
@@ -117,6 +118,8 @@ export function SettingsPage() {
           />
         </div>
       </section>
+
+      <PackSection />
 
       <section className="card settings-section">
         <h2 className="section-title">关于</h2>

@@ -2,8 +2,13 @@
 // exposed through the same interface as the Tauri SQL plugin.
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { DatabaseSync } from "node:sqlite";
+import { createRequire } from "node:module";
+import type { DatabaseSync as DatabaseSyncType } from "node:sqlite";
 import type { SqlDb } from "./db";
+
+// Loaded at runtime: the jsdom test environment cannot bundle node:sqlite.
+const { DatabaseSync } = createRequire(import.meta.url)("node:sqlite") as typeof import("node:sqlite");
+type DatabaseSync = DatabaseSyncType;
 
 export const MIGRATIONS_DIR = join(import.meta.dirname, "../../src-tauri/migrations");
 

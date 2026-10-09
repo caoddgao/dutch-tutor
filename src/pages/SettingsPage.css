@@ -41,15 +41,6 @@
   font-size: var(--fs-sm);
   font-variant-numeric: tabular-nums;
 }
-.btn-small {
-  min-height: 32px;
-  padding: 0 var(--space-4);
-  font-size: var(--fs-sm);
-}
-.btn:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
 
 /* Font scale sliders */
 .scale-list {
@@ -108,4 +99,10 @@
 }
 .scale-preview-en {
   font-size: var(--fs-en-lg);
+}
+
+.settings-path {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  word-break: break-all;
 }
