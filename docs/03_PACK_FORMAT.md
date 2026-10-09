@@ -136,6 +136,7 @@ nn-pack/
 | `order` | 排序 | `tokens`（打乱前的正确顺序） |
 | `other` | 以上都不是 | `raw`（原文），并设 `skip: true` |
 
+- 书里已经填好、作示例的小题：**照样收进 `items`**，题干还原成带 `.....` 空位的形式，`answer` 取答案页的值，另加 `"example": true`（程序把它当作已答好的示范显示，不计分）。这样词库和答案页一一对应。
 - 依赖图片才能做的练习：`skip: true`，`skip_reason: "needs_image"`。
 - 带"EXTRA"或橙色星号的练习也要收录，额外加 `"extra": true`。
 - 答案取自书末的答案页；书里没有答案的题，DS 给出答案并加 `"answer_by": "DS"`。
