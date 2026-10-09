@@ -2,7 +2,7 @@
 
 > 版本 v1.0 草案 · 2026-10-08 · 用户（老旦）与 Claude 讨论定稿前的过目稿
 > 配套文件：`02_PLAN.md`（施工计划）、`03_PACK_FORMAT.md`（资料包格式）、`04_DS_NN_PACK.md`（给 DS 的资料包整理指令）
-> 旧项目（`F:\Working_Projects\Dutch_Tutor`）整体作废，只作参考，不迁移任何代码。
+> 旧项目（`F:\Working_Projects\Dutch_Tutor`）整体作废，只作参考，不迁移任何代码。新项目在用户电脑上的部分（原始资料、DS 工作目录、文档副本）全部在 `F:\Working_Projects\Dutch_Tutor_v2\`。
 
 ---
 

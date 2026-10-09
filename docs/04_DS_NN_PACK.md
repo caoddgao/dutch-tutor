@@ -12,11 +12,11 @@
 
 ## 1. 规矩
 
-1. **原始资料只读**：`F:\Working_Projects\Dutch_Tutor\NaarNederland\` 里的文件一律不改、不移动、不删除。
-2. **工作目录**：`F:\Working_Projects\NN_Pack\`（新建）。脚本放在 `scripts\`，产出放在 `nn-pack\`，中间文件放在 `work\`。
+1. **原始资料只读**：`F:\Working_Projects\Dutch_Tutor_v2\NaarNederland\` 里的文件一律不改、不移动、不删除。
+2. **工作目录**：`F:\Working_Projects\Dutch_Tutor_v2\NN_Pack\`（已建好，空）。VS Code 打开的项目根目录是 `F:\Working_Projects\Dutch_Tutor_v2`。脚本放在 `scripts\`，产出放在 `nn-pack\`，中间文件放在 `work\`。**不要读写老项目目录 `F:\Working_Projects\Dutch_Tutor\`。**
 3. **不上传**：不推到任何 git 远程仓库，不上传到任何网站。
 4. **安装软件前先问用户**（见第 2 步）。
-5. 所有步骤记日志：`F:\Working_Projects\NN_Pack\LOG.md`，只追加，每次一段：日期、做了什么、结果、问题。
+5. 所有步骤记日志：`F:\Working_Projects\Dutch_Tutor_v2\NN_Pack\LOG.md`，只追加，每次一段：日期、做了什么、结果、问题。
 6. **先试点，再全量**（第 9 步）。试点完成后必须停下来等用户确认。
 
 ## 2. 输入文件
@@ -40,7 +40,7 @@
 请**新建独立环境**，不要用 bili2text、ComfyUI 或旧 Dutch_Tutor 的环境：
 
 ```powershell
-cd F:\Working_Projects\NN_Pack
+cd F:\Working_Projects\Dutch_Tutor_v2\NN_Pack
 uv venv .venv --python 3.12
 .\.venv\Scripts\activate
 uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128
@@ -125,7 +125,7 @@ uv pip install stable-ts pymupdf rapidfuzz jsonschema requests
 ```
 ## 资料包汇报（试点 / 全量）
 - 范围：……
-- 产出位置：F:\Working_Projects\NN_Pack\nn-pack\
+- 产出位置：F:\Working_Projects\Dutch_Tutor_v2\NN_Pack\nn-pack\
 - 数量：课 x、句子 x、练习 x（跳过 x）、词条 x、音频文件 x
 - 对齐：平均 align_score x；low_align x 句（已人工修 x，仍有问题 x）；over_5s x 句
 - 词表核对：中英词表数量不一致的课及处理方式

@@ -14,7 +14,7 @@
 | **用户** | — | 拍板；在每个试用点安装试用、提意见；最后用录音模式录真人音频 |
 | **云端施工会话**（Claude Code on the web） | GitHub 仓库 | 写代码、写我们自己的内容、测试，自己合并 |
 | **审核 / 设计会话**（claude.ai 聊天） | — | 设计讨论、审核每个阶段的结果、给施工会话写任务 |
-| **DS**（DeepSeek，在用户电脑上） | `F:\Working_Projects\NN_Pack` | 整理 Naar Nederland 资料包（见 `04_DS_NN_PACK.md`），不碰仓库 |
+| **DS**（DeepSeek，在用户电脑上） | `F:\Working_Projects\Dutch_Tutor_v2\NN_Pack` | 整理 Naar Nederland 资料包（见 `04_DS_NN_PACK.md`），不碰仓库 |
 | **GitHub Actions** | 云端 | 每次提交跑测试和内容校验；合并到 `main` 后打 Windows 安装包；生成我们自己内容的合成音 |
 
 ### 0.2 施工会话的规矩（写进仓库的 `CLAUDE.md`）
