@@ -1,0 +1,47 @@
+name: 生成合成音
+
+# Synthesized audio for our own content (docs/01_DESIGN.md §5.2): only what is missing from
+# content/audio/tts/ is generated (cache key = voice + text), at most one request per 3.2 s.
+# The result is proposed as a pull request; the key never leaves GitHub Secrets.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: tts
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  tts:
+    name: Azure TTS（nl-NL-FennaNeural）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Generate missing audio
+        env:
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+        run: npx tsx scripts/tts.ts
+      - run: npx prettier --write content/audio/tts/manifest.json
+      - name: Content check (durations, references)
+        run: npm run validate
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: tts/update
+          delete-branch: true
+          add-paths: content/audio/tts
+          commit-message: "content(audio): synthesized audio for our own content"
+          title: "合成音：为我们自己的内容生成 Azure 音频"
+          body: |
+            由"生成合成音"工作流自动生成（nl-NL-FennaNeural，每 3.2 秒最多 1 次请求，按"文字 + 声音"缓存）。
+            只新增缺少的音频；`content/audio/tts/manifest.json` 记录每条的文字、声音和时长。
