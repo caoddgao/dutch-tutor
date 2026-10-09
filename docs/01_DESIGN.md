@@ -221,9 +221,9 @@
 | 界面 | React + TypeScript + Vite | CSS 变量做设计规范（两套主题） |
 | 本地存储 | SQLite（Tauri SQL 插件） | 学习进度、复习安排、录音索引、反馈 |
 | 课程内容 | JSON，随程序打包 | 仓库里我们自己写的内容 |
-| 资料包 | 导入到 `%APPDATA%\DutchTutor\nn-pack\` | 一次性复制，几秒钟完成；之后从本地读取 |
+| 资料包 | 导入到 `%APPDATA%\nl.dutchtutor.app\nn-pack\` | 一次性复制，几秒钟完成；之后从本地读取 |
 | 音频播放 | Tauri 资源协议 + HTML5 Audio | 慢放用 `playbackRate`（保持音调） |
-| 录音 | WebView 的麦克风接口 | 存到 `%APPDATA%\DutchTutor\recordings\` |
+| 录音 | WebView 的麦克风接口 | 存到 `%APPDATA%\nl.dutchtutor.app\recordings\` |
 | Azure 评分 | REST 接口，从程序后端（Rust）发出 | 密钥存在本机，不进仓库，不进日志 |
 | 测试 | Vitest（单元）+ 内容校验脚本 | 每次提交在 GitHub Actions 跑 |
 | 打包 | GitHub Actions（windows 环境）→ NSIS 安装包 `.exe` | 每次合并到主分支自动出包，可在 GitHub 的 Releases 下载 |
