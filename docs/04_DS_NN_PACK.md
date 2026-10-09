@@ -66,6 +66,7 @@ uv pip install stable-ts pymupdf rapidfuzz jsonschema requests
 1. 对每课：`model.align(audio, text, language="nl", original_split=True)`，其中 `text` 是第 4 步得到的句子，用换行连接，**包含标题句**。
 2. 得到每句的 `start` / `end`。用 ffmpeg 切片：前后各留 0.15 秒（不越过相邻句的中点），加 10 毫秒淡入淡出；转成 MP3 单声道 44.1 kHz 128 kbps。整课原文件复制为 `full.mp3`。
 3. **质检**：每个切片单独再用 Whisper 转写一次，与该句原文比较（rapidfuzz 的 `ratio`，比较前统一小写、去标点）：
+   - 比较前先**归一化数字和字母**：荷兰语数词与阿拉伯数字互转（twee ↔ 2、tien ↔ 10、vierentwintig ↔ 24），去掉连字符和多余空格，逐个念出的字母合并（V-S ↔ VS）；时间、邮编、电话号码同样处理
    - `align_score` = 相似度 / 100
    - 低于 0.90 标 `low_align`，> 5 秒标 `over_5s`
 4. 低于 0.90 的句子**人工处理**：听原音频、调时间点，标 `manual_fixed`。处理后仍不行的写进质检报告。
