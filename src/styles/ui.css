@@ -261,3 +261,7 @@
   color: var(--text-disabled);
   cursor: default;
 }
+.btn-danger {
+  background: #e5484d;
+  color: #fff;
+}

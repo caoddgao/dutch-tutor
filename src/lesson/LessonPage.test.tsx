@@ -28,7 +28,8 @@ describe("lesson page", () => {
       "2逐句学",
       "3词卡",
       "4小贴士",
-      "5完成",
+      "5练习",
+      "6完成",
     ]);
     // text is hidden until asked for
     expect(screen.queryByText("Goedemorgen!")).toBeNull();
@@ -95,11 +96,54 @@ describe("lesson page", () => {
     expect(screen.getByRole("table")).toBeTruthy();
   });
 
+  it("exercises: book examples are shown answered, answers are checked and scored", async () => {
+    await open("#/lesson/NN21");
+    await screen.findByText("先完整听一两遍");
+    fireEvent.click(screen.getByRole("button", { name: /练习/ }));
+    expect(await screen.findByText(/^第 1 \/ \d+ 题$/)).toBeTruthy();
+    // walk to the first book example (choose_one, item 1)
+    for (let i = 0; i < 30 && !screen.queryByText("示范"); i++) {
+      const options = screen
+        .queryAllByRole("button")
+        .filter((b) => b.classList.contains("q-option") && !b.hasAttribute("disabled"));
+      if (options.length) fireEvent.click(options[0]);
+      let block = document.querySelector<HTMLButtonElement>(".order-pool .order-block:not([disabled])");
+      while (block) {
+        fireEvent.click(block);
+        block = document.querySelector<HTMLButtonElement>(".order-pool .order-block:not([disabled])");
+      }
+      for (const b of screen.queryAllByRole("button", { name: "选这个" })) {
+        fireEvent.click(b);
+        break;
+      }
+      const reveal = screen.queryByRole("button", { name: "看参考答案" });
+      if (reveal) {
+        fireEvent.click(reveal);
+        fireEvent.click(screen.getByRole("button", { name: "会" }));
+      }
+      fireEvent.click(screen.getByRole("button", { name: /下一题|完成练习/ }));
+    }
+    expect(screen.getByText("这是课本里的示范题，看一看就好。")).toBeTruthy();
+    // the example's answer is already marked and the next button is open
+    expect(screen.getByLabelText("正确答案")).toBeTruthy();
+    expect((screen.getByRole("button", { name: "下一题" }) as HTMLButtonElement).disabled).toBe(false);
+    // the following real item is checked when answered
+    fireEvent.click(screen.getByRole("button", { name: "下一题" }));
+    fireEvent.click(screen.getByRole("button", { name: /wilt/ }));
+    expect(screen.getByRole("status").textContent).toBe("答对了！");
+  });
+
   it("phonics lessons start with the sounds", async () => {
     await open("#/lesson/P01");
     expect(await screen.findByText("短 a，短促。")).toBeTruthy();
     const steps = within(screen.getByRole("navigation", { name: "上课步骤" }));
-    expect(steps.getAllByRole("button").map((b) => b.textContent)).toEqual(["1音", "2关键词", "3短句", "4完成"]);
+    expect(steps.getAllByRole("button").map((b) => b.textContent)).toEqual([
+      "1音",
+      "2关键词",
+      "3短句",
+      "4听辨练习",
+      "5完成",
+    ]);
   });
 
   it("main lessons need the pack", async () => {

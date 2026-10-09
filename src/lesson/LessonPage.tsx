@@ -8,6 +8,8 @@ import { useContent } from "../content/context";
 import type { RtLesson } from "../content/model";
 import { useServices } from "../servicesContext";
 import { completeLesson, getProgress, markStudyDay, savePosition } from "../storage/learning";
+import { buildExercises, type ExerciseGroup } from "../exercises/build";
+import { ExercisesStep, type Score } from "../exercises/ExercisesStep";
 import { DoneStep } from "./DoneStep";
 import { ListenStep } from "./ListenStep";
 import { reviewSeeds } from "./reviewSeeds";
@@ -84,9 +86,12 @@ export function LessonPage() {
 
 function Lesson({ lesson }: { lesson: RtLesson }) {
   const { db } = useServices();
-  const { dict } = useContent();
+  const { dict, bundle } = useContent();
   const navigate = useNavigate();
-  const steps = useMemo(() => stepsFor(lesson, false), [lesson]);
+  const groups: ExerciseGroup[] = useMemo(() => buildExercises(lesson, dict, bundle.tts), [lesson, dict, bundle.tts]);
+  const questionCount = groups.reduce((n, g) => n + g.questions.length, 0);
+  const steps = useMemo(() => stepsFor(lesson, questionCount > 0), [lesson, questionCount]);
+  const [score, setScore] = useState<Score | null>(null);
   const [pos, setPos] = useState<{ step: StepCode; index: number } | null>(null);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [added, setAdded] = useState<number | null>(null);
@@ -194,7 +199,8 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
     ? (lesson.words.find((w) => w.id === selectedWord) ?? dict.words.get(selectedWord) ?? null)
     : null;
   // the word card and the sound cards already show everything the side column would
-  const wide = pos.step === STEP.done || (pos.step === STEP.intro && lesson.kind === "phonics");
+  const wide =
+    pos.step === STEP.done || pos.step === STEP.exercises || (pos.step === STEP.intro && lesson.kind === "phonics");
   const lookupWord = (wid: string) => {
     setSelectedWord(wid);
   };
@@ -265,10 +271,26 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
           )}
           {word && <WordsStep lesson={lesson} word={word} index={pos.index} />}
           {pos.step === STEP.tips && <TipsStep lesson={lesson} />}
+          {pos.step === STEP.exercises && (
+            <ExercisesStep
+              groups={groups}
+              startAt={pos.index}
+              onPosition={(i) =>
+                db()
+                  .then((d) => savePosition(d, lesson.id, STEP.exercises, i))
+                  .catch(() => undefined)
+              }
+              onFinish={(s) => {
+                setScore(s);
+                nextStep();
+              }}
+            />
+          )}
           {pos.step === STEP.done && (
             <DoneStep
               lesson={lesson}
               added={added}
+              score={score}
               onRestart={() => {
                 completing.current = false;
                 setAdded(null);

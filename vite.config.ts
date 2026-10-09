@@ -1,7 +1,7 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { devBackend } from "./scripts/vite-dev-backend";
+import { devBackend } from "./scripts/vite-dev-backend.ts";
 
 const host = process.env.TAURI_DEV_HOST;
 
