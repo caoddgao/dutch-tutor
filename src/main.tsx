@@ -8,7 +8,10 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App";
 import { applySettings, normalizeSettings } from "./settings/settings";
 import { isTauri } from "@tauri-apps/api/core";
-import { getDb } from "./storage/db";
+import { CONTENT, TTS_URLS } from "./content/bundle";
+import { createDefaultPackBackend } from "./pack/backend";
+import type { AppServices } from "./services";
+import { createDevHttpDb, getDb, type SqlDb } from "./storage/db";
 import { createLocalSettingsStore, readCachedSettings } from "./storage/settingsStore";
 import { createSqliteSettingsStore } from "./storage/sqliteSettingsStore";
 
@@ -19,11 +22,18 @@ applySettings(
   window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false,
 );
 
-// Desktop app: SQLite. Plain browser (dev server): localStorage.
-const store = isTauri() ? createSqliteSettingsStore(getDb) : createLocalSettingsStore();
+// Desktop app: SQLite. Plain browser (dev server): settings in localStorage, learning data in the dev server.
+const devDb: SqlDb = createDevHttpDb();
+const services: AppServices = {
+  settings: isTauri() ? createSqliteSettingsStore(getDb) : createLocalSettingsStore(),
+  db: isTauri() ? getDb : async () => devDb,
+  pack: createDefaultPackBackend(),
+  content: CONTENT,
+  ttsUrls: TTS_URLS,
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App store={store} />
+    <App services={services} />
   </StrictMode>,
 );

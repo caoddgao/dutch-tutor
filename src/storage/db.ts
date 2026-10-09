@@ -16,3 +16,16 @@ export function getDb(): Promise<SqlDb> {
   dbPromise ??= Database.load(DB_URL);
   return dbPromise;
 }
+
+/** Browser dev server: queries run on an in-memory SQLite database inside vite (scripts/vite-dev-backend.ts). */
+export function createDevHttpDb(endpoint = "/__dev/sql"): SqlDb {
+  const call = async (mode: "select" | "execute", query: string, params: unknown[] = []) => {
+    const res = await fetch(endpoint, { method: "POST", body: JSON.stringify({ mode, query, params }) });
+    if (!res.ok) throw new Error(await res.text());
+    return res.json();
+  };
+  return {
+    execute: (query, bindValues) => call("execute", query, bindValues),
+    select: (query, bindValues) => call("select", query, bindValues),
+  };
+}

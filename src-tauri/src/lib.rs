@@ -1,3 +1,5 @@
+mod pack;
+
 use tauri_plugin_sql::{Migration, MigrationKind};
 
 /// Database location; the SQL plugin resolves it inside the app's config directory.
@@ -17,11 +19,18 @@ fn migrations() -> Vec<Migration> {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
         .plugin(
             tauri_plugin_sql::Builder::default()
                 .add_migrations(DB_URL, migrations())
                 .build(),
         )
+        .invoke_handler(tauri::generate_handler![
+            pack::pack_info,
+            pack::inspect_pack,
+            pack::import_pack,
+            pack::read_pack_file,
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

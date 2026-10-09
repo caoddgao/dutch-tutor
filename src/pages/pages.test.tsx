@@ -1,13 +1,13 @@
 import { act, render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { App } from "../App";
-import { memoryStore } from "../test/memoryStore";
+import { testServices } from "../test/services";
 import { greetingFor } from "./greeting";
 
 async function renderAt(hash: string) {
   window.location.hash = hash;
   await act(async () => {
-    render(<App store={memoryStore().store} />);
+    render(<App services={testServices().services} />);
   });
 }
 

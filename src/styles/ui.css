@@ -58,6 +58,15 @@
 .btn:active {
   transform: translateY(1px);
 }
+.btn-small {
+  min-height: 32px;
+  padding: 0 var(--space-4);
+  font-size: var(--fs-sm);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 .btn-primary {
   background: var(--primary);
   color: var(--on-primary);
@@ -190,4 +199,32 @@
 }
 .switch[aria-checked="true"]::after {
   transform: translateX(18px);
+}
+
+/* Inline notices */
+.notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+.notice-accent {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.notice-error {
+  background: var(--danger-soft);
+  color: var(--danger-text);
+}
+.notice-success {
+  background: var(--success-soft);
+  color: var(--success-text);
+}
+
+.shell-notice {
+  margin-bottom: var(--space-5) !important;
 }
