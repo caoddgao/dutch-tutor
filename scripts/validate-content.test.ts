@@ -7,7 +7,7 @@ import type { PackData } from "../src/content/validate";
 import { validateContent, type Issue } from "../src/content/validate";
 import { loadContent, loadPack, REPO_ROOT } from "./lib/contentFiles";
 import { runValidation } from "./validate-content";
-import { ssml, ttsKey } from "./tts";
+import { normalizeRegion, ssml, ttsKey } from "./tts";
 
 const FIXTURE_PACK = join(REPO_ROOT, "fixtures/nn-pack");
 const FIXTURE_CONTENT = join(REPO_ROOT, "fixtures/content");
@@ -204,5 +204,8 @@ describe("tts helpers", () => {
     expect(ttsKey("nl-NL-FennaNeural", "Wat wilt u?")).toMatch(/^[0-9a-f]{16}$/);
     expect(ssml("v", "a < b & c")).toContain("a &lt; b &amp; c");
     expect(ssml("v", "x")).toContain('xml:lang="nl-NL"');
+    expect(normalizeRegion(" East US\n")).toBe("eastus");
+    expect(normalizeRegion("westeurope.api.cognitive.microsoft.com")).toBe("westeurope");
+    expect(normalizeRegion("  ")).toBeUndefined();
   });
 });
