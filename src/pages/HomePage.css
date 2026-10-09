@@ -211,3 +211,7 @@
     flex-wrap: wrap;
   }
 }
+.continue-nl-zh {
+  font-family: var(--font-zh);
+  font-size: var(--fs-2xl);
+}

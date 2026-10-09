@@ -73,3 +73,16 @@
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
   gap: var(--space-4);
 }
+
+.course-missing {
+  font-size: var(--fs-sm);
+}
+.needs-pack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.needs-pack-text {
+  flex: 1 1 280px;
+}
