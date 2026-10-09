@@ -1,18 +1,7 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { App } from "../App";
-import type { SettingsStore } from "../storage/settingsStore";
-
-function memoryStore(initial: Record<string, unknown> = {}) {
-  const data: Record<string, unknown> = { ...initial };
-  const store: SettingsStore = {
-    load: async () => ({ ...data }),
-    save: async (key, value) => {
-      data[key] = value;
-    },
-  };
-  return { data, store };
-}
+import { memoryStore } from "../test/memoryStore";
 
 describe("AppShell", () => {
   beforeEach(() => {

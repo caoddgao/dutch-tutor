@@ -35,19 +35,21 @@ export function AppShell() {
 
       <div className="main">
         <header className="topbar">
-          <h1 className="topbar-title">{titleForPath(pathname)}</h1>
-          <div className="topbar-actions">
-            <button
-              type="button"
-              className="en-toggle"
-              role="switch"
-              aria-checked={settings.showEnglish}
-              aria-label="显示英文释义"
-              title={settings.showEnglish ? "隐藏英文释义" : "显示英文释义"}
-              onClick={() => update("showEnglish", !settings.showEnglish)}
-            >
-              EN
-            </button>
+          <div className="topbar-inner">
+            <h1 className="topbar-title">{titleForPath(pathname)}</h1>
+            <div className="topbar-actions">
+              <button
+                type="button"
+                className="en-toggle"
+                role="switch"
+                aria-checked={settings.showEnglish}
+                aria-label="显示英文释义"
+                title={settings.showEnglish ? "隐藏英文释义" : "显示英文释义"}
+                onClick={() => update("showEnglish", !settings.showEnglish)}
+              >
+                EN
+              </button>
+            </div>
           </div>
         </header>
         <main className="content">
