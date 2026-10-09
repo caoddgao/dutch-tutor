@@ -86,6 +86,7 @@ nn-pack/
   ],
   "word_ids": ["w_wat", "w_naam", "…"],
   "exercises": [ ],
+  "extras": [ ],
   "notes": ""
 }
 ```
@@ -141,6 +142,22 @@ nn-pack/
 - 带"EXTRA"或橙色星号的内容也要收录，**按星号实际标的范围打标记**：星号标整道练习 → 练习层加 `"extra": true`；星号只标其中一组小题 → 只在那些小题上加 `"extra": true`。这个标记只作记录，程序照常显示（用户属于高学历学习路线，额外练习都要做）。
 - 答案取自书末的答案页；书里没有答案的题，DS 给出答案并加 `"answer_by": "DS"`。
 - `zh` / `en`：小题题干的翻译，可选，建议填写。
+
+## 4A. EXTRA 例句框（`extras` 数组）
+
+书里没有编号、没有题目说明的橙色"EXTRA"方框，内容通常是一组展示语法规律的例句（如 Ik ben … / Jij bent … / Ben jij …?）。**不放进 `exercises`**，放在课的 `extras` 数组里，程序会把它们用作小贴士的例句：
+
+```json
+"extras": [
+  { "id": "NN22-X1", "pdf_page": 121,
+    "sentences": [
+      { "id": "NN22-X1-1", "nl": "…", "zh": "…", "en": "…", "audio": "audio/tts/<hash>.mp3", "audio_source": "tts:nl-NL-FennaNeural" }
+    ] }
+]
+```
+
+- 每句都要有 `zh` / `en` 翻译；录音里有这句就切原版，没有就生成合成音。
+- 每句也要生成 `tokens`（同课文句子）。
 
 ## 5. 第 1–20 课（`kind`: `phonics` 或 `reading`）
 
