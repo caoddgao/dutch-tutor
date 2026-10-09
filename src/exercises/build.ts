@@ -63,7 +63,7 @@ function spellingDistractors(word: RtWord, pool: RtWord[], rnd: () => number): R
 
 /** Generated questions for a main lesson: 2×E1, 2×E2, 2×E3, 1×E4, 2×E7 when the lesson has enough material. */
 export function generatedGroups(lesson: RtLesson, dict: Dictionary, rnd: () => number): ExerciseGroup[] {
-  const sentences = lesson.sentences.filter((s) => s.tokens.length >= 2 && s.zh.trim());
+  const sentences = lesson.sentences.filter((s) => s.tokens.length >= 2 && s.zh?.trim());
   const groups: ExerciseGroup[] = [];
   if (sentences.length >= 2) {
     const listen = shuffle(

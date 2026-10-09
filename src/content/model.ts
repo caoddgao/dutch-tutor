@@ -266,7 +266,7 @@ function packSentenceView(s: PackLesson["sentences"][number]): RtSentence {
     tokens: s.tokens ?? [],
     start: s.start,
     end: s.end,
-    flags: s.flags,
+    flags: s.flags ?? [],
   };
 }
 
@@ -341,7 +341,7 @@ export function buildLesson(
 
   const extras: RtExtraBox[] = (pack?.extras ?? []).map((x) => ({
     id: x.id,
-    sentences: x.sentences.map((s) => ({
+    sentences: (x.sentences ?? []).map((s) => ({
       id: s.id,
       nl: s.nl,
       zh: s.zh,
@@ -355,7 +355,9 @@ export function buildLesson(
   }));
 
   const packExercises: RtPackExercise[] = [...(pack ? [pack] : []), ...linked].flatMap((l) =>
-    l.exercises.filter((e) => !e.skip && e.type !== "other").map((exercise) => ({ lessonId: l.id, exercise })),
+    (l.exercises ?? [])
+      .filter((e) => !e.skip && e.type !== "other" && Array.isArray(e.items))
+      .map((exercise) => ({ lessonId: l.id, exercise })),
   );
 
   return {
