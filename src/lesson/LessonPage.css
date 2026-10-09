@@ -67,6 +67,9 @@
 .stepper button:hover {
   background: var(--surface-hover);
 }
+.stepper-label {
+  white-space: nowrap;
+}
 .stepper-dot {
   flex: none;
   display: grid;
@@ -594,6 +597,15 @@
   justify-content: center;
 }
 
+@media (max-width: 640px) {
+  .stepper li {
+    flex: none;
+    min-width: 0;
+  }
+  .stepper li:not([data-state="current"]) .stepper-label {
+    display: none;
+  }
+}
 @media (max-width: 1000px) {
   .lesson-body {
     grid-template-columns: minmax(0, 1fr);
