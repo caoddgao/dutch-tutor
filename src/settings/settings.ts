@@ -12,6 +12,12 @@ export interface Settings {
   showEnglish: boolean;
   /** Default playback speed */
   playbackRate: number;
+  /** Today's review: at most this many items a day (design §4.4) */
+  dailyReviewLimit: number;
+  /** Review modes in rotation (design §4.2); at least one stays on */
+  reviewR1: boolean;
+  reviewR2: boolean;
+  reviewR3: boolean;
 }
 
 export type SettingKey = keyof Settings;
@@ -20,6 +26,9 @@ export const SCALE_MIN = 0.8;
 export const SCALE_MAX = 1.5;
 export const SCALE_STEP = 0.05;
 export const PLAYBACK_RATES = [1, 0.75] as const;
+export const REVIEW_LIMIT_MIN = 10;
+export const REVIEW_LIMIT_MAX = 200;
+export const REVIEW_LIMIT_STEP = 10;
 
 export const DEFAULT_SETTINGS: Settings = {
   theme: "system",
@@ -28,6 +37,10 @@ export const DEFAULT_SETTINGS: Settings = {
   scaleEn: 1,
   showEnglish: true,
   playbackRate: 1,
+  dailyReviewLimit: 50,
+  reviewR1: true,
+  reviewR2: true,
+  reviewR3: true,
 };
 
 export const SETTING_KEYS = Object.keys(DEFAULT_SETTINGS) as SettingKey[];
@@ -40,6 +53,15 @@ export function clampScale(value: unknown): number {
   return Number(Math.min(SCALE_MAX, Math.max(SCALE_MIN, snapped)).toFixed(2));
 }
 
+export function clampReviewLimit(value: unknown): number {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return DEFAULT_SETTINGS.dailyReviewLimit;
+  const snapped = Math.round(n / REVIEW_LIMIT_STEP) * REVIEW_LIMIT_STEP;
+  return Math.min(REVIEW_LIMIT_MAX, Math.max(REVIEW_LIMIT_MIN, snapped));
+}
+
+const bool = (v: unknown, fallback: boolean) => (typeof v === "boolean" ? v : fallback);
+
 /** Turns untrusted stored values into a complete, valid Settings object. */
 export function normalizeSettings(raw: Partial<Record<string, unknown>>): Settings {
   const theme = raw.theme;
@@ -51,6 +73,9 @@ export function normalizeSettings(raw: Partial<Record<string, unknown>>): Settin
     scaleEn: raw.scaleEn === undefined ? DEFAULT_SETTINGS.scaleEn : clampScale(raw.scaleEn),
     showEnglish: typeof raw.showEnglish === "boolean" ? raw.showEnglish : DEFAULT_SETTINGS.showEnglish,
     playbackRate: (PLAYBACK_RATES as readonly number[]).includes(rate) ? rate : DEFAULT_SETTINGS.playbackRate,
+    dailyReviewLimit:
+      raw.dailyReviewLimit === undefined ? DEFAULT_SETTINGS.dailyReviewLimit : clampReviewLimit(raw.dailyReviewLimit),
+    ...reviewModes(raw),
   };
 }
 
@@ -70,4 +95,15 @@ export function applySettings(root: HTMLElement, settings: Settings, systemPrefe
 
 export function formatPercent(scale: number): string {
   return `${Math.round(scale * 100)}%`;
+}
+
+function reviewModes(raw: Partial<Record<string, unknown>>): Pick<Settings, "reviewR1" | "reviewR2" | "reviewR3"> {
+  const modes = {
+    reviewR1: bool(raw.reviewR1, true),
+    reviewR2: bool(raw.reviewR2, true),
+    reviewR3: bool(raw.reviewR3, true),
+  };
+  // never all off: fall back to R1
+  if (!modes.reviewR1 && !modes.reviewR2 && !modes.reviewR3) modes.reviewR1 = true;
+  return modes;
 }

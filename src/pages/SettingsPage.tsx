@@ -7,6 +7,9 @@ import { useSettings } from "../settings/context";
 import {
   DEFAULT_SETTINGS,
   formatPercent,
+  REVIEW_LIMIT_MAX,
+  REVIEW_LIMIT_MIN,
+  REVIEW_LIMIT_STEP,
   SCALE_MAX,
   SCALE_MIN,
   SCALE_STEP,
@@ -16,6 +19,16 @@ import {
 import "./SettingsPage.css";
 
 type ScaleKey = "scaleNl" | "scaleZh" | "scaleEn";
+
+const REVIEW_MODES: { key: "reviewR1" | "reviewR2" | "reviewR3"; label: string; desc: string }[] = [
+  { key: "reviewR1", label: "R1 看荷兰语选意思", desc: "显示荷兰语，从 4 个意思里选。" },
+  { key: "reviewR2", label: "R2 只听不看选意思", desc: "只播放录音，不显示文字。" },
+  {
+    key: "reviewR3",
+    label: "R3 看中文说荷兰语",
+    desc: "看中文（和英文）开口说，再听原声对比，自己评“会 / 模糊 / 不会”。",
+  },
+];
 
 const SCALES: { key: ScaleKey; label: string }[] = [
   { key: "scaleNl", label: "荷兰语" },
@@ -117,6 +130,56 @@ export function SettingsPage() {
             ]}
           />
         </div>
+      </section>
+
+      <section className="card settings-section" aria-label="复习">
+        <h2 className="section-title">复习</h2>
+        <div className="settings-row">
+          <div className="settings-row-text">
+            <div className="settings-row-label">每日复习上限</div>
+            <div className="settings-row-desc">“今日复习”每天最多出这么多项，到期但超出的留到第二天。</div>
+          </div>
+        </div>
+        <label className="scale-row">
+          <span className="scale-label">上限</span>
+          <input
+            type="range"
+            className="slider"
+            min={REVIEW_LIMIT_MIN}
+            max={REVIEW_LIMIT_MAX}
+            step={REVIEW_LIMIT_STEP}
+            value={settings.dailyReviewLimit}
+            aria-label="每日复习上限"
+            style={
+              {
+                "--fill": `${((settings.dailyReviewLimit - REVIEW_LIMIT_MIN) / (REVIEW_LIMIT_MAX - REVIEW_LIMIT_MIN)) * 100}%`,
+              } as React.CSSProperties
+            }
+            onChange={(e) => update("dailyReviewLimit", Number(e.target.value))}
+          />
+          <span className="scale-value">{settings.dailyReviewLimit} 项</span>
+        </label>
+        {REVIEW_MODES.map(({ key, label, desc }) => {
+          const onCount = REVIEW_MODES.filter((m) => settings[m.key]).length;
+          const locked = settings[key] && onCount === 1;
+          return (
+            <div key={key} className="settings-row">
+              <div className="settings-row-text">
+                <div className="settings-row-label">{label}</div>
+                <div className="settings-row-desc">{locked ? `${desc}（至少保留一种方式）` : desc}</div>
+              </div>
+              <button
+                type="button"
+                className="switch"
+                role="switch"
+                aria-checked={settings[key]}
+                aria-label={label}
+                disabled={locked}
+                onClick={() => update(key, !settings[key])}
+              />
+            </div>
+          );
+        })}
       </section>
 
       <PackSection />

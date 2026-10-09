@@ -56,3 +56,18 @@ describe("applySettings", () => {
     expect(root.style.getPropertyValue("--scale-en")).toBe("1.25");
   });
 });
+
+describe("review settings", () => {
+  it("daily limit defaults to 50 and stays within 10–200 in steps of 10", () => {
+    expect(normalizeSettings({}).dailyReviewLimit).toBe(50);
+    expect(normalizeSettings({ dailyReviewLimit: 3 }).dailyReviewLimit).toBe(10);
+    expect(normalizeSettings({ dailyReviewLimit: 999 }).dailyReviewLimit).toBe(200);
+    expect(normalizeSettings({ dailyReviewLimit: 74 }).dailyReviewLimit).toBe(70);
+  });
+
+  it("keeps at least one review mode on", () => {
+    const s = normalizeSettings({ reviewR1: false, reviewR2: false, reviewR3: false });
+    expect([s.reviewR1, s.reviewR2, s.reviewR3]).toEqual([true, false, false]);
+    expect(normalizeSettings({ reviewR2: false }).reviewR2).toBe(false);
+  });
+});
