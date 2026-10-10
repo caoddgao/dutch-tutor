@@ -214,8 +214,8 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
       separable: w.separable,
       zh: w.zh,
       en: w.en,
-      zhNn: w.zh_nn,
-      enNn: w.en_nn,
+      zhNn: w.zh_nn ?? undefined,
+      enNn: w.en_nn ?? undefined,
       firstLesson: w.first_lesson,
       audio: { id: w.id, ...packAudio(w.audio, w.audio_source), tts: own?.audio.tts },
     });

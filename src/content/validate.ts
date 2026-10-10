@@ -2,7 +2,7 @@
 // runs JSON Schema checks and passes everything in here.
 import type { ContentBundle, OwnLesson, OwnWord } from "./ownTypes";
 import type { PackExercise, PackIndex, PackLesson, PackManifest, PackSentence, PackWord } from "./packTypes";
-import { PACK_FORMAT_VERSION } from "./packTypes";
+import { fillBank, PACK_FORMAT_VERSION } from "./packTypes";
 import { buildFormIndex, tokenize, uncoveredWords } from "./tokenize";
 import { ownTexts, ttsKeyLookup } from "./ttsTexts";
 
@@ -463,12 +463,14 @@ function checkPackExercise(
         checkChoice(it.options, it.answer, iw, ctx.err);
         if (!it.audio) ctx.err(1, iw, "听音选择题缺少音频");
         break;
-      case "fill_choice":
-        if (!ex.bank || ex.bank.length === 0) ctx.err(6, w, "选词填空缺少词库");
-        else if (!ex.bank.some((b) => b.trim().toLowerCase() === (it.answer ?? "").trim().toLowerCase()))
-          ctx.err(6, iw, `答案“${it.answer}”不在词库里`);
+      case "fill_choice": {
+        const bank = fillBank(ex, it);
+        if (bank.length === 0) ctx.err(6, iw, "选词填空缺少词库");
+        else if (!bank.some((b) => b.trim().toLowerCase() === (it.answer ?? "").trim().toLowerCase()))
+          ctx.err(6, iw, `答案“${it.answer}”不在${it.bank?.length ? "这一小题的" : ""}词库里`);
         if (!it.prompt?.includes(".....")) ctx.err(6, iw, "题干里没有空位 .....");
         break;
+      }
       case "match": {
         const left = it.left ?? [];
         const right = it.right ?? [];

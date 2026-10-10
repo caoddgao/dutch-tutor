@@ -75,6 +75,7 @@ describe("fixture pack covers the whole pack format", () => {
       new Set(["needs_image", "unsupported"]),
     );
     expect(exercises.some((e) => e.items.some((i) => i.answer_by === "DS"))).toBe(true);
+    expect(exercises.some((e) => e.type === "fill_choice" && e.items.some((i) => i.bank))).toBe(true);
   });
 
   it("has extras, sentence roles, flags and every part of speech", () => {
@@ -90,6 +91,9 @@ describe("fixture pack covers the whole pack format", () => {
     expect(pack.words.some((w) => w.separable)).toBe(true);
     expect(pack.words.some((w) => w.audio_source?.startsWith("nn:"))).toBe(true);
     expect(new Set(pack.words.map((w) => w.article))).toEqual(new Set([null, "de", "het"]));
+    // the official word lists may lack a word: zh_nn / en_nn are null (03 §7)
+    expect(pack.words.some((w) => w.zh_nn === null && w.en_nn === null)).toBe(true);
+    expect(pack.words.some((w) => w.zh_nn && w.en_nn === null)).toBe(true);
   });
 });
 
@@ -167,6 +171,13 @@ describe("rules", () => {
     ).toBe(true);
     expect(has(check((f) => (f.pack.lessons.NN21.exercises[3].items[1].answer = "kost")).issues, 6, "词库")).toBe(true);
     expect(has(check((f) => (f.pack.lessons.NN21.exercises[6].skip = false)).issues, 6, "other")).toBe(true);
+    // fill_choice with two word banks: an item uses its own bank, the others the exercise bank
+    expect(errors(check(() => {}).issues).filter((i) => i.where.includes("NN22-E3"))).toEqual([]);
+    expect(
+      has(check((f) => (f.pack.lessons.NN22.exercises[2].items[2].answer = "woont")).issues, 6, "这一小题的词库"),
+    ).toBe(true);
+    expect(has(check((f) => (f.pack.lessons.NN22.exercises[2].items[0].answer = "vaak")).issues, 6, "词库")).toBe(true);
+    expect(has(check((f) => delete f.pack.lessons.NN22.exercises[2].bank).issues, 6, "缺少词库")).toBe(true);
     expect(
       has(
         check(

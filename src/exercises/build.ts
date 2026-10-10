@@ -2,7 +2,7 @@
 // words, book exercises from the pack (E8; listen_choose → E3, answer_oral → E6) and our own exercises.
 import type { AudioRef, Dictionary, RtLesson, RtSentence, RtWord } from "../content/model";
 import type { OwnExercise } from "../content/ownTypes";
-import type { PackExercise, PackExerciseItem } from "../content/packTypes";
+import { fillBank, type PackExercise, type PackExerciseItem } from "../content/packTypes";
 import { voiceName } from "../content/ttsTexts";
 import type { TtsManifest } from "../content/ownTypes";
 import { pickClosest, seededRandom, shuffle } from "./random";
@@ -181,7 +181,7 @@ function packItemQuestion(ex: PackExercise, it: PackExerciseItem, rnd: () => num
     case "choose_one":
     case "listen_choose":
     case "fill_choice": {
-      const opts = ex.type === "fill_choice" ? (ex.bank ?? []) : (it.options ?? []);
+      const opts = ex.type === "fill_choice" ? fillBank(ex, it) : (it.options ?? []);
       const answer = opts.findIndex((o) => o.trim().toLowerCase() === (it.answer ?? "").trim().toLowerCase());
       if (answer < 0 || opts.length < 2) return null;
       const code = ex.type === "listen_choose" ? "E3" : "E8";
