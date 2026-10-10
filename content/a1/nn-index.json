@@ -33,20 +33,7 @@
       "over_5s_count": 0,
       "exercise_count": 1,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur",
-        "uur"
-      ]
+      "new_lemmas": ["uur", "uur", "uur", "uur", "uur", "uur", "uur", "uur", "uur", "uur", "uur", "uur"]
     },
     {
       "id": "NN03",
@@ -63,12 +50,7 @@
       "over_5s_count": 0,
       "exercise_count": 1,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "blauw",
-        "oranje",
-        "paars",
-        "zwart"
-      ]
+      "new_lemmas": ["blauw", "oranje", "paars", "zwart"]
     },
     {
       "id": "NN04",
@@ -85,16 +67,7 @@
       "over_5s_count": 0,
       "exercise_count": 1,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "hand",
-        "been",
-        "knie",
-        "voet",
-        "hoofd",
-        "neus",
-        "tong",
-        "mond"
-      ]
+      "new_lemmas": ["hand", "been", "knie", "voet", "hoofd", "neus", "tong", "mond"]
     },
     {
       "id": "NN05",
@@ -111,14 +84,7 @@
       "over_5s_count": 0,
       "exercise_count": 4,
       "skipped_exercises": 3,
-      "new_lemmas": [
-        "mes",
-        "bellen",
-        "kam",
-        "bal",
-        "kip",
-        "lip"
-      ]
+      "new_lemmas": ["mes", "bellen", "kam", "bal", "kip", "lip"]
     },
     {
       "id": "NN06",
@@ -135,14 +101,7 @@
       "over_5s_count": 0,
       "exercise_count": 6,
       "skipped_exercises": 5,
-      "new_lemmas": [
-        "kop",
-        "sok",
-        "mug",
-        "tas",
-        "pot",
-        "bus"
-      ]
+      "new_lemmas": ["kop", "sok", "mug", "tas", "pot", "bus"]
     },
     {
       "id": "NN07",
@@ -159,12 +118,7 @@
       "over_5s_count": 2,
       "exercise_count": 6,
       "skipped_exercises": 5,
-      "new_lemmas": [
-        "doel",
-        "riem",
-        "wiel",
-        "duim"
-      ]
+      "new_lemmas": ["doel", "riem", "wiel", "duim"]
     },
     {
       "id": "NN08",
@@ -181,13 +135,7 @@
       "over_5s_count": 3,
       "exercise_count": 6,
       "skipped_exercises": 5,
-      "new_lemmas": [
-        "noot",
-        "zeep",
-        "jaar",
-        "maan",
-        "vuur"
-      ]
+      "new_lemmas": ["noot", "zeep", "jaar", "maan", "vuur"]
     },
     {
       "id": "NN09",
@@ -204,12 +152,7 @@
       "over_5s_count": 2,
       "exercise_count": 6,
       "skipped_exercises": 5,
-      "new_lemmas": [
-        "geit",
-        "ring",
-        "lachen",
-        "schaar"
-      ]
+      "new_lemmas": ["geit", "ring", "lachen", "schaar"]
     },
     {
       "id": "NN10",
@@ -226,12 +169,7 @@
       "over_5s_count": 0,
       "exercise_count": 6,
       "skipped_exercises": 5,
-      "new_lemmas": [
-        "vrouw",
-        "cent",
-        "schrift",
-        "gezicht"
-      ]
+      "new_lemmas": ["vrouw", "cent", "schrift", "gezicht"]
     },
     {
       "id": "NN11",
@@ -248,10 +186,7 @@
       "over_5s_count": 0,
       "exercise_count": 4,
       "skipped_exercises": 0,
-      "new_lemmas": [
-        "pil",
-        "sap"
-      ]
+      "new_lemmas": ["pil", "sap"]
     },
     {
       "id": "NN12",
@@ -268,11 +203,7 @@
       "over_5s_count": 2,
       "exercise_count": 4,
       "skipped_exercises": 0,
-      "new_lemmas": [
-        "stap",
-        "helpen",
-        "dansen"
-      ]
+      "new_lemmas": ["stap", "helpen", "dansen"]
     },
     {
       "id": "NN13",
@@ -289,11 +220,7 @@
       "over_5s_count": 1,
       "exercise_count": 4,
       "skipped_exercises": 0,
-      "new_lemmas": [
-        "stuur",
-        "broer",
-        "plein"
-      ]
+      "new_lemmas": ["stuur", "broer", "plein"]
     },
     {
       "id": "NN14",
@@ -310,15 +237,7 @@
       "over_5s_count": 0,
       "exercise_count": 3,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "heten",
-        "iva",
-        "film",
-        "weten",
-        "kijken",
-        "leuk",
-        "tv"
-      ]
+      "new_lemmas": ["heten", "iva", "film", "weten", "kijken", "leuk", "tv"]
     },
     {
       "id": "NN15",
@@ -335,15 +254,7 @@
       "over_5s_count": 2,
       "exercise_count": 3,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "zoon",
-        "thailand",
-        "zoeken",
-        "amsterdam",
-        "huur",
-        "euro",
-        "nummer"
-      ]
+      "new_lemmas": ["zoon", "thailand", "zoeken", "amsterdam", "huur", "euro", "nummer"]
     },
     {
       "id": "NN16",
@@ -360,10 +271,7 @@
       "over_5s_count": 1,
       "exercise_count": 3,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "maat",
-        "slot"
-      ]
+      "new_lemmas": ["maat", "slot"]
     },
     {
       "id": "NN17",
@@ -380,11 +288,7 @@
       "over_5s_count": 0,
       "exercise_count": 3,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "meneer",
-        "vragen",
-        "vinden"
-      ]
+      "new_lemmas": ["meneer", "vragen", "vinden"]
     },
     {
       "id": "NN18",
@@ -401,15 +305,7 @@
       "over_5s_count": 0,
       "exercise_count": 3,
       "skipped_exercises": 1,
-      "new_lemmas": [
-        "schoon",
-        "mooi",
-        "buurt",
-        "maker",
-        "na",
-        "brief",
-        "jansen"
-      ]
+      "new_lemmas": ["schoon", "mooi", "buurt", "maker", "na", "brief", "jansen"]
     },
     {
       "id": "NN19",
@@ -426,13 +322,7 @@
       "over_5s_count": 0,
       "exercise_count": 6,
       "skipped_exercises": 4,
-      "new_lemmas": [
-        "goed",
-        "baan",
-        "rachid",
-        "omar",
-        "danken"
-      ]
+      "new_lemmas": ["goed", "baan", "rachid", "omar", "danken"]
     },
     {
       "id": "NN20",
