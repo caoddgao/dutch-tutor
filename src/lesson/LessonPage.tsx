@@ -191,6 +191,21 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // The play bar sticks to the bottom of the scroll area; reserve its height there so paging,
+  // focus and the browser's own scrolling never leave a line underneath it.
+  const reservePlayer = useCallback((el: HTMLDivElement | null) => {
+    const scroller = el?.closest<HTMLElement>(".content");
+    if (!el || !scroller) return;
+    const reserve = () => scroller.style.setProperty("--player-reserve", `${el.offsetHeight}px`);
+    reserve();
+    const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(reserve);
+    ro?.observe(el);
+    return () => {
+      ro?.disconnect();
+      scroller.style.removeProperty("--player-reserve");
+    };
+  }, []);
+
   if (!pos) return <p className="muted lesson-loading">正在打开…</p>;
 
   const sentence = pos.step === STEP.sentences ? lesson.sentences[pos.index] : undefined;
@@ -219,6 +234,15 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
       </button>
     </>
   );
+
+  const playerBar =
+    pos.step === STEP.intro && lesson.kind === "main" && lesson.fullAudio ? (
+      <PlayerBar audio={lesson.fullAudio} canRecord={false} />
+    ) : sentence ? (
+      <PlayerBar audio={sentence.audio} nav={counter(pos.index + 1, lesson.sentences.length)} />
+    ) : word ? (
+      <PlayerBar audio={word.audio} nav={counter(pos.index + 1, lesson.words.length)} />
+    ) : null;
 
   return (
     <div className="lesson" data-kind={lesson.kind}>
@@ -318,19 +342,9 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
         )}
       </div>
 
-      {pos.step === STEP.intro && lesson.kind === "main" && lesson.fullAudio && (
-        <div className="lesson-player">
-          <PlayerBar audio={lesson.fullAudio} canRecord={false} />
-        </div>
-      )}
-      {sentence && (
-        <div className="lesson-player">
-          <PlayerBar audio={sentence.audio} nav={counter(pos.index + 1, lesson.sentences.length)} />
-        </div>
-      )}
-      {word && (
-        <div className="lesson-player">
-          <PlayerBar audio={word.audio} nav={counter(pos.index + 1, lesson.words.length)} />
+      {playerBar && (
+        <div className="lesson-player" key={pos.step} ref={reservePlayer}>
+          {playerBar}
         </div>
       )}
     </div>

@@ -126,6 +126,8 @@
   min-height: 0;
   overflow-y: auto;
   padding: var(--space-2) var(--space-8) var(--space-10);
+  /* --player-reserve: height of a play bar stuck to the bottom (set by the lesson page) */
+  scroll-padding-bottom: calc(var(--player-reserve, 0px) + var(--space-6));
 }
 .content > * {
   max-width: var(--content-max);
