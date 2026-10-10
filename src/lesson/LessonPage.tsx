@@ -22,7 +22,12 @@ import { WordsStep } from "./WordsStep";
 import "./LessonPage.css";
 
 type Load =
-  { state: "loading" } | { state: "ready"; lesson: RtLesson } | { state: "needs-pack" } | { state: "missing" };
+  | { state: "loading" }
+  | { state: "ready"; lesson: RtLesson }
+  | { state: "needs-pack" }
+  | { state: "reimport" }
+  | { state: "not-in-pack" }
+  | { state: "missing" };
 
 export function LessonPage() {
   const { id = "" } = useParams();
@@ -49,10 +54,10 @@ export function LessonPage() {
   let load: Load;
   if (packStatus === "loading") load = { state: "loading" };
   else if (!courseLesson) load = { state: "missing" };
-  else if (needsPack) load = { state: "needs-pack" };
+  else if (needsPack) load = { state: packStatus === "none" ? "needs-pack" : "reimport" };
   else if (loaded?.id !== id) load = { state: "loading" };
   else if (loaded.lesson) load = { state: "ready", lesson: loaded.lesson };
-  else load = { state: courseLesson.source === "pack" ? "needs-pack" : "missing" };
+  else load = { state: courseLesson.source === "pack" ? "not-in-pack" : "missing" };
 
   if (load.state === "loading") return <p className="muted lesson-loading">正在打开…</p>;
   if (load.state === "needs-pack")
@@ -67,6 +72,22 @@ export function LessonPage() {
         }
       >
         这一课的课文、原版录音和练习在 Naar Nederland 资料包里。导入一次之后就能学。
+      </EmptyState>
+    );
+  if (load.state === "reimport" || load.state === "not-in-pack")
+    return (
+      <EmptyState
+        icon={PackageOpen}
+        title={load.state === "reimport" ? "资料包需要重新导入" : "资料包里没有这一课"}
+        action={
+          <Link to="/settings" className="btn btn-primary">
+            去重新导入
+          </Link>
+        }
+      >
+        {load.state === "reimport"
+          ? "已导入的资料包读不出来（版本不符或文件损坏）。重新导入一次之后就能学。"
+          : `现在的资料包里还没有这一课（${courseLesson?.code}）。导入包含这一课的新版资料包之后就能学。`}
       </EmptyState>
     );
   if (load.state === "missing")
@@ -237,7 +258,7 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
 
   const playerBar =
     pos.step === STEP.intro && lesson.kind === "main" && lesson.fullAudio ? (
-      <PlayerBar audio={lesson.fullAudio} canRecord={false} />
+      <PlayerBar audio={lesson.fullAudio} segment={lesson.fullSegment} canRecord={false} />
     ) : sentence ? (
       <PlayerBar audio={sentence.audio} nav={counter(pos.index + 1, lesson.sentences.length)} />
     ) : word ? (

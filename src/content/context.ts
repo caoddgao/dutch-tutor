@@ -4,7 +4,8 @@ import type { PackIndex } from "./packTypes";
 import type { ContentBundle } from "./ownTypes";
 import type { CourseSectionView, Dictionary, RtLesson } from "./model";
 
-export type PackStatus = "loading" | "none" | "ready" | "error";
+/** "outdated": the installed pack has a format version this app does not read; "error": it cannot be read */
+export type PackStatus = "loading" | "none" | "ready" | "outdated" | "error";
 
 export interface ContentContextValue {
   bundle: ContentBundle;

@@ -35,7 +35,18 @@
               "properties": {
                 "id": { "$ref": "common.schema.json#/$defs/id" },
                 "source": { "enum": ["own", "pack"] },
-                "pack_id": { "$ref": "common.schema.json#/$defs/id" }
+                "pack_id": { "$ref": "common.schema.json#/$defs/id" },
+                "part": {
+                  "description": "拆分课的第几部分（01_DESIGN §2.1）；from = 这一部分从哪一句开始，不写就平均分",
+                  "type": "object",
+                  "required": ["n", "of"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "n": { "type": "integer", "minimum": 1 },
+                    "of": { "type": "integer", "minimum": 2, "maximum": 4 },
+                    "from": { "$ref": "common.schema.json#/$defs/id" }
+                  }
+                }
               }
             }
           }

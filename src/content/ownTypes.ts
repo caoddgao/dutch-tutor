@@ -9,6 +9,16 @@ export interface CourseLessonRef {
   source: "own" | "pack";
   /** Pack lesson id, defaults to id */
   pack_id?: string;
+  /** One part of a split pack lesson (design §2.1) */
+  part?: LessonPart;
+}
+
+export interface LessonPart {
+  /** 1-based; shown as a letter ("第 24 课 b") */
+  n: number;
+  of: number;
+  /** Sentence id the part starts with; default: the sentences are divided evenly */
+  from?: string;
 }
 
 export interface CourseSectionDef {

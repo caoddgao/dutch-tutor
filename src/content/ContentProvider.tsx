@@ -3,7 +3,7 @@ import type { PackBackend, PackInfo } from "../pack/backend";
 import { ContentContext, type ContentContextValue, type PackStatus } from "./context";
 import { buildCourseView, buildDictionary, buildLesson, packLessonsFor, type RtLesson } from "./model";
 import type { ContentBundle } from "./ownTypes";
-import type { PackIndex, PackLesson, PackWord } from "./packTypes";
+import { PACK_FORMAT_VERSION, type PackIndex, type PackLesson, type PackWord } from "./packTypes";
 import { ttsKeyLookup } from "./ttsTexts";
 
 interface Props {
@@ -31,10 +31,15 @@ export function ContentProvider({ bundle, backend, ttsUrls, children }: Props) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      let info: PackInfo | null = null;
       try {
-        const info = await backend.info();
+        info = await backend.info();
         if (!info.manifest) {
           if (!cancelled) setPack({ ...EMPTY, status: "none", info });
+          return;
+        }
+        if (info.manifest.format_version !== PACK_FORMAT_VERSION) {
+          if (!cancelled) setPack({ ...EMPTY, status: "outdated", info });
           return;
         }
         const [index, words] = await Promise.all([
@@ -43,11 +48,12 @@ export function ContentProvider({ bundle, backend, ttsUrls, children }: Props) {
         ]);
         if (cancelled) return;
         setPack({ status: "ready", info, index, words, update: null });
-        if (info.source_dir) {
+        const installed = info;
+        if (installed.source_dir) {
           backend
-            .inspect(info.source_dir)
+            .inspect(installed.source_dir)
             .then((m) => {
-              if (!cancelled && m.created_at !== info.manifest?.created_at)
+              if (!cancelled && m.created_at !== installed.manifest?.created_at)
                 setPack((p) => ({ ...p, update: m.created_at }));
             })
             .catch(() => {
@@ -56,7 +62,8 @@ export function ContentProvider({ bundle, backend, ttsUrls, children }: Props) {
         }
       } catch (err) {
         console.error("pack load failed", err);
-        if (!cancelled) setPack({ ...EMPTY, status: "error" });
+        // info stays when only the files are broken, so settings can still offer re-importing
+        if (!cancelled) setPack({ ...EMPTY, status: "error", info });
       }
     })();
     return () => {

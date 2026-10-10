@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../App";
+import { CONTENT } from "../content/bundle";
 import { completeLesson } from "../storage/learning";
 import { fixtureContent, testServices } from "../test/services";
 
@@ -10,8 +11,8 @@ beforeEach(() => {
   vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => undefined);
 });
 
-async function setup(hash: string, settingsData: Record<string, unknown> = {}) {
-  const t = testServices({ content: fixtureContent(), settingsData });
+async function setup(hash: string, settingsData: Record<string, unknown> = {}, content = fixtureContent()) {
+  const t = testServices({ content, settingsData });
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   await completeLesson(
@@ -46,6 +47,13 @@ describe("review", () => {
     await setup("#/review", { dailyReviewLimit: 10 });
     const today = await screen.findByRole("region", { name: "今日复习" });
     expect(within(today).getByText("4")).toBeTruthy();
+  });
+
+  it("items recorded before a lesson was split are found in its parts", async () => {
+    // the repo course splits NN21 into NN21a / NN21b (design §2.1); the items were saved under NN21
+    await setup("#/review/daily", { reviewR2: false, reviewR3: false }, CONTENT);
+    expect(await screen.findByText(/^1 \/ 4$/)).toBeTruthy();
+    expect(screen.queryByText(/需要先导入资料包/)).toBeNull();
   });
 
   it("answering an R1 item records it and moves the item; a wrong one comes back once", async () => {

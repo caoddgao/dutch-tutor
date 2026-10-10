@@ -30,6 +30,27 @@ jobs:
           npm run validate -- --content fixtures/content --pack fixtures/nn-pack
       - run: npm run build
 
+  windows:
+    name: Windows：内容完整校验（--pack）
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: 完整校验（反斜杠路径、绝对路径、默认报告文件）
+        run: |
+          npm run validate -- --content fixtures\content --pack "$PWD\fixtures\nn-pack"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          if (-not (Test-Path validate-report.md)) { Write-Error "没有生成 validate-report.md"; exit 1 }
+          npm run validate -- --pack fixtures\nn-pack --report "$env:RUNNER_TEMP\报告.md"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          Get-Content "$env:RUNNER_TEMP\报告.md" -Encoding utf8 -TotalCount 3
+      - name: 校验脚本的单元测试
+        run: npx vitest run scripts
+
   rust:
     name: 后端：格式 · clippy · 测试
     runs-on: ubuntu-latest

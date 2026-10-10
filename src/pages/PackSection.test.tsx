@@ -15,6 +15,21 @@ async function renderWith(pack: ReturnType<typeof fsPackBackend>, hash = "#/sett
 describe("资料包 settings", () => {
   beforeEach(() => window.localStorage.clear());
 
+  it("a pack with another format version: asks to re-import", async () => {
+    const real = fsPackBackend();
+    await renderWith(
+      fsPackBackend(undefined, {
+        info: async () => {
+          const i = await real.info();
+          return { ...i, manifest: { ...i.manifest!, format_version: 2 } };
+        },
+      }),
+    );
+    expect(await screen.findByText("资料包需要重新导入")).toBeTruthy();
+    expect(screen.getByText(/格式版本 2，这个版本的程序只认版本 1/)).toBeTruthy();
+    expect(screen.getByRole("button", { name: "重新导入" })).toBeTruthy();
+  });
+
   it("without a pack: explains and imports the picked folder", async () => {
     let installed = false;
     const importFrom = vi.fn(async () => {

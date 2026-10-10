@@ -29,6 +29,7 @@ export function PackSection() {
   const pickAndImport = async () => run(await backend.pickFolder());
   const lessons = packIndex?.lessons.length ?? 0;
   const installed = packStatus === "ready" && packInfo?.manifest;
+  const broken = packStatus === "outdated" || packStatus === "error";
 
   return (
     <section className="card settings-section" aria-label="资料包">
@@ -43,6 +44,15 @@ export function PackSection() {
                 {packInfo.imported_at && `，导入于 ${formatDateTime(packInfo.imported_at)}`}
               </div>
             </>
+          ) : broken ? (
+            <>
+              <div className="settings-row-label">资料包需要重新导入</div>
+              <div className="settings-row-desc">
+                {packStatus === "outdated"
+                  ? `已导入的资料包是格式版本 ${packInfo?.manifest?.format_version}，这个版本的程序只认版本 1。请选择新整理的 nn-pack 文件夹重新导入。`
+                  : "已导入的资料包文件不完整或已损坏，读不出来。请选择 nn-pack 文件夹重新导入。"}
+              </div>
+            </>
           ) : (
             <>
               <div className="settings-row-label">{packStatus === "loading" ? "正在读取…" : "还没有导入"}</div>
@@ -55,7 +65,7 @@ export function PackSection() {
         {backend.canImport && (
           <button type="button" className="btn btn-primary" disabled={busy} onClick={pickAndImport}>
             <FolderOpen size={16} aria-hidden />
-            {busy ? "正在导入…" : installed ? "重新导入" : "导入资料包"}
+            {busy ? "正在导入…" : installed || broken ? "重新导入" : "导入资料包"}
           </button>
         )}
       </div>

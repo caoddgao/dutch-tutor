@@ -3,14 +3,23 @@ import { useState } from "react";
 import { usePlayerState } from "../audio/hooks";
 import type { RtLesson } from "../content/model";
 
-/** Step ①: the whole original recording; text hidden by default, can be shown, Chinese optional. */
+/**
+ * Step ①: the whole original recording (a split lesson: its part of it); text hidden by default, can be
+ * shown, Chinese optional.
+ */
 export function ListenStep({ lesson }: { lesson: RtLesson }) {
   const [showText, setShowText] = useState(false);
   const [showZh, setShowZh] = useState(false);
   const state = usePlayerState();
   const playingFull = state.tag === `bar:${lesson.fullAudio?.id}` && state.playing;
-  const t = playingFull ? state.progress * state.duration : -1;
-  const total = lesson.fullSentences.reduce((max, s) => Math.max(max, s.end ?? 0), 0);
+  // split lessons play only their stretch of the recording; progress is relative to it
+  const seg = lesson.fullSegment;
+  const t = !playingFull
+    ? -1
+    : seg
+      ? seg.start + state.progress * (seg.end - seg.start)
+      : state.progress * state.duration;
+  const total = seg ? seg.end - seg.start : lesson.fullSentences.reduce((max, s) => Math.max(max, s.end ?? 0), 0);
 
   return (
     <div className="listen-step">
@@ -22,6 +31,7 @@ export function ListenStep({ lesson }: { lesson: RtLesson }) {
           <h2 className="listen-title">先完整听一两遍</h2>
           <p className="muted">
             {lesson.textType === "text" ? "一段短文" : lesson.textType === "mixed" ? "对话和短文" : "一段对话"}
+            {lesson.part && ` · 第 ${lesson.part.n} 部分（共 ${lesson.part.of} 部分）`}
             {total > 0 && ` · 约 ${Math.max(1, Math.round(total))} 秒`}，先别看文字，听听能听出哪些词。
           </p>
         </div>

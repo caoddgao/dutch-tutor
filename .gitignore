@@ -7,3 +7,4 @@ coverage/
 !.vscode/extensions.json
 src-tauri/target/
 src-tauri/gen/schemas/
+validate-report.md

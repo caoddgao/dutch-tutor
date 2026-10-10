@@ -18,16 +18,45 @@ describe("course view", () => {
     expect(view.find((s) => s.id === "phonics")!.lessons.map((l) => l.id)).toEqual(["P01", "P02"]);
     const main = view.find((s) => s.id === "main")!;
     expect(main.lessons).toEqual([]);
-    expect(main.missing).toHaveLength(45);
+    expect(main.missing).toHaveLength(87);
+    expect(main.missing.slice(0, 3).map((l) => [l.id, l.code, l.packId])).toEqual([
+      ["NN21a", "第 21 课 a", "NN21"],
+      ["NN21b", "第 21 课 b", "NN21"],
+      ["NN22a", "第 22 课 a", "NN22"],
+    ]);
   });
 
   it("with a pack takes titles from its index and keeps course order", () => {
     const main = buildCourseView(CONTENT, index).find((s) => s.id === "main")!;
     expect(main.lessons.map((l) => [l.id, l.code, l.title?.nl])).toEqual([
-      ["NN21", "第 21 课", "Bij de bakker"],
-      ["NN22", "第 22 课", "Mijn buurman"],
+      ["NN21a", "第 21 课 a", "Bij de bakker"],
+      ["NN21b", "第 21 课 b", "Bij de bakker"],
+      ["NN22a", "第 22 课 a", "Mijn buurman"],
+      ["NN22b", "第 22 课 b", "Mijn buurman"],
+      ["NN22c", "第 22 课 c", "Mijn buurman"],
     ]);
-    expect(main.missing[0].id).toBe("NN23");
+    expect(main.missing[0].id).toBe("NN23a");
+  });
+});
+
+describe("dictionary", () => {
+  it("merges own words into the pack's: same id or same lemma + part of speech → the pack entry", () => {
+    const content = structuredClone(fixtureContent());
+    content.words.push(
+      { id: "o_brood", lemma: "Brood", pos: "zn", article: "het", forms_seen: ["broodje"], zh: "面包", en: "bread" },
+      { id: "o_brood_ww", lemma: "brood", pos: "ww", zh: "（测试）", en: "(test)" },
+    );
+    const dict = buildDictionary(content, words);
+    const entry = dict.words.get("o_brood")!;
+    expect(entry.id).toBe("w_brood");
+    expect(entry.zhNn).toBeDefined();
+    // own synthesized audio stays as a fallback for the pack entry
+    expect(entry.audio.tts?.text).toBe("Brood");
+    // forms of the own word point to the pack entry
+    expect(dict.formIndex.get("broodje")).toBe("w_brood");
+    expect(dict.formIndex.get("woont")).toBe("w_wonen");
+    // a different part of speech is a different word
+    expect(dict.words.get("o_brood_ww")!.id).toBe("o_brood_ww");
   });
 });
 
@@ -91,6 +120,49 @@ describe("lesson model", () => {
     expect(l.words.find((w) => w.id === "w_tas")!.audio.nn).toBe("audio/NN05/K01.mp3");
     expect(l.packExercises.map((e) => e.exercise.id)).toEqual(["NN05-E1"]);
     expect(l.sentences[0].audio.tts?.text).toBe("De vis is in de pan.");
+  });
+
+  it("split lessons: each part teaches its stretch; the book's exercises and EXTRA boxes come last", () => {
+    const split = structuredClone(content);
+    const main = split.course.sections.find((x) => x.id === "main")!;
+    main.lessons = [
+      { id: "NN21a", source: "pack", pack_id: "NN21", part: { n: 1, of: 2 } },
+      { id: "NN21b", source: "pack", pack_id: "NN21", part: { n: 2, of: 2 } },
+      { id: "NN22", source: "pack" },
+    ];
+    split.lessons = { P01: split.lessons.P01 };
+    const d = buildDictionary(split, words);
+    const a = buildLesson(split, d, "NN21a", { pack: lesson("NN21") })!;
+    const b = buildLesson(split, d, "NN21b", { pack: lesson("NN21") })!;
+    expect([a.code, b.code]).toEqual(["第 21 课 a", "第 21 课 b"]);
+    expect([a.part, b.part]).toEqual([
+      { n: 1, of: 2 },
+      { n: 2, of: 2 },
+    ]);
+    expect(a.sentences.map((x) => x.id)).toEqual([
+      "NN21-S01",
+      "NN21-S02",
+      "NN21-S03",
+      "NN21-S04",
+      "NN21-S05",
+      "NN21-S06",
+    ]);
+    expect(b.sentences[0].id).toBe("NN21-S07");
+    expect(a.fullSentences[0].kind).toBe("title");
+    expect(b.fullSentences.map((x) => x.id)).toEqual(b.sentences.map((x) => x.id));
+    expect(a.fullSegment).toEqual({ start: 0, end: 21.46 });
+    expect(a.fullAudio).toEqual(b.fullAudio);
+    expect(a.packExercises).toEqual([]);
+    expect(b.packExercises.map((e) => e.exercise.id)).toContain("NN21-E1");
+    // each word is taught once, in the part where it first occurs
+    expect(a.words.map((w) => w.id)).toContain("w_brood");
+    expect(b.words.map((w) => w.id)).toEqual(["w_dank_u", "w_tot_ziens", "w_vier", "w_vijf"]);
+    expect(b.newWordIds).toEqual(["w_dank_u", "w_tot_ziens", "w_vier", "w_vijf"]);
+    // an unsplit lesson next to it is unchanged
+    const nn22 = buildLesson(split, d, "NN22", { pack: lesson("NN22") })!;
+    expect(nn22.part).toBeUndefined();
+    expect(nn22.fullSegment).toBeUndefined();
+    expect(nn22.extras).toHaveLength(1);
   });
 
   it("a pack lesson is unavailable without the pack", () => {
