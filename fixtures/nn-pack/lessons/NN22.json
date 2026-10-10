@@ -333,6 +333,43 @@
       ],
       "skip": false,
       "skip_reason": null
+    },
+    {
+      "id": "NN22-E3",
+      "nn_number": 3,
+      "type": "fill_choice",
+      "instruction": {
+        "nl": "Vul in.",
+        "zh": "选词填空。",
+        "en": "Fill in the blanks."
+      },
+      "bank": ["woont", "werkt"],
+      "items": [
+        {
+          "id": "NN22-E3-1",
+          "prompt": "Karel ..... in Utrecht.",
+          "answer": "woont"
+        },
+        {
+          "id": "NN22-E3-2",
+          "prompt": "Hij ..... bij een bank.",
+          "answer": "werkt"
+        },
+        {
+          "id": "NN22-E3-3",
+          "prompt": "Hij belt mij ..... op.",
+          "answer": "vaak",
+          "bank": ["aardig", "vaak"]
+        },
+        {
+          "id": "NN22-E3-4",
+          "prompt": "Karel is ..... en grappig.",
+          "answer": "aardig",
+          "bank": ["aardig", "vaak"]
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
     }
   ],
   "extras": [

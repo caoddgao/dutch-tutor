@@ -75,6 +75,18 @@ describe("lesson exercises", () => {
     expect(q.options[q.answer].nl).toBe("wilt");
   });
 
+  it("fill_choice items with their own word bank offer that bank", () => {
+    const nn22 = buildLesson(content, dict, "NN22", { pack: read<PackLesson>("lessons/NN22.json") })!;
+    const qs = buildExercises(nn22, dict, content.tts).find((g) => g.id === "NN22-E3")!.questions as ChoiceQuestion[];
+    expect(qs.map((q) => q.options.map((o) => o.nl))).toEqual([
+      ["woont", "werkt"],
+      ["woont", "werkt"],
+      ["aardig", "vaak"],
+      ["aardig", "vaak"],
+    ]);
+    expect(qs.map((q) => q.options[q.answer].nl)).toEqual(["woont", "werkt", "vaak", "aardig"]);
+  });
+
   it("order questions never start in the right order", () => {
     for (const q of groups.flatMap((g) => g.questions).filter((x): x is OrderQuestion => x.kind === "order")) {
       expect(q.shuffled.slice().sort()).toEqual(q.blocks.map((_, i) => i));

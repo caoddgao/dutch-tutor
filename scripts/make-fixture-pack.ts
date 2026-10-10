@@ -33,8 +33,9 @@ const audio = new Map<string, number>();
 
 // ---------------------------------------------------------------- words
 interface WordExtra {
-  zh_nn?: string;
-  en_nn?: string;
+  /** null: the official list lacks the word (03 §7) */
+  zh_nn?: string | null;
+  en_nn?: string | null;
   first?: string;
   lessons?: string[];
   flags?: string[];
@@ -56,8 +57,8 @@ function word(id: string, lemma: string, pos: Pos, zh: string, en: string, extra
     forms_seen: [],
     zh,
     en,
-    zh_nn: extra.zh_nn ?? zh,
-    en_nn: extra.en_nn ?? en,
+    zh_nn: extra.zh_nn === undefined ? zh : extra.zh_nn,
+    en_nn: extra.en_nn === undefined ? en : extra.en_nn,
     first_lesson: extra.first ?? "NN21",
     lessons: extra.lessons ?? [extra.first ?? "NN21"],
     audio: `audio/words/${id}.mp3`,
@@ -192,10 +193,15 @@ verb(
   { ...N22, fields: { separable: "op|bellen" } },
 );
 word("w_mij", "mij", "vnw", "我（宾格）", "me", N22);
-word("w_vaak", "vaak", "bw", "经常", "often", N22);
+word("w_vaak", "vaak", "bw", "经常", "often", { ...N22, en_nn: null });
 word("w_aardig", "aardig", "bn", "友善的，和气的", "kind, nice", N22);
 word("w_en", "en", "vw", "和", "and", N22);
-word("w_grappig", "grappig", "bn", "有趣的，好笑的", "funny", { ...N22, flags: ["not_in_nn_list"] });
+word("w_grappig", "grappig", "bn", "有趣的，好笑的", "funny", {
+  ...N22,
+  zh_nn: null,
+  en_nn: null,
+  flags: ["not_in_nn_list"],
+});
 word("w_ik", "ik", "vnw", "我", "I", N22);
 word("w_jij", "jij", "vnw", "你", "you (informal)", N22);
 
@@ -608,6 +614,20 @@ const nn22Exercises = [
     { prompt: "Hij ..... in Utrecht.", options: ["woon", "woont", "wonen"], answer: "woont", answer_by: "DS" },
     { prompt: "Karel is .....", options: ["aardig", "bank", "ochtend"], answer: "aardig" },
   ]),
+  // two word banks printed in the book: the second one sits on its items (03 §4)
+  ex(
+    "NN22-E3",
+    3,
+    "fill_choice",
+    instr.fill,
+    [
+      { prompt: "Karel ..... in Utrecht.", answer: "woont" },
+      { prompt: "Hij ..... bij een bank.", answer: "werkt" },
+      { prompt: "Hij belt mij ..... op.", answer: "vaak", bank: ["aardig", "vaak"] },
+      { prompt: "Karel is ..... en grappig.", answer: "aardig", bank: ["aardig", "vaak"] },
+    ],
+    { bank: ["woont", "werkt"] },
+  ),
 ];
 
 const nn05Keywords: PackKeyword[] = [

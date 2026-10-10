@@ -52,6 +52,8 @@ export interface PackExerciseItem {
   id: string;
   prompt?: string;
   options?: string[];
+  /** fill_choice: the item's own word bank (the book prints several); falls back to the exercise bank */
+  bank?: string[];
   answer?: string;
   zh?: string;
   en?: string;
@@ -77,7 +79,7 @@ export interface PackExercise {
   type: PackExerciseType;
   instruction: Trilingual;
   items: PackExerciseItem[];
-  /** fill_choice word bank */
+  /** fill_choice word bank (items may carry their own, see fillBank) */
   bank?: string[];
   extra?: boolean;
   skip: boolean;
@@ -157,8 +159,9 @@ export interface PackWord {
   forms_seen: string[];
   zh: string;
   en: string;
-  zh_nn?: string;
-  en_nn?: string;
+  /** Original meanings from the official word lists; null when a list lacks the word */
+  zh_nn?: string | null;
+  en_nn?: string | null;
   first_lesson?: string;
   lessons?: string[];
   audio: string | null;
@@ -183,4 +186,9 @@ export interface PackIndexLesson {
 export interface PackIndex {
   format_version: number;
   lessons: PackIndexLesson[];
+}
+
+/** fill_choice: the bank an item uses — its own when the book prints several, else the exercise's (03 §4). */
+export function fillBank(ex: Pick<PackExercise, "bank">, item: Pick<PackExerciseItem, "bank">): string[] {
+  return item.bank && item.bank.length > 0 ? item.bank : (ex.bank ?? []);
 }

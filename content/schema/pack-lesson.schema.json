@@ -119,6 +119,7 @@
               "id": { "$ref": "common.schema.json#/$defs/id" },
               "prompt": { "type": "string" },
               "options": { "type": "array", "items": { "type": "string" } },
+              "bank": { "type": "array", "items": { "type": "string" } },
               "answer": { "type": "string" },
               "zh": { "type": "string" },
               "en": { "type": "string" },

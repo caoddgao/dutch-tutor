@@ -67,8 +67,13 @@ export function WordEntry({ word, showPastParticiple, variant = "panel" }: Props
       {nnDiffers && (
         <p className="word-entry-nn">
           <span className="word-entry-nn-label">原词表</span>
-          <span className="zh">{word.zhNn}</span>
-          <span className="en"> · {word.enNn}</span>
+          {word.zhNn && <span className="zh">{word.zhNn}</span>}
+          {word.enNn && (
+            <span className="en">
+              {word.zhNn ? " · " : ""}
+              {word.enNn}
+            </span>
+          )}
         </p>
       )}
     </div>
