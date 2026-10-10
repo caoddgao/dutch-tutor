@@ -235,7 +235,7 @@ nn-pack/
     {
       "id": "NN21", "kind": "main",
       "title": { "nl": "…", "zh": "…", "en": "…" },
-      "sentence_count": 20, "new_word_count": 60,
+      "sentence_count": 20, "line_count": 18, "new_word_count": 60,
       "total_seconds": 95.7, "max_sentence_seconds": 3.1, "over_5s_count": 0,
       "exercise_count": 6, "skipped_exercises": 0,
       "new_lemmas": ["wat", "naam", "…"]
@@ -244,6 +244,7 @@ nn-pack/
 }
 ```
 
+- `sentence_count` 是全部句子（含课题、词表朗读 extra）；`line_count` 只数 `role: "line"` 的课文句，课程拆分按它算（2026-10-11 新增）。
 - `new_word_count` / `new_lemmas` 只算 `first_lesson` 就是本课的词（以前课里出现过的不算新词，但仍留在 `word_ids` 里）。
 - `new_lemmas` 只列词的原形，供施工会话编排课程、写补充内容时避开或复用。
 
