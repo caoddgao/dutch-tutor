@@ -132,12 +132,13 @@ nn-pack/
 | `true_false` | waar – niet waar | `prompt`、`options`（固定两个）、`answer` |
 | `choose_one` | 两个或多个里圈一个 | `prompt`（可含 `.....` 空位）、`options`、`answer` |
 | `match` | 连线 | `left`（数组）、`right`（数组）、`pairs`（`[[0,2],[1,0],…]`） |
-| `fill_choice` | 给定词库选词填空 | `bank`（词库，放在练习层）、每题 `prompt`（含 `.....`）、`answer` |
+| `fill_choice` | 给定词库选词填空 | `bank`（词库，放在练习层）、每题 `prompt`（含 `.....`）、`answer`；**每个小题的答案都必须在它所用的词库里**（见下方说明） |
 | `answer_oral` | "Geef antwoord" 口头回答 | `prompt`、`sample_answers`（数组）；程序做成 E6 题型 |
 | `order` | 排序 | `tokens`（打乱前的正确顺序） |
 | `other` | 以上都不是 | `raw`（原文），并设 `skip: true` |
 
 - 书里已经填好、作示例的小题：**照样收进 `items`**，题干还原成带 `.....` 空位的形式，`answer` 取答案页的值，另加 `"example": true`（程序把它当作已答好的示范显示，不计分）。这样词库和答案页一一对应。
+- `fill_choice` 的词库规则：同一道练习里书上印了**几组词库**（比如前 4 题一组、后 4 题一组），后面那组写在小题上：每个小题可以带自己的 `bank`，有就优先用它，没有就用练习层的 `bank`。**书上没印词库**的（如"写反义词"），练习层 `bank` = 这道练习全部小题的答案。
 - 依赖图片才能做的练习：`skip: true`，`skip_reason: "needs_image"`。
 - 带"EXTRA"或橙色星号的内容也要收录，**按星号实际标的范围打标记**：星号标整道练习 → 练习层加 `"extra": true`；星号只标其中一组小题 → 只在那些小题上加 `"extra": true`。这个标记只作记录，程序照常显示（用户属于高学历学习路线，额外练习都要做）。
 - 答案取自书末的答案页；书里没有答案的题，DS 给出答案并加 `"answer_by": "DS"`。
@@ -220,7 +221,7 @@ nn-pack/
 - `pos` 取值：`zn` 名词 · `ww` 动词 · `bn` 形容词 · `bw` 副词 · `vnw` 代词 · `lidw` 冠词 · `vz` 介词 · `vw` 连词 · `telw` 数词 · `tw` 感叹词 · `eigen` 专有名词 · `uitdr` 固定表达。
 - 名词：`article` 必填（`de` / `het` / `de/het`），`plural` 尽量填。
 - 动词：`verb_forms` 填齐；`separable` 写拆开的形式，如 `"op|bellen"`。
-- `zh_nn` / `en_nn`：两份官方词表的**原始释义**，照抄；`zh` / `en`：DS 整理后的释义，可以和原始的一样。
+- `zh_nn` / `en_nn`：两份官方词表的**原始释义**，照抄；这个词只在其中一份词表里出现、或官方没印释义时，缺的那一侧为 `null`；`zh` / `en`：DS 整理后的释义，可以和原始的一样。
 - NN 词表按"课文里出现的形式"列词（如 `woont (wonen)`）。整理时**合并到同一个 lemma**，原形式记进 `forms_seen`。
 - 固定表达（如 `tot ziens`、`even denken`）单独成条，`pos: "uitdr"`。
 - `audio_source`：`nn:NN21-S05`（从原版句子里切出的，仅在词单独朗读、切得干净时使用）或 `tts:<voice>`。

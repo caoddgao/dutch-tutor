@@ -65,6 +65,8 @@
 
 ## 已知问题
 
+- **阶段 3 开工先改**（审核会话用真资料包跑 `npm run validate -- --pack` 发现）：① words 的 `zh_nn` / `en_nn` 允许 `null`（03 §7 已改）；② `fill_choice` 支持小题级 `bank`（03 §4 已改）。资料包由 DS 同步修正。
+
 - 安装版里能否真正录上音、资料包导入速度，需要 T1 在 Windows 上实机确认（CI 只能证明能编译打包）。
 - "生成合成音"工作流最后一步"开 PR"会失败：仓库设置不允许 GitHub Actions 创建 PR（音频已推到 `tts/update`
   分支，由施工会话手动开 PR）。想让它自动开：仓库 Settings → Actions → General → 勾选
