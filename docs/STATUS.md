@@ -46,7 +46,7 @@
 
 ## 下一步（阶段 3，见 02_PLAN.md）
 
-1. `nn-index.json` 进仓库；`course.json` 编排全部正课（含拆分课）。
+1. `nn-index.json` 已进仓库（`content/a1/nn-index.json`，2026-10-11）；`course.json` 编排全部正课（含拆分课）。
 2. 词典合并的细节（NN 词表 + own.json 同 lemma 的处理）、资料包缺失 / 版本不符的提示再打磨。
 3. `--pack` 完整校验在用户电脑上跑一次真资料包，修报告里的问题。
 
