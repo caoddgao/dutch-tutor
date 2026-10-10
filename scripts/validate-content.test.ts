@@ -200,8 +200,72 @@ describe("rules", () => {
     expect(warns).toContain("NN22");
   });
 
+  it("split lessons: parts must be complete; `from` must name a sentence; boundaries are reported", () => {
+    const split = (f: ReturnType<typeof fixture>, parts: object[]) => {
+      const main = f.content.course.sections.find((x) => x.id === "main")!;
+      main.lessons = [...parts, { id: "NN22", source: "pack" }] as never;
+      delete f.content.lessons.NN21;
+    };
+    const ok = check((f) =>
+      split(f, [
+        { id: "NN21a", source: "pack", pack_id: "NN21", part: { n: 1, of: 2 } },
+        { id: "NN21b", source: "pack", pack_id: "NN21", part: { n: 2, of: 2, from: "NN21-S08" } },
+      ]),
+    );
+    expect(errors(ok.issues)).toEqual([]);
+    expect(ok.splits).toEqual([{ id: "NN21b", before: "Alstublieft.", after: "Dank u. Tot ziens!" }]);
+    expect(ok.lessons.find((l) => l.id === "NN21b")).toMatchObject({ sentences: 2, newWords: 4 });
+    // words of part a are known in part b: no rule-5 noise from the split
+    expect(ok.lessons.find((l) => l.id === "NN21b")!.unknownWords).toEqual([]);
+    expect(
+      has(
+        check((f) =>
+          split(f, [
+            { id: "NN21a", source: "pack", pack_id: "NN21", part: { n: 1, of: 3 } },
+            { id: "NN21b", source: "pack", pack_id: "NN21", part: { n: 2, of: 3 } },
+          ]),
+        ).issues,
+        1,
+        "拆分不完整",
+      ),
+    ).toBe(true);
+    expect(
+      has(
+        check((f) =>
+          split(f, [
+            { id: "NN21a", source: "pack", pack_id: "NN21", part: { n: 1, of: 2 } },
+            { id: "NN21b", source: "pack", pack_id: "NN21", part: { n: 2, of: 2, from: "NN21-S99" } },
+          ]),
+        ).issues,
+        1,
+        "NN21-S99",
+      ),
+    ).toBe(true);
+  });
+
+  it("without a pack, course.json is checked against nn-index.json", () => {
+    const f = fixture();
+    const nnIndex = structuredClone(f.pack.index);
+    const run = (mutate: () => void) => {
+      mutate();
+      return validateContent({ content: f.content, nnIndex, ttsFileExists: () => true });
+    };
+    expect(errors(run(() => {}).issues).filter((i) => i.where === "course.json")).toEqual([
+      expect.objectContaining({ msg: "NN23：nn-index.json 里没有 NN23" }),
+    ]);
+    const report = run(() => (nnIndex.lessons.find((l) => l.id === "NN21")!.sentence_count = 30));
+    expect(report.issues).toContainEqual(expect.objectContaining({ rule: 7, where: "NN21", level: "warn" }));
+  });
+
   it("rejects an unknown pack format version", () => {
     expect(has(check((f) => (f.pack.manifest.format_version = 2)).issues, 1, "格式版本")).toBe(true);
+  });
+
+  it("file checks are case-exact (Android is case-sensitive)", () => {
+    const { pack } = loadPack(FIXTURE_PACK);
+    expect(pack!.fileExists("audio/NN21/S01.mp3")).toBe(true);
+    expect(pack!.fileExists("audio/nn21/S01.mp3")).toBe(false);
+    expect(pack!.fileExists("audio/NN21")).toBe(false);
   });
 
   it("JSON Schema errors are reported", () => {

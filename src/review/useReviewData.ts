@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useContent } from "../content/context";
+import { partRefs } from "../content/split";
 import { courseOrder, type RtLesson } from "../content/model";
 import { useServices } from "../servicesContext";
 import { localDay } from "../storage/learning";
@@ -34,6 +35,8 @@ export function useReviewSession(source: ReviewSource, lessonId?: string): Sessi
     const ids = new Set<string>();
     for (const it of items) {
       const i = order.indexOf(it.lesson_id);
+      // recorded before the lesson was split (design §2.1, e.g. NN21 → NN21a / NN21b): look in its parts
+      if (i < 0) for (const r of partRefs(bundle.course, it.lesson_id)) ids.add(r.id);
       ids.add(it.lesson_id);
       if (i > 0) ids.add(order[i - 1]);
       if (i >= 0 && i + 1 < order.length) ids.add(order[i + 1]);

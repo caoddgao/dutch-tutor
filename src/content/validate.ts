@@ -1,6 +1,7 @@
 // Content checks, docs/01_DESIGN.md §11 rules 1–7. Pure: the CLI (scripts/validate-content.ts) loads files,
 // runs JSON Schema checks and passes everything in here.
-import type { ContentBundle, OwnLesson, OwnWord } from "./ownTypes";
+import type { ContentBundle, CourseLessonRef, OwnLesson, OwnWord } from "./ownTypes";
+import { packLessonParts, partRefs, suggestedParts } from "./split";
 import type { PackExercise, PackIndex, PackLesson, PackManifest, PackSentence, PackWord } from "./packTypes";
 import { fillBank, PACK_FORMAT_VERSION } from "./packTypes";
 import { buildFormIndex, tokenize, uncoveredWords } from "./tokenize";
@@ -24,10 +25,20 @@ export interface LessonStat {
   overFiveSeconds: string[];
 }
 
+export interface SplitBoundary {
+  /** Course lesson the part belongs to, e.g. NN24b */
+  id: string;
+  /** Last sentence of the previous part and first sentence of this one (Dutch) */
+  before: string;
+  after: string;
+}
+
 export interface Report {
   issues: Issue[];
   lessons: LessonStat[];
   missingTts: number;
+  /** Where split lessons are cut (only with a pack), for checking that no exchange is cut in half */
+  splits?: SplitBoundary[];
 }
 
 export interface PackData {
@@ -41,6 +52,8 @@ export interface PackData {
 export interface ValidateInput {
   content: ContentBundle;
   pack?: PackData;
+  /** content/a1/nn-index.json: lets the check without a pack still resolve course.json's pack lessons */
+  nnIndex?: PackIndex;
   ttsFileExists(hash: string): boolean;
 }
 
@@ -50,7 +63,7 @@ export const MAX_PHONICS_SECONDS = 4;
 
 const CHOICE_TYPES = new Set(["true_false", "choose_one", "listen_choose"]);
 
-export function validateContent({ content, pack, ttsFileExists }: ValidateInput): Report {
+export function validateContent({ content, pack, nnIndex, ttsFileExists }: ValidateInput): Report {
   const issues: Issue[] = [];
   const err = (rule: Rule, where: string, msg: string) => issues.push({ level: "error", rule, where, msg });
   const warn = (rule: Rule, where: string, msg: string) => issues.push({ level: "warn", rule, where, msg });
@@ -72,6 +85,13 @@ export function validateContent({ content, pack, ttsFileExists }: ValidateInput)
       const own = ownWords.get(w.id);
       if (own && own.lemma !== w.lemma)
         err(1, `words/own.json ${w.id}`, `与资料包同 id 的词条原形不同：${own.lemma} / ${w.lemma}`);
+    }
+    // the app merges an own word into the pack entry with the same lemma and part of speech (model.ts)
+    const packByKey = new Map(pack.words.map((w) => [`${w.lemma.toLowerCase()}|${w.pos}`, w.id]));
+    for (const w of content.words) {
+      const same = packByKey.get(`${w.lemma.toLowerCase()}|${w.pos}`);
+      if (same && same !== w.id && !packWords.has(w.id))
+        warn(1, `words/own.json ${w.id}`, `资料包里已有同一个词 ${same}，程序会用资料包的词条`);
     }
   }
   const allWords = new Map<string, { id: string; lemma: string; pos: string }>([...ownWords, ...packWords]);
@@ -100,21 +120,53 @@ export function validateContent({ content, pack, ttsFileExists }: ValidateInput)
 
   // ---------- course ----------
   const courseIds = new Set<string>();
-  const missingInPack: string[] = [];
+  const missingInPack = new Set<string>();
+  const packRefs = new Map<string, CourseLessonRef[]>();
   for (const section of content.course.sections) {
     for (const ref of section.lessons) {
       if (courseIds.has(ref.id)) err(1, "course.json", `课程重复：${ref.id}`);
       courseIds.add(ref.id);
       if (ref.source === "own" && !content.lessons[ref.id])
         err(1, "course.json", `找不到课程文件 lessons/${ref.id}.json`);
-      if (ref.source === "pack" && pack) {
-        const packId = ref.pack_id ?? ref.id;
-        if (!pack.lessons[packId]) missingInPack.push(packId);
-      }
+      if (ref.source === "own" && ref.part) err(1, "course.json", `${ref.id}：只有资料包的课可以拆分`);
+      if (ref.source !== "pack") continue;
+      const packId = ref.pack_id ?? ref.id;
+      packRefs.set(packId, [...(packRefs.get(packId) ?? []), ref]);
+      if (pack && !pack.lessons[packId]) missingInPack.add(packId);
+      if (!pack && nnIndex && !nnIndex.lessons.some((l) => l.id === packId))
+        err(1, "course.json", `${ref.id}：nn-index.json 里没有 ${packId}`);
     }
   }
-  if (missingInPack.length > 0)
-    warn(1, "course.json", `资料包里还没有这些课（${missingInPack.length} 课）：${missingInPack.join(" ")}`);
+  if (missingInPack.size > 0)
+    warn(1, "course.json", `资料包里还没有这些课（${missingInPack.size} 课）：${[...missingInPack].join(" ")}`);
+  // split lessons (design §2.1): parts 1…of, one entry each
+  for (const [packId, refs] of packRefs) {
+    const parts = refs.map((r) => r.part);
+    if (refs.length === 1 && !parts[0]) continue;
+    const of = refs.length;
+    const ns = parts.map((p) => p?.n).sort((a, b) => (a ?? 0) - (b ?? 0));
+    if (parts.some((p) => !p || p.of !== of) || ns.some((n, i) => n !== i + 1))
+      err(1, "course.json", `${packId} 的拆分不完整：${refs.map((r) => r.id).join("、")} 应该是第 1–${of} 部分`);
+    const packLesson = pack?.lessons[packId];
+    if (packLesson) {
+      const taught = new Set(packLesson.sentences.filter((x) => x.role !== "title").map((x) => x.id));
+      for (const r of refs)
+        if (r.part?.from && !taught.has(r.part.from))
+          err(1, "course.json", `${r.id}：${packId} 里没有句子 ${r.part.from}`);
+    }
+  }
+  if (!pack && nnIndex) {
+    for (const l of nnIndex.lessons.filter((x) => x.kind === "main")) {
+      const want = suggestedParts(l, content.course.limits);
+      const have = packRefs.get(l.id)?.length ?? 0;
+      if (have > 0 && have < want)
+        warn(
+          7,
+          l.id,
+          `句子 ${l.sentence_count} 句、新词 ${l.new_word_count} 个，建议拆成 ${want} 部分（现在 ${have}）`,
+        );
+    }
+  }
   for (const id of Object.keys(content.lessons)) {
     if (!courseIds.has(id)) err(1, `lessons/${id}.json`, "课程编排 course.json 里没有这一课");
   }
@@ -143,6 +195,9 @@ export function validateContent({ content, pack, ttsFileExists }: ValidateInput)
     for (const t of lesson.tips ?? []) if (!content.tips[t]) err(1, where, `找不到小贴士 ${t}`);
     if (lesson.kind === "main") {
       if (!lesson.pack_lesson) err(1, where, "正课需要 pack_lesson");
+      const ref = content.course.sections.flatMap((x) => x.lessons).find((r) => r.id === key);
+      if (ref && lesson.pack_lesson && (ref.pack_id ?? ref.id) !== lesson.pack_lesson)
+        err(1, where, `pack_lesson ${lesson.pack_lesson} 和课程编排里的 ${ref.pack_id ?? ref.id} 不一致`);
       const packLesson = pack && lesson.pack_lesson ? pack.lessons[lesson.pack_lesson] : undefined;
       if (pack && lesson.pack_lesson && !packLesson) warn(1, where, `资料包里没有 ${lesson.pack_lesson}`);
       if (packLesson) {
@@ -192,6 +247,7 @@ export function validateContent({ content, pack, ttsFileExists }: ValidateInput)
 
   // ---------- rules 5 and 7 per course lesson ----------
   const lessonStats: LessonStat[] = [];
+  const splits: SplitBoundary[] = [];
   const known = new Set<string>();
   const { max_sentences, max_new_words } = content.course.limits;
   for (const section of content.course.sections) {
@@ -199,8 +255,18 @@ export function validateContent({ content, pack, ttsFileExists }: ValidateInput)
       const own = content.lessons[ref.id];
       const packLesson = ref.source === "pack" && pack ? pack.lessons[ref.pack_id ?? ref.id] : undefined;
       if (ref.source === "pack" && !packLesson) continue;
-      const taught = taughtWordIds(own, packLesson);
-      const used = usedWordIds(own, packLesson, formIndex);
+      const siblings = packLesson ? partRefs(content.course, packLesson.id) : [];
+      const view = packLesson
+        ? packLessonParts(packLesson, ref.part ? siblings.map((r) => ({ from: r.part?.from })) : [{}])[
+            ref.part ? Math.max(0, siblings.indexOf(ref)) : 0
+          ]
+        : undefined;
+      if (packLesson && ref.part && ref.part.n > 1 && view?.sentences[0]) {
+        const prev = packLesson.sentences[packLesson.sentences.indexOf(view.sentences[0]) - 1];
+        splits.push({ id: ref.id, before: prev?.nl ?? "", after: view.sentences[0].nl });
+      }
+      const taught = taughtWordIds(own, packLesson, view?.wordIds);
+      const used = usedWordIds(own, view?.sentences, formIndex);
       const unknown = [...used].filter(
         (id) =>
           !taught.has(id) &&
@@ -209,12 +275,11 @@ export function validateContent({ content, pack, ttsFileExists }: ValidateInput)
           !functionLemmas.has((allWords.get(id)?.lemma ?? "").toLowerCase()),
       );
       const newWords = packLesson
-        ? (packLesson.word_ids ?? []).filter((id) => packWords.get(id)?.first_lesson === packLesson.id).length
+        ? (view?.wordIds ?? []).filter((id) => packWords.get(id)?.first_lesson === packLesson.id).length
         : [...taught].filter((id) => !known.has(id)).length;
-      const sentences =
-        (packLesson?.sentences.filter((s) => s.role === "line").length ?? 0) + (own?.sentences?.length ?? 0);
+      const sentences = (view?.sentences.filter((s) => s.role === "line").length ?? 0) + (own?.sentences?.length ?? 0);
       const over = [
-        ...(packLesson?.sentences.filter((s) => (s.duration ?? 0) > MAX_OWN_SECONDS).map((s) => s.id) ?? []),
+        ...(view?.full.filter((s) => (s.duration ?? 0) > MAX_OWN_SECONDS).map((s) => s.id) ?? []),
         ...(ownOverLimit.get(ref.id) ?? []),
       ];
       lessonStats.push({
@@ -231,24 +296,28 @@ export function validateContent({ content, pack, ttsFileExists }: ValidateInput)
     }
   }
 
-  return { issues, lessons: lessonStats, missingTts };
+  return { issues, lessons: lessonStats, missingTts, splits };
 }
 
-function taughtWordIds(own: OwnLesson | undefined, packLesson: PackLesson | undefined): Set<string> {
+function taughtWordIds(
+  own: OwnLesson | undefined,
+  packLesson: PackLesson | undefined,
+  partWordIds: string[] = [],
+): Set<string> {
   const ids = new Set<string>(own?.word_ids ?? []);
   for (const s of own?.sounds ?? []) for (const id of s.word_ids) ids.add(id);
-  for (const id of packLesson?.word_ids ?? []) ids.add(id);
+  for (const id of partWordIds) ids.add(id);
   for (const k of packLesson?.keywords ?? []) ids.add(k.word_id);
   return ids;
 }
 
 function usedWordIds(
   own: OwnLesson | undefined,
-  packLesson: PackLesson | undefined,
+  packSentences: PackSentence[] | undefined,
   formIndex: Map<string, string>,
 ): Set<string> {
   const ids = new Set<string>();
-  for (const s of packLesson?.sentences ?? []) {
+  for (const s of packSentences ?? []) {
     if (s.role === "title") continue;
     for (const t of s.tokens ?? []) ids.add(t.word_id);
   }

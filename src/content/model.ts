@@ -1,6 +1,7 @@
 // Runtime course model: our own content (content/a1) merged with the resource pack (design §10).
 import type { ContentBundle, CourseLessonRef, OwnExercise, OwnLesson, Tip } from "./ownTypes";
 import type { PackExercise, PackIndex, PackLesson, PackToken, PackWord, Pos, Trilingual, VerbForms } from "./packTypes";
+import { packLessonParts, partLetter, partRefs } from "./split";
 import { buildFormIndex, tokenize } from "./tokenize";
 import { voiceName } from "./ttsTexts";
 
@@ -81,7 +82,11 @@ export interface RtLesson {
   textType?: "dialogue" | "text" | "mixed";
   /** Step ① plays this; sentences with start/end can be highlighted */
   fullAudio?: AudioRef;
-  /** Everything in the full recording, in order (title included) */
+  /** Split lessons: the stretch of the full recording this part covers, seconds */
+  fullSegment?: { start: number; end: number };
+  /** Split lessons: which part this is */
+  part?: { n: number; of: number };
+  /** Everything in the full recording (split lessons: this part's stretch), in order, title included */
   fullSentences: RtSentence[];
   /** Step ②: one sentence per screen */
   sentences: RtSentence[];
@@ -111,6 +116,7 @@ export interface CourseLesson {
   title: Trilingual | null;
   source: "own" | "pack";
   packId?: string;
+  part?: { n: number; of: number };
   /** Own lessons always; pack lessons when the pack contains them */
   available: boolean;
 }
@@ -125,11 +131,12 @@ export interface CourseSectionView {
 
 const SECTION_KIND: Record<CourseSectionView["id"], LessonKind> = { phonics: "phonics", main: "main", tests: "test" };
 
-export function lessonCode(section: CourseSectionView["id"], id: string): string {
-  const n = Number(id.replace(/^\D+/, ""));
-  if (section === "main" && Number.isFinite(n)) return `第 ${n} 课`;
+/** "第 21 课", split lessons "第 24 课 a" (design §2.1), "测验 1"; own lessons keep their id (P01). */
+export function lessonCode(section: CourseSectionView["id"], ref: CourseLessonRef): string {
+  const n = Number((ref.pack_id ?? ref.id).replace(/^\D+/, ""));
+  if (section === "main" && Number.isFinite(n)) return ref.part ? `第 ${n} 课 ${partLetter(ref.part.n)}` : `第 ${n} 课`;
   if (section === "tests" && Number.isFinite(n)) return `测验 ${n}`;
-  return id;
+  return ref.id;
 }
 
 export function buildCourseView(bundle: ContentBundle, packIndex: PackIndex | null): CourseSectionView[] {
@@ -143,10 +150,11 @@ export function buildCourseView(bundle: ContentBundle, packIndex: PackIndex | nu
         id: ref.id,
         section: section.id,
         kind: SECTION_KIND[section.id],
-        code: lessonCode(section.id, ref.id),
+        code: lessonCode(section.id, ref),
         title: own?.title ?? packEntry?.title ?? null,
         source: ref.source,
         packId,
+        part: ref.part ? { n: ref.part.n, of: ref.part.of } : undefined,
         available: ref.source === "own" ? !!own : !!packEntry,
       };
     });
@@ -181,14 +189,33 @@ function packAudio(path: string | null | undefined, source?: string): Partial<Au
   return { nn: path };
 }
 
+/**
+ * NN word list + words/own.json (design §6). The pack entry wins: an own word with the same id, or with the
+ * same lemma and part of speech, becomes an alias of the pack entry, so lessons and review items that use
+ * the own id open the pack's entry; the own synthesized audio stays as a fallback. Every inflected form
+ * points to its entry's id (woont → w_wonen).
+ */
 export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = []): Dictionary {
   const voice = voiceName(bundle.tts, "default");
   const words = new Map<string, RtWord>();
   const nnByLemma = new Map<string, string>();
+  const packByKey = new Map<string, PackWord>();
+  const key = (w: { lemma: string; pos: string }) => `${w.lemma.toLowerCase()}|${w.pos}`;
   for (const w of packWords) {
     if (w.audio && w.audio_source?.startsWith("nn:")) nnByLemma.set(w.lemma.toLowerCase(), w.audio);
+    if (!packByKey.has(key(w))) packByKey.set(key(w), w);
   }
+  const packIds = new Set(packWords.map((w) => w.id));
+  const aliases = new Map<string, string>();
+  const ownTts = new Map<string, AudioRef["tts"]>();
   for (const w of bundle.words) {
+    const tts = { voice, text: w.lemma };
+    const same = packIds.has(w.id) ? w.id : packByKey.get(key(w))?.id;
+    if (same) {
+      if (same !== w.id) aliases.set(w.id, same);
+      if (!ownTts.has(same)) ownTts.set(same, tts);
+      continue;
+    }
     words.set(w.id, {
       id: w.id,
       lemma: w.lemma,
@@ -199,11 +226,11 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
       separable: w.separable ?? null,
       zh: w.zh,
       en: w.en,
-      audio: { id: w.id, nn: nnByLemma.get(w.lemma.toLowerCase()), tts: { voice, text: w.lemma } },
+      audio: { id: w.id, nn: nnByLemma.get(w.lemma.toLowerCase()), tts },
     });
   }
   for (const w of packWords) {
-    const own = words.get(w.id);
+    if (words.has(w.id)) continue;
     words.set(w.id, {
       id: w.id,
       lemma: w.lemma,
@@ -217,10 +244,12 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
       zhNn: w.zh_nn ?? undefined,
       enNn: w.en_nn ?? undefined,
       firstLesson: w.first_lesson,
-      audio: { id: w.id, ...packAudio(w.audio, w.audio_source), tts: own?.audio.tts },
+      audio: { id: w.id, ...packAudio(w.audio, w.audio_source), tts: ownTts.get(w.id) },
     });
   }
-  const formIndex = buildFormIndex([...bundle.words, ...packWords.map((w) => ({ ...w, verb_forms: w.verb_forms }))]);
+  for (const [ownId, packId] of aliases) words.set(ownId, words.get(packId)!);
+  const formIndex = buildFormIndex([...bundle.words, ...packWords]);
+  for (const [form, id] of formIndex) if (aliases.has(id)) formIndex.set(form, aliases.get(id)!);
   return { words, formIndex };
 }
 
@@ -292,7 +321,7 @@ export function buildLesson(
 ): RtLesson | null {
   const found = findCourseRef(bundle, id);
   if (!found) return null;
-  const { section } = found;
+  const { section, ref } = found;
   const { own, pack, linked = [] } = sources;
   if (found.ref.source === "own" && !own) return null;
   if (found.ref.source === "pack" && !pack) return null;
@@ -308,11 +337,18 @@ export function buildLesson(
   // Words: phonics → sound keywords then the rest; pack lessons → word_ids order
   const wordIds: string[] = [];
   const pushId = (wid: string) => {
-    if (!wordIds.includes(wid) && dict.words.has(wid)) wordIds.push(wid);
+    const resolved = dict.words.get(wid)?.id;
+    if (resolved && !wordIds.includes(resolved)) wordIds.push(resolved);
   };
   for (const s of own?.sounds ?? []) s.word_ids.forEach(pushId);
   (own?.word_ids ?? []).forEach(pushId);
-  (pack?.word_ids ?? []).forEach(pushId);
+  // split lessons: each part teaches its stretch of the text and the words first met there (split.ts)
+  const siblings = pack ? partRefs(bundle.course, pack.id) : [];
+  const partIndex = ref.part ? Math.max(0, siblings.indexOf(ref)) : 0;
+  const view = pack
+    ? packLessonParts(pack, ref.part ? siblings.map((r) => ({ from: r.part?.from })) : [{}])[partIndex]
+    : undefined;
+  (view?.wordIds ?? []).forEach(pushId);
 
   // Phonics lessons reuse the original keyword recordings of the linked NN lessons
   const keywordAudio = new Map<string, string>();
@@ -329,17 +365,21 @@ export function buildLesson(
   });
   const newWordIds = pack ? wordIds.filter((wid) => dict.words.get(wid)?.firstLesson === pack.id) : [...wordIds];
 
-  const fullSentences = (pack?.sentences ?? []).map(packSentenceView);
+  const fullSentences = (view?.full ?? []).map(packSentenceView);
   let taught: RtSentence[];
   if (pack && own?.sentence_ids) {
-    const byId = new Map(fullSentences.map((s) => [s.id, s]));
-    taught = own.sentence_ids.map((sid) => byId.get(sid)).filter((s): s is RtSentence => !!s);
+    const byId = new Map(pack.sentences.map((s) => [s.id, s]));
+    taught = own.sentence_ids
+      .map((sid) => byId.get(sid))
+      .filter((s): s is PackLesson["sentences"][number] => !!s)
+      .map(packSentenceView);
   } else {
-    taught = fullSentences.filter((s) => s.kind === "line" || s.kind === "extra");
+    taught = (view?.sentences ?? []).map(packSentenceView);
   }
+  const bookPart = !view || view.last;
   taught = [...taught, ...added];
 
-  const extras: RtExtraBox[] = (pack?.extras ?? []).map((x) => ({
+  const extras: RtExtraBox[] = (bookPart ? (pack?.extras ?? []) : []).map((x) => ({
     id: x.id,
     sentences: (x.sentences ?? []).map((s) => ({
       id: s.id,
@@ -354,7 +394,7 @@ export function buildLesson(
     })),
   }));
 
-  const packExercises: RtPackExercise[] = [...(pack ? [pack] : []), ...linked].flatMap((l) =>
+  const packExercises: RtPackExercise[] = [...(pack && bookPart ? [pack] : []), ...linked].flatMap((l) =>
     (l.exercises ?? [])
       .filter((e) => !e.skip && e.type !== "other" && Array.isArray(e.items))
       .map((exercise) => ({ lessonId: l.id, exercise })),
@@ -363,10 +403,12 @@ export function buildLesson(
   return {
     id,
     kind,
-    code: lessonCode(section, id),
+    code: lessonCode(section, ref),
     title,
     textType: pack?.text_type,
     fullAudio: pack?.audio_full ? { id: `${pack.id}-full`, nn: pack.audio_full } : undefined,
+    fullSegment: ref.part ? view?.segment : undefined,
+    part: ref.part ? { n: ref.part.n, of: ref.part.of } : undefined,
     fullSentences,
     sentences: taught,
     words,
@@ -375,7 +417,7 @@ export function buildLesson(
       grapheme: s.grapheme,
       noteZh: s.note_zh,
       noteEn: s.note_en,
-      wordIds: s.word_ids,
+      wordIds: s.word_ids.map((wid) => dict.words.get(wid)?.id ?? wid),
     })),
     tips,
     extras,

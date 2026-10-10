@@ -2,6 +2,7 @@
 import type { CourseLesson, CourseSectionView } from "../content/model";
 import type { ContentBundle } from "../content/ownTypes";
 import type { PackIndex } from "../content/packTypes";
+import { partSize } from "../content/split";
 import type { LessonProgress } from "../storage/learning";
 import type { LessonReviewStat } from "../review/store";
 import type { CourseSection, LessonSummary } from "./types";
@@ -14,7 +15,14 @@ const PHONICS_LABEL: Record<number, string> = { 0: "音", 1: "短句", 2: "关�
 export function sentenceTotal(lesson: CourseLesson, bundle: ContentBundle, index: PackIndex | null): number {
   if (lesson.source === "own") return bundle.lessons[lesson.id]?.sentences?.length ?? 0;
   const entry = index?.lessons.find((l) => l.id === lesson.packId);
-  return (entry?.sentence_count ?? 0) + (bundle.lessons[lesson.id]?.sentences?.length ?? 0);
+  const count = entry?.sentence_count ?? 0;
+  const own = bundle.lessons[lesson.id];
+  const pack = own?.sentence_ids
+    ? own.sentence_ids.length
+    : lesson.part
+      ? partSize(count, lesson.part.n, lesson.part.of)
+      : count;
+  return pack + (own?.sentences?.length ?? 0);
 }
 
 /** A lesson started but not finished yet. */
@@ -100,9 +108,9 @@ export function continueLesson(
   };
 }
 
-/** "第 24–65 课" style list of lessons the pack does not contain yet. */
+/** "第 24–65 课" style list of lessons the pack does not contain yet (the parts of a split lesson count once). */
 export function missingRanges(missing: CourseLesson[]): string {
-  const nums = missing.map((l) => Number(l.id.replace(/^\D+/, ""))).filter(Number.isFinite);
+  const nums = [...new Set(missing.map((l) => Number((l.packId ?? l.id).replace(/^\D+/, ""))).filter(Number.isFinite))];
   if (nums.length === 0) return "";
   const prefix = missing[0].section === "tests" ? "测验" : "第";
   const suffix = missing[0].section === "tests" ? "" : " 课";

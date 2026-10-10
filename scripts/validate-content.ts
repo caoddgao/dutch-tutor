@@ -2,6 +2,8 @@
 //   npm run validate                         repo content only (CI)
 //   npm run validate -- --pack <nn-pack dir>  full check with a resource pack
 //   options: --content <dir> (default content/), --report <file.md>
+//   With --pack the report is also written to validate-report.md in the current folder unless --report says
+//   otherwise (Windows: npm run validate -- --pack "F:\\...\\nn-pack", then open validate-report.md).
 import { existsSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { validateContent, type Issue, type Report } from "../src/content/validate";
@@ -25,6 +27,7 @@ export function runValidation(contentDir: string, packDir?: string): Report {
   const report = validateContent({
     content: content.bundle,
     pack,
+    nnIndex: content.nnIndex,
     ttsFileExists: (hash) => existsSync(join(content.ttsDir, `${hash}.mp3`)),
   });
   return { ...report, issues: [...issues, ...report.issues] };
@@ -55,6 +58,16 @@ export function formatReport(report: Report, title: string): string {
     }
     lines.push("");
   }
+  if (report.splits && report.splits.length > 0) {
+    lines.push(
+      "## 拆分处",
+      "",
+      "拆分课每一部分从哪里开始（上一句 ‖ 这一部分的第一句），看看有没有把一问一答拆开：",
+      "",
+    );
+    for (const b of report.splits) lines.push(`- ${b.id}：${b.before} ‖ ${b.after}`);
+    lines.push("");
+  }
   for (const [level, list] of [
     ["错误", errors],
     ["提示", warns],
@@ -79,8 +92,11 @@ function main() {
   const report = runValidation(contentDir, packDir);
   const text = formatReport(report, packDir ? `内容校验（含资料包 ${packDir}）` : "内容校验（仓库内容）");
   console.log(text);
-  const out = arg("--report");
-  if (out) writeFileSync(out, text + "\n", "utf8");
+  const out = arg("--report") ?? (packDir ? "validate-report.md" : undefined);
+  if (out) {
+    writeFileSync(out, text + "\n", "utf8");
+    console.log(`\n报告已写入 ${resolve(out)}`);
+  }
   const errors = report.issues.filter((i) => i.level === "error").length;
   process.exitCode = errors > 0 ? 1 : 0;
 }

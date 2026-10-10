@@ -10,6 +10,7 @@ import "./CoursesPage.css";
 export function CoursesPage() {
   const data = useCourseData();
   const { course, packStatus } = useContent();
+  const broken = packStatus === "outdated" || packStatus === "error";
   if (!data) return <p className="muted lesson-loading">正在读取…</p>;
   const recommended = recommendNext(data.sections);
 
@@ -71,13 +72,15 @@ export function CoursesPage() {
                     <PackageOpen size={20} aria-hidden />
                   </span>
                   <div className="needs-pack-text">
-                    <p className="stat-title">需要资料包</p>
+                    <p className="stat-title">{broken ? "资料包需要重新导入" : "需要资料包"}</p>
                     <p className="muted">
-                      {missingRanges(missing)}的课文、原版录音和练习在 Naar Nederland 资料包里，导入一次就能学。
+                      {broken
+                        ? `已导入的资料包读不出来（版本不符或文件损坏），重新导入后就能学${missingRanges(missing)}。`
+                        : `${missingRanges(missing)}的课文、原版录音和练习在 Naar Nederland 资料包里，导入一次就能学。`}
                     </p>
                   </div>
                   <Link to="/settings" className="btn btn-primary">
-                    去导入
+                    {broken ? "去重新导入" : "去导入"}
                   </Link>
                 </div>
               ))}

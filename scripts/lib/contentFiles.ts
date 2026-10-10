@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { Ajv2020, type ValidateFunction } from "ajv/dist/2020.js";
 import type { ContentBundle, TtsManifest } from "../../src/content/ownTypes";
+import type { PackIndex } from "../../src/content/packTypes";
 import type { PackData, Issue } from "../../src/content/validate";
 
 export const REPO_ROOT = join(import.meta.dirname, "../..");
@@ -76,13 +77,34 @@ export class Loader {
     return out;
   }
 
+  private listings = new Map<string, Set<string>>();
+
+  /**
+   * Is `rel` a file, with exactly this spelling? Windows and macOS ignore case, Android does not, so a
+   * path that only matches in another case is reported as missing on every system.
+   */
   exists(rel: string): boolean {
-    const path = join(this.root, rel);
-    return existsSync(path) && statSync(path).isFile();
+    const parts = rel.split(/[\\/]/).filter(Boolean);
+    let dir = this.root;
+    for (const name of parts) {
+      let names = this.listings.get(dir);
+      if (!names) {
+        names = new Set(existsSync(dir) && statSync(dir).isDirectory() ? readdirSync(dir) : []);
+        this.listings.set(dir, names);
+      }
+      if (!names.has(name)) return false;
+      dir = join(dir, name);
+    }
+    return parts.length > 0 && statSync(dir).isFile();
   }
 }
 
-export function loadContent(dir: string): { bundle?: ContentBundle; loader: Loader; ttsDir: string } {
+export function loadContent(dir: string): {
+  bundle?: ContentBundle;
+  nnIndex?: PackIndex;
+  loader: Loader;
+  ttsDir: string;
+} {
   const loader = new Loader(dir);
   const course = loader.json<ContentBundle["course"]>("a1/course.json", "course.schema.json");
   const lessons = loader.jsonDir<ContentBundle["lessons"][string]>("a1/lessons", "own-lesson.schema.json");
@@ -95,9 +117,10 @@ export function loadContent(dir: string): { bundle?: ContentBundle; loader: Load
   const tts =
     loader.json<TtsManifest>("audio/tts/manifest.json", "tts-manifest.schema.json", false) ??
     ({ voices: DEFAULT_TTS_VOICES, entries: {} } satisfies TtsManifest);
+  const nnIndex = loader.json<PackIndex>("a1/nn-index.json", "pack-index.schema.json", false);
   const ttsDir = join(dir, "audio/tts");
   if (!course) return { loader, ttsDir };
-  return { bundle: { course, lessons, tips, words, functionWords, tts }, loader, ttsDir };
+  return { bundle: { course, lessons, tips, words, functionWords, tts }, nnIndex, loader, ttsDir };
 }
 
 export function loadPack(dir: string): { pack?: PackData; loader: Loader } {

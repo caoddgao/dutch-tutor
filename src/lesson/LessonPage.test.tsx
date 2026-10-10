@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../App";
+import { CONTENT } from "../content/bundle";
 import { fixtureContent, fsPackBackend, testServices } from "../test/services";
 
 beforeEach(() => {
@@ -150,5 +151,31 @@ describe("lesson page", () => {
     await open("#/lesson/NN21", { pack: fsPackBackend(null) });
     expect(await screen.findByText("需要资料包")).toBeTruthy();
     expect(screen.getByRole("link", { name: "去导入资料包" })).toBeTruthy();
+  });
+
+  it("a lesson the installed pack lacks says so", async () => {
+    await open("#/lesson/NN30a", { content: CONTENT });
+    expect(await screen.findByText("资料包里没有这一课")).toBeTruthy();
+    expect(screen.getByText(/还没有这一课（第 30 课 a）/)).toBeTruthy();
+  });
+
+  it("a pack with another format version asks for re-importing", async () => {
+    const real = fsPackBackend();
+    const pack = fsPackBackend(undefined, {
+      info: async () => {
+        const i = await real.info();
+        return { ...i, manifest: { ...i.manifest!, format_version: 2 } };
+      },
+    });
+    await open("#/lesson/NN21a", { pack, content: CONTENT });
+    expect(await screen.findByText("资料包需要重新导入")).toBeTruthy();
+  });
+
+  it("split lessons: part a teaches its half, part b ends with the book's exercises", async () => {
+    await open("#/lesson/NN21b", { content: CONTENT });
+    await screen.findByText("先完整听一两遍");
+    expect(screen.getByText(/第 2 部分（共 2 部分）/)).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /下一步：逐句学/ }));
+    await screen.findByText("第 1 / 5 句");
   });
 });
