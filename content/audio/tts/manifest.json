@@ -1154,6 +1154,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.01
     },
+    "82872d6bc8e7ae08": {
+      "text": "U ziet Anna op straat.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.38
+    },
     "82d81bda938555a5": {
       "text": "veertien",
       "voice": "nl-NL-FennaNeural",
@@ -1963,6 +1968,11 @@
       "text": "Wat is uw naam?",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.04
+    },
+    "e5ec1987282dfcfd": {
+      "text": "Ik zie je vaak op straat.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.4
     },
     "e77a2d510ca995ff": {
       "text": "Is dat uw tas?",

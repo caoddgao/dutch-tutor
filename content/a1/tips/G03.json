@@ -8,12 +8,14 @@
   "body_zh": [
     "去掉原形的 -en 就是词干：wonen → woon，werken → werk。ik 后面只用词干：ik woon。",
     "jij、u、hij、zij（她）后面用词干加 -t：jij woont，hij werkt。复数 wij、jullie、zij 用原形：wij wonen。",
-    "注意拼写：原形里的长元音在词干里要写两个字母，wonen → woon，spelen → speel。"
+    "注意拼写：原形里的长元音在词干里要写两个字母，wonen → woon，spelen → speel。",
+    "词干末尾的 v、z 写成 f、s：leven → leef，reizen → reis。词干已以 t 结尾时不再加 t：jij zit。"
   ],
   "body_en": [
     "Drop -en from the infinitive to get the stem: wonen → woon, werken → werk. After ik use the stem: ik woon.",
     "After jij, u, hij and zij (she) add -t: jij woont, hij werkt. The plural wij, jullie, zij takes the infinitive: wij wonen.",
-    "Mind the spelling: a long vowel is written double in the stem: wonen → woon, spelen → speel."
+    "Mind the spelling: a long vowel is written double in the stem: wonen → woon, spelen → speel.",
+    "At the end of a stem, v and z are written f and s: leven → leef, reizen → reis. If the stem already ends in t, do not add another t: jij zit."
   ],
   "examples": [
     {
