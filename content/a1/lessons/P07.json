@@ -36,8 +36,8 @@
     },
     {
       "grapheme": "v · w",
-      "note_zh": "v 比英语的 v 轻，很多人读得接近 f。w：上齿轻碰下唇，嘴唇不撮圆，介于 v 和英语的 w 之间：water、werken、vrouw。",
-      "note_en": "v is softer than English v, often close to f. w: upper teeth lightly touch the lower lip, lips not rounded.",
+      "note_zh": "v：标准读法是轻的浊音 v；荷兰很多人说得接近 f，两种都会听到。w：上齿轻碰下唇，嘴唇不撮圆，介于 v 和英语的 w 之间：water、werken、vrouw。",
+      "note_en": "v: the standard sound is a light voiced v; many Dutch speakers say it close to f, you will hear both. w: upper teeth lightly touch the lower lip, lips not rounded.",
       "word_ids": ["w_water", "w_werken", "w_vrouw"]
     }
   ],

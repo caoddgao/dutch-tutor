@@ -68,6 +68,28 @@ describe("dictionary", () => {
     expect(dict.words.get("o_brood_ww")!.id).toBe("o_brood_ww");
   });
 
+  it("our sentences' forms go to our words; a word is first taught in the earlier of our lessons and the pack", () => {
+    const dict = buildDictionary(CONTENT, words);
+    // the fixture pack, like the real one, has two entries for dag; P01 teaches the greeting (same id)
+    expect(dict.formIndex.get("dag")).toBe("w_dag");
+    expect(dict.words.get("w_dag")!.firstLesson).toBe("P01");
+    expect(dict.words.get("w_dag_2")!.firstLesson).toBe("NN22a");
+    // inflected forms too: "Ik drink …" (P08) stays our drinken when the pack has another entry with that form
+    const other: PackWord = { ...words.find((w) => w.id === "w_dag_2")!, id: "w_drinken_2", lemma: "drinken" };
+    other.forms_seen = ["drink"];
+    expect(buildDictionary(CONTENT, [...words, other]).formIndex.get("drink")).toBe("w_drinken");
+    // first met in the reading text NN14, read in P05
+    expect(dict.words.get("w_leuk")!.firstLesson).toBe("P05");
+    // an own id merged into a pack entry (same lemma + part of speech) has that entry's first lesson
+    const content = structuredClone(CONTENT);
+    content.words.push({ id: "o_dag", lemma: "dag", pos: "tw", zh: "你好", en: "hello" });
+    content.lessons.P01 = { ...content.lessons.P01, word_ids: ["o_dag"] };
+    const d = buildDictionary(content, words);
+    expect(d.words.get("o_dag")!.id).toBe("w_dag");
+    expect(d.formIndex.get("dag")).toBe("w_dag");
+    expect(d.words.get("w_dag")!.firstLesson).toBe("P01");
+  });
+
   it("letters of the alphabet are entries for their sound, never words of a sentence", () => {
     const dict = buildDictionary(CONTENT, words);
     expect(dict.words.get("w_letter_u")!.letter).toBe(true);
@@ -187,6 +209,7 @@ describe("lesson model", () => {
       "w_tot_ziens",
       "w_vier",
       "w_vijf",
+      "w_dag",
     ]);
     // zijn and de were first met in NN05
     expect(b.newWordIds).toEqual([
@@ -199,6 +222,7 @@ describe("lesson model", () => {
       "w_tot_ziens",
       "w_vier",
       "w_vijf",
+      "w_dag",
     ]);
     // an unsplit lesson next to it is unchanged
     const nn22 = buildLesson(split, d, "NN22", { pack: lesson("NN22") })!;
@@ -233,6 +257,18 @@ describe("phonics lessons P03–P10", () => {
     expect(l.newWordIds).not.toContain("w_twee");
     expect(l.newWordIds).not.toContain("w_vijf");
     expect(l.newWordIds).toContain("w_dertien");
+  });
+
+  it("a word is new only where it is first taught: our lesson or the pack's first_lesson, the earlier one", () => {
+    const nn21 = buildLesson(CONTENT, dict, "NN21", { pack: lesson("NN21") })!;
+    expect(nn21.words.map((w) => w.id)).toContain("w_dag");
+    expect(nn21.newWordIds).not.toContain("w_dag");
+    expect(p("P01").newWordIds).toContain("w_dag");
+    // leuk: first met in P05's reading text, taught again in P06
+    expect(p("P05", { reading: lesson("NN14") }).reading!.newWordIds).toContain("w_leuk");
+    const p06 = p("P06");
+    expect(p06.words.map((w) => w.id)).toContain("w_leuk");
+    expect(p06.newWordIds).not.toContain("w_leuk");
   });
 
   it("the reading text needs the pack: without it the lesson has none", () => {

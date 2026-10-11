@@ -47,7 +47,7 @@
       },
       "sentence_count": 11,
       "line_count": 9,
-      "new_word_count": 21,
+      "new_word_count": 22,
       "total_seconds": 23.32,
       "max_sentence_seconds": 5.3,
       "over_5s_count": 1,
@@ -74,7 +74,8 @@
         "dank u",
         "tot ziens",
         "vier",
-        "vijf"
+        "vijf",
+        "dag"
       ]
     },
     {
@@ -87,7 +88,7 @@
       },
       "sentence_count": 20,
       "line_count": 20,
-      "new_word_count": 27,
+      "new_word_count": 28,
       "total_seconds": 55.74,
       "max_sentence_seconds": 3.36,
       "over_5s_count": 0,
@@ -120,7 +121,8 @@
         "ook",
         "maar",
         "graag",
-        "jij"
+        "jij",
+        "dag"
       ]
     }
   ]

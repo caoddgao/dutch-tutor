@@ -140,11 +140,16 @@ noun("w_euro", "euro", "de", "euro's", "欧元", "euro");
 word("w_tot_ziens", "tot ziens", "uitdr", "再见", "goodbye");
 word("w_vier", "vier", "telw", "四", "four", { audio: "audio/NN21/S10.mp3", audio_source: "nn:NN21-S10" });
 word("w_vijf", "vijf", "telw", "五", "five", { audio: "audio/NN21/S11.mp3", audio_source: "nn:NN21-S11" });
+// Like the real pack: two entries with the same lemma (dag the greeting, NN21; de dag, NN22). Our own
+// lessons teach the greeting earlier (P01, own id w_dag): "Dag!" in our sentences must stay that word, and it
+// is not a new word again in NN21. Listed in the lessons' word lists only, not used in their sentences.
+word("w_dag", "dag", "tw", "你好；再见（打招呼用）", "hello; bye");
 
 // NN22
 const N22 = { first: "NN22" };
 word("w_dit", "dit", "vnw", "这，这个", "this", N22);
 word("w_mijn", "mijn", "vnw", "我的", "my", N22);
+noun("w_dag_2", "dag", "de", "dagen", "天，日", "day", N22);
 noun("w_buurman", "buurman", "de", "buren", "（男）邻居", "neighbour (man)", {
   ...N22,
   fields: { forms_seen: ["buren"] },
@@ -978,7 +983,7 @@ const lessons: Record<string, PackLesson> = {
     text_type: "dialogue",
     audio_full: "audio/NN21/full.mp3",
     sentences: nn21Sentences,
-    word_ids: firstSeenOrder(nn21Sentences),
+    word_ids: firstSeenOrder(nn21Sentences, ["w_dag"]),
     exercises: nn21Exercises,
     extras: [],
     notes: "Fixture: self-written content for tests.",
@@ -992,7 +997,7 @@ const lessons: Record<string, PackLesson> = {
     text_type: "text",
     audio_full: "audio/NN22/full.mp3",
     sentences: nn22Sentences,
-    word_ids: firstSeenOrder(nn22Sentences, ["w_ik", "w_jij"]),
+    word_ids: firstSeenOrder(nn22Sentences, ["w_ik", "w_jij", "w_dag_2"]),
     exercises: nn22Exercises,
     extras: nn22Extras,
     notes: "",

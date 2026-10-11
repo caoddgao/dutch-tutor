@@ -44,6 +44,14 @@ describe("content check on the real repo content and fixtures", () => {
     expect(errors(runValidation(join(REPO_ROOT, "content"), FIXTURE_PACK).issues)).toEqual([]);
   });
 
+  it("repo content with the fixture pack: no rule-5 words in P01–P10, though the pack has two entries for dag", () => {
+    const report = runValidation(join(REPO_ROOT, "content"), FIXTURE_PACK);
+    const phonics = report.lessons.filter((l) => /^P\d+$/.test(l.id));
+    expect(phonics).toHaveLength(10);
+    expect(phonics.filter((l) => l.unknownWords.length > 0)).toEqual([]);
+    expect(report.issues.filter((i) => i.rule === 5)).toEqual([]);
+  });
+
   it("fixture content + fixture pack pass, and the report has per-lesson stats", () => {
     const report = runValidation(FIXTURE_CONTENT, FIXTURE_PACK);
     expect(errors(report.issues)).toEqual([]);
@@ -149,6 +157,23 @@ describe("rules", () => {
     expect(report.issues.some((i) => i.rule === 5 && i.level === "warn")).toBe(true);
   });
 
+  it("rule 5 / 7 with a pack: an own id is the pack entry it merges into; new where first taught", () => {
+    const nn21 = (r: ReturnType<typeof check>) => r.lessons.find((l) => l.id === "NN21")!;
+    const base = check(() => {});
+    const report = check((f) => {
+      // own word with its own id for the pack's greeting dag (same lemma and part of speech → merged)
+      f.content.words.push({ id: "o_dag", lemma: "dag", pos: "tw", zh: "你好", en: "hello" });
+      f.content.lessons.P01.word_ids!.push("o_dag");
+      f.content.lessons.P01.sentences![0].nl = "Dag! De vis is in de pan.";
+    });
+    // dag is not a rule-5 word (zijn is not a fixture function word, it is reported either way)
+    const p01 = (r: ReturnType<typeof check>) => r.lessons.find((l) => l.id === "P01")!.unknownWords;
+    expect(p01(report)).toEqual(p01(base));
+    expect(p01(report)).not.toContain("dag");
+    // taught in P01, so not new again in NN21, the pack's first_lesson
+    expect(nn21(base).newWords - nn21(report).newWords).toBe(1);
+  });
+
   it("rule 6: one correct answer, no duplicate options", () => {
     expect(
       has(check((f) => (f.pack.lessons.NN21.exercises[1].items[1].answer = "willen")).issues, 6, "不在选项里"),
@@ -219,7 +244,7 @@ describe("rules", () => {
     );
     expect(errors(ok.issues)).toEqual([]);
     expect(ok.splits).toEqual([{ id: "NN21b", before: "Alstublieft.", after: "Dank u. Tot ziens!" }]);
-    expect(ok.lessons.find((l) => l.id === "NN21b")).toMatchObject({ sentences: 2, newWords: 4 });
+    expect(ok.lessons.find((l) => l.id === "NN21b")).toMatchObject({ sentences: 2, newWords: 5 });
     // words of part a are known in part b: no rule-5 noise from the split
     expect(ok.lessons.find((l) => l.id === "NN21b")!.unknownWords).toEqual([]);
     expect(
@@ -287,7 +312,7 @@ describe("rules", () => {
     // only text sentences count: many sentences but few text sentences → no split suggested
     expect(split(run(() => (nn21.sentence_count = 40)))).toEqual([]);
     expect(split(run(() => (nn21.line_count = 40)))).toEqual([
-      expect.objectContaining({ level: "warn", msg: "课文 40 句、新词 21 个，建议拆成 2 部分（现在 1）" }),
+      expect.objectContaining({ level: "warn", msg: "课文 40 句、新词 22 个，建议拆成 2 部分（现在 1）" }),
     ]);
     // an index without line_count falls back to sentence_count
     expect(split(run(() => delete nn21.line_count))).toHaveLength(1);

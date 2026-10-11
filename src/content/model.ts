@@ -29,6 +29,7 @@ export interface RtWord {
   en: string;
   zhNn?: string;
   enNn?: string;
+  /** Course lesson where the word is first taught (see firstTaught); words never taught have none */
   firstLesson?: string;
   /** A letter of the alphabet (P09): shown with the sounds, not a word card or a review item */
   letter?: boolean;
@@ -267,15 +268,53 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
       en: w.en,
       zhNn: w.zh_nn ?? undefined,
       enNn: w.en_nn ?? undefined,
-      firstLesson: w.first_lesson,
       letter: isLetter(w) || letters.has(w.id) || undefined,
       audio: { id: w.id, ...packAudio(w.audio, w.audio_source), tts: ownTts.get(w.id) },
     });
   }
   for (const [ownId, packId] of aliases) words.set(ownId, words.get(packId)!);
-  const formIndex = buildFormIndex([...bundle.words, ...packWords]);
+  for (const [wid, lesson] of firstTaught(bundle, words, packWords)) words.get(wid)!.firstLesson = lesson;
+  // our own sentences are written against own.json: every form of an own word (or of the pack entry it merged
+  // into) wins over the pack's other entries with that form (dag the greeting / de dag; drink of drinken)
+  const formIndex = new Map([...buildFormIndex(packWords), ...buildFormIndex(bundle.words)]);
   for (const [form, id] of formIndex) if (aliases.has(id)) formIndex.set(form, aliases.get(id)!);
   return { words, formIndex };
+}
+
+/**
+ * Where each word (dictionary id) is first taught: the earlier, in course order, of our own lessons' word
+ * lists (sounds + word_ids) and the pack's first_lesson. A pack lesson counts as its (first) course entry, a
+ * reading text as the phonics lesson that reads it; the NN lessons a phonics lesson only links (nn_lessons)
+ * teach nothing by themselves. New words, word cards and review items all go by this.
+ */
+function firstTaught(bundle: ContentBundle, words: Map<string, RtWord>, packWords: PackWord[]): Map<string, string> {
+  const order = courseOrder(bundle);
+  const position = new Map(order.map((id, i) => [id, i]));
+  const out = new Map<string, string>();
+  for (const cid of order) {
+    const l = bundle.lessons[cid];
+    for (const wid of [...(l?.sounds ?? []).flatMap((s) => s.word_ids), ...(l?.word_ids ?? [])]) {
+      const resolved = words.get(wid)?.id;
+      if (resolved && !out.has(resolved)) out.set(resolved, cid);
+    }
+  }
+  const refs = bundle.course.sections.flatMap((s) => s.lessons);
+  const placeOf = new Map<string, string | undefined>();
+  const place = (nn: string) => {
+    if (!placeOf.has(nn))
+      placeOf.set(
+        nn,
+        refs.find((r) => r.source === "pack" && (r.pack_id ?? r.id) === nn)?.id ??
+          order.find((cid) => bundle.lessons[cid]?.reading === nn),
+      );
+    return placeOf.get(nn);
+  };
+  for (const w of packWords) {
+    const at = w.first_lesson ? place(w.first_lesson) : undefined;
+    const own = out.get(w.id);
+    if (at && (!own || position.get(at)! < position.get(own)!)) out.set(w.id, at);
+  }
+  return out;
 }
 
 function ownSentence(
@@ -390,10 +429,8 @@ export function buildLesson(
     const nn = keywordAudio.get(w.lemma.toLowerCase());
     return nn && !w.audio.nn ? { ...w, audio: { ...w.audio, nn } } : w;
   });
-  const taughtBefore = pack ? new Set<string>() : ownWordsBefore(bundle, dict, id);
-  const newWordIds = (pack ? wordIds.filter((wid) => dict.words.get(wid)?.firstLesson === pack.id) : wordIds).filter(
-    (wid) => !dict.words.get(wid)?.letter && !taughtBefore.has(wid),
-  );
+  // a split pack lesson's word first met in this part was first taught in the lesson's first part
+  const newWordIds = wordIds.filter((wid) => isNewIn(dict, wid, pack ? siblings.map((r) => r.id) : [id]));
 
   const fullSentences = (view?.full ?? []).map(packSentenceView);
   let taught: RtSentence[];
@@ -455,23 +492,16 @@ export function buildLesson(
     extras,
     packExercises,
     ownExercises: own?.exercises ?? [],
-    reading: sources.reading && own?.reading === sources.reading.id ? readingView(dict, sources.reading) : undefined,
+    reading:
+      sources.reading && own?.reading === sources.reading.id ? readingView(dict, sources.reading, id) : undefined,
     showPastParticiple: showPastParticiple(bundle, id),
   };
 }
 
-/** Words taught by the own lessons before this one (course order), as dictionary ids. */
-function ownWordsBefore(bundle: ContentBundle, dict: Dictionary, id: string): Set<string> {
-  const out = new Set<string>();
-  for (const cid of courseOrder(bundle)) {
-    if (cid === id) break;
-    const l = bundle.lessons[cid];
-    for (const wid of [...(l?.sounds ?? []).flatMap((s) => s.word_ids), ...(l?.word_ids ?? [])]) {
-      const resolved = dict.words.get(wid)?.id;
-      if (resolved) out.add(resolved);
-    }
-  }
-  return out;
+/** A word is new in the course lesson where it is first taught; letters of the alphabet never are. */
+export function isNewIn(dict: Dictionary, wordId: string, lessonIds: string[]): boolean {
+  const w = dict.words.get(wordId);
+  return !!w && !w.letter && !!w.firstLesson && lessonIds.includes(w.firstLesson);
 }
 
 /** The own lesson (in course order) that first lists an NN lesson in nn_lessons. */
@@ -479,7 +509,7 @@ function firstLinkingLesson(bundle: ContentBundle, nnId: string): string | undef
   return courseOrder(bundle).find((cid) => bundle.lessons[cid]?.nn_lessons?.includes(nnId));
 }
 
-function readingView(dict: Dictionary, pack: PackLesson): RtReading {
+function readingView(dict: Dictionary, pack: PackLesson, lessonId: string): RtReading {
   const full = pack.sentences.map(packSentenceView);
   const ids: string[] = [];
   for (const wid of pack.word_ids ?? []) {
@@ -494,7 +524,7 @@ function readingView(dict: Dictionary, pack: PackLesson): RtReading {
     fullSentences: full,
     sentences: full.filter((s) => s.kind === "line"),
     words: ids.map((wid) => dict.words.get(wid)!),
-    newWordIds: ids.filter((wid) => dict.words.get(wid)?.firstLesson === pack.id),
+    newWordIds: ids.filter((wid) => isNewIn(dict, wid, [lessonId])),
   };
 }
 
