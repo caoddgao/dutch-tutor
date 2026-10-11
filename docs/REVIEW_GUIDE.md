@@ -11,7 +11,7 @@
 | 角色 | 在哪 | 做什么 |
 |---|---|---|
 | 用户 | — | 拍板；试用安装包；把各方报告贴给审核会话 |
-| 云端施工会话 | GitHub 仓库 `caoddgao/dutch-tutor` | 写代码和我们自己的内容；分支 → PR → CI 绿 → 自己合并；读 `CLAUDE.md`、`STATUS.md` |
+| 云端施工会话（Claude / Codex 轮流，同一时间只有一个） | GitHub 仓库 `caoddgao/dutch-tutor` | 写代码和我们自己的内容；分支 → PR → CI 绿 → 自己合并；读 `CLAUDE.md`（Codex 经 `AGENTS.md`）、`STATUS.md`；随时可能中断，规矩见 CLAUDE.md 第 8 条 |
 | DS（DeepSeek，VS Code） | 用户电脑 `F:\Working_Projects\Dutch_Tutor_v2\` | 整理 Naar Nederland 资料包（`docs/04_DS_NN_PACK.md`），不碰仓库 |
 | 审核会话 | claude.ai | 审核施工总结和 DS 汇报、截图对照效果图、修订 03/04 文档、给下一阶段写开工提示词 |
 
@@ -57,6 +57,17 @@
 - **复查发音 / 荷兰语内容**：逐条核对 `note_zh` 和短句的荷兰语、中文翻译是否准确。
 - **对照效果图**：`npm run dev`（浏览器开发模式，用假资料包 + 内存 SQLite）+ Playwright 截图（`/opt/pw-browsers/chromium`），浅 / 深各一张。
 - 审核结论写进 `STATUS.md` 的"已定事项"，设计变化同步改 `01/03/04`。
+
+- **写开工提示词**：Claude、Codex 都能直接用；同时给出"进行中"的清单（施工方开工时写进 STATUS）。
+- **通用接手提示词**（施工被中断后，任何一方接手都贴这段）：
+
+  ```
+  你是 Dutch Tutor 项目的施工方（新窗口，不依赖旧对话）。仓库 caoddgao/dutch-tutor。
+  先读 CLAUDE.md 和 docs/STATUS.md。
+  "进行中"一节有内容：上一位施工被中断了。把"施工者"改成你自己，切到那里写的分支，看最近的提交和清单，
+  先跑 typecheck / test / validate 确认现状，再从第一个没打勾的项继续，按规矩第 8 条勤保存、勤上传。
+  "进行中"为空：等我给具体任务。
+  ```
 
 ## 6. 踩过的坑
 
