@@ -1,10 +1,11 @@
 // Content checks, docs/01_DESIGN.md §11 rules 1–7. Pure: the CLI (scripts/validate-content.ts) loads files,
 // runs JSON Schema checks and passes everything in here.
 import type { ContentBundle, CourseLessonRef, OwnLesson, OwnWord } from "./ownTypes";
+import { buildDictionary, isNewIn } from "./model";
 import { lineCount, packLessonParts, partRefs, suggestedParts } from "./split";
 import type { PackExercise, PackIndex, PackLesson, PackManifest, PackSentence, PackWord } from "./packTypes";
 import { fillBank, PACK_FORMAT_VERSION } from "./packTypes";
-import { buildFormIndex, isLetter, tokenize, uncoveredWords } from "./tokenize";
+import { tokenize, uncoveredWords } from "./tokenize";
 import { ownTexts, ttsKeyLookup } from "./ttsTexts";
 
 export type Rule = "schema" | 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -94,13 +95,14 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
         warn(1, `words/own.json ${w.id}`, `资料包里已有同一个词 ${same}，程序会用资料包的词条`);
     }
   }
-  const allWords = new Map<string, { id: string; lemma: string; pos: string; flags?: string[]; first_lesson?: string }>(
-    [...ownWords, ...packWords],
-  );
-  const formIndex = buildFormIndex([...ownWords.values(), ...packWords.values()]);
+  const allIds = new Set([...ownWords.keys(), ...packWords.keys()]);
+  // the dictionary the app builds: own words merged into pack entries, where words are first taught
+  const dict = buildDictionary(content, pack?.words);
+  const formIndex = dict.formIndex;
+  const resolve = (id: string) => dict.words.get(id)?.id ?? id;
   const functionLemmas = new Set(content.functionWords.lemmas.map((l) => l.toLowerCase()));
   const wordRef = (id: string, where: string) => {
-    if (allWords.has(id)) return true;
+    if (allIds.has(id)) return true;
     err(1, where, `找不到词条：${id}`);
     return false;
   };
@@ -265,10 +267,6 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
   if (pack) validatePack(pack, { err, warn, wordRef, functionLemmas });
 
   // ---------- rules 5 and 7 per course lesson ----------
-  const isLetterId = (id: string) => {
-    const w = allWords.get(id);
-    return !!w && isLetter(w);
-  };
   const lessonStats: LessonStat[] = [];
   const splits: SplitBoundary[] = [];
   const known = new Set<string>();
@@ -293,18 +291,25 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
         const prev = packLesson.sentences[packLesson.sentences.indexOf(view.sentences[0]) - 1];
         splits.push({ id: ref.id, before: prev?.nl ?? "", after: view.sentences[0].nl });
       }
-      const taught = taughtWordIds(own, packLesson, [...(view?.wordIds ?? []), ...(reading?.word_ids ?? [])]);
-      const used = usedWordIds(own, [...(view?.sentences ?? []), ...(reading?.sentences ?? [])], formIndex);
+      // ids as dictionary entries: an own word merged into a pack entry counts as that entry (rule 5)
+      const taught = new Set(
+        [...taughtWordIds(own, packLesson, [...(view?.wordIds ?? []), ...(reading?.word_ids ?? [])])].map(resolve),
+      );
+      const used = new Set(
+        [...usedWordIds(own, [...(view?.sentences ?? []), ...(reading?.sentences ?? [])], formIndex)].map(resolve),
+      );
       const unknown = [...used].filter(
         (id) =>
           !taught.has(id) &&
           !known.has(id) &&
-          allWords.get(id)?.pos !== "eigen" &&
-          !functionLemmas.has((allWords.get(id)?.lemma ?? "").toLowerCase()),
+          dict.words.get(id)?.pos !== "eigen" &&
+          !functionLemmas.has((dict.words.get(id)?.lemma ?? "").toLowerCase()),
       );
-      const newWords = packLesson
-        ? (view?.wordIds ?? []).filter((id) => packWords.get(id)?.first_lesson === packLesson.id).length
-        : [...taught].filter((id) => !known.has(id) && !isLetterId(id)).length;
+      // new = first taught here: the earlier of our lessons and the pack's first_lesson (model.ts)
+      const newIn = packLesson ? siblings.map((r) => r.id) : [ref.id];
+      const newWords = (packLesson ? (view?.wordIds ?? []) : [...taught]).filter((id) =>
+        isNewIn(dict, id, newIn),
+      ).length;
       const sentences =
         [...(view?.sentences ?? []), ...(reading?.sentences ?? [])].filter((s) => s.role === "line").length +
         (own?.sentences?.length ?? 0);
@@ -318,7 +323,7 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
         id: ref.id,
         sentences,
         newWords,
-        unknownWords: unknown.map((id) => allWords.get(id)?.lemma ?? id),
+        unknownWords: unknown.map((id) => dict.words.get(id)?.lemma ?? id),
         overFiveSeconds: over,
       });
       if (unknown.length > 0) warn(5, ref.id, `${unknown.length} 个词不是本课新词、前面学过的词或功能词`);

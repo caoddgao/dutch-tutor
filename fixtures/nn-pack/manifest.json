@@ -7,9 +7,9 @@
   "counts": {
     "lessons": 4,
     "sentences": 42,
-    "words": 67,
+    "words": 69,
     "exercises": 15,
-    "audio_files": 120
+    "audio_files": 122
   },
   "tts_voices": {
     "default": "nl-NL-FennaNeural",
