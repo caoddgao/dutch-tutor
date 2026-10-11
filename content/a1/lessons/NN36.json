@@ -1,0 +1,151 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN36",
+  "kind": "main",
+  "pack_lesson": "NN36",
+  "tip_links": ["G10"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN36-A01",
+      "nl": "Mijn zus speelt piano.",
+      "zh": "我姐姐弹钢琴。",
+      "en": "My sister plays piano."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN36-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN36-O1-1",
+          "context": {
+            "nl": "U vertelt over uw gezin.",
+            "zh": "您谈到自己的家庭。",
+            "en": "You talk about your family."
+          },
+          "start": {
+            "nl": "Mijn zus ...",
+            "zh": "我的姐姐……",
+            "en": "My sister ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn zus speelt piano.",
+              "zh": "我姐姐弹钢琴。",
+              "en": "My sister plays piano."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN36-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN36-O2-1",
+          "question": {
+            "nl": "Heeft u een zus?",
+            "zh": "您有姐姐或妹妹吗？",
+            "en": "Do you have a sister?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik heb een zus.",
+              "zh": "是的，我有个姐妹。",
+              "en": "Yes, I have a sister."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN36-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Mijn zus speelt voetbal.",
+          "zh": "我姐姐踢足球。",
+          "en": "My sister plays football."
+        },
+        {
+          "nl": "Zij traint op het veld.",
+          "zh": "她在球场上训练。",
+          "en": "She trains on the field."
+        },
+        {
+          "nl": "Daarna spelen wij een spelletje.",
+          "zh": "之后我们玩一个游戏。",
+          "en": "Afterwards we play a game."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN36-R1-1",
+          "question": {
+            "nl": "Waar traint mijn zus?",
+            "zh": "我姐姐在哪里训练？",
+            "en": "Where does my sister train?"
+          },
+          "options": [
+            {
+              "nl": "Op het veld.",
+              "zh": "在球场上。",
+              "en": "On the field."
+            },
+            {
+              "nl": "In de wachtkamer.",
+              "zh": "在候诊室里。",
+              "en": "In the waiting room."
+            }
+          ],
+          "answer": "Op het veld."
+        },
+        {
+          "id": "NN36-R1-2",
+          "question": {
+            "nl": "Wat spelen wij daarna?",
+            "zh": "之后我们玩什么？",
+            "en": "What do we play afterwards?"
+          },
+          "options": [
+            {
+              "nl": "Een spelletje.",
+              "zh": "一个游戏。",
+              "en": "A game."
+            },
+            {
+              "nl": "Een piano.",
+              "zh": "钢琴。",
+              "en": "A piano."
+            }
+          ],
+          "answer": "Een spelletje."
+        }
+      ]
+    }
+  ]
+}

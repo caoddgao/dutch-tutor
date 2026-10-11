@@ -1,0 +1,163 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN35",
+  "kind": "main",
+  "pack_lesson": "NN35",
+  "tips": ["G10"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN35-A01",
+      "nl": "Ik heb een afspraak met mijn arts.",
+      "zh": "我和我的医生有个预约。",
+      "en": "I have an appointment with my doctor."
+    },
+    {
+      "id": "NN35-A02",
+      "nl": "De wachtkamer is dichtbij.",
+      "zh": "候诊室就在附近。",
+      "en": "The waiting room is nearby."
+    },
+    {
+      "id": "NN35-A03",
+      "nl": "Mijn schouder doet pijn.",
+      "zh": "我的肩膀疼。",
+      "en": "My shoulder hurts."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN35-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN35-O1-1",
+          "context": {
+            "nl": "U heeft pijn in uw schouder.",
+            "zh": "您的肩膀疼。",
+            "en": "Your shoulder hurts."
+          },
+          "start": {
+            "nl": "Mijn schouder ...",
+            "zh": "我的肩膀……",
+            "en": "My shoulder ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn schouder doet pijn.",
+              "zh": "我的肩膀疼。",
+              "en": "My shoulder hurts."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN35-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN35-O2-1",
+          "question": {
+            "nl": "Heeft u een afspraak met de arts?",
+            "zh": "您约了医生吗？",
+            "en": "Do you have an appointment with the doctor?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik heb een afspraak.",
+              "zh": "是的，我有预约。",
+              "en": "Yes, I have an appointment."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN35-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "U heeft een afspraak met de arts.",
+          "zh": "您约了医生。",
+          "en": "You have an appointment with the doctor."
+        },
+        {
+          "nl": "Het spreekuur is vandaag.",
+          "zh": "门诊时间是今天。",
+          "en": "The consultation hours are today."
+        },
+        {
+          "nl": "De wachtkamer is bij de praktijk.",
+          "zh": "候诊室在诊所里。",
+          "en": "The waiting room is at the practice."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN35-R1-1",
+          "question": {
+            "nl": "Wanneer is het spreekuur?",
+            "zh": "门诊时间是什么时候？",
+            "en": "When are the consultation hours?"
+          },
+          "options": [
+            {
+              "nl": "Vandaag.",
+              "zh": "今天。",
+              "en": "Today."
+            },
+            {
+              "nl": "Zaterdag.",
+              "zh": "星期六。",
+              "en": "Saturday."
+            }
+          ],
+          "answer": "Vandaag."
+        },
+        {
+          "id": "NN35-R1-2",
+          "question": {
+            "nl": "Waar is de wachtkamer?",
+            "zh": "候诊室在哪里？",
+            "en": "Where is the waiting room?"
+          },
+          "options": [
+            {
+              "nl": "Bij de praktijk.",
+              "zh": "在诊所里。",
+              "en": "At the practice."
+            },
+            {
+              "nl": "Bij de bank.",
+              "zh": "在银行。",
+              "en": "At the bank."
+            }
+          ],
+          "answer": "Bij de praktijk."
+        }
+      ]
+    }
+  ]
+}

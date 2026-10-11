@@ -1,0 +1,169 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN32",
+  "kind": "main",
+  "pack_lesson": "NN32",
+  "tips": ["G11"],
+  "tip_links": ["G09"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN32-A01",
+      "nl": "Zaterdag wil ik uitslapen.",
+      "zh": "星期六我想睡个懒觉。",
+      "en": "On Saturday I want to sleep in."
+    },
+    {
+      "id": "NN32-A02",
+      "nl": "Daarna ga ik naar een feestje.",
+      "zh": "之后我去参加一个聚会。",
+      "en": "After that I go to a party."
+    },
+    {
+      "id": "NN32-A03",
+      "nl": "We kunnen zaterdag afspreken.",
+      "zh": "我们可以星期六见面。",
+      "en": "We can meet on Saturday."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN32-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN32-O1-1",
+          "context": {
+            "nl": "U wilt zaterdag naar een feestje gaan.",
+            "zh": "您想星期六去参加聚会。",
+            "en": "You want to go to a party on Saturday."
+          },
+          "start": {
+            "nl": "Zaterdag wil ik ...",
+            "zh": "星期六我想……",
+            "en": "On Saturday I want to ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Zaterdag wil ik naar een feestje gaan.",
+              "zh": "星期六我想去参加聚会。",
+              "en": "On Saturday I want to go to a party."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN32-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN32-O2-1",
+          "question": {
+            "nl": "Wat doet u zaterdag?",
+            "zh": "您星期六做什么？",
+            "en": "What do you do on Saturday?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik wil uitslapen.",
+              "zh": "我想睡懒觉。",
+              "en": "I want to sleep in."
+            },
+            {
+              "nl": "Ik ga naar een feestje.",
+              "zh": "我要去参加聚会。",
+              "en": "I am going to a party."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN32-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Zaterdag is er een feestje.",
+          "zh": "星期六有个聚会。",
+          "en": "There is a party on Saturday."
+        },
+        {
+          "nl": "Het feest begint zaterdagavond.",
+          "zh": "聚会星期六晚上开始。",
+          "en": "The party starts on Saturday evening."
+        },
+        {
+          "nl": "We kunnen daarna afspreken.",
+          "zh": "我们可以之后见面。",
+          "en": "We can meet afterwards."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN32-R1-1",
+          "question": {
+            "nl": "Wanneer is het feestje?",
+            "zh": "聚会什么时候举行？",
+            "en": "When is the party?"
+          },
+          "options": [
+            {
+              "nl": "Op zaterdag.",
+              "zh": "星期六。",
+              "en": "On Saturday."
+            },
+            {
+              "nl": "Op zondag.",
+              "zh": "星期日。",
+              "en": "On Sunday."
+            }
+          ],
+          "answer": "Op zaterdag."
+        },
+        {
+          "id": "NN32-R1-2",
+          "question": {
+            "nl": "Wat kunnen we daarna doen?",
+            "zh": "我们之后可以做什么？",
+            "en": "What can we do afterwards?"
+          },
+          "options": [
+            {
+              "nl": "Afspreken.",
+              "zh": "见面。",
+              "en": "Meet up."
+            },
+            {
+              "nl": "Uitslapen.",
+              "zh": "睡懒觉。",
+              "en": "Sleep in."
+            }
+          ],
+          "answer": "Afspreken."
+        }
+      ]
+    }
+  ]
+}
