@@ -14,7 +14,7 @@
 - [x] E9 NN31–NN34（含 33a/33b）：短信 / 课程通知 / 考试通知；33a 只用 NN32 及以前的词（加本部分已用过的 Nederlands 等），避开 NN33 可能在 b 部分的新词
 - [x] E9 NN35–NN38：牙医预约提醒 / 儿童足球训练时间表 / 学校给家长的通知 / 英语班广告
 - [x] G17 G10 G11 + pack_examples：G17 改为"对一个人、多个人都一样，客气说 Kiest u…"；G10 加 jullie、hun（表格加两行）；G11 加 mag（标题、说明、表格）；G14←NN31-X1、G11←NN32-X1、G10←NN35-X1。例句不变，不用新合成音
-- [ ] NN38 NN35 短句
+- [x] NN38 NN35 短句：NN35-A02 → De arts stuurt mij naar het ziekenhuis.；NN38-A03 → Mijn dochter gaat naar de universiteit.（旧音频照第 2 批修正的做法保留）
 - [ ] 合成音（改动的短句）
 - [ ] typecheck / lint / test / validate 全过、CI 全绿、合并
 
