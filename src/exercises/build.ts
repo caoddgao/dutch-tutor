@@ -299,6 +299,18 @@ function ownGroup(
         samples: it.sample_answers.map((a, i) => ({ ...a, audio: say(`${it.id}-A${i + 1}`, a.nl) })),
       }));
       break;
+    case "read_passage":
+      code = "E9";
+      questions = ex.items.map((it) => ({
+        kind: "choice",
+        id: it.id,
+        code: "E9",
+        passage: ex.passage,
+        prompt: { nl: it.question.nl },
+        options: it.options.map((o) => ({ nl: o.nl })),
+        answer: it.options.findIndex((o) => o.nl === it.answer),
+      }));
+      break;
   }
   const qs = questions.filter((q): q is Question => !!q);
   return qs.length ? { id: ex.id, code, instruction: ex.instruction, questions: qs } : null;

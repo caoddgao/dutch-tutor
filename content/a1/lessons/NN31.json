@@ -1,0 +1,163 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN31",
+  "kind": "main",
+  "pack_lesson": "NN31",
+  "tips": ["G14", "G09"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN31-A01",
+      "nl": "Binnenkort ga ik naar Den Haag.",
+      "zh": "我很快要去海牙。",
+      "en": "Soon I will go to The Hague."
+    },
+    {
+      "id": "NN31-A02",
+      "nl": "Ik heb vandaag gewerkt.",
+      "zh": "我今天工作过了。",
+      "en": "I have worked today."
+    },
+    {
+      "id": "NN31-A03",
+      "nl": "Mijn toekomst is in Nederland.",
+      "zh": "我的未来在荷兰。",
+      "en": "My future is in the Netherlands."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN31-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN31-O1-1",
+          "context": {
+            "nl": "U gaat binnenkort naar Den Haag.",
+            "zh": "您很快要去海牙。",
+            "en": "You will soon go to The Hague."
+          },
+          "start": {
+            "nl": "Binnenkort ga ik ...",
+            "zh": "我很快要……",
+            "en": "Soon I will go ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Binnenkort ga ik naar Den Haag.",
+              "zh": "我很快要去海牙。",
+              "en": "Soon I will go to The Hague."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN31-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN31-O2-1",
+          "question": {
+            "nl": "Welk land wilt u zien?",
+            "zh": "您想看哪个国家？",
+            "en": "Which country would you like to see?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik wil Nederland zien.",
+              "zh": "我想看荷兰。",
+              "en": "I want to see the Netherlands."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN31-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Ik ga binnenkort naar Den Haag.",
+          "zh": "我很快要去海牙。",
+          "en": "I will soon go to The Hague."
+        },
+        {
+          "nl": "Ik heb vandaag gewerkt.",
+          "zh": "我今天工作过了。",
+          "en": "I have worked today."
+        },
+        {
+          "nl": "De reis gaat naar Nederland.",
+          "zh": "这趟旅行去荷兰。",
+          "en": "The journey goes to the Netherlands."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN31-R1-1",
+          "question": {
+            "nl": "Ga ik naar Den Haag of Duitsland?",
+            "zh": "我要去海牙还是德国？",
+            "en": "Am I going to The Hague or Germany?"
+          },
+          "options": [
+            {
+              "nl": "Naar Den Haag.",
+              "zh": "去海牙。",
+              "en": "To The Hague."
+            },
+            {
+              "nl": "Naar Duitsland.",
+              "zh": "去德国。",
+              "en": "To Germany."
+            }
+          ],
+          "answer": "Naar Den Haag."
+        },
+        {
+          "id": "NN31-R1-2",
+          "question": {
+            "nl": "Heb ik vandaag gewerkt?",
+            "zh": "我今天工作过了吗？",
+            "en": "Have I worked today?"
+          },
+          "options": [
+            {
+              "nl": "Ja, ik heb vandaag gewerkt.",
+              "zh": "是的，我今天工作过了。",
+              "en": "Yes, I have worked today."
+            },
+            {
+              "nl": "Nee, het werk is zwaar.",
+              "zh": "不，工作很辛苦。",
+              "en": "No, the work is hard."
+            }
+          ],
+          "answer": "Ja, ik heb vandaag gewerkt."
+        }
+      ]
+    }
+  ]
+}

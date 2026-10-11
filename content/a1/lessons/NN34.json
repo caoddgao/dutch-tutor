@@ -1,0 +1,156 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN34",
+  "kind": "main",
+  "pack_lesson": "NN34",
+  "tip_links": ["G09"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN34-A01",
+      "nl": "Zaterdagochtend neem ik fruit mee.",
+      "zh": "星期六早上我带水果。",
+      "en": "On Saturday morning I take fruit along."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN34-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN34-O1-1",
+          "context": {
+            "nl": "U gaat vanavond naar een vriend.",
+            "zh": "您今晚去朋友家。",
+            "en": "You are going to a friend tonight."
+          },
+          "start": {
+            "nl": "Ik neem ...",
+            "zh": "我带……",
+            "en": "I will take ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem een fles wijn mee.",
+              "zh": "我带一瓶葡萄酒。",
+              "en": "I will take a bottle of wine."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN34-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN34-O2-1",
+          "question": {
+            "nl": "Wat neemt u zaterdagochtend mee?",
+            "zh": "您星期六早上带什么？",
+            "en": "What do you take along on Saturday morning?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem fruit mee.",
+              "zh": "我带水果。",
+              "en": "I take fruit along."
+            },
+            {
+              "nl": "Ik neem een cadeautje mee.",
+              "zh": "我带一个小礼物。",
+              "en": "I take a little gift along."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN34-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Zaterdag neem ik een cadeautje mee.",
+          "zh": "星期六我带一个小礼物。",
+          "en": "On Saturday I take a little gift along."
+        },
+        {
+          "nl": "Vanavond ga ik naar mijn vriend.",
+          "zh": "今晚我要去朋友家。",
+          "en": "Tonight I go to my friend."
+        },
+        {
+          "nl": "Ik neem ook een fles wijn mee.",
+          "zh": "我还带一瓶葡萄酒。",
+          "en": "I also take a bottle of wine."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN34-R1-1",
+          "question": {
+            "nl": "Wat neem ik zaterdag mee?",
+            "zh": "我星期六带什么？",
+            "en": "What do I take along on Saturday?"
+          },
+          "options": [
+            {
+              "nl": "Een cadeautje.",
+              "zh": "一个小礼物。",
+              "en": "A little gift."
+            },
+            {
+              "nl": "Een fiets.",
+              "zh": "一辆自行车。",
+              "en": "A bike."
+            }
+          ],
+          "answer": "Een cadeautje."
+        },
+        {
+          "id": "NN34-R1-2",
+          "question": {
+            "nl": "Wat neem ik mee?",
+            "zh": "我带什么？",
+            "en": "What do I take along?"
+          },
+          "options": [
+            {
+              "nl": "Een fles wijn.",
+              "zh": "一瓶葡萄酒。",
+              "en": "A bottle of wine."
+            },
+            {
+              "nl": "Een computer.",
+              "zh": "一台电脑。",
+              "en": "A computer."
+            }
+          ],
+          "answer": "Een fles wijn."
+        }
+      ]
+    }
+  ]
+}

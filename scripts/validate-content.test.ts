@@ -60,6 +60,7 @@ describe("content check on the real repo content and fixtures", () => {
     expect(nn21.overFiveSeconds).toEqual(["NN21-S06"]);
     // rule 5 counts words that are not new, not taught earlier and not function words
     expect(nn21.unknownWords).toEqual(["graag"]);
+    expect(report.lessons.find((l) => l.id === "NN22")!.exercises?.auto).toBe(5);
   });
 });
 
@@ -371,17 +372,52 @@ describe("rules", () => {
   it("main lessons: generated questions + our exercises stay ≤ 9; the report has the exercise counts", () => {
     const base = check(() => {});
     expect(base.lessons.find((l) => l.id === "NN21")!.exercises).toEqual({ auto: 9, book: 10 });
-    expect(base.lessons.find((l) => l.id === "NN22")!.exercises).toEqual({ auto: 3, book: 8 });
+    expect(base.lessons.find((l) => l.id === "NN22")!.exercises).toEqual({ auto: 5, book: 8 });
     expect(base.issues).toContainEqual(
       expect.objectContaining({
         level: "warn",
         rule: 7,
         where: "NN22",
-        msg: "练习共 11 小题（自动 3 + 课本 8），建议 15–25",
+        msg: "练习共 13 小题（自动 5 + 课本 8），建议 15–25",
       }),
     );
     expect(has(check((f) => (f.content.lessons.NN21.auto_exercises!.E1 = 2)).issues, 7, "自动题 10 道")).toBe(true);
     expect(has(check((f) => delete f.content.lessons.NN21.auto_exercises).issues, 7, "自动题 13 道")).toBe(true);
+  });
+
+  it("E9 checks its passage, choices and the nine-question limit without requesting audio", () => {
+    const base = check(() => {});
+    expect(base.missingTts).toBe(0);
+    expect(
+      has(
+        check((f) => {
+          const ex = f.content.lessons.NN22.exercises![0];
+          if (ex.type === "read_passage") ex.items[0].answer = "Geen antwoord.";
+        }).issues,
+        6,
+        "不在选项里",
+      ),
+    ).toBe(true);
+    expect(
+      has(
+        check((f) => {
+          const ex = f.content.lessons.NN22.exercises![0];
+          if (ex.type === "read_passage") ex.passage[0].nl = "Een ongekend woord.";
+        }).issues,
+        4,
+        "ongekend",
+      ),
+    ).toBe(true);
+    expect(
+      has(
+        check((f) => {
+          f.content.lessons.NN22.auto_exercises!.E1 = 3;
+          f.content.lessons.NN22.auto_exercises!.E2 = 3;
+        }).issues,
+        7,
+        "自动题 10 道",
+      ),
+    ).toBe(true);
   });
 
   it("rule 3 covers our E5 / E6 questions and tip examples", () => {

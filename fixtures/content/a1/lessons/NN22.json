@@ -4,5 +4,53 @@
   "pack_lesson": "NN22",
   "tips": ["G02"],
   "tip_links": ["G01"],
-  "auto_exercises": { "E1": 1, "E2": 0, "E3": 1, "E4": 0, "E7": 1 }
+  "auto_exercises": { "E1": 1, "E2": 0, "E3": 1, "E4": 0, "E7": 1 },
+  "exercises": [
+    {
+      "id": "NN22-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees het bericht en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the message and choose the correct answer."
+      },
+      "passage": [
+        { "nl": "Karel woont in Utrecht.", "zh": "卡雷尔住在乌得勒支。", "en": "Karel lives in Utrecht." },
+        {
+          "nl": "Elke ochtend fietst hij naar zijn werk.",
+          "zh": "每天早上他骑车上班。",
+          "en": "Every morning he cycles to work."
+        },
+        { "nl": "Hij werkt bij een bank.", "zh": "他在银行工作。", "en": "He works at a bank." }
+      ],
+      "items": [
+        {
+          "id": "NN22-R1-1",
+          "question": {
+            "nl": "Woont Karel in Utrecht?",
+            "zh": "卡雷尔住在乌得勒支吗？",
+            "en": "Does Karel live in Utrecht?"
+          },
+          "options": [
+            { "nl": "In Utrecht.", "zh": "在乌得勒支。", "en": "In Utrecht." },
+            { "nl": "Bij een bank.", "zh": "在银行。", "en": "At a bank." }
+          ],
+          "answer": "In Utrecht."
+        },
+        {
+          "id": "NN22-R1-2",
+          "question": {
+            "nl": "Fietst Karel naar zijn werk?",
+            "zh": "卡雷尔骑车上班吗？",
+            "en": "Does Karel cycle to work?"
+          },
+          "options": [
+            { "nl": "Hij fietst.", "zh": "他骑车。", "en": "He cycles." },
+            { "nl": "Hij werkt.", "zh": "他工作。", "en": "He works." }
+          ],
+          "answer": "Hij fietst."
+        }
+      ]
+    }
+  ]
 }

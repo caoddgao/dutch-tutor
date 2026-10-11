@@ -35,6 +35,21 @@ describe("generated questions follow the lesson's counts", () => {
   });
 });
 
+it("E9 repeats the same written passage for two scored choices without audio", () => {
+  const lesson = buildLesson(content, dict, "NN22", {
+    own: content.lessons.NN22,
+    pack: read<PackLesson>("lessons/NN22.json"),
+  })!;
+  const group = buildExercises(lesson, dict, content.tts).find((g) => g.code === "E9")!;
+  expect(group.questions).toHaveLength(2);
+  const [first, second] = group.questions as ChoiceQuestion[];
+  expect(first.passage).toHaveLength(3);
+  expect(second.passage).toEqual(first.passage);
+  expect(first.prompt.audio).toBeUndefined();
+  expect(first.options[first.answer].nl).toBe("In Utrecht.");
+  expect(scoredCount([group])).toBe(2);
+});
+
 describe("lesson exercises", () => {
   const groups = buildExercises(nn21, dict, content.tts);
 
