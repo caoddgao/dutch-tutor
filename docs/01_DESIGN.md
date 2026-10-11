@@ -76,6 +76,11 @@
 | G14 | 现在完成时：Ik heb … gedaan / Ik ben … gegaan（应对考试"你昨天做了什么"） |
 | G15 | er 的常见用法：Er is … / Er zijn … |
 | G16 | 时间和数字的说法（钟点、星期、日期） |
+| G17 | 命令式：Spreek duidelijk! / Luister! |
+| G18 | 比较级：ouder dan / makkelijker dan |
+
+- 小贴士跟着原书走：挂在原书第一次讲到（EXTRA 例句框）或第一次明显用到的那一课，编号不代表顺序（如 G14 在第 31 课、G13 在第 44 课）。
+  原书讲了、清单里没有的点（om … te、zitten / liggen + te 等），只显示原书的例句框，不另写小贴士。
 
 ## 3. 一课的流程
 
