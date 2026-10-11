@@ -244,6 +244,522 @@
           "word_id": "w_grappig"
         }
       ]
+    },
+    {
+      "id": "NN22-S07",
+      "role": "line",
+      "nl": "Ik woon ook in Utrecht.",
+      "zh": "我也住在乌得勒支。",
+      "en": "I live in Utrecht too.",
+      "speaker": null,
+      "audio": "audio/NN22/S07.mp3",
+      "start": 21.95,
+      "end": 24.55,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "woon",
+          "word_id": "w_wonen"
+        },
+        {
+          "t": "ook",
+          "word_id": "w_ook"
+        },
+        {
+          "t": "in",
+          "word_id": "w_in"
+        },
+        {
+          "t": "Utrecht",
+          "word_id": "w_utrecht"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S08",
+      "role": "line",
+      "nl": "Elke ochtend fiets ik naar mijn werk.",
+      "zh": "我每天早上骑车去上班。",
+      "en": "Every morning I cycle to work.",
+      "speaker": null,
+      "audio": "audio/NN22/S08.mp3",
+      "start": 25,
+      "end": 28.36,
+      "duration": 3.36,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Elke",
+          "word_id": "w_elk"
+        },
+        {
+          "t": "ochtend",
+          "word_id": "w_ochtend"
+        },
+        {
+          "t": "fiets",
+          "word_id": "w_fietsen"
+        },
+        {
+          "t": "ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "naar",
+          "word_id": "w_naar"
+        },
+        {
+          "t": "mijn",
+          "word_id": "w_mijn"
+        },
+        {
+          "t": "werk",
+          "word_id": "w_werk"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S09",
+      "role": "line",
+      "nl": "Karel fietst ook.",
+      "zh": "卡雷尔也骑车。",
+      "en": "Karel cycles too.",
+      "speaker": null,
+      "audio": "audio/NN22/S09.mp3",
+      "start": 28.81,
+      "end": 30.65,
+      "duration": 1.84,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Karel",
+          "word_id": "w_karel"
+        },
+        {
+          "t": "fietst",
+          "word_id": "w_fietsen"
+        },
+        {
+          "t": "ook",
+          "word_id": "w_ook"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S10",
+      "role": "line",
+      "nl": "Hij fietst naar de bank.",
+      "zh": "他骑车去银行。",
+      "en": "He cycles to the bank.",
+      "speaker": null,
+      "audio": "audio/NN22/S10.mp3",
+      "start": 31.1,
+      "end": 33.7,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "fietst",
+          "word_id": "w_fietsen"
+        },
+        {
+          "t": "naar",
+          "word_id": "w_naar"
+        },
+        {
+          "t": "de",
+          "word_id": "w_de"
+        },
+        {
+          "t": "bank",
+          "word_id": "w_bank"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S11",
+      "role": "line",
+      "nl": "Is het werk bij de bank grappig?",
+      "zh": "银行的工作有意思吗？",
+      "en": "Is the work at the bank fun?",
+      "speaker": null,
+      "audio": "audio/NN22/S11.mp3",
+      "start": 34.15,
+      "end": 37.51,
+      "duration": 3.36,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "het",
+          "word_id": "w_het"
+        },
+        {
+          "t": "werk",
+          "word_id": "w_werk"
+        },
+        {
+          "t": "bij",
+          "word_id": "w_bij"
+        },
+        {
+          "t": "de",
+          "word_id": "w_de"
+        },
+        {
+          "t": "bank",
+          "word_id": "w_bank"
+        },
+        {
+          "t": "grappig",
+          "word_id": "w_grappig"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S12",
+      "role": "line",
+      "nl": "Nee, het werk is niet grappig.",
+      "zh": "不，工作没意思。",
+      "en": "No, the work is not fun.",
+      "speaker": null,
+      "audio": "audio/NN22/S12.mp3",
+      "start": 37.96,
+      "end": 40.94,
+      "duration": 2.98,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Nee",
+          "word_id": "w_nee"
+        },
+        {
+          "t": "het",
+          "word_id": "w_het"
+        },
+        {
+          "t": "werk",
+          "word_id": "w_werk"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "niet",
+          "word_id": "w_niet"
+        },
+        {
+          "t": "grappig",
+          "word_id": "w_grappig"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S13",
+      "role": "line",
+      "nl": "Maar Karel is grappig.",
+      "zh": "但卡雷尔很风趣。",
+      "en": "But Karel is funny.",
+      "speaker": null,
+      "audio": "audio/NN22/S13.mp3",
+      "start": 41.39,
+      "end": 43.61,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Maar",
+          "word_id": "w_maar"
+        },
+        {
+          "t": "Karel",
+          "word_id": "w_karel"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "grappig",
+          "word_id": "w_grappig"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S14",
+      "role": "line",
+      "nl": "Hij is ook aardig.",
+      "zh": "他人也很好。",
+      "en": "He is kind too.",
+      "speaker": null,
+      "audio": "audio/NN22/S14.mp3",
+      "start": 44.06,
+      "end": 46.28,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "ook",
+          "word_id": "w_ook"
+        },
+        {
+          "t": "aardig",
+          "word_id": "w_aardig"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S15",
+      "role": "line",
+      "nl": "Hij belt mij elke ochtend op.",
+      "zh": "他每天早上给我打电话。",
+      "en": "He calls me every morning.",
+      "speaker": null,
+      "audio": "audio/NN22/S15.mp3",
+      "start": 46.73,
+      "end": 49.71,
+      "duration": 2.98,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "belt",
+          "word_id": "w_opbellen"
+        },
+        {
+          "t": "mij",
+          "word_id": "w_mij"
+        },
+        {
+          "t": "elke",
+          "word_id": "w_elk"
+        },
+        {
+          "t": "ochtend",
+          "word_id": "w_ochtend"
+        },
+        {
+          "t": "op",
+          "word_id": "w_opbellen"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S16",
+      "role": "line",
+      "nl": "Ik werk niet bij een bank.",
+      "zh": "我不在银行工作。",
+      "en": "I don't work at a bank.",
+      "speaker": null,
+      "audio": "audio/NN22/S16.mp3",
+      "start": 50.16,
+      "end": 53.14,
+      "duration": 2.98,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "werk",
+          "word_id": "w_werken"
+        },
+        {
+          "t": "niet",
+          "word_id": "w_niet"
+        },
+        {
+          "t": "bij",
+          "word_id": "w_bij"
+        },
+        {
+          "t": "een",
+          "word_id": "w_een"
+        },
+        {
+          "t": "bank",
+          "word_id": "w_bank"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S17",
+      "role": "line",
+      "nl": "Ik werk in Utrecht.",
+      "zh": "我在乌得勒支工作。",
+      "en": "I work in Utrecht.",
+      "speaker": null,
+      "audio": "audio/NN22/S17.mp3",
+      "start": 53.59,
+      "end": 55.81,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "werk",
+          "word_id": "w_werken"
+        },
+        {
+          "t": "in",
+          "word_id": "w_in"
+        },
+        {
+          "t": "Utrecht",
+          "word_id": "w_utrecht"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S18",
+      "role": "line",
+      "nl": "Karel en ik zijn buren.",
+      "zh": "卡雷尔和我是邻居。",
+      "en": "Karel and I are neighbours.",
+      "speaker": null,
+      "audio": "audio/NN22/S18.mp3",
+      "start": 56.26,
+      "end": 58.86,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Karel",
+          "word_id": "w_karel"
+        },
+        {
+          "t": "en",
+          "word_id": "w_en"
+        },
+        {
+          "t": "ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "zijn",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "buren",
+          "word_id": "w_buurman"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S19",
+      "role": "line",
+      "nl": "Ik bel Karel ook vaak op.",
+      "zh": "我也经常给卡雷尔打电话。",
+      "en": "I often call Karel too.",
+      "speaker": null,
+      "audio": "audio/NN22/S19.mp3",
+      "start": 59.31,
+      "end": 62.29,
+      "duration": 2.98,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "bel",
+          "word_id": "w_opbellen"
+        },
+        {
+          "t": "Karel",
+          "word_id": "w_karel"
+        },
+        {
+          "t": "ook",
+          "word_id": "w_ook"
+        },
+        {
+          "t": "vaak",
+          "word_id": "w_vaak"
+        },
+        {
+          "t": "op",
+          "word_id": "w_opbellen"
+        }
+      ]
+    },
+    {
+      "id": "NN22-S20",
+      "role": "line",
+      "nl": "Ik woon graag in Utrecht.",
+      "zh": "我喜欢住在乌得勒支。",
+      "en": "I like living in Utrecht.",
+      "speaker": null,
+      "audio": "audio/NN22/S20.mp3",
+      "start": 62.74,
+      "end": 65.34,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "woon",
+          "word_id": "w_wonen"
+        },
+        {
+          "t": "graag",
+          "word_id": "w_graag"
+        },
+        {
+          "t": "in",
+          "word_id": "w_in"
+        },
+        {
+          "t": "Utrecht",
+          "word_id": "w_utrecht"
+        }
+      ]
     }
   ],
   "word_ids": [
@@ -273,6 +789,13 @@
     "w_en",
     "w_grappig",
     "w_ik",
+    "w_ook",
+    "w_de",
+    "w_het",
+    "w_nee",
+    "w_niet",
+    "w_maar",
+    "w_graag",
     "w_jij"
   ],
   "exercises": [

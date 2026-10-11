@@ -11,21 +11,23 @@ beforeEach(() => {
   vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => undefined);
 });
 
-async function setup(hash: string, settingsData: Record<string, unknown> = {}, content = fixtureContent()) {
+const NN21_ITEMS = [
+  { id: "NN21-S01", type: "sentence" as const },
+  { id: "NN21-S03", type: "sentence" as const },
+  { id: "NN21-S05", type: "sentence" as const },
+  { id: "w_brood", type: "word" as const },
+];
+
+async function setup(
+  hash: string,
+  settingsData: Record<string, unknown> = {},
+  content = fixtureContent(),
+  recorded: [string, typeof NN21_ITEMS] = ["NN21", NN21_ITEMS],
+) {
   const t = testServices({ content, settingsData });
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  await completeLesson(
-    t.db,
-    "NN21",
-    [
-      { id: "NN21-S01", type: "sentence" },
-      { id: "NN21-S03", type: "sentence" },
-      { id: "NN21-S05", type: "sentence" },
-      { id: "w_brood", type: "word" },
-    ],
-    yesterday,
-  );
+  await completeLesson(t.db, recorded[0], recorded[1], yesterday);
   window.location.hash = hash;
   await act(async () => {
     render(<App services={t.services} />);
@@ -50,8 +52,16 @@ describe("review", () => {
   });
 
   it("items recorded before a lesson was split are found in its parts", async () => {
-    // the repo course splits NN21 into NN21a / NN21b (design §2.1); the items were saved under NN21
-    await setup("#/review/daily", { reviewR2: false, reviewR3: false }, CONTENT);
+    // the repo course splits NN22 into NN22a / NN22b (design §2.1); the items were saved under NN22
+    await setup("#/review/daily", { reviewR2: false, reviewR3: false }, CONTENT, [
+      "NN22",
+      [
+        { id: "NN22-S01", type: "sentence" },
+        { id: "NN22-S03", type: "sentence" },
+        { id: "NN22-S19", type: "sentence" },
+        { id: "w_wonen", type: "word" },
+      ],
+    ]);
     expect(await screen.findByText(/^1 \/ 4$/)).toBeTruthy();
     expect(screen.queryByText(/需要先导入资料包/)).toBeNull();
   });

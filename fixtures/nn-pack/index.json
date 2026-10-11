@@ -10,6 +10,7 @@
         "en": "Vowels a, e, i"
       },
       "sentence_count": 1,
+      "line_count": 1,
       "new_word_count": 10,
       "total_seconds": 4.82,
       "max_sentence_seconds": 2.98,
@@ -27,6 +28,7 @@
         "en": "At the baker's"
       },
       "sentence_count": 11,
+      "line_count": 9,
       "new_word_count": 21,
       "total_seconds": 23.32,
       "max_sentence_seconds": 5.3,
@@ -65,9 +67,10 @@
         "zh": "我的邻居",
         "en": "My neighbour"
       },
-      "sentence_count": 6,
-      "new_word_count": 24,
-      "total_seconds": 18.2,
+      "sentence_count": 20,
+      "line_count": 20,
+      "new_word_count": 27,
+      "total_seconds": 55.74,
       "max_sentence_seconds": 3.36,
       "over_5s_count": 0,
       "exercise_count": 3,
@@ -96,6 +99,9 @@
         "en",
         "grappig",
         "ik",
+        "ook",
+        "maar",
+        "graag",
         "jij"
       ]
     }

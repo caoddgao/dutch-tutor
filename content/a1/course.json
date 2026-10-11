@@ -2,7 +2,7 @@
   "$schema": "../schema/course.schema.json",
   "level": "A1",
   "limits": {
-    "max_sentences": 24,
+    "max_sentences": 36,
     "max_new_words": 45
   },
   "sections": [
@@ -25,22 +25,8 @@
       "title": "正课",
       "lessons": [
         {
-          "id": "NN21a",
-          "source": "pack",
-          "pack_id": "NN21",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN21b",
-          "source": "pack",
-          "pack_id": "NN21",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN21",
+          "source": "pack"
         },
         {
           "id": "NN22a",
@@ -48,7 +34,7 @@
           "pack_id": "NN22",
           "part": {
             "n": 1,
-            "of": 3
+            "of": 2
           }
         },
         {
@@ -57,35 +43,13 @@
           "pack_id": "NN22",
           "part": {
             "n": 2,
-            "of": 3
+            "of": 2,
+            "from": "NN22-S18"
           }
         },
         {
-          "id": "NN22c",
-          "source": "pack",
-          "pack_id": "NN22",
-          "part": {
-            "n": 3,
-            "of": 3
-          }
-        },
-        {
-          "id": "NN23a",
-          "source": "pack",
-          "pack_id": "NN23",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN23b",
-          "source": "pack",
-          "pack_id": "NN23",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN23",
+          "source": "pack"
         },
         {
           "id": "NN24a",
@@ -102,7 +66,8 @@
           "pack_id": "NN24",
           "part": {
             "n": 2,
-            "of": 2
+            "of": 2,
+            "from": "NN24-S17"
           }
         },
         {
@@ -111,7 +76,7 @@
           "pack_id": "NN25",
           "part": {
             "n": 1,
-            "of": 3
+            "of": 2
           }
         },
         {
@@ -120,129 +85,37 @@
           "pack_id": "NN25",
           "part": {
             "n": 2,
-            "of": 3
+            "of": 2,
+            "from": "NN25-S13"
           }
         },
         {
-          "id": "NN25c",
-          "source": "pack",
-          "pack_id": "NN25",
-          "part": {
-            "n": 3,
-            "of": 3
-          }
+          "id": "NN26",
+          "source": "pack"
         },
         {
-          "id": "NN26a",
-          "source": "pack",
-          "pack_id": "NN26",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN26b",
-          "source": "pack",
-          "pack_id": "NN26",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN27a",
-          "source": "pack",
-          "pack_id": "NN27",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN27b",
-          "source": "pack",
-          "pack_id": "NN27",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN27",
+          "source": "pack"
         },
         {
           "id": "NN28",
           "source": "pack"
         },
         {
-          "id": "NN29a",
-          "source": "pack",
-          "pack_id": "NN29",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN29",
+          "source": "pack"
         },
         {
-          "id": "NN29b",
-          "source": "pack",
-          "pack_id": "NN29",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN30",
+          "source": "pack"
         },
         {
-          "id": "NN30a",
-          "source": "pack",
-          "pack_id": "NN30",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN31",
+          "source": "pack"
         },
         {
-          "id": "NN30b",
-          "source": "pack",
-          "pack_id": "NN30",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN31a",
-          "source": "pack",
-          "pack_id": "NN31",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN31b",
-          "source": "pack",
-          "pack_id": "NN31",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN32a",
-          "source": "pack",
-          "pack_id": "NN32",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN32b",
-          "source": "pack",
-          "pack_id": "NN32",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN32",
+          "source": "pack"
         },
         {
           "id": "NN33a",
@@ -259,62 +132,21 @@
           "pack_id": "NN33",
           "part": {
             "n": 2,
-            "of": 2
+            "of": 2,
+            "from": "NN33-S20"
           }
         },
         {
-          "id": "NN34a",
-          "source": "pack",
-          "pack_id": "NN34",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN34",
+          "source": "pack"
         },
         {
-          "id": "NN34b",
-          "source": "pack",
-          "pack_id": "NN34",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN35",
+          "source": "pack"
         },
         {
-          "id": "NN35a",
-          "source": "pack",
-          "pack_id": "NN35",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN35b",
-          "source": "pack",
-          "pack_id": "NN35",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN36a",
-          "source": "pack",
-          "pack_id": "NN36",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN36b",
-          "source": "pack",
-          "pack_id": "NN36",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN36",
+          "source": "pack"
         },
         {
           "id": "NN37",
@@ -329,40 +161,12 @@
           "source": "pack"
         },
         {
-          "id": "NN40a",
-          "source": "pack",
-          "pack_id": "NN40",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN40",
+          "source": "pack"
         },
         {
-          "id": "NN40b",
-          "source": "pack",
-          "pack_id": "NN40",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN41a",
-          "source": "pack",
-          "pack_id": "NN41",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN41b",
-          "source": "pack",
-          "pack_id": "NN41",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN41",
+          "source": "pack"
         },
         {
           "id": "NN42a",
@@ -379,134 +183,37 @@
           "pack_id": "NN42",
           "part": {
             "n": 2,
-            "of": 2
+            "of": 2,
+            "from": "NN42-S22"
           }
         },
         {
-          "id": "NN43a",
-          "source": "pack",
-          "pack_id": "NN43",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN43",
+          "source": "pack"
         },
         {
-          "id": "NN43b",
-          "source": "pack",
-          "pack_id": "NN43",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN44",
+          "source": "pack"
         },
         {
-          "id": "NN44a",
-          "source": "pack",
-          "pack_id": "NN44",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN45",
+          "source": "pack"
         },
         {
-          "id": "NN44b",
-          "source": "pack",
-          "pack_id": "NN44",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN46",
+          "source": "pack"
         },
         {
-          "id": "NN45a",
-          "source": "pack",
-          "pack_id": "NN45",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN47",
+          "source": "pack"
         },
         {
-          "id": "NN45b",
-          "source": "pack",
-          "pack_id": "NN45",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN48",
+          "source": "pack"
         },
         {
-          "id": "NN46a",
-          "source": "pack",
-          "pack_id": "NN46",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN46b",
-          "source": "pack",
-          "pack_id": "NN46",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN47a",
-          "source": "pack",
-          "pack_id": "NN47",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN47b",
-          "source": "pack",
-          "pack_id": "NN47",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN48a",
-          "source": "pack",
-          "pack_id": "NN48",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN48b",
-          "source": "pack",
-          "pack_id": "NN48",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN49a",
-          "source": "pack",
-          "pack_id": "NN49",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN49b",
-          "source": "pack",
-          "pack_id": "NN49",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN49",
+          "source": "pack"
         },
         {
           "id": "NN50a",
@@ -523,7 +230,8 @@
           "pack_id": "NN50",
           "part": {
             "n": 2,
-            "of": 2
+            "of": 2,
+            "from": "NN50-S20"
           }
         },
         {
@@ -531,22 +239,8 @@
           "source": "pack"
         },
         {
-          "id": "NN52a",
-          "source": "pack",
-          "pack_id": "NN52",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN52b",
-          "source": "pack",
-          "pack_id": "NN52",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN52",
+          "source": "pack"
         },
         {
           "id": "NN53a",
@@ -563,224 +257,57 @@
           "pack_id": "NN53",
           "part": {
             "n": 2,
-            "of": 2
+            "of": 2,
+            "from": "NN53-S17"
           }
         },
         {
-          "id": "NN54a",
-          "source": "pack",
-          "pack_id": "NN54",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN54",
+          "source": "pack"
         },
         {
-          "id": "NN54b",
-          "source": "pack",
-          "pack_id": "NN54",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN55",
+          "source": "pack"
         },
         {
-          "id": "NN55a",
-          "source": "pack",
-          "pack_id": "NN55",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN56",
+          "source": "pack"
         },
         {
-          "id": "NN55b",
-          "source": "pack",
-          "pack_id": "NN55",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN57",
+          "source": "pack"
         },
         {
-          "id": "NN56a",
-          "source": "pack",
-          "pack_id": "NN56",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN58",
+          "source": "pack"
         },
         {
-          "id": "NN56b",
-          "source": "pack",
-          "pack_id": "NN56",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN59",
+          "source": "pack"
         },
         {
-          "id": "NN57a",
-          "source": "pack",
-          "pack_id": "NN57",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN60",
+          "source": "pack"
         },
         {
-          "id": "NN57b",
-          "source": "pack",
-          "pack_id": "NN57",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN61",
+          "source": "pack"
         },
         {
-          "id": "NN58a",
-          "source": "pack",
-          "pack_id": "NN58",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN62",
+          "source": "pack"
         },
         {
-          "id": "NN58b",
-          "source": "pack",
-          "pack_id": "NN58",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN63",
+          "source": "pack"
         },
         {
-          "id": "NN59a",
-          "source": "pack",
-          "pack_id": "NN59",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
+          "id": "NN64",
+          "source": "pack"
         },
         {
-          "id": "NN59b",
-          "source": "pack",
-          "pack_id": "NN59",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN60a",
-          "source": "pack",
-          "pack_id": "NN60",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN60b",
-          "source": "pack",
-          "pack_id": "NN60",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN61a",
-          "source": "pack",
-          "pack_id": "NN61",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN61b",
-          "source": "pack",
-          "pack_id": "NN61",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN62a",
-          "source": "pack",
-          "pack_id": "NN62",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN62b",
-          "source": "pack",
-          "pack_id": "NN62",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN63a",
-          "source": "pack",
-          "pack_id": "NN63",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN63b",
-          "source": "pack",
-          "pack_id": "NN63",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN64a",
-          "source": "pack",
-          "pack_id": "NN64",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN64b",
-          "source": "pack",
-          "pack_id": "NN64",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN65a",
-          "source": "pack",
-          "pack_id": "NN65",
-          "part": {
-            "n": 1,
-            "of": 2
-          }
-        },
-        {
-          "id": "NN65b",
-          "source": "pack",
-          "pack_id": "NN65",
-          "part": {
-            "n": 2,
-            "of": 2
-          }
+          "id": "NN65",
+          "source": "pack"
         }
       ]
     },

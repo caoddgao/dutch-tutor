@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../App";
 import { CONTENT } from "../content/bundle";
@@ -154,9 +154,9 @@ describe("lesson page", () => {
   });
 
   it("a lesson the installed pack lacks says so", async () => {
-    await open("#/lesson/NN30a", { content: CONTENT });
+    await open("#/lesson/NN33b", { content: CONTENT });
     expect(await screen.findByText("资料包里没有这一课")).toBeTruthy();
-    expect(screen.getByText(/还没有这一课（第 30 课 a）/)).toBeTruthy();
+    expect(screen.getByText(/还没有这一课（第 33 课 b）/)).toBeTruthy();
   });
 
   it("a pack with another format version asks for re-importing", async () => {
@@ -167,15 +167,22 @@ describe("lesson page", () => {
         return { ...i, manifest: { ...i.manifest!, format_version: 2 } };
       },
     });
-    await open("#/lesson/NN21a", { pack, content: CONTENT });
+    await open("#/lesson/NN22a", { pack, content: CONTENT });
     expect(await screen.findByText("资料包需要重新导入")).toBeTruthy();
   });
 
-  it("split lessons: part a teaches its half, part b ends with the book's exercises", async () => {
-    await open("#/lesson/NN21b", { content: CONTENT });
+  it("split lessons: each part teaches its stretch of the text (the repo course starts NN22b at S18)", async () => {
+    await open("#/lesson/NN22a", { content: CONTENT });
+    await screen.findByText("先完整听一两遍");
+    expect(screen.getByText(/第 1 部分（共 2 部分）/)).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /下一步：逐句学/ }));
+    await screen.findByText("第 1 / 17 句");
+    cleanup();
+    await open("#/lesson/NN22b", { content: CONTENT });
     await screen.findByText("先完整听一两遍");
     expect(screen.getByText(/第 2 部分（共 2 部分）/)).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /下一步：逐句学/ }));
-    await screen.findByText("第 1 / 5 句");
+    await screen.findByText("第 1 / 3 句");
+    expect(document.querySelector("main")!.textContent).toContain("buren");
   });
 });

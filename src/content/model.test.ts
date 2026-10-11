@@ -18,24 +18,22 @@ describe("course view", () => {
     expect(view.find((s) => s.id === "phonics")!.lessons.map((l) => l.id)).toEqual(["P01", "P02"]);
     const main = view.find((s) => s.id === "main")!;
     expect(main.lessons).toEqual([]);
-    expect(main.missing).toHaveLength(87);
+    expect(main.missing).toHaveLength(52);
     expect(main.missing.slice(0, 3).map((l) => [l.id, l.code, l.packId])).toEqual([
-      ["NN21a", "第 21 课 a", "NN21"],
-      ["NN21b", "第 21 课 b", "NN21"],
+      ["NN21", "第 21 课", "NN21"],
       ["NN22a", "第 22 课 a", "NN22"],
+      ["NN22b", "第 22 课 b", "NN22"],
     ]);
   });
 
   it("with a pack takes titles from its index and keeps course order", () => {
     const main = buildCourseView(CONTENT, index).find((s) => s.id === "main")!;
     expect(main.lessons.map((l) => [l.id, l.code, l.title?.nl])).toEqual([
-      ["NN21a", "第 21 课 a", "Bij de bakker"],
-      ["NN21b", "第 21 课 b", "Bij de bakker"],
+      ["NN21", "第 21 课", "Bij de bakker"],
       ["NN22a", "第 22 课 a", "Mijn buurman"],
       ["NN22b", "第 22 课 b", "Mijn buurman"],
-      ["NN22c", "第 22 课 c", "Mijn buurman"],
     ]);
-    expect(main.missing[0].id).toBe("NN23a");
+    expect(main.missing[0].id).toBe("NN23");
   });
 });
 
@@ -139,25 +137,50 @@ describe("lesson model", () => {
       { n: 1, of: 2 },
       { n: 2, of: 2 },
     ]);
-    expect(a.sentences.map((x) => x.id)).toEqual([
-      "NN21-S01",
-      "NN21-S02",
-      "NN21-S03",
-      "NN21-S04",
-      "NN21-S05",
+    // only the text sentences are divided; the word-list reading (S10, S11) is in the last part
+    expect(a.sentences.map((x) => x.id)).toEqual(["NN21-S01", "NN21-S02", "NN21-S03", "NN21-S04", "NN21-S05"]);
+    expect(b.sentences.map((x) => x.id)).toEqual([
       "NN21-S06",
+      "NN21-S07",
+      "NN21-S08",
+      "NN21-S09",
+      "NN21-S10",
+      "NN21-S11",
     ]);
-    expect(b.sentences[0].id).toBe("NN21-S07");
     expect(a.fullSentences[0].kind).toBe("title");
     expect(b.fullSentences.map((x) => x.id)).toEqual(b.sentences.map((x) => x.id));
-    expect(a.fullSegment).toEqual({ start: 0, end: 21.46 });
+    expect(a.fullSegment).toEqual({ start: 0, end: 15.71 });
     expect(a.fullAudio).toEqual(b.fullAudio);
     expect(a.packExercises).toEqual([]);
     expect(b.packExercises.map((e) => e.exercise.id)).toContain("NN21-E1");
     // each word is taught once, in the part where it first occurs
     expect(a.words.map((w) => w.id)).toContain("w_brood");
-    expect(b.words.map((w) => w.id)).toEqual(["w_dank_u", "w_tot_ziens", "w_vier", "w_vijf"]);
-    expect(b.newWordIds).toEqual(["w_dank_u", "w_tot_ziens", "w_vier", "w_vijf"]);
+    expect(a.words.map((w) => w.id)).toContain("w_dank_u_wel");
+    expect(b.words.map((w) => w.id)).toEqual([
+      "w_dat",
+      "w_zijn",
+      "w_drie",
+      "w_euro",
+      "w_de",
+      "w_niet",
+      "w_dollar",
+      "w_dank_u",
+      "w_tot_ziens",
+      "w_vier",
+      "w_vijf",
+    ]);
+    // zijn and de were first met in NN05
+    expect(b.newWordIds).toEqual([
+      "w_dat",
+      "w_drie",
+      "w_euro",
+      "w_niet",
+      "w_dollar",
+      "w_dank_u",
+      "w_tot_ziens",
+      "w_vier",
+      "w_vijf",
+    ]);
     // an unsplit lesson next to it is unchanged
     const nn22 = buildLesson(split, d, "NN22", { pack: lesson("NN22") })!;
     expect(nn22.part).toBeUndefined();

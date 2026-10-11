@@ -6,10 +6,10 @@
   "lessons": ["NN05", "NN21", "NN22"],
   "counts": {
     "lessons": 3,
-    "sentences": 21,
-    "words": 55,
+    "sentences": 35,
+    "words": 58,
     "exercises": 13,
-    "audio_files": 86
+    "audio_files": 103
   },
   "tts_voices": {
     "default": "nl-NL-FennaNeural",
