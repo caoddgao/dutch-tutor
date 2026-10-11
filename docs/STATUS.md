@@ -8,7 +8,15 @@
 
 ## 进行中
 
-（无）
+施工者：Claude · 分支 `claude/blissful-wright-3pl9m5` · PR #（待开）· 任务：3a 修正（已定事项 17 a–f）
+
+- [ ] E9 三选一支持（如需要）
+- [ ] E9 NN31–NN34（含 33a/33b）
+- [ ] E9 NN35–NN38
+- [ ] G17 G10 G11 + pack_examples
+- [ ] NN38 NN35 短句
+- [ ] 合成音（改动的短句）
+- [ ] typecheck / lint / test / validate 全过、CI 全绿、合并
 
 ## 已完成
 
