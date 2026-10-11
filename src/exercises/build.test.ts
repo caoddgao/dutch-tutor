@@ -50,9 +50,10 @@ it("E9 repeats the same written passage for two scored choices without audio", (
   expect(first.options[first.answer].nl).toBe("In Utrecht.");
   expect(first.options.map((o) => o.nl).sort()).toEqual(["Bij een bank.", "In Utrecht.", "Op de markt."]);
   // the answer is first in the file, but not always first on screen
-  const positions = ["a", "b", "c", "d", "e", "f"].map((seed) =>
-    (buildExercises(lesson, dict, content.tts, seed).find((g) => g.code === "E9")!.questions[0] as ChoiceQuestion)
-      .answer,
+  const positions = ["a", "b", "c", "d", "e", "f"].map(
+    (seed) =>
+      (buildExercises(lesson, dict, content.tts, seed).find((g) => g.code === "E9")!.questions[0] as ChoiceQuestion)
+        .answer,
   );
   expect(new Set(positions).size).toBeGreaterThan(1);
   expect(scoredCount([group])).toBe(2);
