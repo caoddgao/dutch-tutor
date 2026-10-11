@@ -43,7 +43,8 @@ it("E9 repeats the same written passage for two scored choices without audio", (
   const group = buildExercises(lesson, dict, content.tts).find((g) => g.code === "E9")!;
   expect(group.questions).toHaveLength(2);
   const [first, second] = group.questions as ChoiceQuestion[];
-  expect(first.passage).toHaveLength(3);
+  expect(first.passage).toHaveLength(4);
+  expect(first.options).toHaveLength(3);
   expect(second.passage).toEqual(first.passage);
   expect(first.prompt.audio).toBeUndefined();
   expect(first.options[first.answer].nl).toBe("In Utrecht.");
