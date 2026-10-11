@@ -11,7 +11,7 @@
 施工者 Codex · 分支 `codex/stage4-batch2-fixes` · PR #21
 - [x] a NN22a 改 op straat
 - [x] b G06
-- [ ] c G03
+- [x] c G03
 - [ ] d G01
 - [ ] 两条改过的句子重新生成合成音
 - [ ] 校验与 CI 全绿、合并
