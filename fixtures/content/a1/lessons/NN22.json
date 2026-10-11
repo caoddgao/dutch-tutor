@@ -21,7 +21,12 @@
           "zh": "每天早上他骑车上班。",
           "en": "Every morning he cycles to work."
         },
-        { "nl": "Hij werkt bij een bank.", "zh": "他在银行工作。", "en": "He works at a bank." }
+        { "nl": "Hij werkt bij een bank.", "zh": "他在银行工作。", "en": "He works at a bank." },
+        {
+          "nl": "Op zaterdag gaat hij naar de markt.",
+          "zh": "星期六他去市场。",
+          "en": "On Saturday he goes to the market."
+        }
       ],
       "items": [
         {
@@ -33,7 +38,8 @@
           },
           "options": [
             { "nl": "In Utrecht.", "zh": "在乌得勒支。", "en": "In Utrecht." },
-            { "nl": "Bij een bank.", "zh": "在银行。", "en": "At a bank." }
+            { "nl": "Bij een bank.", "zh": "在银行。", "en": "At a bank." },
+            { "nl": "Op de markt.", "zh": "在市场。", "en": "At the market." }
           ],
           "answer": "In Utrecht."
         },
@@ -46,7 +52,8 @@
           },
           "options": [
             { "nl": "Hij fietst.", "zh": "他骑车。", "en": "He cycles." },
-            { "nl": "Hij werkt.", "zh": "他工作。", "en": "He works." }
+            { "nl": "Hij werkt.", "zh": "他工作。", "en": "He works." },
+            { "nl": "Hij gaat naar de markt.", "zh": "他去市场。", "en": "He goes to the market." }
           ],
           "answer": "Hij fietst."
         }

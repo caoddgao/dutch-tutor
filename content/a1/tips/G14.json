@@ -17,6 +17,7 @@
     { "id": "G14-X2", "nl": "Ik ben naar Den Haag gegaan.", "zh": "我去了海牙。", "en": "I have gone to The Hague." },
     { "id": "G14-X3", "nl": "Heb jij vandaag gewerkt?", "zh": "你今天工作了吗？", "en": "Have you worked today?" }
   ],
+  "pack_examples": ["NN31-X1"],
   "table": {
     "head": ["助动词", "过去分词", "例子"],
     "rows": [

@@ -99,63 +99,88 @@
       },
       "passage": [
         {
-          "nl": "Het voorbeeldexamen is op een website.",
-          "zh": "模拟试题在网站上。",
-          "en": "The sample exam is on a website."
+          "nl": "Uw examen Nederlands is op maandag 12 mei om 9.00 uur.",
+          "zh": "您的荷兰语考试在 5 月 12 日星期一 9 点。",
+          "en": "Your Dutch exam is on Monday 12 May at 9.00."
         },
         {
-          "nl": "Kies een antwoord op de computer.",
-          "zh": "在电脑上选一个答案。",
-          "en": "Choose an answer on the computer."
+          "nl": "Het examen is in het gebouw aan de Hoofdstraat 5.",
+          "zh": "考试在霍夫特街 5 号的楼里。",
+          "en": "The exam is in the building at Hoofdstraat 5."
         },
         {
-          "nl": "Zeg het antwoord duidelijk.",
-          "zh": "清楚地说出答案。",
-          "en": "Say the answer clearly."
+          "nl": "U moet er om kwart voor negen zijn.",
+          "zh": "您要在八点四十五分到。",
+          "en": "You must be there at a quarter to nine."
+        },
+        {
+          "nl": "Om 11.00 uur bent u klaar.",
+          "zh": "11 点考完。",
+          "en": "You will be finished at 11.00."
+        },
+        {
+          "nl": "Op de website is een voorbeeldexamen; daar kunt u thuis oefenen.",
+          "zh": "网站上有样题，您可以在家用它练习。",
+          "en": "There is a sample exam on the website; you can practise with it at home."
+        },
+        {
+          "nl": "Succes!",
+          "zh": "祝你成功！",
+          "en": "Good luck!"
         }
       ],
       "items": [
         {
           "id": "NN33b-R1-1",
           "question": {
-            "nl": "Waar is het voorbeeldexamen?",
-            "zh": "模拟试题在哪里？",
-            "en": "Where is the sample exam?"
+            "nl": "Hoe laat moet u er zijn?",
+            "zh": "您几点要到？",
+            "en": "What time must you be there?"
           },
           "options": [
             {
-              "nl": "Op een website.",
-              "zh": "在网站上。",
-              "en": "On a website."
+              "nl": "Om kwart voor negen.",
+              "zh": "八点四十五分。",
+              "en": "At a quarter to nine."
             },
             {
-              "nl": "Op de radio.",
-              "zh": "在广播里。",
-              "en": "On the radio."
+              "nl": "Om 9.00 uur.",
+              "zh": "9 点。",
+              "en": "At 9.00."
+            },
+            {
+              "nl": "Om 11.00 uur.",
+              "zh": "11 点。",
+              "en": "At 11.00."
             }
           ],
-          "answer": "Op een website."
+          "answer": "Om kwart voor negen."
         },
         {
           "id": "NN33b-R1-2",
           "question": {
-            "nl": "Wat moet u op de computer doen?",
-            "zh": "您要在电脑上做什么？",
-            "en": "What must you do on the computer?"
+            "nl": "Waar is het examen?",
+            "zh": "考试在哪里？",
+            "en": "Where is the exam?"
           },
           "options": [
             {
-              "nl": "Een antwoord kiezen.",
-              "zh": "选一个答案。",
-              "en": "Choose an answer."
+              "nl": "Aan de Hoofdstraat 5.",
+              "zh": "在霍夫特街 5 号。",
+              "en": "At Hoofdstraat 5."
             },
             {
-              "nl": "De radio kiezen.",
-              "zh": "选广播。",
-              "en": "Choose the radio."
+              "nl": "Op de website.",
+              "zh": "在网站上。",
+              "en": "On the website."
+            },
+            {
+              "nl": "Thuis.",
+              "zh": "在家。",
+              "en": "At home."
             }
           ],
-          "answer": "Een antwoord kiezen."
+          "answer": "Aan de Hoofdstraat 5."
         }
       ]
     }

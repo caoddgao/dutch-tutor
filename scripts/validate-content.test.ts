@@ -411,6 +411,26 @@ describe("rules", () => {
     expect(
       has(
         check((f) => {
+          const ex = f.content.lessons.NN22.exercises![0];
+          if (ex.type === "read_passage") ex.items[1].options.pop();
+        }).issues,
+        6,
+        "须有 3 个选项",
+      ),
+    ).toBe(true);
+    expect(
+      has(
+        check((f) => {
+          const ex = f.content.lessons.NN22.exercises![0];
+          if (ex.type === "read_passage") ex.passage.pop();
+        }).issues,
+        2,
+        "短文须有 4–6 句",
+      ),
+    ).toBe(true);
+    expect(
+      has(
+        check((f) => {
           f.content.lessons.NN22.auto_exercises!.E1 = 3;
           f.content.lessons.NN22.auto_exercises!.E2 = 3;
         }).issues,

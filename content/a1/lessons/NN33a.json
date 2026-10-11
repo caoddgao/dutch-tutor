@@ -99,63 +99,88 @@
       },
       "passage": [
         {
-          "nl": "Ik leer Nederlands.",
-          "zh": "我学荷兰语。",
-          "en": "I am learning Dutch."
+          "nl": "Hallo allemaal, de les Nederlands is op dinsdag en donderdag.",
+          "zh": "大家好，荷兰语课在星期二和星期四。",
+          "en": "Hello everyone, the Dutch class is on Tuesday and Thursday."
         },
         {
-          "nl": "Elke dag oefen ik spreken.",
-          "zh": "我每天练习口语。",
-          "en": "Every day I practise speaking."
+          "nl": "De les begint om half tien en is om twaalf uur klaar.",
+          "zh": "九点半上课，十二点下课。",
+          "en": "The class starts at half past nine and finishes at twelve."
         },
         {
-          "nl": "Ik wil het examen doen.",
-          "zh": "我想参加考试。",
-          "en": "I want to take the exam."
+          "nl": "Om elf uur drinken we samen thee.",
+          "zh": "十一点我们一起喝茶。",
+          "en": "At eleven we have tea together."
+        },
+        {
+          "nl": "Op dinsdag 4 maart is er geen les.",
+          "zh": "3 月 4 日星期二不上课。",
+          "en": "On Tuesday 4 March there is no class."
+        },
+        {
+          "nl": "Dan is de les op woensdag 5 maart.",
+          "zh": "那次课改在 3 月 5 日星期三。",
+          "en": "That class is on Wednesday 5 March instead."
+        },
+        {
+          "nl": "Tot ziens, juf Jansen",
+          "zh": "再见，扬森老师",
+          "en": "Goodbye, Ms Jansen"
         }
       ],
       "items": [
         {
           "id": "NN33a-R1-1",
           "question": {
-            "nl": "Welke taal leer ik?",
-            "zh": "我学什么语言？",
-            "en": "Which language am I learning?"
+            "nl": "Hoe laat is de les klaar?",
+            "zh": "几点下课？",
+            "en": "What time does the class finish?"
           },
           "options": [
             {
-              "nl": "Nederlands.",
-              "zh": "荷兰语。",
-              "en": "Dutch."
+              "nl": "Om twaalf uur.",
+              "zh": "十二点。",
+              "en": "At twelve."
             },
             {
-              "nl": "Engels.",
-              "zh": "英语。",
-              "en": "English."
+              "nl": "Om half tien.",
+              "zh": "九点半。",
+              "en": "At half past nine."
+            },
+            {
+              "nl": "Om elf uur.",
+              "zh": "十一点。",
+              "en": "At eleven."
             }
           ],
-          "answer": "Nederlands."
+          "answer": "Om twaalf uur."
         },
         {
           "id": "NN33a-R1-2",
           "question": {
-            "nl": "Wat wil ik doen?",
-            "zh": "我想做什么？",
-            "en": "What do I want to do?"
+            "nl": "Wanneer is er geen les?",
+            "zh": "哪天不上课？",
+            "en": "When is there no class?"
           },
           "options": [
             {
-              "nl": "Het examen doen.",
-              "zh": "参加考试。",
-              "en": "Take the exam."
+              "nl": "Op dinsdag 4 maart.",
+              "zh": "3 月 4 日星期二。",
+              "en": "On Tuesday 4 March."
             },
             {
-              "nl": "Naar school fietsen.",
-              "zh": "骑车去学校。",
-              "en": "Cycle to school."
+              "nl": "Op woensdag 5 maart.",
+              "zh": "3 月 5 日星期三。",
+              "en": "On Wednesday 5 March."
+            },
+            {
+              "nl": "Op donderdag.",
+              "zh": "星期四。",
+              "en": "On Thursday."
             }
           ],
-          "answer": "Het examen doen."
+          "answer": "Op dinsdag 4 maart."
         }
       ]
     }

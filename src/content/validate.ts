@@ -612,11 +612,12 @@ function checkOwnExercises(
         }
         break;
       case "read_passage":
-        if (ex.passage.length < 3 || ex.passage.length > 6) ctx.err(2, w, "短文须有 3–6 句");
+        if (ex.passage.length < 4 || ex.passage.length > 6) ctx.err(2, w, "短文须有 4–6 句");
         if (ex.items.length !== 2) ctx.err(6, w, "短文须有 2 道选择题");
         ex.passage.forEach((s, i) => checkTrilingual(s, `${w} 短文 ${i + 1}`, ctx.err));
         for (const it of ex.items) {
           checkTrilingual(it.question, `${w} ${it.id} 问题`, ctx.err);
+          if (it.options.length !== 3) ctx.err(6, `${w} ${it.id}`, `须有 3 个选项（现有 ${it.options.length} 个）`);
           it.options.forEach((o) => checkTrilingual(o, `${w} ${it.id} 选项`, ctx.err));
           checkChoice(
             it.options.map((o) => o.nl),

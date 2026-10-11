@@ -269,6 +269,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 3.47
     },
+    "17bbed853d90a607": {
+      "text": "Mijn dochter gaat naar de universiteit.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.16
+    },
     "17d6d5257fad3092": {
       "text": "dertien",
       "voice": "nl-NL-FennaNeural",
@@ -2013,6 +2018,11 @@
       "text": "bloed",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "c09bcbcd38d54c63": {
+      "text": "De arts stuurt mij naar het ziekenhuis.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.19
     },
     "c0bdeb4fb4a58f46": {
       "text": "U bent bij Anna thuis. U wilt naar het toilet.",

@@ -166,7 +166,7 @@
           "then": {
             "required": ["passage"],
             "properties": {
-              "passage": { "type": "array", "minItems": 3, "maxItems": 6, "items": { "$ref": "#/$defs/sample" } },
+              "passage": { "type": "array", "minItems": 4, "maxItems": 6, "items": { "$ref": "#/$defs/sample" } },
               "items": {
                 "minItems": 2,
                 "maxItems": 2,
@@ -177,7 +177,7 @@
                   "properties": {
                     "id": { "$ref": "common.schema.json#/$defs/id" },
                     "question": { "$ref": "#/$defs/sample" },
-                    "options": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/sample" } },
+                    "options": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/sample" } },
                     "answer": { "$ref": "common.schema.json#/$defs/text" }
                   }
                 }

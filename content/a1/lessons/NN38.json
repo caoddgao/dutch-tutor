@@ -26,9 +26,9 @@
     },
     {
       "id": "NN38-A03",
-      "nl": "Na school wil ik een opleiding volgen.",
-      "zh": "毕业后我想参加职业培训。",
-      "en": "After school I want to take a training course."
+      "nl": "Mijn dochter gaat naar de universiteit.",
+      "zh": "我女儿上大学。",
+      "en": "My daughter goes to university."
     }
   ],
   "exercises": [
@@ -99,63 +99,88 @@
       },
       "passage": [
         {
-          "nl": "Deze school heeft een opleiding.",
-          "zh": "这所学校有培训课程。",
-          "en": "This school has a training course."
+          "nl": "Wilt u Engels leren? Kies een groep.",
+          "zh": "您想学英语吗？选一个班。",
+          "en": "Do you want to learn English? Choose a group."
         },
         {
-          "nl": "De opleiding begint vandaag.",
-          "zh": "培训今天开始。",
-          "en": "The training course starts today."
+          "nl": "Groep 1: maandag, 19.00–21.00 uur, 200 euro.",
+          "zh": "1 班：星期一 19:00–21:00，200 欧元。",
+          "en": "Group 1: Monday, 19.00–21.00, 200 euros."
         },
         {
-          "nl": "Engels is ook een vak.",
-          "zh": "英语也是一门课。",
-          "en": "English is also a subject."
+          "nl": "Groep 2: woensdag, 14.00–16.00 uur, 180 euro.",
+          "zh": "2 班：星期三 14:00–16:00，180 欧元。",
+          "en": "Group 2: Wednesday, 14.00–16.00, 180 euros."
+        },
+        {
+          "nl": "Groep 3: zaterdag, 10.00–12.00 uur, 250 euro.",
+          "zh": "3 班：星期六 10:00–12:00，250 欧元。",
+          "en": "Group 3: Saturday, 10.00–12.00, 250 euros."
+        },
+        {
+          "nl": "De lessen beginnen op 1 september.",
+          "zh": "9 月 1 日开课。",
+          "en": "The classes start on 1 September."
+        },
+        {
+          "nl": "Bel 010-1234567 of kijk op onze website.",
+          "zh": "请打 010-1234567 或看我们的网站。",
+          "en": "Call 010-1234567 or look at our website."
         }
       ],
       "items": [
         {
           "id": "NN38-R1-1",
           "question": {
-            "nl": "Wat heeft de school?",
-            "zh": "学校有什么？",
-            "en": "What does the school have?"
+            "nl": "U kunt alleen 's avonds. Welke groep kiest u?",
+            "zh": "您只有晚上有空。您选哪个班？",
+            "en": "You are only free in the evening. Which group do you choose?"
           },
           "options": [
             {
-              "nl": "Een opleiding.",
-              "zh": "培训课程。",
-              "en": "A training course."
+              "nl": "Groep 1.",
+              "zh": "1 班。",
+              "en": "Group 1."
             },
             {
-              "nl": "Een feestje.",
-              "zh": "聚会。",
-              "en": "A party."
+              "nl": "Groep 2.",
+              "zh": "2 班。",
+              "en": "Group 2."
+            },
+            {
+              "nl": "Groep 3.",
+              "zh": "3 班。",
+              "en": "Group 3."
             }
           ],
-          "answer": "Een opleiding."
+          "answer": "Groep 1."
         },
         {
           "id": "NN38-R1-2",
           "question": {
-            "nl": "Wanneer begint de opleiding?",
-            "zh": "培训什么时候开始？",
-            "en": "When does the training start?"
+            "nl": "Wat kost groep 3?",
+            "zh": "3 班多少钱？",
+            "en": "How much does group 3 cost?"
           },
           "options": [
             {
-              "nl": "Vandaag.",
-              "zh": "今天。",
-              "en": "Today."
+              "nl": "250 euro.",
+              "zh": "250 欧元。",
+              "en": "250 euros."
             },
             {
-              "nl": "Zondag.",
-              "zh": "星期日。",
-              "en": "Sunday."
+              "nl": "200 euro.",
+              "zh": "200 欧元。",
+              "en": "200 euros."
+            },
+            {
+              "nl": "180 euro.",
+              "zh": "180 欧元。",
+              "en": "180 euros."
             }
           ],
-          "answer": "Vandaag."
+          "answer": "250 euro."
         }
       ]
     }
