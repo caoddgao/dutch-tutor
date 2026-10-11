@@ -3,7 +3,9 @@
   "id": "NN36",
   "kind": "main",
   "pack_lesson": "NN36",
-  "tip_links": ["G10"],
+  "tip_links": [
+    "G10"
+  ],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
@@ -87,63 +89,83 @@
       },
       "passage": [
         {
-          "nl": "Mijn zus speelt voetbal.",
-          "zh": "我姐姐踢足球。",
-          "en": "My sister plays football."
+          "nl": "Voetbal voor kinderen: wij trainen op het veld achter de school.",
+          "zh": "儿童足球：我们在学校后面的球场训练。",
+          "en": "Football for children: we train on the field behind the school."
         },
         {
-          "nl": "Zij traint op het veld.",
-          "zh": "她在球场上训练。",
-          "en": "She trains on the field."
+          "nl": "Maandag, 16.00–17.00 uur: kinderen van 6 en 7 jaar.",
+          "zh": "星期一 16:00–17:00：6 岁和 7 岁的孩子。",
+          "en": "Monday, 16.00–17.00: children aged 6 and 7."
         },
         {
-          "nl": "Daarna spelen wij een spelletje.",
-          "zh": "之后我们玩一个游戏。",
-          "en": "Afterwards we play a game."
+          "nl": "Woensdag, 14.00–15.00 uur: kinderen van 8 en 9 jaar.",
+          "zh": "星期三 14:00–15:00：8 岁和 9 岁的孩子。",
+          "en": "Wednesday, 14.00–15.00: children aged 8 and 9."
+        },
+        {
+          "nl": "Vrijdag, 16.30–17.30 uur: kinderen van 10 tot 12 jaar.",
+          "zh": "星期五 16:30–17:30：10 到 12 岁的孩子。",
+          "en": "Friday, 16.30–17.30: children aged 10 to 12."
+        },
+        {
+          "nl": "Het kost 40 euro per jaar; bel Sam: 06-12345678.",
+          "zh": "每年 40 欧元；请打电话给萨姆：06-12345678。",
+          "en": "It costs 40 euros a year; call Sam: 06-12345678."
         }
       ],
       "items": [
         {
           "id": "NN36-R1-1",
           "question": {
-            "nl": "Waar traint mijn zus?",
-            "zh": "我姐姐在哪里训练？",
-            "en": "Where does my sister train?"
+            "nl": "Uw dochter is 9 jaar. Op welke dag traint zij?",
+            "zh": "您女儿 9 岁。她星期几训练？",
+            "en": "Your daughter is 9. On which day does she train?"
           },
           "options": [
             {
-              "nl": "Op het veld.",
-              "zh": "在球场上。",
-              "en": "On the field."
+              "nl": "Op woensdag.",
+              "zh": "星期三。",
+              "en": "On Wednesday."
             },
             {
-              "nl": "In de wachtkamer.",
-              "zh": "在候诊室里。",
-              "en": "In the waiting room."
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
+            },
+            {
+              "nl": "Op vrijdag.",
+              "zh": "星期五。",
+              "en": "On Friday."
             }
           ],
-          "answer": "Op het veld."
+          "answer": "Op woensdag."
         },
         {
           "id": "NN36-R1-2",
           "question": {
-            "nl": "Wat spelen wij daarna?",
-            "zh": "之后我们玩什么？",
-            "en": "What do we play afterwards?"
+            "nl": "Uw zoon is 6 jaar. Hoe laat begint hij?",
+            "zh": "您儿子 6 岁。他几点开始？",
+            "en": "Your son is 6. What time does he start?"
           },
           "options": [
             {
-              "nl": "Een spelletje.",
-              "zh": "一个游戏。",
-              "en": "A game."
+              "nl": "Om 16.00 uur.",
+              "zh": "16 点。",
+              "en": "At 16.00."
             },
             {
-              "nl": "Een piano.",
-              "zh": "钢琴。",
-              "en": "A piano."
+              "nl": "Om 14.00 uur.",
+              "zh": "14 点。",
+              "en": "At 14.00."
+            },
+            {
+              "nl": "Om 16.30 uur.",
+              "zh": "16:30。",
+              "en": "At 16.30."
             }
           ],
-          "answer": "Een spelletje."
+          "answer": "Om 16.00 uur."
         }
       ]
     }

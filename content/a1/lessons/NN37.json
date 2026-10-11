@@ -3,7 +3,9 @@
   "id": "NN37",
   "kind": "main",
   "pack_lesson": "NN37",
-  "tip_links": ["G17"],
+  "tip_links": [
+    "G17"
+  ],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
@@ -99,63 +101,83 @@
       },
       "passage": [
         {
-          "nl": "Op school leren kinderen rekenen.",
-          "zh": "孩子们在学校学算术。",
-          "en": "At school children learn arithmetic."
+          "nl": "Dag ouders, vanaf maandag 6 oktober begint de school om 8.30 uur.",
+          "zh": "各位家长好，从 10 月 6 日星期一起，学校 8:30 开始上课。",
+          "en": "Dear parents, from Monday 6 October school starts at 8.30."
         },
         {
-          "nl": "Zij leren ook geschiedenis.",
-          "zh": "他们还学历史。",
-          "en": "They also learn history."
+          "nl": "Dat is een kwartier eerder: nu begint de school nog om 8.45 uur.",
+          "zh": "这比现在早一刻钟：现在学校还是 8:45 开始。",
+          "en": "That is a quarter of an hour earlier: school now still starts at 8.45."
         },
         {
-          "nl": "Na school zingen zij een liedje.",
-          "zh": "放学后他们唱一首歌。",
-          "en": "After school they sing a song."
+          "nl": "Op woensdag zijn de kinderen om 12.00 uur vrij.",
+          "zh": "星期三孩子们 12 点放学。",
+          "en": "On Wednesday the children are free at 12.00."
+        },
+        {
+          "nl": "Op dinsdag hebben de kinderen sport; geef ze een fles water mee.",
+          "zh": "星期二孩子们上体育课；请给他们带一瓶水。",
+          "en": "On Tuesday the children have sport; give them a bottle of water to take."
+        },
+        {
+          "nl": "Tot ziens, juf Anna",
+          "zh": "再见，安娜老师",
+          "en": "Goodbye, Ms Anna"
         }
       ],
       "items": [
         {
           "id": "NN37-R1-1",
           "question": {
-            "nl": "Wat leren kinderen op school?",
-            "zh": "孩子们在学校学什么？",
-            "en": "What do children learn at school?"
+            "nl": "Hoe laat begint de school vanaf 6 oktober?",
+            "zh": "从 10 月 6 日起，学校几点开始上课？",
+            "en": "What time does school start from 6 October?"
           },
           "options": [
             {
-              "nl": "Rekenen.",
-              "zh": "算术。",
-              "en": "Arithmetic."
+              "nl": "Om 8.30 uur.",
+              "zh": "8:30。",
+              "en": "At 8.30."
             },
             {
-              "nl": "Wijn kopen.",
-              "zh": "买葡萄酒。",
-              "en": "Buying wine."
+              "nl": "Om 8.45 uur.",
+              "zh": "8:45。",
+              "en": "At 8.45."
+            },
+            {
+              "nl": "Om 12.00 uur.",
+              "zh": "12 点。",
+              "en": "At 12.00."
             }
           ],
-          "answer": "Rekenen."
+          "answer": "Om 8.30 uur."
         },
         {
           "id": "NN37-R1-2",
           "question": {
-            "nl": "Wat zingen zij na school?",
-            "zh": "放学后他们唱什么？",
-            "en": "What do they sing after school?"
+            "nl": "Op welke dag hebben de kinderen sport?",
+            "zh": "孩子们星期几上体育课？",
+            "en": "On which day do the children have sport?"
           },
           "options": [
             {
-              "nl": "Een liedje.",
-              "zh": "一首歌。",
-              "en": "A song."
+              "nl": "Op dinsdag.",
+              "zh": "星期二。",
+              "en": "On Tuesday."
             },
             {
-              "nl": "Een antwoord.",
-              "zh": "一个答案。",
-              "en": "An answer."
+              "nl": "Op woensdag.",
+              "zh": "星期三。",
+              "en": "On Wednesday."
+            },
+            {
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
             }
           ],
-          "answer": "Een liedje."
+          "answer": "Op dinsdag."
         }
       ]
     }

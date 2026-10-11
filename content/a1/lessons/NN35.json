@@ -3,7 +3,9 @@
   "id": "NN35",
   "kind": "main",
   "pack_lesson": "NN35",
-  "tips": ["G10"],
+  "tips": [
+    "G10"
+  ],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
@@ -99,63 +101,83 @@
       },
       "passage": [
         {
-          "nl": "U heeft een afspraak met de arts.",
-          "zh": "您约了医生。",
-          "en": "You have an appointment with the doctor."
+          "nl": "Dag mevrouw Jansen, u heeft een afspraak bij de tandarts op donderdag 9 oktober om 14.15 uur.",
+          "zh": "扬森女士您好，您 10 月 9 日星期四 14:15 约了牙医。",
+          "en": "Hello Mrs Jansen, you have an appointment with the dentist on Thursday 9 October at 14.15."
         },
         {
-          "nl": "Het spreekuur is vandaag.",
-          "zh": "门诊时间是今天。",
-          "en": "The consultation hours are today."
+          "nl": "De praktijk is naast het ziekenhuis.",
+          "zh": "诊所在医院旁边。",
+          "en": "The practice is next to the hospital."
         },
         {
-          "nl": "De wachtkamer is bij de praktijk.",
-          "zh": "候诊室在诊所里。",
-          "en": "The waiting room is at the practice."
+          "nl": "Wilt u om 14.05 uur in de wachtkamer zijn?",
+          "zh": "请您 14:05 到候诊室。",
+          "en": "Would you be in the waiting room at 14.05?"
+        },
+        {
+          "nl": "Kunt u niet? Bel ons dan voor woensdag 12.00 uur.",
+          "zh": "来不了？请在星期三 12 点前给我们打电话。",
+          "en": "Can't you make it? Then call us before Wednesday 12.00."
+        },
+        {
+          "nl": "Anders moet u de afspraak toch betalen.",
+          "zh": "否则这次预约您还是要付钱。",
+          "en": "Otherwise you will still have to pay for the appointment."
         }
       ],
       "items": [
         {
           "id": "NN35-R1-1",
           "question": {
-            "nl": "Wanneer is het spreekuur?",
-            "zh": "门诊时间是什么时候？",
-            "en": "When are the consultation hours?"
+            "nl": "Hoe laat is de afspraak?",
+            "zh": "预约是几点？",
+            "en": "What time is the appointment?"
           },
           "options": [
             {
-              "nl": "Vandaag.",
-              "zh": "今天。",
-              "en": "Today."
+              "nl": "Om 14.15 uur.",
+              "zh": "14:15。",
+              "en": "At 14.15."
             },
             {
-              "nl": "Zaterdag.",
-              "zh": "星期六。",
-              "en": "Saturday."
+              "nl": "Om 14.05 uur.",
+              "zh": "14:05。",
+              "en": "At 14.05."
+            },
+            {
+              "nl": "Om 12.00 uur.",
+              "zh": "12 点。",
+              "en": "At 12.00."
             }
           ],
-          "answer": "Vandaag."
+          "answer": "Om 14.15 uur."
         },
         {
           "id": "NN35-R1-2",
           "question": {
-            "nl": "Waar is de wachtkamer?",
-            "zh": "候诊室在哪里？",
-            "en": "Where is the waiting room?"
+            "nl": "Mevrouw Jansen kan niet. Wat moet ze doen?",
+            "zh": "扬森女士来不了。她要怎么做？",
+            "en": "Mrs Jansen can't make it. What must she do?"
           },
           "options": [
             {
-              "nl": "Bij de praktijk.",
-              "zh": "在诊所里。",
-              "en": "At the practice."
+              "nl": "Voor woensdag 12.00 uur bellen.",
+              "zh": "星期三 12 点前打电话。",
+              "en": "Call before Wednesday 12.00."
             },
             {
-              "nl": "Bij de bank.",
-              "zh": "在银行。",
-              "en": "At the bank."
+              "nl": "Om 14.05 uur in de wachtkamer zijn.",
+              "zh": "14:05 到候诊室。",
+              "en": "Be in the waiting room at 14.05."
+            },
+            {
+              "nl": "Naar het ziekenhuis gaan.",
+              "zh": "去医院。",
+              "en": "Go to the hospital."
             }
           ],
-          "answer": "Bij de praktijk."
+          "answer": "Voor woensdag 12.00 uur bellen."
         }
       ]
     }
