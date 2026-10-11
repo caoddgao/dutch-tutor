@@ -301,15 +301,19 @@ function ownGroup(
       break;
     case "read_passage":
       code = "E9";
-      questions = ex.items.map((it) => ({
-        kind: "choice",
-        id: it.id,
-        code: "E9",
-        passage: ex.passage,
-        prompt: { nl: it.question.nl },
-        options: it.options.map((o) => ({ nl: o.nl })),
-        answer: it.options.findIndex((o) => o.nl === it.answer),
-      }));
+      questions = ex.items.map((it) => {
+        // the file lists the answer anywhere; shown in a fixed shuffled order so it is not always first
+        const options = shuffle(it.options, rnd);
+        return {
+          kind: "choice",
+          id: it.id,
+          code: "E9",
+          passage: ex.passage,
+          prompt: { nl: it.question.nl },
+          options: options.map((o) => ({ nl: o.nl })),
+          answer: options.findIndex((o) => o.nl === it.answer),
+        };
+      });
       break;
   }
   const qs = questions.filter((q): q is Question => !!q);
