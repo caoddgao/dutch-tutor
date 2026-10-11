@@ -3,7 +3,9 @@
   "id": "NN34",
   "kind": "main",
   "pack_lesson": "NN34",
-  "tip_links": ["G09"],
+  "tip_links": [
+    "G09"
+  ],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
@@ -92,49 +94,64 @@
       },
       "passage": [
         {
-          "nl": "Zaterdag neem ik een cadeautje mee.",
-          "zh": "星期六我带一个小礼物。",
-          "en": "On Saturday I take a little gift along."
+          "nl": "Hallo Iva, vanavond om zeven uur ben je welkom bij ons.",
+          "zh": "你好，伊娃，今晚七点欢迎你来我们家。",
+          "en": "Hi Iva, tonight at seven you are welcome at our place."
         },
         {
-          "nl": "Vanavond ga ik naar mijn vriend.",
-          "zh": "今晚我要去朋友家。",
-          "en": "Tonight I go to my friend."
+          "nl": "Ons appartement is vlak bij het winkelcentrum.",
+          "zh": "我们的公寓就在购物中心旁边。",
+          "en": "Our flat is right next to the shopping centre."
         },
         {
-          "nl": "Ik neem ook een fles wijn mee.",
-          "zh": "我还带一瓶葡萄酒。",
-          "en": "I also take a bottle of wine."
+          "nl": "Ga bij de kerk rechtsaf en dan rechtdoor tot nummer 8.",
+          "zh": "在教堂右转，然后一直走到 8 号。",
+          "en": "Turn right at the church and then go straight on to number 8."
+        },
+        {
+          "nl": "Brood en chocola hebben we al; neem jij een fles wijn mee?",
+          "zh": "面包和巧克力我们已经有了，你能带一瓶葡萄酒来吗？",
+          "en": "We already have bread and chocolate; will you bring a bottle of wine?"
+        },
+        {
+          "nl": "Tot vanavond, Omar",
+          "zh": "今晚见，奥马尔",
+          "en": "See you tonight, Omar"
         }
       ],
       "items": [
         {
           "id": "NN34-R1-1",
           "question": {
-            "nl": "Wat neem ik zaterdag mee?",
-            "zh": "我星期六带什么？",
-            "en": "What do I take along on Saturday?"
+            "nl": "Waar moet Iva rechtsaf?",
+            "zh": "伊娃要在哪里右转？",
+            "en": "Where must Iva turn right?"
           },
           "options": [
             {
-              "nl": "Een cadeautje.",
-              "zh": "一个小礼物。",
-              "en": "A little gift."
+              "nl": "Bij de kerk.",
+              "zh": "在教堂。",
+              "en": "At the church."
             },
             {
-              "nl": "Een fiets.",
-              "zh": "一辆自行车。",
-              "en": "A bike."
+              "nl": "Bij het winkelcentrum.",
+              "zh": "在购物中心。",
+              "en": "At the shopping centre."
+            },
+            {
+              "nl": "Bij nummer 8.",
+              "zh": "在 8 号。",
+              "en": "At number 8."
             }
           ],
-          "answer": "Een cadeautje."
+          "answer": "Bij de kerk."
         },
         {
           "id": "NN34-R1-2",
           "question": {
-            "nl": "Wat neem ik mee?",
-            "zh": "我带什么？",
-            "en": "What do I take along?"
+            "nl": "Wat neemt Iva mee?",
+            "zh": "伊娃带什么去？",
+            "en": "What does Iva bring?"
           },
           "options": [
             {
@@ -143,9 +160,14 @@
               "en": "A bottle of wine."
             },
             {
-              "nl": "Een computer.",
-              "zh": "一台电脑。",
-              "en": "A computer."
+              "nl": "Brood.",
+              "zh": "面包。",
+              "en": "Bread."
+            },
+            {
+              "nl": "Chocola.",
+              "zh": "巧克力。",
+              "en": "Chocolate."
             }
           ],
           "answer": "Een fles wijn."

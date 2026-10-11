@@ -3,8 +3,12 @@
   "id": "NN32",
   "kind": "main",
   "pack_lesson": "NN32",
-  "tips": ["G11"],
-  "tip_links": ["G09"],
+  "tips": [
+    "G11"
+  ],
+  "tip_links": [
+    "G09"
+  ],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
@@ -105,19 +109,34 @@
       },
       "passage": [
         {
-          "nl": "Zaterdag is er een feestje.",
-          "zh": "星期六有个聚会。",
-          "en": "There is a party on Saturday."
+          "nl": "Hallo Sam, op zaterdag 14 juni geef ik een feestje.",
+          "zh": "你好，萨姆，6 月 14 日星期六我办一个聚会。",
+          "en": "Hi Sam, on Saturday 14 June I am having a party."
         },
         {
-          "nl": "Het feest begint zaterdagavond.",
-          "zh": "聚会星期六晚上开始。",
-          "en": "The party starts on Saturday evening."
+          "nl": "Het begint om acht uur 's avonds, bij mij thuis.",
+          "zh": "晚上八点开始，在我家。",
+          "en": "It starts at eight in the evening, at my place."
         },
         {
-          "nl": "We kunnen daarna afspreken.",
-          "zh": "我们可以之后见面。",
-          "en": "We can meet afterwards."
+          "nl": "Op vrijdag 13 juni doe ik de boodschappen.",
+          "zh": "6 月 13 日星期五我去买东西。",
+          "en": "On Friday 13 June I do the shopping."
+        },
+        {
+          "nl": "Brood en kaas heb ik dan al, maar neem jij iets te drinken mee?",
+          "zh": "面包和奶酪那时我已经有了，你能带点喝的来吗？",
+          "en": "I will have bread and cheese by then, but will you bring something to drink?"
+        },
+        {
+          "nl": "Op zondag 15 juni wil ik uitslapen!",
+          "zh": "6 月 15 日星期天我要睡个懒觉！",
+          "en": "On Sunday 15 June I want to sleep in!"
+        },
+        {
+          "nl": "Tot zaterdag, Anna",
+          "zh": "星期六见，安娜",
+          "en": "See you Saturday, Anna"
         }
       ],
       "items": [
@@ -125,43 +144,53 @@
           "id": "NN32-R1-1",
           "question": {
             "nl": "Wanneer is het feestje?",
-            "zh": "聚会什么时候举行？",
+            "zh": "聚会是哪天？",
             "en": "When is the party?"
           },
           "options": [
             {
-              "nl": "Op zaterdag.",
-              "zh": "星期六。",
-              "en": "On Saturday."
+              "nl": "Op zaterdag 14 juni.",
+              "zh": "6 月 14 日星期六。",
+              "en": "On Saturday 14 June."
             },
             {
-              "nl": "Op zondag.",
-              "zh": "星期日。",
-              "en": "On Sunday."
+              "nl": "Op vrijdag 13 juni.",
+              "zh": "6 月 13 日星期五。",
+              "en": "On Friday 13 June."
+            },
+            {
+              "nl": "Op zondag 15 juni.",
+              "zh": "6 月 15 日星期天。",
+              "en": "On Sunday 15 June."
             }
           ],
-          "answer": "Op zaterdag."
+          "answer": "Op zaterdag 14 juni."
         },
         {
           "id": "NN32-R1-2",
           "question": {
-            "nl": "Wat kunnen we daarna doen?",
-            "zh": "我们之后可以做什么？",
-            "en": "What can we do afterwards?"
+            "nl": "Wat neemt Sam mee?",
+            "zh": "萨姆带什么来？",
+            "en": "What does Sam bring?"
           },
           "options": [
             {
-              "nl": "Afspreken.",
-              "zh": "见面。",
-              "en": "Meet up."
+              "nl": "Iets te drinken.",
+              "zh": "喝的东西。",
+              "en": "Something to drink."
             },
             {
-              "nl": "Uitslapen.",
-              "zh": "睡懒觉。",
-              "en": "Sleep in."
+              "nl": "Brood.",
+              "zh": "面包。",
+              "en": "Bread."
+            },
+            {
+              "nl": "Kaas.",
+              "zh": "奶酪。",
+              "en": "Cheese."
             }
           ],
-          "answer": "Afspreken."
+          "answer": "Iets te drinken."
         }
       ]
     }

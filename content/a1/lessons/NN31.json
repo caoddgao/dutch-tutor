@@ -3,7 +3,10 @@
   "id": "NN31",
   "kind": "main",
   "pack_lesson": "NN31",
-  "tips": ["G14", "G09"],
+  "tips": [
+    "G14",
+    "G09"
+  ],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
@@ -99,63 +102,83 @@
       },
       "passage": [
         {
-          "nl": "Ik ga binnenkort naar Den Haag.",
-          "zh": "我很快要去海牙。",
-          "en": "I will soon go to The Hague."
+          "nl": "Hallo Iva, op 1 mei ga ik naar Rotterdam.",
+          "zh": "你好，伊娃，5 月 1 日我要去鹿特丹。",
+          "en": "Hi Iva, on 1 May I am going to Rotterdam."
         },
         {
-          "nl": "Ik heb vandaag gewerkt.",
-          "zh": "我今天工作过了。",
-          "en": "I have worked today."
+          "nl": "Ik ga daar in de haven werken.",
+          "zh": "我要在那里的港口工作。",
+          "en": "I am going to work in the port there."
         },
         {
-          "nl": "De reis gaat naar Nederland.",
-          "zh": "这趟旅行去荷兰。",
-          "en": "The journey goes to the Netherlands."
+          "nl": "Tot 30 april werk ik nog in Den Haag.",
+          "zh": "到 4 月 30 日为止，我还在海牙工作。",
+          "en": "Until 30 April I still work in The Hague."
+        },
+        {
+          "nl": "Mijn vrouw en mijn zoon gaan op 1 juni ook naar Rotterdam.",
+          "zh": "我妻子和儿子 6 月 1 日也去鹿特丹。",
+          "en": "My wife and my son are also going to Rotterdam on 1 June."
+        },
+        {
+          "nl": "Tot ziens, Rachid",
+          "zh": "再见，拉希德",
+          "en": "Bye, Rachid"
         }
       ],
       "items": [
         {
           "id": "NN31-R1-1",
           "question": {
-            "nl": "Ga ik naar Den Haag of Duitsland?",
-            "zh": "我要去海牙还是德国？",
-            "en": "Am I going to The Hague or Germany?"
+            "nl": "Wanneer gaat Rachid naar Rotterdam?",
+            "zh": "拉希德什么时候去鹿特丹？",
+            "en": "When is Rachid going to Rotterdam?"
           },
           "options": [
             {
-              "nl": "Naar Den Haag.",
-              "zh": "去海牙。",
-              "en": "To The Hague."
+              "nl": "Op 1 mei.",
+              "zh": "5 月 1 日。",
+              "en": "On 1 May."
             },
             {
-              "nl": "Naar Duitsland.",
-              "zh": "去德国。",
-              "en": "To Germany."
+              "nl": "Op 30 april.",
+              "zh": "4 月 30 日。",
+              "en": "On 30 April."
+            },
+            {
+              "nl": "Op 1 juni.",
+              "zh": "6 月 1 日。",
+              "en": "On 1 June."
             }
           ],
-          "answer": "Naar Den Haag."
+          "answer": "Op 1 mei."
         },
         {
           "id": "NN31-R1-2",
           "question": {
-            "nl": "Heb ik vandaag gewerkt?",
-            "zh": "我今天工作过了吗？",
-            "en": "Have I worked today?"
+            "nl": "Waar werkt Rachid tot 30 april?",
+            "zh": "到 4 月 30 日为止，拉希德在哪里工作？",
+            "en": "Where does Rachid work until 30 April?"
           },
           "options": [
             {
-              "nl": "Ja, ik heb vandaag gewerkt.",
-              "zh": "是的，我今天工作过了。",
-              "en": "Yes, I have worked today."
+              "nl": "In Den Haag.",
+              "zh": "在海牙。",
+              "en": "In The Hague."
             },
             {
-              "nl": "Nee, het werk is zwaar.",
-              "zh": "不，工作很辛苦。",
-              "en": "No, the work is hard."
+              "nl": "In de haven.",
+              "zh": "在港口。",
+              "en": "In the port."
+            },
+            {
+              "nl": "In Rotterdam.",
+              "zh": "在鹿特丹。",
+              "en": "In Rotterdam."
             }
           ],
-          "answer": "Ja, ik heb vandaag gewerkt."
+          "answer": "In Den Haag."
         }
       ]
     }
