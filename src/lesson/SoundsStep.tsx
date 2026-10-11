@@ -8,7 +8,7 @@ export function SoundsStep({ lesson }: { lesson: RtLesson }) {
     <div className="sounds-step">
       {lesson.sounds.map((s) => (
         <article key={s.grapheme} className="sound-card">
-          <div className="sound-grapheme nl" lang="nl">
+          <div className="sound-grapheme nl" lang="nl" data-size={graphemeSize(s.grapheme)}>
             {s.grapheme}
           </div>
           <div className="sound-body">
@@ -34,4 +34,8 @@ export function SoundsStep({ lesson }: { lesson: RtLesson }) {
       ))}
     </div>
   );
+}
+
+function graphemeSize(g: string): "s" | "m" | "l" {
+  return g.length <= 3 ? "s" : g.length <= 6 ? "m" : "l";
 }

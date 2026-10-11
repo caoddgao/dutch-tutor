@@ -528,6 +528,17 @@
   color: var(--accent-text);
   font-size: calc(40px * var(--scale-nl));
   font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+}
+/* several spellings in one group ("ij · ei", "a e i o u"): smaller, wrapping inside the box */
+.sound-grapheme[data-size="m"] {
+  font-size: calc(28px * var(--scale-nl));
+}
+.sound-grapheme[data-size="l"] {
+  width: 112px;
+  padding: 6px;
+  font-size: calc(20px * var(--scale-nl));
 }
 .sound-body {
   display: flex;
@@ -604,6 +615,17 @@
   }
   .stepper li:not([data-state="current"]) .stepper-label {
     display: none;
+  }
+  .sound-card {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .sound-grapheme,
+  .sound-grapheme[data-size="l"] {
+    width: auto;
+    height: auto;
+    min-height: 64px;
+    padding: var(--space-2) var(--space-4);
   }
 }
 @media (max-width: 1000px) {
