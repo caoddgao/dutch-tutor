@@ -222,6 +222,16 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
       if (!lacksPack(lesson)) checkWords(s.nl, `${where} ${s.id}`);
     }
     if (!lacksPack(lesson)) for (const t of oralTexts(lesson)) checkWords(t.nl, `${where} ${t.id}`, true);
+    for (const ex of lesson.exercises ?? [])
+      if (ex.type === "read_passage") {
+        for (const [i, line] of ex.passage.entries())
+          if (!lacksPack(lesson)) checkWords(line.nl, `${where} ${ex.id} 短文 ${i + 1}`);
+        for (const item of ex.items)
+          if (!lacksPack(lesson)) {
+            checkWords(item.question.nl, `${where} ${item.id} 问题`);
+            for (const option of item.options) checkWords(option.nl, `${where} ${item.id} 选项`);
+          }
+      }
     for (const id of lesson.word_ids ?? []) wordRef(id, where);
     for (const sound of lesson.sounds ?? []) {
       if (!sound.note_zh.trim()) err(2, where, `音 ${sound.grapheme} 缺少中文发音说明`);
@@ -521,6 +531,14 @@ function usedWordIds(
   const texts = [
     ...(own?.sentences ?? []).map((s) => s.nl),
     ...oralTexts(own).map((t) => t.nl),
+    ...(own?.exercises ?? []).flatMap((ex) =>
+      ex.type === "read_passage"
+        ? [
+            ...ex.passage.map((s) => s.nl),
+            ...ex.items.flatMap((it) => [it.question.nl, ...it.options.map((o) => o.nl)]),
+          ]
+        : [],
+    ),
     ...(own?.tips ?? []).flatMap((t) => (tips[t]?.examples ?? []).map((e) => e.nl)),
   ];
   for (const nl of texts) for (const t of tokenize(nl, formIndex)) if (t.word_id) ids.add(t.word_id);
@@ -591,6 +609,21 @@ function checkOwnExercises(
           checkTrilingual(it.question, `${w} ${it.id} 问题`, ctx.err);
           if (it.sample_answers.length === 0) ctx.err(6, `${w} ${it.id}`, "没有参考答案");
           it.sample_answers.forEach((a) => checkTrilingual(a, `${w} ${it.id} 参考答案`, ctx.err));
+        }
+        break;
+      case "read_passage":
+        if (ex.passage.length < 3 || ex.passage.length > 6) ctx.err(2, w, "短文须有 3–6 句");
+        if (ex.items.length !== 2) ctx.err(6, w, "短文须有 2 道选择题");
+        ex.passage.forEach((s, i) => checkTrilingual(s, `${w} 短文 ${i + 1}`, ctx.err));
+        for (const it of ex.items) {
+          checkTrilingual(it.question, `${w} ${it.id} 问题`, ctx.err);
+          it.options.forEach((o) => checkTrilingual(o, `${w} ${it.id} 选项`, ctx.err));
+          checkChoice(
+            it.options.map((o) => o.nl),
+            it.answer,
+            `${w} ${it.id}`,
+            ctx.err,
+          );
         }
         break;
     }

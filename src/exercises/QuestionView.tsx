@@ -73,6 +73,15 @@ function ChoiceView({ q, done, onAnswer }: Props<ChoiceQuestion>) {
   const show = done || q.example;
   return (
     <div className="q-body">
+      {q.passage && (
+        <div className="q-passage" aria-label="短文">
+          {q.passage.map((line, i) => (
+            <p key={i} className="nl" lang="nl">
+              {line.nl}
+            </p>
+          ))}
+        </div>
+      )}
       <PromptView prompt={q.prompt} done={!!show} />
       <div className={`q-options${q.options.some((o) => o.zh) ? " is-meanings" : ""}`} role="group" aria-label="选项">
         {q.options.map((o, i) => {

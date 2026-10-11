@@ -92,8 +92,20 @@ export interface OralAnswerExercise extends OwnExerciseBase {
   items: { id: string; question: OralSample; sample_answers: OralSample[] }[];
 }
 
+/** E9: one everyday text, followed by two reading comprehension choices; no audio. */
+export interface ReadPassageExercise extends OwnExerciseBase {
+  type: "read_passage";
+  passage: OralSample[];
+  items: { id: string; question: OralSample; options: OralSample[]; answer: string }[];
+}
+
 export type OwnExercise =
-  ListenChooseExercise | ChooseAudioExercise | OrderExercise | OralCompleteExercise | OralAnswerExercise;
+  | ListenChooseExercise
+  | ChooseAudioExercise
+  | OrderExercise
+  | OralCompleteExercise
+  | OralAnswerExercise
+  | ReadPassageExercise;
 
 export interface OwnLesson {
   id: string;

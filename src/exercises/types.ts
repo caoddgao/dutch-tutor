@@ -2,7 +2,7 @@ import type { AudioRef } from "../content/model";
 import type { Trilingual } from "../content/packTypes";
 
 /** Exercise codes of design §3.1 */
-export type ExerciseCode = "E1" | "E2" | "E3" | "E4" | "E5" | "E6" | "E7" | "E8";
+export type ExerciseCode = "E1" | "E2" | "E3" | "E4" | "E5" | "E6" | "E7" | "E8" | "E9";
 
 export const CODE_TITLE: Record<ExerciseCode, string> = {
   E1: "听句选意思",
@@ -13,6 +13,7 @@ export const CODE_TITLE: Record<ExerciseCode, string> = {
   E6: "问答（口头）",
   E7: "词块排序",
   E8: "课本练习",
+  E9: "短文阅读",
 };
 
 export interface Prompt {
@@ -44,6 +45,7 @@ interface Base {
 
 export interface ChoiceQuestion extends Base {
   kind: "choice";
+  passage?: Trilingual[];
   prompt: Prompt;
   options: Option[];
   answer: number;
