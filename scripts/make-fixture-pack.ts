@@ -211,6 +211,34 @@ word("w_maar", "maar", "vw", "但是", "but", N22);
 word("w_graag", "graag", "bw", "乐意，喜欢（做某事）", "gladly, like to", N22);
 word("w_jij", "jij", "vnw", "你", "you (informal)", N22);
 
+// NN14: a reading text (kind "reading"), used as the "认读小文" of phonics lesson P05
+const N14 = { first: "NN14" };
+noun("w_zaterdag", "zaterdag", "de", "zaterdagen", "星期六", "Saturday", N14);
+noun("w_markt", "markt", "de", "markten", "市场，集市", "market", N14);
+verb(
+  "w_gaan",
+  "gaan",
+  { ik: "ga", jij: "gaat", hij: "gaat", wij: "gaan", pp: "gegaan", aux: "zijn" },
+  ["ga", "gaat"],
+  "去",
+  "to go",
+  N14,
+);
+word("w_mee", "mee", "bw", "一起（去）", "along, with (someone)", N14);
+word("w_op", "op", "vz", "在……上", "on, at", N14);
+word("w_groot", "groot", "bn", "大的", "big", N14);
+verb(
+  "w_kopen",
+  "kopen",
+  { ik: "koop", jij: "koopt", hij: "koopt", wij: "kopen", pp: "gekocht", aux: "hebben" },
+  ["koop"],
+  "买",
+  "to buy",
+  N14,
+);
+noun("w_kaas", "kaas", "de", "kazen", "奶酪", "cheese", N14);
+word("w_leuk", "leuk", "bn", "好玩的，有意思的", "nice, fun", N14);
+
 const wordById = new Map(words.map((w) => [w.id, w]));
 
 // ---------------------------------------------------------------- sentences
@@ -828,6 +856,73 @@ const nn05Exercises = [
   ex("NN05-E2", 2, "other", instr.other, [{ raw: "Schrijf de letters." }], { skip: true, skip_reason: "unsupported" }),
 ];
 
+const nn14Sentences = lessonSentences("NN14", [
+  { role: "title", ...t("Les 14. Naar de markt.", "第 14 课。去市场。", "Lesson 14. To the market.") },
+  {
+    ...t("Het is zaterdag.", "今天是星期六。", "It is Saturday."),
+    tokens: [
+      ["Het", "w_het"],
+      ["is", "w_zijn"],
+      ["zaterdag", "w_zaterdag"],
+    ],
+  },
+  {
+    ...t("Ik ga naar de markt.", "我去市场。", "I am going to the market."),
+    tokens: [
+      ["Ik", "w_ik"],
+      ["ga", "w_gaan"],
+      ["naar", "w_naar"],
+      ["de", "w_de"],
+      ["markt", "w_markt"],
+    ],
+  },
+  {
+    ...t("Hij gaat ook mee.", "他也一起去。", "He is coming along too."),
+    tokens: [
+      ["Hij", "w_hij"],
+      ["gaat", "w_gaan"],
+      ["ook", "w_ook"],
+      ["mee", "w_mee"],
+    ],
+  },
+  {
+    ...t("De markt is groot.", "市场很大。", "The market is big."),
+    tokens: [
+      ["De", "w_de"],
+      ["markt", "w_markt"],
+      ["is", "w_zijn"],
+      ["groot", "w_groot"],
+    ],
+  },
+  {
+    ...t("Ik koop kaas.", "我买奶酪。", "I buy cheese."),
+    tokens: [
+      ["Ik", "w_ik"],
+      ["koop", "w_kopen"],
+      ["kaas", "w_kaas"],
+    ],
+  },
+  {
+    ...t("Het is leuk op de markt.", "市场上很好玩。", "It is fun at the market."),
+    tokens: [
+      ["Het", "w_het"],
+      ["is", "w_zijn"],
+      ["leuk", "w_leuk"],
+      ["op", "w_op"],
+      ["de", "w_de"],
+      ["markt", "w_markt"],
+    ],
+  },
+]);
+
+// reading texts have book exercises too; phonics lessons do not use them (design §2.1: 不另出题)
+const nn14Exercises = [
+  ex("NN14-E1", 1, "true_false", instr.tf, [
+    { prompt: "Het is zaterdag.", options: TF, answer: "waar", zh: "今天是星期六。", en: "It is Saturday." },
+  ]),
+  ex("NN14-E2", 2, "other", instr.photo, [{ raw: "Kijk naar de foto." }], { skip: true, skip_reason: "needs_image" }),
+];
+
 // ---------------------------------------------------------------- lessons
 const firstSeenOrder = (sentences: PackSentence[], extraIds: string[] = []) => {
   const ids: string[] = [];
@@ -839,6 +934,7 @@ const firstSeenOrder = (sentences: PackSentence[], extraIds: string[] = []) => {
 audio.set("audio/NN21/full.mp3", nn21Sentences.filter((s) => s.end).at(-1)!.end! + 0.6);
 audio.set("audio/NN22/full.mp3", nn22Sentences.at(-1)!.end! + 0.6);
 audio.set("audio/NN05/full.mp3", 16);
+audio.set("audio/NN14/full.mp3", nn14Sentences.at(-1)!.end! + 0.6);
 
 const lessons: Record<string, PackLesson> = {
   NN05: {
@@ -857,6 +953,21 @@ const lessons: Record<string, PackLesson> = {
     sentences: nn05Sentences,
     word_ids: firstSeenOrder(nn05Sentences, ["w_tas", "w_pan", "w_bed", "w_pin"]),
     exercises: nn05Exercises,
+  },
+  NN14: {
+    id: "NN14",
+    nn_lesson: 14,
+    kind: "reading",
+    title: t("Naar de markt", "去市场", "To the market"),
+    pdf_pages: [80, 81],
+    text_type: "text",
+    audio_full: "audio/NN14/full.mp3",
+    sentences: nn14Sentences,
+    // the book's word list: the words this text teaches (function words it uses are not listed)
+    word_ids: ["w_zaterdag", "w_markt", "w_gaan", "w_mee", "w_op", "w_groot", "w_kopen", "w_kaas", "w_leuk"],
+    exercises: nn14Exercises,
+    extras: [],
+    notes: "Fixture: self-written reading text.",
   },
   NN21: {
     id: "NN21",

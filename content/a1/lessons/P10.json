@@ -1,0 +1,217 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P10",
+  "kind": "phonics",
+  "title": {
+    "nl": "uur · kleur · mens",
+    "zh": "钟点、颜色、人的单复数",
+    "en": "Time, colours, singular and plural"
+  },
+  "nn_lessons": ["NN02", "NN03", "NN04"],
+  "reading": "NN19",
+  "sounds": [
+    {
+      "grapheme": "uur · half",
+      "note_zh": "钟点：整点说“… uur”：Het is drie uur（三点）。半点要特别注意：half vier 是“三点半”（离四点还差半小时），不是四点半！kwart over twee 是两点一刻。half 的 a 短，l 要读出来。",
+      "note_en": "Time: 'half vier' is 3:30 (half to four), not 4:30. 'kwart over twee' is 2:15.",
+      "word_ids": ["w_uur", "w_half", "w_kwart", "w_hoe_laat"]
+    },
+    {
+      "grapheme": "kleur",
+      "note_zh": "颜色：rood、geel、blauw 前面学过。groen 的 oe 读“乌”；zwart 的 zw 连在一起读；wit 的 i 短；oranje 的 nj 像“尼亚”快速连读；paars 的 aa 长。",
+      "note_en": "Colours: groen (oe = 'oo'), zwart (zw together), wit (short i), oranje (nj as in Spanish ñ), paars (long aa).",
+      "word_ids": ["w_kleur", "w_groen", "w_zwart", "w_wit", "w_oranje", "w_paars", "w_rood", "w_geel", "w_blauw"]
+    },
+    {
+      "grapheme": "-en",
+      "note_zh": "人和身体：复数大多加 -en，拼写跟着发音变：短元音后面的辅音要双写（man → mannen），长元音在开音节里只写一个字母（been → benen），s 常变 z（neus → neuzen）。kind 的复数特别：kinderen。",
+      "note_en": "Plurals mostly add -en: man → mannen (short vowel, double consonant), been → benen (long vowel, one letter), kind → kinderen.",
+      "word_ids": ["w_mens", "w_kind", "w_hand", "w_been", "w_hoofd"]
+    }
+  ],
+  "word_ids": [
+    "w_uur",
+    "w_half",
+    "w_kwart",
+    "w_hoe_laat",
+    "w_kleur",
+    "w_groen",
+    "w_zwart",
+    "w_wit",
+    "w_oranje",
+    "w_paars",
+    "w_rood",
+    "w_geel",
+    "w_blauw",
+    "w_mens",
+    "w_kind",
+    "w_hand",
+    "w_been",
+    "w_hoofd",
+    "w_doen",
+    "w_pijn"
+  ],
+  "sentences": [
+    {
+      "id": "P10-S01",
+      "nl": "Hoe laat is het?",
+      "zh": "几点了？",
+      "en": "What time is it?"
+    },
+    {
+      "id": "P10-S02",
+      "nl": "Het is half vier.",
+      "zh": "三点半。",
+      "en": "It is half past three."
+    },
+    {
+      "id": "P10-S03",
+      "nl": "Het is kwart over twee.",
+      "zh": "两点一刻。",
+      "en": "It is a quarter past two."
+    },
+    {
+      "id": "P10-S04",
+      "nl": "Welke kleur is het?",
+      "zh": "是什么颜色的？",
+      "en": "What colour is it?"
+    },
+    {
+      "id": "P10-S05",
+      "nl": "Het is groen.",
+      "zh": "是绿色的。",
+      "en": "It is green."
+    },
+    {
+      "id": "P10-S06",
+      "nl": "Mijn fiets is zwart.",
+      "zh": "我的自行车是黑色的。",
+      "en": "My bike is black."
+    },
+    {
+      "id": "P10-S07",
+      "nl": "Ik heb twee kinderen.",
+      "zh": "我有两个孩子。",
+      "en": "I have two children."
+    },
+    {
+      "id": "P10-S08",
+      "nl": "Mijn hoofd doet pijn.",
+      "zh": "我头疼。",
+      "en": "My head hurts."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P10-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P10-E1-1",
+          "word_id": "w_groen",
+          "options": ["graan", "groen", "gruin"],
+          "answer": "groen"
+        },
+        {
+          "id": "P10-E1-2",
+          "word_id": "w_zwart",
+          "options": ["swart", "wart", "zwart"],
+          "answer": "zwart"
+        },
+        {
+          "id": "P10-E1-3",
+          "word_id": "w_half",
+          "options": ["alf", "half", "hals"],
+          "answer": "half"
+        },
+        {
+          "id": "P10-E1-4",
+          "word_id": "w_mens",
+          "options": ["mensen", "mens", "mes"],
+          "answer": "mens"
+        }
+      ]
+    },
+    {
+      "id": "P10-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P10-E2-1",
+          "word_id": "w_hand",
+          "options": ["w_hand", "w_hoofd", "w_half"]
+        },
+        {
+          "id": "P10-E2-2",
+          "word_id": "w_kleur",
+          "options": ["w_kleur", "w_kwart", "w_kind"]
+        },
+        {
+          "id": "P10-E2-3",
+          "word_id": "w_wit",
+          "options": ["w_wit", "w_wiel", "w_water"]
+        }
+      ]
+    },
+    {
+      "id": "P10-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P10-E3-1",
+          "sentence_id": "P10-S02"
+        },
+        {
+          "id": "P10-E3-2",
+          "sentence_id": "P10-S07"
+        }
+      ]
+    },
+    {
+      "id": "P10-E4",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "P10-E4-1",
+          "question": {
+            "nl": "Hoe laat is het?",
+            "zh": "几点了？",
+            "en": "What time is it?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Het is drie uur.",
+              "zh": "三点。",
+              "en": "It is three o'clock."
+            },
+            {
+              "nl": "Het is half vier.",
+              "zh": "三点半。",
+              "en": "It is half past three."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

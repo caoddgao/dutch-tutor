@@ -1,0 +1,270 @@
+{
+  "id": "NN14",
+  "nn_lesson": 14,
+  "kind": "reading",
+  "title": {
+    "nl": "Naar de markt",
+    "zh": "去市场",
+    "en": "To the market"
+  },
+  "pdf_pages": [80, 81],
+  "text_type": "text",
+  "audio_full": "audio/NN14/full.mp3",
+  "sentences": [
+    {
+      "id": "NN14-S00",
+      "role": "title",
+      "nl": "Les 14. Naar de markt.",
+      "zh": "第 14 课。去市场。",
+      "en": "Lesson 14. To the market.",
+      "speaker": null,
+      "audio": "audio/NN14/S00.mp3",
+      "start": 0.6,
+      "end": 3.2,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": []
+    },
+    {
+      "id": "NN14-S01",
+      "role": "line",
+      "nl": "Het is zaterdag.",
+      "zh": "今天是星期六。",
+      "en": "It is Saturday.",
+      "speaker": null,
+      "audio": "audio/NN14/S01.mp3",
+      "start": 3.65,
+      "end": 5.49,
+      "duration": 1.84,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Het",
+          "word_id": "w_het"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "zaterdag",
+          "word_id": "w_zaterdag"
+        }
+      ]
+    },
+    {
+      "id": "NN14-S02",
+      "role": "line",
+      "nl": "Ik ga naar de markt.",
+      "zh": "我去市场。",
+      "en": "I am going to the market.",
+      "speaker": null,
+      "audio": "audio/NN14/S02.mp3",
+      "start": 5.94,
+      "end": 8.54,
+      "duration": 2.6,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "ga",
+          "word_id": "w_gaan"
+        },
+        {
+          "t": "naar",
+          "word_id": "w_naar"
+        },
+        {
+          "t": "de",
+          "word_id": "w_de"
+        },
+        {
+          "t": "markt",
+          "word_id": "w_markt"
+        }
+      ]
+    },
+    {
+      "id": "NN14-S03",
+      "role": "line",
+      "nl": "Hij gaat ook mee.",
+      "zh": "他也一起去。",
+      "en": "He is coming along too.",
+      "speaker": null,
+      "audio": "audio/NN14/S03.mp3",
+      "start": 8.99,
+      "end": 11.21,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Hij",
+          "word_id": "w_hij"
+        },
+        {
+          "t": "gaat",
+          "word_id": "w_gaan"
+        },
+        {
+          "t": "ook",
+          "word_id": "w_ook"
+        },
+        {
+          "t": "mee",
+          "word_id": "w_mee"
+        }
+      ]
+    },
+    {
+      "id": "NN14-S04",
+      "role": "line",
+      "nl": "De markt is groot.",
+      "zh": "市场很大。",
+      "en": "The market is big.",
+      "speaker": null,
+      "audio": "audio/NN14/S04.mp3",
+      "start": 11.66,
+      "end": 13.88,
+      "duration": 2.22,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "De",
+          "word_id": "w_de"
+        },
+        {
+          "t": "markt",
+          "word_id": "w_markt"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "groot",
+          "word_id": "w_groot"
+        }
+      ]
+    },
+    {
+      "id": "NN14-S05",
+      "role": "line",
+      "nl": "Ik koop kaas.",
+      "zh": "我买奶酪。",
+      "en": "I buy cheese.",
+      "speaker": null,
+      "audio": "audio/NN14/S05.mp3",
+      "start": 14.33,
+      "end": 16.17,
+      "duration": 1.84,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Ik",
+          "word_id": "w_ik"
+        },
+        {
+          "t": "koop",
+          "word_id": "w_kopen"
+        },
+        {
+          "t": "kaas",
+          "word_id": "w_kaas"
+        }
+      ]
+    },
+    {
+      "id": "NN14-S06",
+      "role": "line",
+      "nl": "Het is leuk op de markt.",
+      "zh": "市场上很好玩。",
+      "en": "It is fun at the market.",
+      "speaker": null,
+      "audio": "audio/NN14/S06.mp3",
+      "start": 16.62,
+      "end": 19.6,
+      "duration": 2.98,
+      "align_score": 0.97,
+      "flags": [],
+      "tokens": [
+        {
+          "t": "Het",
+          "word_id": "w_het"
+        },
+        {
+          "t": "is",
+          "word_id": "w_zijn"
+        },
+        {
+          "t": "leuk",
+          "word_id": "w_leuk"
+        },
+        {
+          "t": "op",
+          "word_id": "w_op"
+        },
+        {
+          "t": "de",
+          "word_id": "w_de"
+        },
+        {
+          "t": "markt",
+          "word_id": "w_markt"
+        }
+      ]
+    }
+  ],
+  "word_ids": ["w_zaterdag", "w_markt", "w_gaan", "w_mee", "w_op", "w_groot", "w_kopen", "w_kaas", "w_leuk"],
+  "exercises": [
+    {
+      "id": "NN14-E1",
+      "nn_number": 1,
+      "type": "true_false",
+      "instruction": {
+        "nl": "Waar of niet waar?",
+        "zh": "对还是不对？",
+        "en": "True or false?"
+      },
+      "items": [
+        {
+          "id": "NN14-E1-1",
+          "prompt": "Het is zaterdag.",
+          "options": ["waar", "niet waar"],
+          "answer": "waar",
+          "zh": "今天是星期六。",
+          "en": "It is Saturday."
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    },
+    {
+      "id": "NN14-E2",
+      "nn_number": 2,
+      "type": "other",
+      "instruction": {
+        "nl": "Kijk naar de foto.",
+        "zh": "看照片。",
+        "en": "Look at the photo."
+      },
+      "items": [
+        {
+          "id": "NN14-E2-1",
+          "raw": "Kijk naar de foto."
+        }
+      ],
+      "skip": true,
+      "skip_reason": "needs_image"
+    }
+  ],
+  "extras": [],
+  "notes": "Fixture: self-written reading text."
+}

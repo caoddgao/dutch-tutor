@@ -16,7 +16,7 @@ import { reviewSeeds } from "./reviewSeeds";
 import { SentenceStep } from "./SentenceStep";
 import { SidePanel } from "./SidePanel";
 import { SoundsStep } from "./SoundsStep";
-import { STEP, stepsFor, type StepCode } from "./steps";
+import { STEP, stepsFor, wordCards, type StepCode } from "./steps";
 import { TipsStep } from "./TipsStep";
 import { WordsStep } from "./WordsStep";
 import "./LessonPage.css";
@@ -112,6 +112,8 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
   const groups: ExerciseGroup[] = useMemo(() => buildExercises(lesson, dict, bundle.tts), [lesson, dict, bundle.tts]);
   const questionCount = groups.reduce((n, g) => n + g.questions.length, 0);
   const steps = useMemo(() => stepsFor(lesson, questionCount > 0), [lesson, questionCount]);
+  const cards = useMemo(() => wordCards(lesson), [lesson]);
+  const readingCount = lesson.reading?.sentences.length ?? 0;
   const [score, setScore] = useState<Score | null>(null);
   const [pos, setPos] = useState<{ step: StepCode; index: number } | null>(null);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
@@ -136,8 +138,14 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
 
   const countFor = useCallback(
     (code: StepCode) =>
-      code === STEP.sentences ? lesson.sentences.length : code === STEP.words ? lesson.words.length : 1,
-    [lesson],
+      code === STEP.sentences
+        ? lesson.sentences.length
+        : code === STEP.words
+          ? cards.length
+          : code === STEP.reading
+            ? 1 + readingCount
+            : 1,
+    [lesson, cards, readingCount],
   );
 
   const go = useCallback(
@@ -160,7 +168,7 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
   };
   const next = () => {
     if (!pos) return;
-    if (pos.step === STEP.sentences) {
+    if (pos.step === STEP.sentences || (pos.step === STEP.reading && pos.index > 0)) {
       db()
         .then((d) => markStudyDay(d, new Date(), { sentences: 1 }))
         .catch(() => undefined);
@@ -195,7 +203,7 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
   const onKeyNow = (e: KeyboardEvent) => {
     const target = e.target as HTMLElement | null;
     if (target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) return;
-    if (pos?.step !== STEP.sentences && pos?.step !== STEP.words) return;
+    if (pos?.step !== STEP.sentences && pos?.step !== STEP.words && pos?.step !== STEP.reading) return;
     if (e.key === "ArrowRight") next();
     else if (e.key === "ArrowLeft") prev();
     else if (e.key === " " && target?.tagName !== "BUTTON") {
@@ -230,7 +238,11 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
   if (!pos) return <p className="muted lesson-loading">正在打开…</p>;
 
   const sentence = pos.step === STEP.sentences ? lesson.sentences[pos.index] : undefined;
-  const word = pos.step === STEP.words ? lesson.words[pos.index] : undefined;
+  const word = pos.step === STEP.words ? cards[pos.index] : undefined;
+  // reading text: index 0 is listening to the whole text, 1… its sentences
+  const reading = pos.step === STEP.reading ? lesson.reading : undefined;
+  const readingListen = reading && pos.index === 0 ? reading : undefined;
+  const readingSentence = reading && pos.index > 0 ? reading.sentences[pos.index - 1] : undefined;
   const panelWord = selectedWord
     ? (lesson.words.find((w) => w.id === selectedWord) ?? dict.words.get(selectedWord) ?? null)
     : null;
@@ -262,7 +274,11 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
     ) : sentence ? (
       <PlayerBar audio={sentence.audio} nav={counter(pos.index + 1, lesson.sentences.length)} />
     ) : word ? (
-      <PlayerBar audio={word.audio} nav={counter(pos.index + 1, lesson.words.length)} />
+      <PlayerBar audio={word.audio} nav={counter(pos.index + 1, cards.length)} />
+    ) : readingListen?.fullAudio ? (
+      <PlayerBar audio={readingListen.fullAudio} canRecord={false} />
+    ) : readingSentence ? (
+      <PlayerBar audio={readingSentence.audio} nav={counter(pos.index, readingCount)} />
     ) : null;
 
   return (
@@ -307,14 +323,25 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
           {pos.step === STEP.intro && lesson.kind === "phonics" && <SoundsStep lesson={lesson} />}
           {sentence && (
             <SentenceStep
-              lesson={lesson}
               sentence={sentence}
               index={pos.index}
+              total={lesson.sentences.length}
               selectedWord={selectedWord}
               onWord={lookupWord}
             />
           )}
-          {word && <WordsStep lesson={lesson} word={word} index={pos.index} />}
+          {word && <WordsStep lesson={lesson} word={word} index={pos.index} total={cards.length} />}
+          {readingListen && <ListenStep lesson={readingListen} reading />}
+          {readingSentence && (
+            <SentenceStep
+              sentence={readingSentence}
+              index={pos.index - 1}
+              total={readingCount}
+              label="认读小文"
+              selectedWord={selectedWord}
+              onWord={lookupWord}
+            />
+          )}
           {pos.step === STEP.tips && <TipsStep lesson={lesson} />}
           {pos.step === STEP.exercises && (
             <ExercisesStep
@@ -347,6 +374,14 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
             <div className="lesson-main-footer">
               <button type="button" className="btn btn-accent" onClick={nextStep}>
                 下一步：{steps[stepIdx + 1]?.label}
+                <ChevronRight size={16} aria-hidden />
+              </button>
+            </div>
+          )}
+          {readingListen && (
+            <div className="lesson-main-footer">
+              <button type="button" className="btn btn-accent" onClick={() => go(STEP.reading, 1)}>
+                下一步：逐句跟读
                 <ChevronRight size={16} aria-hidden />
               </button>
             </div>

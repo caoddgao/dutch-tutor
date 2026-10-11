@@ -1,0 +1,158 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P04",
+  "kind": "phonics",
+  "title": {
+    "nl": "oo · uu",
+    "zh": "长元音 oo、uu",
+    "en": "Long vowels oo, uu"
+  },
+  "nn_lessons": ["NN08"],
+  "sounds": [
+    {
+      "grapheme": "oo",
+      "note_zh": "长 oo：嘴唇圆，把“哦”拉长，结尾嘴唇再收一点，略带 u 的滑音，有点像汉语“欧”。写两个 o 就读长音。对比：zon（太阳）↔ zoon（儿子）。",
+      "note_en": "Long oo: rounded lips, a long 'oh' with a slight glide towards 'oo'. Compare zon (sun) and zoon (son).",
+      "word_ids": ["w_noot", "w_rood", "w_zoon"]
+    },
+    {
+      "grapheme": "uu",
+      "note_zh": "长 uu：就是汉语拼音的 ü（“鱼”的韵母）拉长：嘴唇撮圆，舌头的位置和发“衣”一样。对比短 u：bus 短而松，vuur、duur 长而紧。",
+      "note_en": "Long uu: Mandarin ü (as in 鱼 yú), held long. Compare the short, relaxed u in bus.",
+      "word_ids": ["w_vuur", "w_uur", "w_duur"]
+    },
+    {
+      "grapheme": "aa · ee",
+      "note_zh": "复习长 aa、ee：jaar 的 aa 是拉长的“啊”；zeep、geel 的 ee 是拉长的“诶”，结尾略带 i。拼写规律：音节以元音结尾时，一个字母也读长音，所以复数写 jaren、zepen。",
+      "note_en": "Review long aa and ee. In an open syllable one letter is long too: jaren, zepen.",
+      "word_ids": ["w_jaar", "w_zeep", "w_geel"]
+    }
+  ],
+  "word_ids": ["w_noot", "w_rood", "w_zoon", "w_vuur", "w_uur", "w_duur", "w_jaar", "w_zeep", "w_geel", "w_wonen"],
+  "sentences": [
+    {
+      "id": "P04-S01",
+      "nl": "Het is twee uur.",
+      "zh": "现在两点。",
+      "en": "It is two o'clock."
+    },
+    {
+      "id": "P04-S02",
+      "nl": "Ik woon hier al een jaar.",
+      "zh": "我在这儿住了一年了。",
+      "en": "I have lived here for a year."
+    },
+    {
+      "id": "P04-S03",
+      "nl": "Rood of geel?",
+      "zh": "红的还是黄的？",
+      "en": "Red or yellow?"
+    },
+    {
+      "id": "P04-S04",
+      "nl": "Geel, graag.",
+      "zh": "请给我黄的。",
+      "en": "Yellow, please."
+    },
+    {
+      "id": "P04-S05",
+      "nl": "Is het duur?",
+      "zh": "贵吗？",
+      "en": "Is it expensive?"
+    },
+    {
+      "id": "P04-S06",
+      "nl": "Nee, het is niet duur.",
+      "zh": "不贵。",
+      "en": "No, it is not expensive."
+    },
+    {
+      "id": "P04-S07",
+      "nl": "Mijn zoon is twee jaar.",
+      "zh": "我儿子两岁。",
+      "en": "My son is two years old."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P04-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P04-E1-1",
+          "word_id": "w_rood",
+          "options": ["raad", "reed", "rood"],
+          "answer": "rood"
+        },
+        {
+          "id": "P04-E1-2",
+          "word_id": "w_uur",
+          "options": ["eer", "oor", "uur"],
+          "answer": "uur"
+        },
+        {
+          "id": "P04-E1-3",
+          "word_id": "w_zoon",
+          "options": ["zon", "zoon"],
+          "answer": "zoon"
+        },
+        {
+          "id": "P04-E1-4",
+          "word_id": "w_vuur",
+          "options": ["vaar", "voor", "vuur"],
+          "answer": "vuur"
+        }
+      ]
+    },
+    {
+      "id": "P04-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P04-E2-1",
+          "word_id": "w_noot",
+          "options": ["w_noot", "w_pot", "w_naam"]
+        },
+        {
+          "id": "P04-E2-2",
+          "word_id": "w_duur",
+          "options": ["w_duur", "w_bus", "w_taal"]
+        },
+        {
+          "id": "P04-E2-3",
+          "word_id": "w_geel",
+          "options": ["w_geel", "w_bel", "w_kip"]
+        }
+      ]
+    },
+    {
+      "id": "P04-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P04-E3-1",
+          "sentence_id": "P04-S02"
+        },
+        {
+          "id": "P04-E3-2",
+          "sentence_id": "P04-S06"
+        }
+      ]
+    }
+  ]
+}

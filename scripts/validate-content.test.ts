@@ -47,7 +47,7 @@ describe("content check on the real repo content and fixtures", () => {
   it("fixture content + fixture pack pass, and the report has per-lesson stats", () => {
     const report = runValidation(FIXTURE_CONTENT, FIXTURE_PACK);
     expect(errors(report.issues)).toEqual([]);
-    expect(report.lessons.map((l) => l.id)).toEqual(["P01", "NN21", "NN22"]);
+    expect(report.lessons.map((l) => l.id)).toEqual(["P01", "P02", "NN21", "NN22"]);
     const nn21 = report.lessons.find((l) => l.id === "NN21")!;
     expect(nn21.overFiveSeconds).toEqual(["NN21-S06"]);
     // rule 5 counts words that are not new, not taught earlier and not function words
@@ -59,8 +59,13 @@ describe("fixture pack covers the whole pack format", () => {
   const { pack } = fixture();
   const lessons = Object.values(pack.lessons);
 
-  it("has a dialogue, a text and a phonics lesson", () => {
-    expect(lessons.map((l) => l.text_type ?? l.kind).sort()).toEqual(["dialogue", "phonics", "text"]);
+  it("has a dialogue, a text, a phonics lesson and a reading text", () => {
+    expect(lessons.map((l) => (l.kind === "reading" ? "reading" : (l.text_type ?? l.kind))).sort()).toEqual([
+      "dialogue",
+      "phonics",
+      "reading",
+      "text",
+    ]);
   });
 
   it("uses every exercise type, example / extra marks and skips", () => {
@@ -286,6 +291,27 @@ describe("rules", () => {
     ]);
     // an index without line_count falls back to sentence_count
     expect(split(run(() => delete nn21.line_count))).toHaveLength(1);
+  });
+
+  it("reading texts: a reading lesson of the pack; its sentences and words count for rules 5 and 7", () => {
+    const report = check(() => {});
+    const p02 = report.lessons.find((l) => l.id === "P02")!;
+    // the six text sentences of NN14 (title not counted); ik is neither taught nor a fixture function word
+    expect(p02.sentences).toBe(6);
+    expect(p02.unknownWords).toContain("ik");
+    expect(p02.unknownWords).not.toContain("markt");
+    expect(has(check((f) => (f.content.lessons.P02.reading = "NN21")).issues, 1, "NN21 不是认读小文")).toBe(true);
+    expect(
+      check((f) => (f.content.lessons.P02.reading = "NN19")).issues.some(
+        (i) => i.level === "warn" && i.msg === "资料包里没有认读小文 NN19",
+      ),
+    ).toBe(true);
+    expect(has(check((f) => (f.content.lessons.P01.reading = "NN14")).issues, 1, "已经用在 P01")).toBe(true);
+    // without a pack the reference is checked against nn-index.json
+    const f = fixture();
+    f.content.lessons.P02.reading = "NN05";
+    const r = validateContent({ content: f.content, nnIndex: f.pack.index, ttsFileExists: () => true });
+    expect(has(r.issues, 1, "NN05 不是认读小文（kind 是 phonics）")).toBe(true);
   });
 
   it("rejects an unknown pack format version", () => {

@@ -1,0 +1,205 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P05",
+  "kind": "phonics",
+  "title": {
+    "nl": "oe · ie · ui",
+    "zh": "oe、ie、ui",
+    "en": "oe, ie, ui"
+  },
+  "nn_lessons": ["NN07"],
+  "reading": "NN14",
+  "sounds": [
+    {
+      "grapheme": "oe",
+      "note_zh": "oe：读汉语的“乌”（u），嘴唇撮圆往前。两个字母读一个音，不是“哦-诶”：voet、doel、boek、goed。",
+      "note_en": "oe: Mandarin 'u' (乌), lips rounded and pushed forward — one sound, not two.",
+      "word_ids": ["w_voet", "w_doel", "w_boek", "w_goed"]
+    },
+    {
+      "grapheme": "ie",
+      "note_zh": "ie：读汉语的“衣”（i），比 P01 的短 i（kip）更紧、更清楚。ie 一般不拉长，只在 r 前面拉长（hier）：riem、wiel、fiets。",
+      "note_en": "ie: Mandarin 'i' (衣), tenser than the short i in kip; long only before r (hier).",
+      "word_ids": ["w_riem", "w_wiel", "w_fiets", "w_hier"]
+    },
+    {
+      "grapheme": "ui",
+      "note_zh": "ui：荷兰语特有的音，不能按拼音读成“威”。先发圆唇的“呃”（嘴张开一点、嘴唇拢圆），再滑向 ü（鱼）。练法：说“哎”时把嘴唇拢圆：huis、thuis、duim。",
+      "note_en": "ui: a typically Dutch diphthong — start with a rounded 'uh' and glide to ü. Not like pinyin 'ui' (wei).",
+      "word_ids": ["w_huis", "w_thuis", "w_duim"]
+    }
+  ],
+  "word_ids": [
+    "w_voet",
+    "w_doel",
+    "w_boek",
+    "w_goed",
+    "w_riem",
+    "w_wiel",
+    "w_fiets",
+    "w_hier",
+    "w_huis",
+    "w_thuis",
+    "w_duim",
+    "w_goedemorgen",
+    "w_hoe_gaat_het",
+    "w_tot_ziens"
+  ],
+  "sentences": [
+    {
+      "id": "P05-S01",
+      "nl": "Goedemorgen!",
+      "zh": "早上好！",
+      "en": "Good morning!"
+    },
+    {
+      "id": "P05-S02",
+      "nl": "Hoe gaat het?",
+      "zh": "你好吗？",
+      "en": "How are you?"
+    },
+    {
+      "id": "P05-S03",
+      "nl": "Goed, dank je. En met jou?",
+      "zh": "很好，谢谢。你呢？",
+      "en": "Fine, thanks. And you?"
+    },
+    {
+      "id": "P05-S04",
+      "nl": "Ik ben thuis.",
+      "zh": "我在家。",
+      "en": "I am at home."
+    },
+    {
+      "id": "P05-S05",
+      "nl": "Waar is mijn fiets?",
+      "zh": "我的自行车在哪儿？",
+      "en": "Where is my bike?"
+    },
+    {
+      "id": "P05-S06",
+      "nl": "Dat is goed.",
+      "zh": "好的。",
+      "en": "That is fine."
+    },
+    {
+      "id": "P05-S07",
+      "nl": "Tot ziens!",
+      "zh": "再见！",
+      "en": "Goodbye!"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P05-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P05-E1-1",
+          "word_id": "w_huis",
+          "options": ["hoes", "huis", "hies"],
+          "answer": "huis"
+        },
+        {
+          "id": "P05-E1-2",
+          "word_id": "w_riem",
+          "options": ["riem", "room", "ruim"],
+          "answer": "riem"
+        },
+        {
+          "id": "P05-E1-3",
+          "word_id": "w_doel",
+          "options": ["deel", "doel", "duel"],
+          "answer": "doel"
+        },
+        {
+          "id": "P05-E1-4",
+          "word_id": "w_wiel",
+          "options": ["wel", "wiel", "wil"],
+          "answer": "wiel"
+        }
+      ]
+    },
+    {
+      "id": "P05-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P05-E2-1",
+          "word_id": "w_voet",
+          "options": ["w_voet", "w_vuur", "w_vol"]
+        },
+        {
+          "id": "P05-E2-2",
+          "word_id": "w_duim",
+          "options": ["w_duim", "w_doel", "w_druk"]
+        },
+        {
+          "id": "P05-E2-3",
+          "word_id": "w_fiets",
+          "options": ["w_fiets", "w_pot", "w_vuur"]
+        }
+      ]
+    },
+    {
+      "id": "P05-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P05-E3-1",
+          "sentence_id": "P05-S03"
+        },
+        {
+          "id": "P05-E3-2",
+          "sentence_id": "P05-S05"
+        }
+      ]
+    },
+    {
+      "id": "P05-E4",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "P05-E4-1",
+          "question": {
+            "nl": "Hoe gaat het?",
+            "zh": "你好吗？",
+            "en": "How are you?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Goed, dank je.",
+              "zh": "很好，谢谢。",
+              "en": "Fine, thanks."
+            },
+            {
+              "nl": "Goed, dank je. En met jou?",
+              "zh": "很好，谢谢。你呢？",
+              "en": "Fine, thanks. And you?"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

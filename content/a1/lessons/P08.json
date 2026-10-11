@@ -1,0 +1,178 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P08",
+  "kind": "phonics",
+  "title": {
+    "nl": "st · sp · br · tr · pl",
+    "zh": "辅音连读",
+    "en": "Consonant clusters"
+  },
+  "nn_lessons": ["NN11", "NN12", "NN13"],
+  "reading": "NN17",
+  "sounds": [
+    {
+      "grapheme": "st · sp",
+      "note_zh": "词首的 st、sp：两个辅音紧挨着读，中间不加元音。不要读成“斯-他普”，要一口气读出 stap。spelen、spreken、stuur 也一样。",
+      "note_en": "st, sp at the start: no vowel between the consonants — 'stap', not 'sutap'.",
+      "word_ids": ["w_stap", "w_spelen", "w_stuur", "w_spreken"]
+    },
+    {
+      "grapheme": "br · tr · pl · dr",
+      "note_zh": "br、tr、pl、dr：r、l 紧跟在前面的辅音后面，一起读：broer、trein、plein、drinken。荷兰语的 p、t、k 不送气，比汉语的 p、t、k 轻，更接近汉语的 b、d、g。",
+      "note_en": "br, tr, pl, dr are said together. Dutch p, t, k are not aspirated — closer to Mandarin b, d, g.",
+      "word_ids": ["w_broer", "w_trein", "w_plein", "w_drinken", "w_trouwen"]
+    },
+    {
+      "grapheme": "-lp · -ns · -d",
+      "note_zh": "词尾的辅音要读清楚、后面不加元音：help 不读成“哈尔普”，les、sap、pil 干脆收住。词尾的 d 读成 t：bloed 听起来是 bloet，goed 也一样。",
+      "note_en": "Final consonants are clear, with no vowel after them. A final d sounds like t: bloed sounds like 'bloet'.",
+      "word_ids": ["w_helpen", "w_dansen", "w_bloed", "w_les", "w_sap", "w_pil"]
+    }
+  ],
+  "word_ids": [
+    "w_stap",
+    "w_spelen",
+    "w_stuur",
+    "w_spreken",
+    "w_broer",
+    "w_trein",
+    "w_plein",
+    "w_drinken",
+    "w_trouwen",
+    "w_helpen",
+    "w_dansen",
+    "w_bloed",
+    "w_les",
+    "w_sap",
+    "w_pil",
+    "w_kunnen",
+    "w_stoppen",
+    "w_beetje"
+  ],
+  "sentences": [
+    {
+      "id": "P08-S01",
+      "nl": "Kunt u mij helpen?",
+      "zh": "您能帮我一下吗？",
+      "en": "Can you help me?"
+    },
+    {
+      "id": "P08-S02",
+      "nl": "Ik spreek een beetje Nederlands.",
+      "zh": "我会说一点荷兰语。",
+      "en": "I speak a little Dutch."
+    },
+    {
+      "id": "P08-S03",
+      "nl": "Stop, het is rood!",
+      "zh": "停下，是红灯！",
+      "en": "Stop, it's red!"
+    },
+    {
+      "id": "P08-S04",
+      "nl": "De les is om twee uur.",
+      "zh": "课在两点。",
+      "en": "The lesson is at two o'clock."
+    },
+    {
+      "id": "P08-S05",
+      "nl": "Mijn broer woont hier.",
+      "zh": "我哥哥住在这儿。",
+      "en": "My brother lives here."
+    },
+    {
+      "id": "P08-S06",
+      "nl": "Ik drink een glas sap.",
+      "zh": "我喝一杯果汁。",
+      "en": "I drink a glass of juice."
+    },
+    {
+      "id": "P08-S07",
+      "nl": "Ik ga graag dansen.",
+      "zh": "我喜欢去跳舞。",
+      "en": "I like to go dancing."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P08-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P08-E1-1",
+          "word_id": "w_stap",
+          "options": ["sap", "stap", "tap"],
+          "answer": "stap"
+        },
+        {
+          "id": "P08-E1-2",
+          "word_id": "w_broer",
+          "options": ["boer", "broer", "roer"],
+          "answer": "broer"
+        },
+        {
+          "id": "P08-E1-3",
+          "word_id": "w_plein",
+          "options": ["klein", "lein", "plein"],
+          "answer": "plein"
+        },
+        {
+          "id": "P08-E1-4",
+          "word_id": "w_bloed",
+          "options": ["bloed", "bloem", "boel"],
+          "answer": "bloed"
+        }
+      ]
+    },
+    {
+      "id": "P08-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P08-E2-1",
+          "word_id": "w_trein",
+          "options": ["w_trein", "w_tijd", "w_tas"]
+        },
+        {
+          "id": "P08-E2-2",
+          "word_id": "w_spelen",
+          "options": ["w_spelen", "w_stap", "w_sok"]
+        },
+        {
+          "id": "P08-E2-3",
+          "word_id": "w_drinken",
+          "options": ["w_drinken", "w_dansen", "w_dag"]
+        }
+      ]
+    },
+    {
+      "id": "P08-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P08-E3-1",
+          "sentence_id": "P08-S01"
+        },
+        {
+          "id": "P08-E3-2",
+          "sentence_id": "P08-S06"
+        }
+      ]
+    }
+  ]
+}

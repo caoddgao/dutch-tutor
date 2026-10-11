@@ -3,14 +3,24 @@ import type { RtLesson, RtWord } from "../content/model";
 import { WordEntry } from "./WordEntry";
 
 /** Step ③: one word card per screen — the entry, the lesson's sentences that use it, its sound. */
-export function WordsStep({ lesson, word, index }: { lesson: RtLesson; word: RtWord; index: number }) {
+export function WordsStep({
+  lesson,
+  word,
+  index,
+  total,
+}: {
+  lesson: RtLesson;
+  word: RtWord;
+  index: number;
+  total: number;
+}) {
   const examples = lesson.sentences.filter((s) => s.tokens.some((t) => t.word_id === word.id));
   const isNew = lesson.newWordIds.includes(word.id);
   return (
     <div className="words-step">
       <div className="sentence-meta">
         <span className="sentence-count">
-          第 {index + 1} / {lesson.words.length} 个词
+          第 {index + 1} / {total} 个词
         </span>
         {isNew && <span className="tag tag-recommended">新词</span>}
       </div>

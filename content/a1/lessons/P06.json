@@ -1,0 +1,172 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P06",
+  "kind": "phonics",
+  "title": {
+    "nl": "ij · ei · eu · ou · au",
+    "zh": "ij/ei、eu、ou/au",
+    "en": "ij/ei, eu, ou/au"
+  },
+  "nn_lessons": ["NN09", "NN10"],
+  "reading": "NN15",
+  "sounds": [
+    {
+      "grapheme": "ij · ei",
+      "note_zh": "ij 和 ei 读音一样，像拼音的 ei（“黑”hēi 的韵母），开口稍大一点，介于 ai 和 ei 之间。只是写法不同，要按词记：vijf、tijd 写 ij，geit 写 ei。",
+      "note_en": "ij and ei sound the same, close to pinyin 'ei' opened a little wider. Which spelling a word uses has to be learned.",
+      "word_ids": ["w_vijf", "w_tijd", "w_geit"]
+    },
+    {
+      "grapheme": "eu",
+      "note_zh": "eu：舌头摆成发“诶”的样子，同时把嘴唇拢圆，口形不滑动。汉语里没有这个音，可以想成“圆唇的诶”：neus、leuk、deur、euro。",
+      "note_en": "eu: tongue as for 'ay', lips rounded at the same time, no glide (like German ö).",
+      "word_ids": ["w_neus", "w_leuk", "w_deur", "w_euro"]
+    },
+    {
+      "grapheme": "ou · au",
+      "note_zh": "ou 和 au 读音一样，像汉语“奥”（ao），但开头嘴张得小一点，结尾嘴唇收圆。词尾的 w 不单独发音：vrouw、koud 写 ou，blauw 写 au。",
+      "note_en": "ou and au sound the same, like Mandarin 'ao' (奥) starting a little more closed; a final w is silent.",
+      "word_ids": ["w_vrouw", "w_koud", "w_blauw"]
+    }
+  ],
+  "word_ids": [
+    "w_vijf",
+    "w_tijd",
+    "w_geit",
+    "w_neus",
+    "w_leuk",
+    "w_deur",
+    "w_euro",
+    "w_vrouw",
+    "w_koud",
+    "w_blauw",
+    "w_hebben",
+    "w_kosten"
+  ],
+  "sentences": [
+    {
+      "id": "P06-S01",
+      "nl": "Dat is leuk!",
+      "zh": "真不错！",
+      "en": "That's nice!"
+    },
+    {
+      "id": "P06-S02",
+      "nl": "Het is koud.",
+      "zh": "天很冷。",
+      "en": "It is cold."
+    },
+    {
+      "id": "P06-S03",
+      "nl": "Ik heb geen tijd.",
+      "zh": "我没时间。",
+      "en": "I have no time."
+    },
+    {
+      "id": "P06-S04",
+      "nl": "Mijn vrouw is thuis.",
+      "zh": "我妻子在家。",
+      "en": "My wife is at home."
+    },
+    {
+      "id": "P06-S05",
+      "nl": "De deur is blauw.",
+      "zh": "门是蓝色的。",
+      "en": "The door is blue."
+    },
+    {
+      "id": "P06-S06",
+      "nl": "Wat kost het?",
+      "zh": "多少钱？",
+      "en": "How much is it?"
+    },
+    {
+      "id": "P06-S07",
+      "nl": "Vijf euro.",
+      "zh": "五欧元。",
+      "en": "Five euros."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P06-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P06-E1-1",
+          "word_id": "w_koud",
+          "options": ["kijd", "keud", "koud"],
+          "answer": "koud"
+        },
+        {
+          "id": "P06-E1-2",
+          "word_id": "w_neus",
+          "options": ["nijs", "neus", "nous"],
+          "answer": "neus"
+        },
+        {
+          "id": "P06-E1-3",
+          "word_id": "w_tijd",
+          "options": ["tijd", "teud", "toud"],
+          "answer": "tijd"
+        },
+        {
+          "id": "P06-E1-4",
+          "word_id": "w_deur",
+          "options": ["deur", "dier", "door"],
+          "answer": "deur"
+        }
+      ]
+    },
+    {
+      "id": "P06-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P06-E2-1",
+          "word_id": "w_geit",
+          "options": ["w_geit", "w_goed", "w_geel"]
+        },
+        {
+          "id": "P06-E2-2",
+          "word_id": "w_vrouw",
+          "options": ["w_vrouw", "w_vuur", "w_voet"]
+        },
+        {
+          "id": "P06-E2-3",
+          "word_id": "w_neus",
+          "options": ["w_neus", "w_noot", "w_naam"]
+        }
+      ]
+    },
+    {
+      "id": "P06-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P06-E3-1",
+          "sentence_id": "P06-S03"
+        },
+        {
+          "id": "P06-E3-2",
+          "sentence_id": "P06-S05"
+        }
+      ]
+    }
+  ]
+}
