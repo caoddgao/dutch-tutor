@@ -3,9 +3,7 @@
   "id": "NN37",
   "kind": "main",
   "pack_lesson": "NN37",
-  "tip_links": [
-    "G17"
-  ],
+  "tip_links": ["G17"],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,

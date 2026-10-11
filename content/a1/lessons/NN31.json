@@ -3,10 +3,7 @@
   "id": "NN31",
   "kind": "main",
   "pack_lesson": "NN31",
-  "tips": [
-    "G14",
-    "G09"
-  ],
+  "tips": ["G14", "G09"],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,

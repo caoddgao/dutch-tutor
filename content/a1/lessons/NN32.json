@@ -3,12 +3,8 @@
   "id": "NN32",
   "kind": "main",
   "pack_lesson": "NN32",
-  "tips": [
-    "G11"
-  ],
-  "tip_links": [
-    "G09"
-  ],
+  "tips": ["G11"],
+  "tip_links": ["G09"],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
