@@ -14,9 +14,9 @@
   "sentences": [
     {
       "id": "NN22a-A01",
-      "nl": "Ik zie je vaak in de straat.",
-      "zh": "我常在街上看到你。",
-      "en": "I often see you in the street."
+      "nl": "Ik zie je vaak op straat.",
+      "zh": "我经常在街上看到你。",
+      "en": "I often see you on the street."
     },
     {
       "id": "NN22a-A02",
@@ -69,9 +69,9 @@
         {
           "id": "NN22a-O1-2",
           "context": {
-            "nl": "U ziet Anna in de straat.",
-            "zh": "您在街上看到安娜。",
-            "en": "You see Anna in the street."
+            "nl": "U ziet Anna op straat.",
+            "zh": "您在街上看见安娜。",
+            "en": "You see Anna on the street."
           },
           "start": {
             "nl": "Dag Anna, ...",

@@ -9,7 +9,7 @@
 ## 进行中
 
 施工者 Codex · 分支 `codex/stage4-batch2-fixes` · PR #21
-- [ ] a NN22a 改 op straat
+- [x] a NN22a 改 op straat
 - [ ] b G06
 - [ ] c G03
 - [ ] d G01
