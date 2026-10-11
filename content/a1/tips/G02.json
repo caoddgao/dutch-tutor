@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G02",
+  "title": {
+    "zh": "zijn（是）和 hebben（有）",
+    "en": "zijn (to be) and hebben (to have)"
+  },
+  "body_zh": [
+    "zijn（是、在）和 hebben（有）是最常用的两个动词，变化不规则，要整个背下来。",
+    "u 后面的动词和 jij 一样：u bent，u hebt；hebben 也常说 u heeft。",
+    "复数的 wij、jullie、zij 都用原形：wij zijn，zij hebben。"
+  ],
+  "body_en": [
+    "zijn (to be) and hebben (to have) are the two most common verbs. They are irregular: learn the forms by heart.",
+    "After u the verb is the same as after jij: u bent, u hebt; with hebben, u heeft is also common.",
+    "The plural wij, jullie and zij all take the infinitive: wij zijn, zij hebben."
+  ],
+  "examples": [
+    {
+      "id": "G02-X1",
+      "nl": "Ik ben thuis.",
+      "zh": "我在家。",
+      "en": "I am at home."
+    },
+    {
+      "id": "G02-X2",
+      "nl": "Hij is mijn broer.",
+      "zh": "他是我的兄弟。",
+      "en": "He is my brother."
+    },
+    {
+      "id": "G02-X3",
+      "nl": "Wij hebben een huis.",
+      "zh": "我们有一座房子。",
+      "en": "We have a house."
+    }
+  ],
+  "table": {
+    "head": ["", "zijn（是）", "hebben（有）"],
+    "rows": [
+      ["ik", "ben", "heb"],
+      ["jij / u", "bent", "hebt"],
+      ["hij / zij", "is", "heeft"],
+      ["wij / jullie / zij", "zijn", "hebben"]
+    ]
+  }
+}

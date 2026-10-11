@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G07",
+  "title": {
+    "zh": "名词复数 -en / -s",
+    "en": "Plurals: -en / -s"
+  },
+  "body_zh": [
+    "大部分名词复数加 -en：dag → dagen，nacht → nachten。以 -el、-er、-je 结尾的词和一些外来词加 -s：nummer → nummers。",
+    "加 -en 时拼写会变：长元音写成一个字母（jaar → jaren），短元音后面辅音写两次（les → lessen），s 常变 z（huis → huizen）。",
+    "复数名词前面一律用 de：het huis → de huizen。"
+  ],
+  "body_en": [
+    "Most nouns add -en: dag → dagen, nacht → nachten. Words ending in -el, -er, -je and some loanwords add -s: nummer → nummers.",
+    "With -en the spelling may change: a long vowel is written single (jaar → jaren), after a short vowel the consonant doubles (les → lessen), s often becomes z (huis → huizen).",
+    "Every plural takes de: het huis → de huizen."
+  ],
+  "examples": [
+    {
+      "id": "G07-X1",
+      "nl": "In de winter zijn de dagen kort.",
+      "zh": "冬天白天很短。",
+      "en": "In winter the days are short."
+    },
+    {
+      "id": "G07-X2",
+      "nl": "Ik heb twee jassen.",
+      "zh": "我有两件外套。",
+      "en": "I have two coats."
+    },
+    {
+      "id": "G07-X3",
+      "nl": "Een jaar heeft vier seizoenen.",
+      "zh": "一年有四个季节。",
+      "en": "A year has four seasons."
+    }
+  ],
+  "table": {
+    "head": ["单数", "复数"],
+    "rows": [
+      ["de dag", "de dagen"],
+      ["het jaar", "de jaren"],
+      ["de les", "de lessen"],
+      ["het huis", "de huizen"],
+      ["het nummer", "de nummers"],
+      ["de euro", "de euro's"]
+    ]
+  }
+}

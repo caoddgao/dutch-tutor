@@ -1,0 +1,103 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN22b",
+  "kind": "main",
+  "pack_lesson": "NN22",
+  "tips": ["G05", "G08"],
+  "auto_exercises": {
+    "E1": 2,
+    "E2": 1,
+    "E3": 2,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN22b-A01",
+      "nl": "Hoe oud is je dochter?",
+      "zh": "你女儿几岁了？",
+      "en": "How old is your daughter?"
+    },
+    {
+      "id": "NN22b-A02",
+      "nl": "Zij is bijna twaalf.",
+      "zh": "她快十二岁了。",
+      "en": "She is almost twelve."
+    },
+    {
+      "id": "NN22b-A03",
+      "nl": "Ik heb geen dochter.",
+      "zh": "我没有女儿。",
+      "en": "I don't have a daughter."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN22b-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN22b-O1-1",
+          "context": {
+            "nl": "U heeft een zoon. Hij is elf.",
+            "zh": "您有一个儿子，他十一岁。",
+            "en": "You have a son. He is eleven."
+          },
+          "start": {
+            "nl": "Mijn zoon is ...",
+            "zh": "我儿子……",
+            "en": "My son is ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn zoon is elf.",
+              "zh": "我儿子十一岁。",
+              "en": "My son is eleven."
+            },
+            {
+              "nl": "Mijn zoon is elf jaar oud.",
+              "zh": "我儿子十一岁了。",
+              "en": "My son is eleven years old."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN22b-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN22b-O2-1",
+          "question": {
+            "nl": "Hoe oud ben jij?",
+            "zh": "你几岁了？",
+            "en": "How old are you?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ben dertig.",
+              "zh": "我三十岁。",
+              "en": "I am thirty."
+            },
+            {
+              "nl": "Ik ben vierentwintig jaar oud.",
+              "zh": "我二十四岁。",
+              "en": "I am twenty-four years old."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

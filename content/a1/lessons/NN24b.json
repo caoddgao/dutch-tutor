@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN24b",
+  "kind": "main",
+  "pack_lesson": "NN24",
+  "tip_links": ["G02"],
+  "auto_exercises": {
+    "E1": 2,
+    "E2": 1,
+    "E3": 2,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN24b-A01",
+      "nl": "Het regent veel in Nederland.",
+      "zh": "荷兰常下雨。",
+      "en": "It rains a lot in the Netherlands."
+    },
+    {
+      "id": "NN24b-A02",
+      "nl": "In de herfst is het nat en donker.",
+      "zh": "秋天又湿又暗。",
+      "en": "In autumn it is wet and dark."
+    },
+    {
+      "id": "NN24b-A03",
+      "nl": "De zomer is heerlijk.",
+      "zh": "夏天真好。",
+      "en": "Summer is lovely."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN24b-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN24b-O1-1",
+          "context": {
+            "nl": "Het regent en het is koud.",
+            "zh": "下雨了，天很冷。",
+            "en": "It is raining and it is cold."
+          },
+          "start": {
+            "nl": "Ik doe ...",
+            "zh": "我穿上……",
+            "en": "I put on ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik doe mijn jas aan.",
+              "zh": "我穿上外套。",
+              "en": "I put on my coat."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN24b-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN24b-O2-1",
+          "question": {
+            "nl": "Welk seizoen is het nu?",
+            "zh": "现在是什么季节？",
+            "en": "What season is it now?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Het is nu herfst.",
+              "zh": "现在是秋天。",
+              "en": "It is autumn now."
+            },
+            {
+              "nl": "Het is nu zomer.",
+              "zh": "现在是夏天。",
+              "en": "It is summer now."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

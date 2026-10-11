@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN21",
+  "kind": "main",
+  "pack_lesson": "NN21",
+  "tips": ["G01", "G04"],
+  "auto_exercises": {
+    "E1": 2,
+    "E2": 1,
+    "E3": 2,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN21-A01",
+      "nl": "Wat is uw adres?",
+      "zh": "您的地址是什么？",
+      "en": "What is your address?"
+    },
+    {
+      "id": "NN21-A02",
+      "nl": "Hoe spelt u dat?",
+      "zh": "这个怎么拼？",
+      "en": "How do you spell that?"
+    },
+    {
+      "id": "NN21-A03",
+      "nl": "Wat is uw mobiele nummer?",
+      "zh": "您的手机号码是多少？",
+      "en": "What is your mobile number?"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN21-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN21-O1-1",
+          "context": {
+            "nl": "U wilt zich inschrijven.",
+            "zh": "您想登记户口。",
+            "en": "You want to register."
+          },
+          "start": {
+            "nl": "Goedemiddag, ik wil ...",
+            "zh": "下午好，我想……",
+            "en": "Good afternoon, I would like ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Goedemiddag, ik wil mij inschrijven.",
+              "zh": "下午好，我想登记。",
+              "en": "Good afternoon, I would like to register."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN21-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN21-O2-1",
+          "question": {
+            "nl": "Waar woont u?",
+            "zh": "您住在哪里？",
+            "en": "Where do you live?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik woon in Rotterdam.",
+              "zh": "我住在鹿特丹。",
+              "en": "I live in Rotterdam."
+            },
+            {
+              "nl": "Ik woon in de Hoofdstraat.",
+              "zh": "我住在 Hoofdstraat（大街）。",
+              "en": "I live in the Hoofdstraat."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

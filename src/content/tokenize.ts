@@ -37,13 +37,16 @@ export function isLetter(w: Pick<DictWordLike, "flags" | "first_lesson">): boole
   return !!w.flags?.includes("letter") || w.first_lesson === ALPHABET_LESSON;
 }
 
-/** form (lower case) → word id. The lemma wins over another word's inflected form. Letters are left out. */
+/**
+ * form (lower case) → word id. The lemma wins over another word's inflected form; of two words with the same
+ * lemma (de dag / dag!) the one listed first, i.e. met first, wins. Letters are left out.
+ */
 export function buildFormIndex(words: DictWordLike[]): Map<string, string> {
   const index = new Map<string, string>();
   const weak = new Map<string, string>();
   for (const w of words) {
     if (isLetter(w)) continue;
-    index.set(normalizeForm(w.lemma), w.id);
+    if (!index.has(normalizeForm(w.lemma))) index.set(normalizeForm(w.lemma), w.id);
     const forms = [
       ...(w.forms_seen ?? []),
       ...(w.plural ? [w.plural] : []),
@@ -60,6 +63,86 @@ export function buildFormIndex(words: DictWordLike[]): Map<string, string> {
 export interface AutoToken {
   t: string;
   word_id: string | null;
+}
+
+/** Irregular forms of the common verbs (function words), for words not in the index. */
+const IRREGULAR: Record<string, string[]> = {
+  ben: ["zijn"],
+  bent: ["zijn"],
+  is: ["zijn"],
+  heb: ["hebben"],
+  hebt: ["hebben"],
+  heeft: ["hebben"],
+  kan: ["kunnen"],
+  kun: ["kunnen"],
+  kunt: ["kunnen"],
+  mag: ["mogen"],
+  zal: ["zullen"],
+  zult: ["zullen"],
+  wil: ["willen"],
+  wilt: ["willen"],
+};
+
+const V = "aeiou";
+const isVowel = (c: string | undefined) => !!c && V.includes(c);
+
+/** woon → won, maak → mak: a long vowel written double in a closed syllable is single in an open one */
+function undouble(stem: string): string | null {
+  const m = stem.match(/^(.*?)(aa|ee|oo|uu)([^aeiou])$/);
+  return m ? m[1] + m[2][0] + m[3] : null;
+}
+
+/** nam → naam, jar → jaar: a single vowel before one consonant at the end was long */
+function redouble(base: string): string | null {
+  const m = base.match(/^(.*[^aeiou])([aeiou])([^aeiou])$/);
+  return m ? m[1] + m[2] + m[2] + m[3] : null;
+}
+
+const devoice = (s: string) => s.replace(/v$/, "f").replace(/z$/, "s");
+const voice = (s: string) => s.replace(/f$/, "v").replace(/s$/, "z");
+
+/**
+ * Dictionary forms an inflected word may come from, most likely first: a verb's stem or -t form → the
+ * infinitive (woont → wonen, zit → zitten, ga → gaan), a plural → the singular (huizen → huis, namen → naam),
+ * an adjective with -e → its base form (grote → groot). Used when a form is not in the index: our own
+ * sentences may use forms the word lists do not have.
+ */
+export function lemmaCandidates(form: string): string[] {
+  const f = normalizeForm(form);
+  const out: string[] = [...(IRREGULAR[f] ?? [])];
+  const add = (c: string | null) => {
+    if (c && c.length > 1 && c !== f && !out.includes(c)) out.push(c);
+  };
+  // verbs: the stem (ik woon) or stem + t (hij woont) → infinitive
+  const stems = f.length > 2 && f.endsWith("t") && !f.endsWith("tt") ? [f, f.slice(0, -1)] : [f];
+  for (const stem of stems) {
+    const u = undouble(stem);
+    if (u) {
+      add(voice(u) + "en");
+      add(u + "en");
+    }
+    const last = stem.slice(-1);
+    if (stem === f && isVowel(last) && !isVowel(stem.slice(-2, -1))) add(stem + last + "n"); // ga → gaan
+    if (/(aa|oe|ie|[^e]e)$/.test(stem)) add(stem + "n"); // doe(t) → doen, gaa(t) → gaan, douche → douchen
+    if (!isVowel(last) && isVowel(stem.slice(-2, -1)) && !isVowel(stem.slice(-3, -2)) && !u) add(stem + last + "en"); // bel → bellen
+    if (/[aeiou][aeiou]?[fs]$|[ij][fs]$/.test(stem)) add(voice(stem) + "en"); // blijf → blijven, reis → reizen
+    add(stem + "en");
+  }
+  // plurals (-en, -s, -'s) and adjectives with -e → the base form
+  const bases: string[] = [];
+  if (f.endsWith("en") && f.length > 3) bases.push(f.slice(0, -2));
+  if (f.endsWith("'s")) bases.push(f.slice(0, -2));
+  else if (f.endsWith("s") && f.length > 3) bases.push(f.slice(0, -1));
+  if (f.endsWith("e") && f.length > 2) bases.push(f.slice(0, -1));
+  for (const b of bases) {
+    const d = devoice(b);
+    if (/([^aeiou])\1$/.test(b)) add(b.slice(0, -1)); // bedden → bed, dikke → dik
+    add(redouble(d));
+    add(d);
+    add(redouble(b));
+    add(b);
+  }
+  return out;
 }
 
 /** Greedy longest match against the form index; unknown words get word_id null. */
@@ -86,7 +169,8 @@ export function tokenize(text: string, index: Map<string, string>): AutoToken[] 
       }
     }
     if (!matched) {
-      out.push({ t: words[i].text, word_id: null });
+      const lemma = lemmaCandidates(words[i].text).find((c) => index.has(c));
+      out.push({ t: words[i].text, word_id: lemma ? index.get(lemma)! : null });
       i += 1;
     }
   }

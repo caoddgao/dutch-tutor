@@ -1,0 +1,138 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN25a",
+  "kind": "main",
+  "pack_lesson": "NN25",
+  "tip_links": ["G04"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN25a-A01",
+      "nl": "Hoe laat begint de les?",
+      "zh": "几点开始上课？",
+      "en": "What time does the lesson start?"
+    },
+    {
+      "id": "NN25a-A02",
+      "nl": "De les begint om half negen.",
+      "zh": "八点半开始上课。",
+      "en": "The lesson starts at half past eight."
+    },
+    {
+      "id": "NN25a-A03",
+      "nl": "Ik werk als lerares.",
+      "zh": "我当老师。",
+      "en": "I work as a teacher."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN25a-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN25a-O1-1",
+          "context": {
+            "nl": "Uw les begint om negen uur.",
+            "zh": "您的课九点开始。",
+            "en": "Your lesson starts at nine o'clock."
+          },
+          "start": {
+            "nl": "Ik ga om ...",
+            "zh": "我……出发",
+            "en": "I leave at ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga om half negen naar school.",
+              "zh": "我八点半去学校。",
+              "en": "I go to school at half past eight."
+            }
+          ]
+        },
+        {
+          "id": "NN25a-O1-2",
+          "context": {
+            "nl": "Anna is lerares.",
+            "zh": "安娜是老师。",
+            "en": "Anna is a teacher."
+          },
+          "start": {
+            "nl": "Zij werkt ...",
+            "zh": "她在……工作",
+            "en": "She works ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Zij werkt op een school.",
+              "zh": "她在一所学校工作。",
+              "en": "She works at a school."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN25a-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN25a-O2-1",
+          "question": {
+            "nl": "Hoe laat begint uw werk?",
+            "zh": "您几点上班？",
+            "en": "What time does your work start?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn werk begint om negen uur.",
+              "zh": "我九点上班。",
+              "en": "My work starts at nine o'clock."
+            },
+            {
+              "nl": "Om half negen.",
+              "zh": "八点半。",
+              "en": "At half past eight."
+            }
+          ]
+        },
+        {
+          "id": "NN25a-O2-2",
+          "question": {
+            "nl": "Wat is uw werk?",
+            "zh": "您做什么工作？",
+            "en": "What is your job?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ben lerares.",
+              "zh": "我是老师。",
+              "en": "I am a teacher."
+            },
+            {
+              "nl": "Ik werk op een school.",
+              "zh": "我在学校工作。",
+              "en": "I work at a school."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

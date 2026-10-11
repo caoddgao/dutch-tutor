@@ -20,6 +20,21 @@ const p01 = buildLesson(content, dict, "P01", {
   linked: [read<PackLesson>("lessons/NN05.json")],
 })!;
 
+describe("generated questions follow the lesson's counts", () => {
+  it("asks for as many questions of each kind as the lesson says", () => {
+    const nn22 = buildLesson(content, dict, "NN22", {
+      own: content.lessons.NN22,
+      pack: read<PackLesson>("lessons/NN22.json"),
+    })!;
+    const generated = buildExercises(nn22, dict, content.tts).filter((g) => !g.instruction);
+    expect(generated.map((g) => [g.code, g.questions.length])).toEqual([
+      ["E1", 1],
+      ["E3", 1],
+      ["E7", 1],
+    ]);
+  });
+});
+
 describe("lesson exercises", () => {
   const groups = buildExercises(nn21, dict, content.tts);
 

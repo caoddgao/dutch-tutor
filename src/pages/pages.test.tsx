@@ -87,8 +87,8 @@ describe("HomePage", () => {
     const cont = await screen.findByRole("region", { name: "继续学习" });
     expect(within(cont).getByText("Mijn buurman")).toBeTruthy();
     expect(within(cont).getByText("第 2 步 · 逐句学")).toBeTruthy();
-    // NN22b starts at S18 (course.json): 3 of the 20 text sentences
-    expect(within(cont).getByText("3 / 3 句")).toBeTruthy();
+    // NN22b starts at S18 (course.json): 3 of the 20 text sentences + our 3 added sentences
+    expect(within(cont).getByText("3 / 6 句")).toBeTruthy();
     expect(within(screen.getByRole("region", { name: "今日复习" })).getByText("3")).toBeTruthy();
     const stats = screen.getByRole("region", { name: "学习记录" });
     // 2 sentences learned, 2-day streak (yesterday and today)

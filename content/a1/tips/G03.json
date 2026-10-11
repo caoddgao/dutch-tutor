@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G03",
+  "title": {
+    "zh": "规则动词的现在时",
+    "en": "Regular verbs in the present tense"
+  },
+  "body_zh": [
+    "去掉原形的 -en 就是词干：wonen → woon，werken → werk。ik 后面只用词干：ik woon。",
+    "jij、u、hij、zij（她）后面用词干加 -t：jij woont，hij werkt。复数 wij、jullie、zij 用原形：wij wonen。",
+    "注意拼写：原形里的长元音在词干里要写两个字母，wonen → woon，spelen → speel。"
+  ],
+  "body_en": [
+    "Drop -en from the infinitive to get the stem: wonen → woon, werken → werk. After ik use the stem: ik woon.",
+    "After jij, u, hij and zij (she) add -t: jij woont, hij werkt. The plural wij, jullie, zij takes the infinitive: wij wonen.",
+    "Mind the spelling: a long vowel is written double in the stem: wonen → woon, spelen → speel."
+  ],
+  "examples": [
+    {
+      "id": "G03-X1",
+      "nl": "Ik woon in Rotterdam.",
+      "zh": "我住在鹿特丹。",
+      "en": "I live in Rotterdam."
+    },
+    {
+      "id": "G03-X2",
+      "nl": "Mijn broer woont ook hier.",
+      "zh": "我兄弟也住在这里。",
+      "en": "My brother lives here too."
+    },
+    {
+      "id": "G03-X3",
+      "nl": "Wij werken samen.",
+      "zh": "我们一起工作。",
+      "en": "We work together."
+    }
+  ],
+  "table": {
+    "head": ["", "wonen（住）", "werken（工作）"],
+    "rows": [
+      ["ik", "woon", "werk"],
+      ["jij / u / hij / zij", "woont", "werkt"],
+      ["wij / jullie / zij", "wonen", "werken"]
+    ]
+  }
+}

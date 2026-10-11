@@ -1,0 +1,103 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN30",
+  "kind": "main",
+  "pack_lesson": "NN30",
+  "tip_links": ["G06"],
+  "auto_exercises": {
+    "E1": 2,
+    "E2": 1,
+    "E3": 2,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN30-A01",
+      "nl": "De fiets is goedkoop en praktisch.",
+      "zh": "自行车便宜又方便。",
+      "en": "The bike is cheap and practical."
+    },
+    {
+      "id": "NN30-A02",
+      "nl": "Ik ga met de fiets naar mijn werk.",
+      "zh": "我骑自行车去上班。",
+      "en": "I go to work by bike."
+    },
+    {
+      "id": "NN30-A03",
+      "nl": "De fiets heeft veel voordelen.",
+      "zh": "自行车有很多好处。",
+      "en": "The bike has many advantages."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN30-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN30-O1-1",
+          "context": {
+            "nl": "U woont dicht bij uw werk.",
+            "zh": "您住得离单位很近。",
+            "en": "You live close to your work."
+          },
+          "start": {
+            "nl": "Ik ga ...",
+            "zh": "我……去",
+            "en": "I go ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga met de fiets.",
+              "zh": "我骑自行车去。",
+              "en": "I go by bike."
+            },
+            {
+              "nl": "Ik ga met de fiets naar mijn werk.",
+              "zh": "我骑自行车去上班。",
+              "en": "I go to work by bike."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN30-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN30-O2-1",
+          "question": {
+            "nl": "Fietst u graag?",
+            "zh": "您喜欢骑自行车吗？",
+            "en": "Do you like cycling?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik fiets graag.",
+              "zh": "是的，我喜欢骑车。",
+              "en": "Yes, I like cycling."
+            },
+            {
+              "nl": "Nee, ik ga met de bus.",
+              "zh": "不，我坐公交车。",
+              "en": "No, I take the bus."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

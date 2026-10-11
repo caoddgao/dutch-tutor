@@ -1,0 +1,109 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN26",
+  "kind": "main",
+  "pack_lesson": "NN26",
+  "tip_links": ["G05"],
+  "auto_exercises": {
+    "E1": 2,
+    "E2": 1,
+    "E3": 2,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN26-A01",
+      "nl": "Ik heb honger.",
+      "zh": "我饿了。",
+      "en": "I am hungry."
+    },
+    {
+      "id": "NN26-A02",
+      "nl": "Ik neem een broodje kaas.",
+      "zh": "我要一个奶酪面包。",
+      "en": "I'll have a cheese roll."
+    },
+    {
+      "id": "NN26-A03",
+      "nl": "Wat drink jij?",
+      "zh": "你喝什么？",
+      "en": "What are you drinking?"
+    },
+    {
+      "id": "NN26-A04",
+      "nl": "Ik betaal vandaag.",
+      "zh": "今天我来付钱。",
+      "en": "I'll pay today."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN26-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN26-O1-1",
+          "context": {
+            "nl": "U heeft honger.",
+            "zh": "您饿了。",
+            "en": "You are hungry."
+          },
+          "start": {
+            "nl": "Ik neem ...",
+            "zh": "我要……",
+            "en": "I'll have ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem een broodje kaas.",
+              "zh": "我要一个奶酪面包。",
+              "en": "I'll have a cheese roll."
+            },
+            {
+              "nl": "Ik neem soep.",
+              "zh": "我要汤。",
+              "en": "I'll have soup."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN26-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN26-O2-1",
+          "question": {
+            "nl": "Wat neemt u meestal als lunch?",
+            "zh": "您午饭通常吃什么？",
+            "en": "What do you usually have for lunch?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Meestal een broodje kaas.",
+              "zh": "通常是一个奶酪面包。",
+              "en": "Usually a cheese roll."
+            },
+            {
+              "nl": "Ik neem meestal brood met kaas.",
+              "zh": "我通常吃面包夹奶酪。",
+              "en": "I usually have bread with cheese."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -49,7 +49,7 @@ describe("content check on the real repo content and fixtures", () => {
     const phonics = report.lessons.filter((l) => /^P\d+$/.test(l.id));
     expect(phonics).toHaveLength(10);
     expect(phonics.filter((l) => l.unknownWords.length > 0)).toEqual([]);
-    expect(report.issues.filter((i) => i.rule === 5)).toEqual([]);
+    expect(report.issues.filter((i) => i.rule === 5 && /^P\d+$/.test(i.where))).toEqual([]);
   });
 
   it("fixture content + fixture pack pass, and the report has per-lesson stats", () => {
@@ -171,7 +171,7 @@ describe("rules", () => {
     expect(p01(report)).toEqual(p01(base));
     expect(p01(report)).not.toContain("dag");
     // taught in P01, so not new again in NN21, the pack's first_lesson
-    expect(nn21(base).newWords - nn21(report).newWords).toBe(1);
+    expect(nn21(base).newWords! - nn21(report).newWords!).toBe(1);
   });
 
   it("rule 6: one correct answer, no duplicate options", () => {
@@ -235,6 +235,8 @@ describe("rules", () => {
       const main = f.content.course.sections.find((x) => x.id === "main")!;
       main.lessons = [...parts, { id: "NN22", source: "pack" }] as never;
       delete f.content.lessons.NN21;
+      // G01 is taught in NN21's own half, which these splits leave out
+      delete f.content.lessons.NN22.tip_links;
     };
     const ok = check((f) =>
       split(f, [
@@ -244,7 +246,7 @@ describe("rules", () => {
     );
     expect(errors(ok.issues)).toEqual([]);
     expect(ok.splits).toEqual([{ id: "NN21b", before: "Alstublieft.", after: "Dank u. Tot ziens!" }]);
-    expect(ok.lessons.find((l) => l.id === "NN21b")).toMatchObject({ sentences: 2, newWords: 5 });
+    expect(ok.lessons.find((l) => l.id === "NN21b")).toMatchObject({ sentences: 2, newWords: 13 });
     // words of part a are known in part b: no rule-5 noise from the split
     expect(ok.lessons.find((l) => l.id === "NN21b")!.unknownWords).toEqual([]);
     expect(
@@ -312,7 +314,7 @@ describe("rules", () => {
     // only text sentences count: many sentences but few text sentences → no split suggested
     expect(split(run(() => (nn21.sentence_count = 40)))).toEqual([]);
     expect(split(run(() => (nn21.line_count = 40)))).toEqual([
-      expect.objectContaining({ level: "warn", msg: "课文 40 句、新词 22 个，建议拆成 2 部分（现在 1）" }),
+      expect.objectContaining({ level: "warn", msg: "课文 40 句、新词 30 个，建议拆成 2 部分（现在 1）" }),
     ]);
     // an index without line_count falls back to sentence_count
     expect(split(run(() => delete nn21.line_count))).toHaveLength(1);
@@ -337,6 +339,114 @@ describe("rules", () => {
     f.content.lessons.P02.reading = "NN05";
     const r = validateContent({ content: f.content, nnIndex: f.pack.index, ttsFileExists: () => true });
     expect(has(r.issues, 1, "NN05 不是认读小文（kind 是 phonics）")).toBe(true);
+  });
+
+  it("tips: taught once, linked back only after they are taught, cited EXTRA boxes must exist", () => {
+    expect(errors(check(() => {}).issues)).toEqual([]);
+    expect(has(check((f) => (f.content.lessons.NN22.tips = ["G01"])).issues, 1, "G01 已经在 NN21 讲过")).toBe(true);
+    expect(
+      has(
+        check((f) => {
+          f.content.lessons.NN21.tip_links = ["G02"];
+        }).issues,
+        1,
+        "G02 前面的课还没有讲过",
+      ),
+    ).toBe(true);
+    expect(has(check((f) => (f.content.lessons.NN22.tip_links = ["G09"])).issues, 1, "找不到小贴士 G09")).toBe(true);
+    expect(has(check((f) => (f.content.tips.G02.pack_examples = ["NN22-X7"])).issues, 1, "NN22-X7")).toBe(true);
+    expect(errors(check((f) => (f.content.tips.G02.pack_examples = ["NN22-X1-2"])).issues)).toEqual([]);
+    expect(
+      check((f) => delete f.content.lessons.NN22.tips).issues.some(
+        (i) => i.level === "warn" && i.where === "tips/G02.json" && i.msg === "还没有挂在任何一课",
+      ),
+    ).toBe(true);
+    // without a pack: the cited lesson must be in nn-index.json
+    const f = fixture();
+    f.content.tips.G02.pack_examples = ["NN30-X1"];
+    const r = validateContent({ content: f.content, nnIndex: f.pack.index, ttsFileExists: () => true });
+    expect(has(r.issues, 1, "nn-index.json 里没有 NN30")).toBe(true);
+  });
+
+  it("main lessons: generated questions + our exercises stay ≤ 9; the report has the exercise counts", () => {
+    const base = check(() => {});
+    expect(base.lessons.find((l) => l.id === "NN21")!.exercises).toEqual({ auto: 9, book: 10 });
+    expect(base.lessons.find((l) => l.id === "NN22")!.exercises).toEqual({ auto: 3, book: 8 });
+    expect(base.issues).toContainEqual(
+      expect.objectContaining({
+        level: "warn",
+        rule: 7,
+        where: "NN22",
+        msg: "练习共 11 小题（自动 3 + 课本 8），建议 15–25",
+      }),
+    );
+    expect(has(check((f) => (f.content.lessons.NN21.auto_exercises!.E1 = 2)).issues, 7, "自动题 10 道")).toBe(true);
+    expect(has(check((f) => delete f.content.lessons.NN21.auto_exercises).issues, 7, "自动题 13 道")).toBe(true);
+  });
+
+  it("rule 3 covers our E5 / E6 questions and tip examples", () => {
+    const report = check((f) => {
+      for (const e of Object.values(f.content.tts.entries)) if (e.text === "Wat wilt u?") e.duration = 5.4;
+    });
+    expect(has(report.issues, 3, "5.40")).toBe(true);
+  });
+
+  it("rules 4 and 5 cover our E5 / E6 questions and the examples of the lesson's tips", () => {
+    const nn21 = (r: ReturnType<typeof check>) => r.lessons.find((l) => l.id === "NN21")!.unknownWords;
+    // kopen is first taught in NN14 (P02's reading text): known in NN21; Utrecht is a name
+    expect(
+      nn21(
+        check(
+          (f) =>
+            (f.content.lessons.NN21.exercises![1].items[0] = {
+              id: "NN21-O2-1",
+              question: { nl: "Wat koopt u?", zh: "您买什么？", en: "What do you buy?" },
+              sample_answers: [
+                { nl: "Ik koop brood in Utrecht.", zh: "我在乌得勒支买面包。", en: "I buy bread in Utrecht." },
+              ],
+            } as never),
+        ),
+      ),
+    ).not.toContain("kopen");
+    // werken is first taught in NN22: not yet known in NN21
+    expect(nn21(check((f) => (f.content.tips.G01.examples[0].nl = "Hij werkt.")))).toContain("werken");
+    expect(
+      has(
+        check(
+          (f) =>
+            ((f.content.lessons.NN21.exercises![0].items[0] as { start: { nl: string } }).start.nl = "Een zak ..."),
+        ).issues,
+        4,
+        "zak",
+      ),
+    ).toBe(true);
+    // a name inside a spoken answer is not a dictionary word
+    expect(
+      errors(
+        check(
+          (f) =>
+            ((
+              f.content.lessons.NN21.exercises![1].items[0] as { sample_answers: { nl: string }[] }
+            ).sample_answers[0].nl = "Dag, Chen."),
+        ).issues,
+      ),
+    ).toEqual([]);
+  });
+
+  it("without a pack, our text in pack lessons is checked against nn-index.json's lemmas", () => {
+    const f = fixture();
+    const run = () => validateContent({ content: f.content, nnIndex: f.pack.index, ttsFileExists: () => true });
+    const nn21 = () => run().lessons.find((l) => l.id === "NN21")!;
+    // (the fixture's phonics lessons use the fixture pack's word ids)
+    expect(errors(run().issues).filter((i) => i.where.startsWith("lessons/NN"))).toEqual([]);
+    // nn-index.json only lists a lesson's new lemmas: zijn (first in NN05, which P01 only links) is in NN21's word
+    // list in the pack, but not in the index, so without a pack it is reported too
+    expect(nn21().unknownWords).toEqual(["graag", "zijn"]);
+    // a form the index does not list is found through its lemma (fietst → fietsen); fietsen is new in NN22
+    f.content.lessons.NN21.sentences![0].nl = "Hij fietst.";
+    expect(nn21().unknownWords).toContain("fietsen");
+    f.content.lessons.NN21.sentences![0].nl = "Een zak.";
+    expect(has(run().issues, 4, "zak")).toBe(true);
   });
 
   it("rejects an unknown pack format version", () => {

@@ -39,13 +39,13 @@ const TEST: StepDef[] = [
 export function stepsFor(
   lesson: Pick<
     RtLesson,
-    "kind" | "tips" | "extras" | "fullAudio" | "fullSentences" | "sentences" | "words" | "reading"
+    "kind" | "tips" | "tipLinks" | "extras" | "fullAudio" | "fullSentences" | "sentences" | "words" | "reading"
   >,
   hasExercises: boolean,
 ): StepDef[] {
   const base: Record<LessonKind, StepDef[]> = { main: MAIN, phonics: PHONICS, test: TEST };
   return base[lesson.kind].filter((s) => {
-    if (s.code === STEP.tips) return lesson.tips.length > 0 || lesson.extras.length > 0;
+    if (s.code === STEP.tips) return lesson.tips.length + lesson.tipLinks.length + lesson.extras.length > 0;
     if (s.code === STEP.intro && lesson.kind === "main") return !!lesson.fullAudio || lesson.fullSentences.length > 0;
     if (s.code === STEP.sentences) return lesson.sentences.length > 0;
     if (s.code === STEP.words) return wordCards(lesson).length > 0;

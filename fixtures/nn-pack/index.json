@@ -47,7 +47,7 @@
       },
       "sentence_count": 11,
       "line_count": 9,
-      "new_word_count": 22,
+      "new_word_count": 30,
       "total_seconds": 23.32,
       "max_sentence_seconds": 5.3,
       "over_5s_count": 1,
@@ -75,7 +75,15 @@
         "tot ziens",
         "vier",
         "vijf",
-        "dag"
+        "dag",
+        "goedemiddag",
+        "adres",
+        "Rotterdam",
+        "moeilijk",
+        "mobiel",
+        "inschrijven",
+        "zich",
+        "wie"
       ]
     },
     {
@@ -88,7 +96,7 @@
       },
       "sentence_count": 20,
       "line_count": 20,
-      "new_word_count": 28,
+      "new_word_count": 39,
       "total_seconds": 55.74,
       "max_sentence_seconds": 3.36,
       "over_5s_count": 0,
@@ -122,7 +130,18 @@
         "maar",
         "graag",
         "jij",
-        "dag"
+        "dag",
+        "wij",
+        "zij",
+        "deze",
+        "elkaar",
+        "zien",
+        "straat",
+        "dochter",
+        "oud",
+        "bijna",
+        "dertig",
+        "vierentwintig"
       ]
     }
   ]

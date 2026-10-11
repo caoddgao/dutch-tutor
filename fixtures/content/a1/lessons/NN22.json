@@ -1,0 +1,8 @@
+{
+  "id": "NN22",
+  "kind": "main",
+  "pack_lesson": "NN22",
+  "tips": ["G02"],
+  "tip_links": ["G01"],
+  "auto_exercises": { "E1": 1, "E2": 0, "E3": 1, "E4": 0, "E7": 1 }
+}

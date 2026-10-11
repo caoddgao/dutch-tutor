@@ -211,13 +211,14 @@ describe("lesson page", () => {
     await screen.findByText("先完整听一两遍");
     expect(screen.getByText(/第 1 部分（共 2 部分）/)).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /下一步：逐句学/ }));
-    await screen.findByText("第 1 / 17 句");
+    // 17 text sentences of the fixture pack + our 3 added sentences (content/a1/lessons/NN22a.json)
+    await screen.findByText("第 1 / 20 句");
     cleanup();
     await open("#/lesson/NN22b", { content: CONTENT });
     await screen.findByText("先完整听一两遍");
     expect(screen.getByText(/第 2 部分（共 2 部分）/)).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /下一步：逐句学/ }));
-    await screen.findByText("第 1 / 3 句");
+    await screen.findByText("第 1 / 6 句");
     expect(document.querySelector("main")!.textContent).toContain("buren");
   });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildFormIndex, segmentSentence, splitWords, tokenize, uncoveredWords } from "./tokenize";
+import { buildFormIndex, lemmaCandidates, segmentSentence, splitWords, tokenize, uncoveredWords } from "./tokenize";
 
 const words = [
   {
@@ -36,6 +36,45 @@ describe("tokenize", () => {
       { t: "huizen", word_id: "w_huis" },
       { t: "Tot ziens", word_id: "w_tot_ziens" },
     ]);
+  });
+
+  it("finds forms the word lists lack through their dictionary form", () => {
+    const index = buildFormIndex([
+      { id: "w_wonen", lemma: "wonen" },
+      { id: "w_zitten", lemma: "zitten" },
+      { id: "w_gaan", lemma: "gaan" },
+      { id: "w_douchen", lemma: "douchen" },
+      { id: "w_huis", lemma: "huis" },
+      { id: "w_naam", lemma: "naam" },
+      { id: "w_groot", lemma: "groot" },
+      { id: "w_jas", lemma: "jas" },
+      { id: "w_kunnen", lemma: "kunnen" },
+      { id: "w_een", lemma: "een" },
+    ]);
+    const ids = (text: string) => tokenize(text, index).map((t) => t.word_id);
+    expect(ids("woont zit gaat douchen huizen namen grote jassen kan")).toEqual([
+      "w_wonen",
+      "w_zitten",
+      "w_gaan",
+      "w_douchen",
+      "w_huis",
+      "w_naam",
+      "w_groot",
+      "w_jas",
+      "w_kunnen",
+    ]);
+    // eet is a form of eten, not of een
+    expect(ids("eet")).toEqual([null]);
+    expect(lemmaCandidates("zit")).not.toContain("zin");
+  });
+
+  it("of two words with the same lemma the first listed wins", () => {
+    const index = buildFormIndex([
+      { id: "w_dag", lemma: "dag" },
+      { id: "w_dag_2", lemma: "dag", plural: "dagen" },
+    ]);
+    expect(index.get("dag")).toBe("w_dag");
+    expect(index.get("dagen")).toBe("w_dag_2");
   });
 
   it("lays tokens over the text for click-to-lookup", () => {

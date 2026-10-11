@@ -216,6 +216,44 @@ word("w_maar", "maar", "vw", "但是", "but", N22);
 word("w_graag", "graag", "bw", "乐意，喜欢（做某事）", "gladly, like to", N22);
 word("w_jij", "jij", "vnw", "你", "you (informal)", N22);
 
+// In the lessons' word lists but not used in the fixture texts: the words our own content (content/a1) uses
+// in NN21 / NN22 and the tips taught there, so the repo content can be checked against this pack (rule 4)
+word("w_goedemiddag", "goedemiddag", "tw", "下午好", "good afternoon");
+noun("w_adres", "adres", "het", "adressen", "地址", "address");
+word("w_rotterdam", "Rotterdam", "eigen", "鹿特丹（城市）", "Rotterdam (city)");
+word("w_moeilijk", "moeilijk", "bn", "难的", "difficult");
+word("w_mobiel", "mobiel", "bn", "移动的；手机的", "mobile", { fields: { forms_seen: ["mobiele"] } });
+verb(
+  "w_inschrijven",
+  "inschrijven",
+  { ik: "schrijf in", jij: "schrijft in", hij: "schrijft in", wij: "schrijven in", pp: "ingeschreven", aux: "hebben" },
+  [],
+  "登记（户口）",
+  "to register",
+  { fields: { separable: "in|schrijven" } },
+);
+word("w_zich", "zich", "vnw", "自己（反身代词）", "oneself");
+word("w_wie", "wie", "vnw", "谁", "who");
+word("w_wij", "wij", "vnw", "我们", "we", N22);
+word("w_zij", "zij", "vnw", "她；他们", "she; they", N22);
+word("w_deze", "deze", "vnw", "这，这些", "this, these", N22);
+word("w_elkaar", "elkaar", "vnw", "互相", "each other", N22);
+verb(
+  "w_zien",
+  "zien",
+  { ik: "zie", jij: "ziet", hij: "ziet", wij: "zien", pp: "gezien", aux: "hebben" },
+  [],
+  "看见",
+  "to see",
+  N22,
+);
+noun("w_straat", "straat", "de", "straten", "街道", "street", N22);
+noun("w_dochter", "dochter", "de", "dochters", "女儿", "daughter", N22);
+word("w_oud", "oud", "bn", "老的；……岁的", "old", N22);
+word("w_bijna", "bijna", "bw", "几乎，快要", "almost", N22);
+word("w_dertig", "dertig", "telw", "三十", "thirty", N22);
+word("w_vierentwintig", "vierentwintig", "telw", "二十四", "twenty-four", N22);
+
 // NN14: a reading text (kind "reading"), used as the "认读小文" of phonics lesson P05
 const N14 = { first: "NN14" };
 noun("w_zaterdag", "zaterdag", "de", "zaterdagen", "星期六", "Saturday", N14);
@@ -983,7 +1021,17 @@ const lessons: Record<string, PackLesson> = {
     text_type: "dialogue",
     audio_full: "audio/NN21/full.mp3",
     sentences: nn21Sentences,
-    word_ids: firstSeenOrder(nn21Sentences, ["w_dag"]),
+    word_ids: firstSeenOrder(nn21Sentences, [
+      "w_dag",
+      "w_goedemiddag",
+      "w_adres",
+      "w_rotterdam",
+      "w_moeilijk",
+      "w_mobiel",
+      "w_inschrijven",
+      "w_zich",
+      "w_wie",
+    ]),
     exercises: nn21Exercises,
     extras: [],
     notes: "Fixture: self-written content for tests.",
@@ -997,7 +1045,22 @@ const lessons: Record<string, PackLesson> = {
     text_type: "text",
     audio_full: "audio/NN22/full.mp3",
     sentences: nn22Sentences,
-    word_ids: firstSeenOrder(nn22Sentences, ["w_ik", "w_jij", "w_dag_2"]),
+    word_ids: firstSeenOrder(nn22Sentences, [
+      "w_ik",
+      "w_jij",
+      "w_dag_2",
+      "w_wij",
+      "w_zij",
+      "w_deze",
+      "w_elkaar",
+      "w_zien",
+      "w_straat",
+      "w_dochter",
+      "w_oud",
+      "w_bijna",
+      "w_dertig",
+      "w_vierentwintig",
+    ]),
     exercises: nn22Exercises,
     extras: nn22Extras,
     notes: "",

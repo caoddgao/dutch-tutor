@@ -73,6 +73,14 @@ describe("dividing the sentences", () => {
       "w_vijf",
       // in the word list but not in the text: last part
       "w_dag",
+      "w_goedemiddag",
+      "w_adres",
+      "w_rotterdam",
+      "w_moeilijk",
+      "w_mobiel",
+      "w_inschrijven",
+      "w_zich",
+      "w_wie",
     ]);
     expect([a.last, b.last]).toEqual([false, true]);
     // not split: everything in one part

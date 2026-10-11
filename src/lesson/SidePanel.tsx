@@ -15,7 +15,7 @@ interface Props {
 /** Right column: the entry of the clicked word, and the orange "小贴士" card. */
 export function SidePanel({ lesson, word, showWord = true, soundHint, onOpenTips }: Props) {
   const sound = lesson.sounds.find((s) => s.grapheme === soundHint) ?? lesson.sounds[0];
-  const tip = lesson.tips[0];
+  const tip = lesson.tips[0] ?? lesson.tipLinks[0];
   return (
     <aside className="lesson-side" aria-label="词条和小贴士">
       {showWord && (

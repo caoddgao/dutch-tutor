@@ -1,6 +1,17 @@
 // Runtime course model: our own content (content/a1) merged with the resource pack (design §10).
-import type { ContentBundle, CourseLessonRef, OwnExercise, OwnLesson, Tip } from "./ownTypes";
-import type { PackExercise, PackIndex, PackLesson, PackToken, PackWord, Pos, Trilingual, VerbForms } from "./packTypes";
+import type { AutoCode, ContentBundle, CourseLessonRef, OwnExercise, OwnLesson, Tip } from "./ownTypes";
+import { DEFAULT_AUTO } from "./ownTypes";
+import type {
+  PackExercise,
+  PackExtraSentence,
+  PackIndex,
+  PackLesson,
+  PackToken,
+  PackWord,
+  Pos,
+  Trilingual,
+  VerbForms,
+} from "./packTypes";
 import { packLessonParts, partLetter, partRefs } from "./split";
 import { buildFormIndex, isLetter, tokenize } from "./tokenize";
 import { voiceName } from "./ttsTexts";
@@ -60,6 +71,7 @@ export interface RtTip {
   title: { zh: string; en?: string };
   bodyZh: string[];
   bodyEn?: string[];
+  /** The pack's EXTRA-box sentences the tip cites (when the pack is installed), then our own examples */
   examples: RtSentence[];
   table?: { head: string[]; rows: string[][] };
 }
@@ -116,7 +128,12 @@ export interface RtLesson {
   newWordIds: string[];
   sounds: RtSound[];
   tips: RtTip[];
+  /** Tips taught in an earlier lesson, linked back to (design §2.3) */
+  tipLinks: RtTip[];
+  /** EXTRA boxes of the book part that no tip of this lesson cites */
   extras: RtExtraBox[];
+  /** How many generated questions of each kind (step ⑤) */
+  autoCounts: Record<AutoCode, number>;
   packExercises: RtPackExercise[];
   ownExercises: OwnExercise[];
   /** Phonics: the reading text at the end of the lesson (needs the pack) */
@@ -336,13 +353,47 @@ function ownSentence(
   };
 }
 
-function tipView(bundle: ContentBundle, dict: Dictionary, tip: Tip): RtTip {
+/** "NN22-X1" / "NN22-X1-2" → "NN22": the pack lesson an EXTRA box or its sentence belongs to */
+export function extraLessonId(ref: string): string {
+  return ref.replace(/-X\d+(-\d+)?$/, "");
+}
+
+/** The EXTRA-box sentences a reference names (a whole box, or one sentence of it); none when not found. */
+export function extraSentences(pack: PackLesson | undefined, ref: string): PackExtraSentence[] {
+  for (const box of pack?.extras ?? []) {
+    if (box.id === ref) return box.sentences ?? [];
+    const s = (box.sentences ?? []).find((x) => x.id === ref);
+    if (s) return [s];
+  }
+  return [];
+}
+
+function extraSentenceView(s: PackExtraSentence): RtSentence {
+  return {
+    id: s.id,
+    nl: s.nl,
+    zh: s.zh,
+    en: s.en,
+    kind: "example",
+    speaker: null,
+    audio: { id: s.id, ...packAudio(s.audio, s.audio_source) },
+    tokens: s.tokens ?? [],
+    flags: [],
+  };
+}
+
+function tipView(bundle: ContentBundle, dict: Dictionary, tip: Tip, packs: Map<string, PackLesson>): RtTip {
+  const cited = (tip.pack_examples ?? []).flatMap((ref) => extraSentences(packs.get(extraLessonId(ref)), ref));
+  const seen = new Set<string>();
   return {
     id: tip.id,
     title: tip.title,
     bodyZh: tip.body_zh,
     bodyEn: tip.body_en,
-    examples: tip.examples.map((e) => ownSentence(bundle, dict, e, "example")),
+    examples: [
+      ...cited.filter((s) => !seen.has(s.id) && seen.add(s.id)).map(extraSentenceView),
+      ...tip.examples.map((e) => ownSentence(bundle, dict, e, "example")),
+    ],
     table: tip.table,
   };
 }
@@ -377,6 +428,8 @@ export interface LessonSources {
   linked?: PackLesson[];
   /** Phonics: the reading text (own.reading) */
   reading?: PackLesson;
+  /** Pack lessons whose EXTRA boxes the lesson's tips cite (tipPacksFor) */
+  tipPacks?: PackLesson[];
 }
 
 export function buildLesson(
@@ -394,10 +447,13 @@ export function buildLesson(
   const kind = SECTION_KIND[section];
   const title = own?.title ?? pack?.title ?? { nl: id, zh: id, en: id };
 
-  const tips = (own?.tips ?? [])
-    .map((t) => bundle.tips[t])
-    .filter(Boolean)
-    .map((t) => tipView(bundle, dict, t));
+  const packs = new Map([...(sources.tipPacks ?? []), ...(pack ? [pack] : [])].map((l) => [l.id, l]));
+  const tipViews = (ids: string[] | undefined) =>
+    (ids ?? [])
+      .map((t) => bundle.tips[t])
+      .filter(Boolean)
+      .map((t) => tipView(bundle, dict, t, packs));
+  const tips = tipViews(own?.tips);
   const added = (own?.sentences ?? []).map((s) => ownSentence(bundle, dict, s, kind === "phonics" ? "line" : "added"));
 
   // Words: phonics → sound keywords then the rest; pack lessons → word_ids order
@@ -446,20 +502,11 @@ export function buildLesson(
   const bookPart = !view || view.last;
   taught = [...taught, ...added];
 
-  const extras: RtExtraBox[] = (bookPart ? (pack?.extras ?? []) : []).map((x) => ({
-    id: x.id,
-    sentences: (x.sentences ?? []).map((s) => ({
-      id: s.id,
-      nl: s.nl,
-      zh: s.zh,
-      en: s.en,
-      kind: "example",
-      speaker: null,
-      audio: { id: s.id, ...packAudio(s.audio, s.audio_source) },
-      tokens: s.tokens ?? [],
-      flags: [],
-    })),
-  }));
+  // a box a tip of this lesson cites is shown with the tip, not again on its own
+  const cited = new Set((own?.tips ?? []).flatMap((t) => bundle.tips[t]?.pack_examples ?? []));
+  const extras: RtExtraBox[] = (bookPart ? (pack?.extras ?? []) : [])
+    .filter((x) => !cited.has(x.id))
+    .map((x) => ({ id: x.id, sentences: (x.sentences ?? []).map(extraSentenceView) }));
 
   // an NN lesson linked to several phonics lessons gives its exercises to the first of them only
   const exerciseSources = linked.filter((l) => firstLinkingLesson(bundle, l.id) === id);
@@ -489,7 +536,9 @@ export function buildLesson(
       wordIds: s.word_ids.map((wid) => dict.words.get(wid)?.id ?? wid),
     })),
     tips,
+    tipLinks: tipViews(own?.tip_links),
     extras,
+    autoCounts: { ...DEFAULT_AUTO, ...own?.auto_exercises },
     packExercises,
     ownExercises: own?.exercises ?? [],
     reading:
@@ -535,13 +584,14 @@ function readingView(dict: Dictionary, pack: PackLesson, lessonId: string): RtRe
 export function packLessonsFor(
   bundle: ContentBundle,
   id: string,
-): { main?: string; linked: string[]; reading?: string } {
+): { main?: string; linked: string[]; reading?: string; tipPacks: string[] } {
   const found = findCourseRef(bundle, id);
-  if (!found) return { linked: [] };
+  if (!found) return { linked: [], tipPacks: [] };
   const own = bundle.lessons[id];
-  return {
-    main: found.ref.source === "pack" ? (found.ref.pack_id ?? found.ref.id) : undefined,
-    linked: own?.nn_lessons ?? [],
-    reading: own?.reading,
-  };
+  const main = found.ref.source === "pack" ? (found.ref.pack_id ?? found.ref.id) : undefined;
+  const tipPacks = [...(own?.tips ?? []), ...(own?.tip_links ?? [])]
+    .flatMap((t) => bundle.tips[t]?.pack_examples ?? [])
+    .map(extraLessonId)
+    .filter((l, i, all) => l !== main && all.indexOf(l) === i);
+  return { main, linked: own?.nn_lessons ?? [], reading: own?.reading, tipPacks };
 }
