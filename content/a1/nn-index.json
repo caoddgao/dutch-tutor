@@ -10,6 +10,7 @@
         "en": "The number, the numbers"
       },
       "sentence_count": 6,
+      "line_count": 6,
       "new_word_count": 0,
       "total_seconds": 380.6,
       "max_sentence_seconds": 2.9,
@@ -27,6 +28,7 @@
         "en": "The hour, the hours"
       },
       "sentence_count": 8,
+      "line_count": 8,
       "new_word_count": 12,
       "total_seconds": 499.2,
       "max_sentence_seconds": 3.4,
@@ -44,6 +46,7 @@
         "en": "The colour, the colours"
       },
       "sentence_count": 6,
+      "line_count": 6,
       "new_word_count": 4,
       "total_seconds": 409.2,
       "max_sentence_seconds": 3.0,
@@ -61,6 +64,7 @@
         "en": "The person, the people"
       },
       "sentence_count": 7,
+      "line_count": 7,
       "new_word_count": 8,
       "total_seconds": 486.7,
       "max_sentence_seconds": 2.8,
@@ -78,6 +82,7 @@
         "en": "Knife, bell, comb, ball, chick, lip"
       },
       "sentence_count": 24,
+      "line_count": 24,
       "new_word_count": 6,
       "total_seconds": 896.0,
       "max_sentence_seconds": 4.6,
@@ -95,6 +100,7 @@
         "en": "Cup, sock, mosquito, bag, pot, bus"
       },
       "sentence_count": 24,
+      "line_count": 24,
       "new_word_count": 6,
       "total_seconds": 688.1,
       "max_sentence_seconds": 3.6,
@@ -112,6 +118,7 @@
         "en": "Foot, goal, belt, wheel, house, thumb"
       },
       "sentence_count": 24,
+      "line_count": 24,
       "new_word_count": 4,
       "total_seconds": 966.1,
       "max_sentence_seconds": 6.4,
@@ -129,6 +136,7 @@
         "en": "Nut, soap, yellow, year, moon, fire"
       },
       "sentence_count": 24,
+      "line_count": 24,
       "new_word_count": 5,
       "total_seconds": 810.7,
       "max_sentence_seconds": 6.0,
@@ -146,6 +154,7 @@
         "en": "Five, goat, nose, ring, laugh, scissors"
       },
       "sentence_count": 24,
+      "line_count": 24,
       "new_word_count": 4,
       "total_seconds": 816.1,
       "max_sentence_seconds": 8.7,
@@ -163,6 +172,7 @@
         "en": "Woman, blue, cent, notebook, blood, face"
       },
       "sentence_count": 24,
+      "line_count": 24,
       "new_word_count": 4,
       "total_seconds": 875.0,
       "max_sentence_seconds": 3.7,
@@ -180,6 +190,7 @@
         "en": "Pill, juice, bus, lesson"
       },
       "sentence_count": 12,
+      "line_count": 12,
       "new_word_count": 2,
       "total_seconds": 184.9,
       "max_sentence_seconds": 3.7,
@@ -197,6 +208,7 @@
         "en": "Step, help, dance, play"
       },
       "sentence_count": 12,
+      "line_count": 12,
       "new_word_count": 3,
       "total_seconds": 210.8,
       "max_sentence_seconds": 6.9,
@@ -214,6 +226,7 @@
         "en": "Handlebar, wedding, brother, square"
       },
       "sentence_count": 12,
+      "line_count": 12,
       "new_word_count": 3,
       "total_seconds": 188.8,
       "max_sentence_seconds": 5.0,
@@ -231,6 +244,7 @@
         "en": "Are you coming with me?"
       },
       "sentence_count": 12,
+      "line_count": 12,
       "new_word_count": 7,
       "total_seconds": 109.2,
       "max_sentence_seconds": 1.8,
@@ -248,6 +262,7 @@
         "en": "I am looking for a house"
       },
       "sentence_count": 10,
+      "line_count": 10,
       "new_word_count": 7,
       "total_seconds": 179.2,
       "max_sentence_seconds": 17.1,
@@ -265,6 +280,7 @@
         "en": "For sale: a bicycle"
       },
       "sentence_count": 9,
+      "line_count": 9,
       "new_word_count": 2,
       "total_seconds": 160.7,
       "max_sentence_seconds": 8.6,
@@ -282,6 +298,7 @@
         "en": "Hello sir"
       },
       "sentence_count": 12,
+      "line_count": 12,
       "new_word_count": 3,
       "total_seconds": 95.4,
       "max_sentence_seconds": 3.2,
@@ -299,6 +316,7 @@
         "en": "Who cleans the school?"
       },
       "sentence_count": 9,
+      "line_count": 9,
       "new_word_count": 7,
       "total_seconds": 119.7,
       "max_sentence_seconds": 3.6,
@@ -316,6 +334,7 @@
         "en": "I am looking for a job"
       },
       "sentence_count": 13,
+      "line_count": 13,
       "new_word_count": 5,
       "total_seconds": 257.0,
       "max_sentence_seconds": 3.0,
@@ -333,6 +352,7 @@
         "en": "The letter, the letters"
       },
       "sentence_count": 0,
+      "line_count": 0,
       "new_word_count": 26,
       "total_seconds": 172.7,
       "max_sentence_seconds": 0.0,
@@ -377,6 +397,7 @@
         "en": "What is your name?"
       },
       "sentence_count": 35,
+      "line_count": 23,
       "new_word_count": 44,
       "total_seconds": 95.7,
       "max_sentence_seconds": 11.1,
@@ -439,6 +460,7 @@
         "en": "Questions"
       },
       "sentence_count": 49,
+      "line_count": 28,
       "new_word_count": 51,
       "total_seconds": 101.2,
       "max_sentence_seconds": 3.7,
@@ -508,6 +530,7 @@
         "en": "Our house"
       },
       "sentence_count": 27,
+      "line_count": 26,
       "new_word_count": 41,
       "total_seconds": 81.5,
       "max_sentence_seconds": 3.5,
@@ -567,6 +590,7 @@
         "en": "The seasons"
       },
       "sentence_count": 45,
+      "line_count": 31,
       "new_word_count": 57,
       "total_seconds": 139.3,
       "max_sentence_seconds": 5.4,
@@ -642,6 +666,7 @@
         "en": "The days of the week"
       },
       "sentence_count": 51,
+      "line_count": 23,
       "new_word_count": 53,
       "total_seconds": 155.2,
       "max_sentence_seconds": 3.9,
@@ -713,6 +738,7 @@
         "en": "Food and drink"
       },
       "sentence_count": 45,
+      "line_count": 27,
       "new_word_count": 39,
       "total_seconds": 118.0,
       "max_sentence_seconds": 5.4,
@@ -770,6 +796,7 @@
         "en": "This is how the day begins"
       },
       "sentence_count": 30,
+      "line_count": 29,
       "new_word_count": 33,
       "total_seconds": 106.0,
       "max_sentence_seconds": 6.4,
@@ -821,6 +848,7 @@
         "en": "New people in the neighbourhood"
       },
       "sentence_count": 20,
+      "line_count": 19,
       "new_word_count": 18,
       "total_seconds": 77.2,
       "max_sentence_seconds": 6.5,
@@ -857,6 +885,7 @@
         "en": "Peter is better"
       },
       "sentence_count": 29,
+      "line_count": 28,
       "new_word_count": 35,
       "total_seconds": 91.8,
       "max_sentence_seconds": 6.9,
@@ -910,6 +939,7 @@
         "en": "Nice on the bike"
       },
       "sentence_count": 28,
+      "line_count": 27,
       "new_word_count": 24,
       "total_seconds": 73.1,
       "max_sentence_seconds": 5.6,
@@ -952,6 +982,7 @@
         "en": "Away"
       },
       "sentence_count": 32,
+      "line_count": 31,
       "new_word_count": 29,
       "total_seconds": 87.1,
       "max_sentence_seconds": 3.2,
@@ -999,6 +1030,7 @@
         "en": "Weekend"
       },
       "sentence_count": 33,
+      "line_count": 32,
       "new_word_count": 31,
       "total_seconds": 94.8,
       "max_sentence_seconds": 3.9,
@@ -1048,6 +1080,7 @@
         "en": "A new language"
       },
       "sentence_count": 39,
+      "line_count": 38,
       "new_word_count": 38,
       "total_seconds": 112.8,
       "max_sentence_seconds": 5.5,
@@ -1104,6 +1137,7 @@
         "en": "Saturday"
       },
       "sentence_count": 36,
+      "line_count": 35,
       "new_word_count": 35,
       "total_seconds": 101.6,
       "max_sentence_seconds": 8.5,
@@ -1157,6 +1191,7 @@
         "en": "Nothing special"
       },
       "sentence_count": 48,
+      "line_count": 31,
       "new_word_count": 40,
       "total_seconds": 118.9,
       "max_sentence_seconds": 3.2,
@@ -1215,6 +1250,7 @@
         "en": "A family"
       },
       "sentence_count": 36,
+      "line_count": 35,
       "new_word_count": 27,
       "total_seconds": 112.8,
       "max_sentence_seconds": 3.4,
@@ -1260,6 +1296,7 @@
         "en": "Going to school"
       },
       "sentence_count": 22,
+      "line_count": 15,
       "new_word_count": 20,
       "total_seconds": 71.6,
       "max_sentence_seconds": 6.2,
@@ -1298,6 +1335,7 @@
         "en": "Learning further"
       },
       "sentence_count": 21,
+      "line_count": 20,
       "new_word_count": 24,
       "total_seconds": 82.5,
       "max_sentence_seconds": 6.0,
@@ -1340,6 +1378,7 @@
         "en": "A match"
       },
       "sentence_count": 23,
+      "line_count": 22,
       "new_word_count": 34,
       "total_seconds": 88.0,
       "max_sentence_seconds": 6.0,
@@ -1392,6 +1431,7 @@
         "en": "The second half"
       },
       "sentence_count": 27,
+      "line_count": 24,
       "new_word_count": 25,
       "total_seconds": 82.8,
       "max_sentence_seconds": 4.2,
@@ -1435,6 +1475,7 @@
         "en": "Calling or writing"
       },
       "sentence_count": 28,
+      "line_count": 22,
       "new_word_count": 26,
       "total_seconds": 98.3,
       "max_sentence_seconds": 3.7,
@@ -1479,6 +1520,7 @@
         "en": "On a visit"
       },
       "sentence_count": 41,
+      "line_count": 40,
       "new_word_count": 27,
       "total_seconds": 104.6,
       "max_sentence_seconds": 6.2,
@@ -1524,6 +1566,7 @@
         "en": "New things"
       },
       "sentence_count": 44,
+      "line_count": 34,
       "new_word_count": 26,
       "total_seconds": 139.4,
       "max_sentence_seconds": 5.0,
@@ -1568,6 +1611,7 @@
         "en": "How do you like it here?"
       },
       "sentence_count": 37,
+      "line_count": 36,
       "new_word_count": 34,
       "total_seconds": 116.9,
       "max_sentence_seconds": 4.6,
@@ -1620,6 +1664,7 @@
         "en": "Learning without a teacher"
       },
       "sentence_count": 25,
+      "line_count": 24,
       "new_word_count": 24,
       "total_seconds": 69.5,
       "max_sentence_seconds": 3.9,
@@ -1662,6 +1707,7 @@
         "en": "Learning languages"
       },
       "sentence_count": 33,
+      "line_count": 22,
       "new_word_count": 21,
       "total_seconds": 109.4,
       "max_sentence_seconds": 4.5,
@@ -1701,6 +1747,7 @@
         "en": "Work"
       },
       "sentence_count": 33,
+      "line_count": 32,
       "new_word_count": 28,
       "total_seconds": 91.3,
       "max_sentence_seconds": 3.8,
@@ -1747,6 +1794,7 @@
         "en": "An e-mail"
       },
       "sentence_count": 28,
+      "line_count": 27,
       "new_word_count": 24,
       "total_seconds": 82.9,
       "max_sentence_seconds": 4.1,
@@ -1789,6 +1837,7 @@
         "en": "Just look it up"
       },
       "sentence_count": 26,
+      "line_count": 25,
       "new_word_count": 30,
       "total_seconds": 89.1,
       "max_sentence_seconds": 10.9,
@@ -1837,6 +1886,7 @@
         "en": "On the train"
       },
       "sentence_count": 40,
+      "line_count": 39,
       "new_word_count": 23,
       "total_seconds": 102.7,
       "max_sentence_seconds": 5.3,
@@ -1878,6 +1928,7 @@
         "en": "No delay?"
       },
       "sentence_count": 20,
+      "line_count": 19,
       "new_word_count": 17,
       "total_seconds": 68.1,
       "max_sentence_seconds": 6.1,
@@ -1913,6 +1964,7 @@
         "en": "Going out"
       },
       "sentence_count": 32,
+      "line_count": 31,
       "new_word_count": 20,
       "total_seconds": 100.3,
       "max_sentence_seconds": 5.0,
@@ -1951,6 +2003,7 @@
         "en": "Paying by card"
       },
       "sentence_count": 42,
+      "line_count": 41,
       "new_word_count": 25,
       "total_seconds": 96.3,
       "max_sentence_seconds": 3.9,
@@ -1994,6 +2047,7 @@
         "en": "The image of the Netherlands"
       },
       "sentence_count": 44,
+      "line_count": 31,
       "new_word_count": 32,
       "total_seconds": 125.1,
       "max_sentence_seconds": 4.1,
@@ -2044,6 +2098,7 @@
         "en": "A day out"
       },
       "sentence_count": 37,
+      "line_count": 36,
       "new_word_count": 31,
       "total_seconds": 108.5,
       "max_sentence_seconds": 4.6,
@@ -2093,6 +2148,7 @@
         "en": "Free time"
       },
       "sentence_count": 25,
+      "line_count": 24,
       "new_word_count": 14,
       "total_seconds": 82.2,
       "max_sentence_seconds": 6.0,
@@ -2125,6 +2181,7 @@
         "en": "Happiness"
       },
       "sentence_count": 29,
+      "line_count": 28,
       "new_word_count": 15,
       "total_seconds": 77.8,
       "max_sentence_seconds": 5.9,
@@ -2158,6 +2215,7 @@
         "en": "Habits"
       },
       "sentence_count": 29,
+      "line_count": 28,
       "new_word_count": 17,
       "total_seconds": 78.5,
       "max_sentence_seconds": 5.5,
@@ -2193,6 +2251,7 @@
         "en": "How much does that cost?"
       },
       "sentence_count": 35,
+      "line_count": 34,
       "new_word_count": 22,
       "total_seconds": 95.8,
       "max_sentence_seconds": 4.3,
@@ -2233,6 +2292,7 @@
         "en": "Love from Otterlo"
       },
       "sentence_count": 30,
+      "line_count": 29,
       "new_word_count": 19,
       "total_seconds": 77.0,
       "max_sentence_seconds": 4.4,
@@ -2266,10 +2326,11 @@
       "kind": "main",
       "title": {
         "nl": "Onze buurt",
-        "zh": "第 61 课。我们的街区。",
+        "zh": "我们的街区",
         "en": "Lesson 61. Our neighbourhood."
       },
       "sentence_count": 27,
+      "line_count": 26,
       "new_word_count": 17,
       "total_seconds": 104.0,
       "max_sentence_seconds": 11.6,
@@ -2301,10 +2362,11 @@
       "kind": "main",
       "title": {
         "nl": "Weggaan of thuisblijven",
-        "zh": "第 62 课。出门还是待在家里。",
+        "zh": "出门还是待在家里",
         "en": "Lesson 62. Going away or staying at home."
       },
       "sentence_count": 28,
+      "line_count": 27,
       "new_word_count": 23,
       "total_seconds": 86.6,
       "max_sentence_seconds": 5.7,
@@ -2342,10 +2404,11 @@
       "kind": "main",
       "title": {
         "nl": "Bekend",
-        "zh": "第 63 课。有名。",
+        "zh": "有名",
         "en": "Lesson 63. Famous."
       },
       "sentence_count": 29,
+      "line_count": 28,
       "new_word_count": 12,
       "total_seconds": 102.3,
       "max_sentence_seconds": 6.4,
@@ -2372,10 +2435,11 @@
       "kind": "main",
       "title": {
         "nl": "Regels",
-        "zh": "第 64 课。规则。",
+        "zh": "规则",
         "en": "Lesson 64. Rules."
       },
       "sentence_count": 31,
+      "line_count": 30,
       "new_word_count": 16,
       "total_seconds": 95.1,
       "max_sentence_seconds": 5.0,
@@ -2406,10 +2470,11 @@
       "kind": "main",
       "title": {
         "nl": "Afscheid",
-        "zh": "第 65 课。告别。",
+        "zh": "告别",
         "en": "Lesson 65. Farewell."
       },
       "sentence_count": 34,
+      "line_count": 33,
       "new_word_count": 19,
       "total_seconds": 102.0,
       "max_sentence_seconds": 4.2,
@@ -2447,6 +2512,7 @@
         "en": "Interim test 1"
       },
       "sentence_count": 0,
+      "line_count": 0,
       "new_word_count": 0,
       "total_seconds": 0.0,
       "max_sentence_seconds": 0.0,
@@ -2464,6 +2530,7 @@
         "en": "Interim test 2"
       },
       "sentence_count": 0,
+      "line_count": 0,
       "new_word_count": 0,
       "total_seconds": 0.0,
       "max_sentence_seconds": 0.0,
@@ -2481,6 +2548,7 @@
         "en": "Interim test 3"
       },
       "sentence_count": 0,
+      "line_count": 0,
       "new_word_count": 0,
       "total_seconds": 0.0,
       "max_sentence_seconds": 0.0,
