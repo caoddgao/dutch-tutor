@@ -1,14 +1,14 @@
 {
   "$schema": "../../schema/tip.schema.json",
   "id": "G11",
-  "title": { "zh": "情态动词：想、能、必须", "en": "Modal verbs: want, can, must" },
+  "title": { "zh": "情态动词：想、能、可以、必须", "en": "Modal verbs: want, can, may, must" },
   "body_zh": [
-    "wil（想）、kan（能）、moet（必须）这类词放在普通动词的位置，后面的动作动词用原形。",
+    "wil（想）、kan（能）、mag（可以、允许）、moet（必须）这类词放在普通动词的位置，后面的动作动词用原形。",
     "在短句里，动作动词通常放到句末：Ik wil een taal leren.",
     "问句把变位的情态动词放到前面：Kan jij vandaag werken?"
   ],
   "body_en": [
-    "Words such as wil (want), kan (can) and moet (must) take the usual verb position; the action verb stays in the infinitive.",
+    "Words such as wil (want), kan (can), mag (may, be allowed to) and moet (must) take the usual verb position; the action verb stays in the infinitive.",
     "In a short sentence, the action verb usually goes at the end: Ik wil een taal leren.",
     "In a question, move the conjugated modal verb to the front: Kan jij vandaag werken?"
   ],
@@ -17,11 +17,13 @@
     { "id": "G11-X2", "nl": "Ik kan vandaag werken.", "zh": "我今天能工作。", "en": "I can work today." },
     { "id": "G11-X3", "nl": "Ik moet mijn werk regelen.", "zh": "我必须安排好工作。", "en": "I must arrange my work." }
   ],
+  "pack_examples": ["NN32-X1"],
   "table": {
     "head": ["情态动词", "意思", "例子"],
     "rows": [
       ["wil", "想", "ik wil leren"],
       ["kan", "能", "ik kan werken"],
+      ["mag", "可以、允许", "ik mag gaan"],
       ["moet", "必须", "ik moet regelen"]
     ]
   }

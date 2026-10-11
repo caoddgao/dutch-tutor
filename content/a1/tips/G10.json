@@ -3,12 +3,12 @@
   "id": "G10",
   "title": { "zh": "物主词：我的、你的、他的", "en": "Possessive words" },
   "body_zh": [
-    "名词前面用 mijn（我的）、jouw（你的）、uw（您的）、zijn（他的）、haar（她的）表示归属。",
+    "名词前面用 mijn（我的）、jouw（你的）、uw（您的）、zijn（他的）、haar（她的）、jullie（你们的）、hun（他们的）表示归属。",
     "说“我们的”时，单数 het 名词前用 ons，de 名词和复数名词前用 onze。",
     "这些词直接放在名词前面，通常不用再加 de、het 或 een。"
   ],
   "body_en": [
-    "Before a noun, use mijn (my), jouw (your), uw (your, formal), zijn (his), or haar (her) to show possession.",
+    "Before a noun, use mijn (my), jouw (your), uw (your, formal), zijn (his), haar (her), jullie (your, plural) or hun (their) to show possession.",
     "For 'our', use ons before a singular het noun; use onze before a de noun or a plural noun.",
     "Put these words directly before the noun, usually without de, het or een."
   ],
@@ -17,13 +17,16 @@
     { "id": "G10-X2", "nl": "Is dat uw arts?", "zh": "那是您的医生吗？", "en": "Is that your doctor?" },
     { "id": "G10-X3", "nl": "Zijn huisarts werkt hier.", "zh": "他的家庭医生在这里工作。", "en": "His GP works here." }
   ],
+  "pack_examples": ["NN35-X1"],
   "table": {
     "head": ["谁的", "词"],
     "rows": [
       ["我", "mijn"],
       ["你 / 您", "jouw / uw"],
       ["他 / 她", "zijn / haar"],
-      ["我们", "ons / onze"]
+      ["我们", "ons / onze"],
+      ["你们", "jullie"],
+      ["他们", "hun"]
     ]
   }
 }
