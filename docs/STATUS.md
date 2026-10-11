@@ -8,7 +8,7 @@
 
 ## 进行中
 
-施工者：Claude · 分支 `claude/blissful-wright-3pl9m5` · PR #（待开）· 任务：3a 修正（已定事项 17 a–f）
+施工者：Claude · 分支 `claude/blissful-wright-3pl9m5` · PR #25· 任务：3a 修正（已定事项 17 a–f）
 
 - [ ] E9 三选一支持（如需要）
 - [ ] E9 NN31–NN34（含 33a/33b）
