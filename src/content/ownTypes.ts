@@ -151,7 +151,8 @@ export interface Tip {
   examples: TipExample[];
   /**
    * Example sentences from the pack's EXTRA boxes (03 §4A), by box id ("NN22-X1") or sentence id
-   * ("NN22-X1-2"). Shown before our own examples when the pack is installed; the NN text stays in the pack.
+   * ("NN22-X1-2"). Shown first when the pack is installed, our examples only fill up to 3; the NN text stays in
+   * the pack.
    */
   pack_examples?: string[];
   table?: { head: string[]; rows: string[][] };

@@ -71,7 +71,7 @@ export interface RtTip {
   title: { zh: string; en?: string };
   bodyZh: string[];
   bodyEn?: string[];
-  /** The pack's EXTRA-box sentences the tip cites (when the pack is installed), then our own examples */
+  /** The pack's EXTRA-box sentences the tip cites (when the pack is installed), then ours up to TIP_EXAMPLES */
   examples: RtSentence[];
   table?: { head: string[]; rows: string[][] };
 }
@@ -382,17 +382,24 @@ function extraSentenceView(s: PackExtraSentence): RtSentence {
   };
 }
 
+/** A tip shows about this many examples: the book's first, ours only to fill up (design §2.3: 2–3 例句) */
+export const TIP_EXAMPLES = 3;
+
 function tipView(bundle: ContentBundle, dict: Dictionary, tip: Tip, packs: Map<string, PackLesson>): RtTip {
-  const cited = (tip.pack_examples ?? []).flatMap((ref) => extraSentences(packs.get(extraLessonId(ref)), ref));
   const seen = new Set<string>();
+  const cited = (tip.pack_examples ?? [])
+    .flatMap((ref) => extraSentences(packs.get(extraLessonId(ref)), ref))
+    .filter((s) => !seen.has(s.id) && seen.add(s.id));
   return {
     id: tip.id,
     title: tip.title,
     bodyZh: tip.body_zh,
     bodyEn: tip.body_en,
     examples: [
-      ...cited.filter((s) => !seen.has(s.id) && seen.add(s.id)).map(extraSentenceView),
-      ...tip.examples.map((e) => ownSentence(bundle, dict, e, "example")),
+      ...cited.map(extraSentenceView),
+      ...tip.examples
+        .slice(0, Math.max(0, TIP_EXAMPLES - cited.length))
+        .map((e) => ownSentence(bundle, dict, e, "example")),
     ],
     table: tip.table,
   };

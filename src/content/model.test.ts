@@ -155,12 +155,20 @@ describe("lesson model", () => {
   it("a tip shows the EXTRA-box sentences it cites, then our examples; the box is not shown again", () => {
     const l = buildLesson(content, dict, "NN22", { own: content.lessons.NN22, pack: lesson("NN22") })!;
     expect(l.tips.map((t) => t.id)).toEqual(["G02"]);
-    expect(l.tips[0].examples.map((s) => s.id)).toEqual(["NN22-X1-1", "NN22-X1-2", "NN22-X1-3", "G02-X1"]);
+    // the box has 3 sentences: enough examples, ours are not needed
+    expect(l.tips[0].examples.map((s) => s.id)).toEqual(["NN22-X1-1", "NN22-X1-2", "NN22-X1-3"]);
     expect(l.tips[0].examples[0].audio.packTts).toMatch(/^audio\/tts\//);
     expect(l.extras).toEqual([]);
     // G01 was taught in NN21: linked back, not taught again
     expect(l.tipLinks.map((t) => t.id)).toEqual(["G01"]);
     expect(l.autoCounts).toEqual({ E1: 1, E2: 0, E3: 1, E4: 0, E7: 1 });
+    // one cited sentence: ours fill up
+    const one = structuredClone(content);
+    one.tips.G02.pack_examples = ["NN22-X1-2"];
+    const l1 = buildLesson(one, dict, "NN22", { own: one.lessons.NN22, pack: lesson("NN22") })!;
+    expect(l1.tips[0].examples.map((s) => s.id)).toEqual(["NN22-X1-2", "G02-X1"]);
+    // only a whole cited box is left out of the boxes
+    expect(l1.extras.map((x) => x.id)).toEqual(["NN22-X1"]);
     // without the pack only our own examples
     const bare = buildLesson(content, dict, "NN22", {
       own: content.lessons.NN22,
