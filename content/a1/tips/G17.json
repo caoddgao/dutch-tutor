@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G17",
+  "title": { "zh": "命令式：简短地告诉别人怎么做", "en": "The imperative" },
+  "body_zh": [
+    "给人简短的指示时，可以用动词的 ik 形式开头，不说主语：Zeg het antwoord.",
+    "对一个人说“选一个答案”，用 Kies een antwoord；对多人或客气地说，可用原形加 u：Kiest u een antwoord.",
+    "命令式也能加 alstublieft，让语气更客气。"
+  ],
+  "body_en": [
+    "For a short instruction, start with the verb's ik form and omit the subject: Zeg het antwoord.",
+    "To tell one person to choose an answer, say Kies een antwoord; for a polite instruction use the verb with u: Kiest u een antwoord.",
+    "You can add alstublieft to make an instruction more polite."
+  ],
+  "examples": [
+    { "id": "G17-X1", "nl": "Zeg het antwoord.", "zh": "说出答案。", "en": "Say the answer." },
+    { "id": "G17-X2", "nl": "Kies een antwoord.", "zh": "选一个答案。", "en": "Choose an answer." },
+    { "id": "G17-X3", "nl": "Oefen elke dag.", "zh": "每天练习。", "en": "Practise every day." }
+  ],
+  "pack_examples": ["NN33-X1"]
+}

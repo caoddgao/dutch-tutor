@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G09",
+  "title": { "zh": "动词放在第二位", "en": "The verb in second position" },
+  "body_zh": [
+    "普通陈述句里，变位动词放在第二个位置：Ik werk vandaag.",
+    "把时间放到句首时，动词仍在第二位，主语就移到动词后面：Vandaag werk ik.",
+    "句首的一整个时间短语算一个位置；不要把主语和动词一起挪到后面。"
+  ],
+  "body_en": [
+    "In a statement, the conjugated verb takes the second position: Ik werk vandaag.",
+    "If time comes first, the verb stays second and the subject follows it: Vandaag werk ik.",
+    "A whole time phrase at the start counts as one position; do not move the subject and verb together."
+  ],
+  "examples": [
+    { "id": "G09-X1", "nl": "Vandaag werk ik.", "zh": "今天我上班。", "en": "Today I work." },
+    {
+      "id": "G09-X2",
+      "nl": "Binnenkort ga ik naar Den Haag.",
+      "zh": "我很快要去海牙。",
+      "en": "Soon I will go to The Hague."
+    },
+    { "id": "G09-X3", "nl": "Vandaag leer ik een taal.", "zh": "今天我学一门语言。", "en": "Today I learn a language." }
+  ],
+  "table": {
+    "head": ["第一位", "第二位：动词", "后面"],
+    "rows": [
+      ["Ik", "werk", "vandaag."],
+      ["Vandaag", "werk", "ik."],
+      ["Binnenkort", "ga", "ik naar Den Haag."]
+    ]
+  }
+}

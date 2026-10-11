@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G14",
+  "title": { "zh": "现在完成时：说已经做过的事", "en": "The present perfect" },
+  "body_zh": [
+    "说过去已经做过的事，常用 hebben 或 zijn 的现在时，加一个放在句末的过去分词：Ik heb gewerkt.",
+    "多数动作配 hebben；表示去往某处等位置变化的动作常配 zijn：Ik ben naar Den Haag gegaan.",
+    "规则动词的过去分词常是 ge- 加词干再加 -d 或 -t；常见不规则形式要跟着词一起记。"
+  ],
+  "body_en": [
+    "To say what happened, use the present tense of hebben or zijn and a past participle at the end: Ik heb gewerkt.",
+    "Most actions use hebben; a change of place often uses zijn: Ik ben naar Den Haag gegaan.",
+    "A regular past participle often has ge- plus the stem and -d or -t; learn common irregular forms with the verb."
+  ],
+  "examples": [
+    { "id": "G14-X1", "nl": "Ik heb gewerkt.", "zh": "我工作过了。", "en": "I have worked." },
+    { "id": "G14-X2", "nl": "Ik ben naar Den Haag gegaan.", "zh": "我去了海牙。", "en": "I have gone to The Hague." },
+    { "id": "G14-X3", "nl": "Heb jij vandaag gewerkt?", "zh": "你今天工作了吗？", "en": "Have you worked today?" }
+  ],
+  "table": {
+    "head": ["助动词", "过去分词", "例子"],
+    "rows": [
+      ["hebben", "gewerkt", "Ik heb gewerkt."],
+      ["zijn", "gegaan", "Ik ben gegaan."]
+    ]
+  }
+}
