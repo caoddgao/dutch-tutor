@@ -1,0 +1,274 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P09",
+  "kind": "phonics",
+  "title": {
+    "nl": "a · b · c · 1–20",
+    "zh": "字母表、拼读、数字 1–20",
+    "en": "The alphabet, spelling, numbers 1–20"
+  },
+  "nn_lessons": ["NN20", "NN01"],
+  "reading": "NN18",
+  "sounds": [
+    {
+      "grapheme": "a e i o u",
+      "note_zh": "元音字母的名字就是它的长音：a = aa，e = ee，i = ie，o = oo，u = uu。y 叫“i-grec”，也常读成 ij。拼名字时最容易混的是 e 和 i：e 读“诶”，i 读“衣”。",
+      "note_en": "Vowel letters are named by their long sound: a = aa, e = ee, i = ie, o = oo, u = uu; y is 'i-grec', often said like ij.",
+      "word_ids": ["w_letter_a", "w_letter_e", "w_letter_i", "w_letter_o", "w_letter_u", "w_letter_y"]
+    },
+    {
+      "grapheme": "-ee",
+      "note_zh": "b c d g j p t v w：名字都是“辅音 + ee”：bee、cee、dee、gee、jee、pee、tee、vee、wee。c 读 see（在 e、i 前读 s，如 cent），g 是喉音，j 读 jee，不是英语的 jay。",
+      "note_en": "b c d g j p t v w are 'consonant + ee': bee, cee (said 'see'), dee, gee (throaty g), jee, pee, tee, vee, wee.",
+      "word_ids": [
+        "w_letter_b",
+        "w_letter_c",
+        "w_letter_d",
+        "w_letter_g",
+        "w_letter_j",
+        "w_letter_p",
+        "w_letter_t",
+        "w_letter_v",
+        "w_letter_w"
+      ]
+    },
+    {
+      "grapheme": "e-",
+      "note_zh": "f l m n r s：名字都是“e + 辅音”：ef、el、em、en、er、es。前面的 e 是短 e，像 mes 里的 e。",
+      "note_en": "f l m n r s are 'e + consonant': ef, el, em, en, er, es, with the short e of mes.",
+      "word_ids": ["w_letter_f", "w_letter_l", "w_letter_m", "w_letter_n", "w_letter_r", "w_letter_s"]
+    },
+    {
+      "grapheme": "h k q x z",
+      "note_zh": "其余五个：h = haa，k = kaa，q = kuu（uu 是长 ü），x = iks，z = zet。",
+      "note_en": "The other five: h = haa, k = kaa, q = kuu, x = iks, z = zet.",
+      "word_ids": ["w_letter_h", "w_letter_k", "w_letter_q", "w_letter_x", "w_letter_z"]
+    },
+    {
+      "grapheme": "1–10",
+      "note_zh": "1–10：één 上面加两个点（“一”），和冠词 een（一个）区分；acht 的 ch、negen 的 g 都是喉音；zeven 的 z 是浊音，像轻轻的“z”。",
+      "note_en": "1–10: één carries accents to tell it from the article een; ch in acht and g in negen are throaty.",
+      "word_ids": [
+        "w_een_telw",
+        "w_twee",
+        "w_drie",
+        "w_vier",
+        "w_vijf",
+        "w_zes",
+        "w_zeven",
+        "w_acht",
+        "w_negen",
+        "w_tien"
+      ]
+    },
+    {
+      "grapheme": "11–20",
+      "note_zh": "11、12 是 elf、twaalf；13–19 是“个位 + tien”，注意 dertien、veertien（不是 drietien、viertien）；20 是 twintig。",
+      "note_en": "11 and 12 are elf, twaalf; 13–19 are 'unit + tien' — note dertien and veertien; 20 is twintig.",
+      "word_ids": [
+        "w_elf",
+        "w_twaalf",
+        "w_dertien",
+        "w_veertien",
+        "w_vijftien",
+        "w_zestien",
+        "w_zeventien",
+        "w_achttien",
+        "w_negentien",
+        "w_twintig"
+      ]
+    }
+  ],
+  "word_ids": [
+    "w_letter_a",
+    "w_letter_e",
+    "w_letter_i",
+    "w_letter_o",
+    "w_letter_u",
+    "w_letter_y",
+    "w_letter_b",
+    "w_letter_c",
+    "w_letter_d",
+    "w_letter_g",
+    "w_letter_j",
+    "w_letter_p",
+    "w_letter_t",
+    "w_letter_v",
+    "w_letter_w",
+    "w_letter_f",
+    "w_letter_l",
+    "w_letter_m",
+    "w_letter_n",
+    "w_letter_r",
+    "w_letter_s",
+    "w_letter_h",
+    "w_letter_k",
+    "w_letter_q",
+    "w_letter_x",
+    "w_letter_z",
+    "w_een_telw",
+    "w_twee",
+    "w_drie",
+    "w_vier",
+    "w_vijf",
+    "w_zes",
+    "w_zeven",
+    "w_acht",
+    "w_negen",
+    "w_tien",
+    "w_elf",
+    "w_twaalf",
+    "w_dertien",
+    "w_veertien",
+    "w_vijftien",
+    "w_zestien",
+    "w_zeventien",
+    "w_achttien",
+    "w_negentien",
+    "w_twintig",
+    "w_schrijven",
+    "w_spellen",
+    "w_nummer",
+    "w_huisnummer",
+    "w_keer",
+    "w_cent"
+  ],
+  "sentences": [
+    {
+      "id": "P09-S01",
+      "nl": "Hoe schrijf je dat?",
+      "zh": "这个怎么写？",
+      "en": "How do you write that?"
+    },
+    {
+      "id": "P09-S02",
+      "nl": "Kunt u dat spellen?",
+      "zh": "您能拼一下吗？",
+      "en": "Could you spell that?"
+    },
+    {
+      "id": "P09-S03",
+      "nl": "Wat is uw nummer?",
+      "zh": "您的号码是多少？",
+      "en": "What is your number?"
+    },
+    {
+      "id": "P09-S04",
+      "nl": "Mijn huisnummer is twaalf.",
+      "zh": "我的门牌号是十二号。",
+      "en": "My house number is twelve."
+    },
+    {
+      "id": "P09-S05",
+      "nl": "Ik ben twintig jaar.",
+      "zh": "我二十岁。",
+      "en": "I am twenty years old."
+    },
+    {
+      "id": "P09-S06",
+      "nl": "Het kost zeven euro.",
+      "zh": "这个七欧元。",
+      "en": "It costs seven euros."
+    },
+    {
+      "id": "P09-S07",
+      "nl": "Nog een keer, graag.",
+      "zh": "请再说一遍。",
+      "en": "Once more, please."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P09-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P09-E1-1",
+          "word_id": "w_dertien",
+          "options": ["dertien", "dertig", "drietien"],
+          "answer": "dertien"
+        },
+        {
+          "id": "P09-E1-2",
+          "word_id": "w_veertien",
+          "options": ["veertien", "veertig", "viertien"],
+          "answer": "veertien"
+        },
+        {
+          "id": "P09-E1-3",
+          "word_id": "w_twaalf",
+          "options": ["twaalf", "twee", "twintig"],
+          "answer": "twaalf"
+        },
+        {
+          "id": "P09-E1-4",
+          "word_id": "w_letter_e",
+          "options": ["a", "e", "i"],
+          "answer": "e"
+        },
+        {
+          "id": "P09-E1-5",
+          "word_id": "w_letter_g",
+          "options": ["g", "h", "k"],
+          "answer": "g"
+        },
+        {
+          "id": "P09-E1-6",
+          "word_id": "w_letter_j",
+          "options": ["g", "i", "j"],
+          "answer": "j"
+        }
+      ]
+    },
+    {
+      "id": "P09-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P09-E2-1",
+          "word_id": "w_zeventien",
+          "options": ["w_zeventien", "w_zeven", "w_tien"]
+        },
+        {
+          "id": "P09-E2-2",
+          "word_id": "w_letter_u",
+          "options": ["w_letter_o", "w_letter_q", "w_letter_u"]
+        },
+        {
+          "id": "P09-E2-3",
+          "word_id": "w_elf",
+          "options": ["w_elf", "w_letter_f", "w_letter_l"]
+        }
+      ]
+    },
+    {
+      "id": "P09-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P09-E3-1",
+          "sentence_id": "P09-S01"
+        },
+        {
+          "id": "P09-E3-2",
+          "sentence_id": "P09-S04"
+        }
+      ]
+    }
+  ]
+}

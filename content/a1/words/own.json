@@ -265,5 +265,1470 @@
     "plural": null,
     "zh": "荷兰语",
     "en": "Dutch (language)"
+  },
+  {
+    "id": "w_de",
+    "lemma": "de",
+    "pos": "lidw",
+    "zh": "（定冠词，用于 de 词）",
+    "en": "the"
+  },
+  {
+    "id": "w_het",
+    "lemma": "het",
+    "pos": "lidw",
+    "zh": "（定冠词，用于 het 词）；它",
+    "en": "the; it"
+  },
+  {
+    "id": "w_in",
+    "lemma": "in",
+    "pos": "vz",
+    "zh": "在……里",
+    "en": "in"
+  },
+  {
+    "id": "w_niet",
+    "lemma": "niet",
+    "pos": "bw",
+    "zh": "不",
+    "en": "not"
+  },
+  {
+    "id": "w_waar",
+    "lemma": "waar",
+    "pos": "bw",
+    "zh": "哪里",
+    "en": "where"
+  },
+  {
+    "id": "w_hier",
+    "lemma": "hier",
+    "pos": "bw",
+    "zh": "这里",
+    "en": "here"
+  },
+  {
+    "id": "w_al",
+    "lemma": "al",
+    "pos": "bw",
+    "zh": "已经",
+    "en": "already"
+  },
+  {
+    "id": "w_of",
+    "lemma": "of",
+    "pos": "vw",
+    "zh": "或者；还是",
+    "en": "or"
+  },
+  {
+    "id": "w_met",
+    "lemma": "met",
+    "pos": "vz",
+    "zh": "和……一起；用",
+    "en": "with"
+  },
+  {
+    "id": "w_jou",
+    "lemma": "jou",
+    "pos": "vnw",
+    "zh": "你（宾格）",
+    "en": "you (object, informal)"
+  },
+  {
+    "id": "w_geen",
+    "lemma": "geen",
+    "pos": "vnw",
+    "zh": "没有；不是（一个）",
+    "en": "no, not a"
+  },
+  {
+    "id": "w_naar",
+    "lemma": "naar",
+    "pos": "vz",
+    "zh": "去，往",
+    "en": "to (a place)"
+  },
+  {
+    "id": "w_waarom",
+    "lemma": "waarom",
+    "pos": "bw",
+    "zh": "为什么",
+    "en": "why"
+  },
+  {
+    "id": "w_hij",
+    "lemma": "hij",
+    "pos": "vnw",
+    "zh": "他",
+    "en": "he"
+  },
+  {
+    "id": "w_mij",
+    "lemma": "mij",
+    "pos": "vnw",
+    "zh": "我（宾格）",
+    "en": "me"
+  },
+  {
+    "id": "w_om",
+    "lemma": "om",
+    "pos": "vz",
+    "zh": "在（几点）",
+    "en": "at (a time)"
+  },
+  {
+    "id": "w_nog",
+    "lemma": "nog",
+    "pos": "bw",
+    "zh": "还；再",
+    "en": "still; more, again"
+  },
+  {
+    "id": "w_over",
+    "lemma": "over",
+    "pos": "vz",
+    "zh": "过（几点几分）；关于",
+    "en": "past (the hour); about"
+  },
+  {
+    "id": "w_hoe",
+    "lemma": "hoe",
+    "pos": "bw",
+    "zh": "怎么，怎样",
+    "en": "how"
+  },
+  {
+    "id": "w_welk",
+    "lemma": "welk",
+    "pos": "vnw",
+    "zh": "哪个，哪些",
+    "en": "which",
+    "forms_seen": ["welke"]
+  },
+  {
+    "id": "w_hebben",
+    "lemma": "hebben",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "heb",
+      "jij": "hebt",
+      "hij": "heeft",
+      "wij": "hebben",
+      "pp": "gehad",
+      "aux": "hebben"
+    },
+    "forms_seen": ["heeft"],
+    "zh": "有",
+    "en": "to have"
+  },
+  {
+    "id": "w_gaan",
+    "lemma": "gaan",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "ga",
+      "jij": "gaat",
+      "hij": "gaat",
+      "wij": "gaan",
+      "pp": "gegaan",
+      "aux": "zijn"
+    },
+    "zh": "去",
+    "en": "to go"
+  },
+  {
+    "id": "w_kunnen",
+    "lemma": "kunnen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "kan",
+      "jij": "kunt",
+      "hij": "kan",
+      "wij": "kunnen",
+      "pp": "gekund",
+      "aux": "hebben"
+    },
+    "forms_seen": ["kun"],
+    "zh": "能，会，可以",
+    "en": "can, to be able to"
+  },
+  {
+    "id": "w_kop",
+    "lemma": "kop",
+    "pos": "zn",
+    "article": "de",
+    "plural": "koppen",
+    "zh": "杯子（带把的）",
+    "en": "cup"
+  },
+  {
+    "id": "w_sok",
+    "lemma": "sok",
+    "pos": "zn",
+    "article": "de",
+    "plural": "sokken",
+    "zh": "袜子",
+    "en": "sock"
+  },
+  {
+    "id": "w_pot",
+    "lemma": "pot",
+    "pos": "zn",
+    "article": "de",
+    "plural": "potten",
+    "zh": "罐子；锅",
+    "en": "pot, jar"
+  },
+  {
+    "id": "w_mug",
+    "lemma": "mug",
+    "pos": "zn",
+    "article": "de",
+    "plural": "muggen",
+    "zh": "蚊子",
+    "en": "mosquito"
+  },
+  {
+    "id": "w_bus",
+    "lemma": "bus",
+    "pos": "zn",
+    "article": "de",
+    "plural": "bussen",
+    "zh": "公交车",
+    "en": "bus"
+  },
+  {
+    "id": "w_tas",
+    "lemma": "tas",
+    "pos": "zn",
+    "article": "de",
+    "plural": "tassen",
+    "zh": "包，袋子",
+    "en": "bag"
+  },
+  {
+    "id": "w_druk",
+    "lemma": "druk",
+    "pos": "bn",
+    "zh": "忙的；人多的，拥挤的",
+    "en": "busy, crowded"
+  },
+  {
+    "id": "w_vol",
+    "lemma": "vol",
+    "pos": "bn",
+    "zh": "满的",
+    "en": "full"
+  },
+  {
+    "id": "w_pas_op",
+    "lemma": "pas op",
+    "pos": "uitdr",
+    "zh": "小心！",
+    "en": "watch out!"
+  },
+  {
+    "id": "w_noot",
+    "lemma": "noot",
+    "pos": "zn",
+    "article": "de",
+    "plural": "noten",
+    "zh": "坚果",
+    "en": "nut"
+  },
+  {
+    "id": "w_rood",
+    "lemma": "rood",
+    "pos": "bn",
+    "zh": "红色的",
+    "en": "red"
+  },
+  {
+    "id": "w_zoon",
+    "lemma": "zoon",
+    "pos": "zn",
+    "article": "de",
+    "plural": "zonen",
+    "zh": "儿子",
+    "en": "son"
+  },
+  {
+    "id": "w_vuur",
+    "lemma": "vuur",
+    "pos": "zn",
+    "article": "het",
+    "plural": "vuren",
+    "zh": "火",
+    "en": "fire"
+  },
+  {
+    "id": "w_uur",
+    "lemma": "uur",
+    "pos": "zn",
+    "article": "het",
+    "plural": "uren",
+    "zh": "小时；……点钟",
+    "en": "hour; o'clock"
+  },
+  {
+    "id": "w_duur",
+    "lemma": "duur",
+    "pos": "bn",
+    "zh": "贵的",
+    "en": "expensive"
+  },
+  {
+    "id": "w_jaar",
+    "lemma": "jaar",
+    "pos": "zn",
+    "article": "het",
+    "plural": "jaren",
+    "zh": "年；岁",
+    "en": "year"
+  },
+  {
+    "id": "w_zeep",
+    "lemma": "zeep",
+    "pos": "zn",
+    "article": "de",
+    "plural": "zepen",
+    "zh": "肥皂",
+    "en": "soap"
+  },
+  {
+    "id": "w_geel",
+    "lemma": "geel",
+    "pos": "bn",
+    "zh": "黄色的",
+    "en": "yellow"
+  },
+  {
+    "id": "w_wonen",
+    "lemma": "wonen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "woon",
+      "jij": "woont",
+      "hij": "woont",
+      "wij": "wonen",
+      "pp": "gewoond",
+      "aux": "hebben"
+    },
+    "zh": "住，居住",
+    "en": "to live, to reside"
+  },
+  {
+    "id": "w_voet",
+    "lemma": "voet",
+    "pos": "zn",
+    "article": "de",
+    "plural": "voeten",
+    "zh": "脚",
+    "en": "foot"
+  },
+  {
+    "id": "w_doel",
+    "lemma": "doel",
+    "pos": "zn",
+    "article": "het",
+    "plural": "doelen",
+    "zh": "球门；目标",
+    "en": "goal"
+  },
+  {
+    "id": "w_boek",
+    "lemma": "boek",
+    "pos": "zn",
+    "article": "het",
+    "plural": "boeken",
+    "zh": "书",
+    "en": "book"
+  },
+  {
+    "id": "w_goed",
+    "lemma": "goed",
+    "pos": "bn",
+    "zh": "好的",
+    "en": "good"
+  },
+  {
+    "id": "w_riem",
+    "lemma": "riem",
+    "pos": "zn",
+    "article": "de",
+    "plural": "riemen",
+    "zh": "皮带",
+    "en": "belt"
+  },
+  {
+    "id": "w_wiel",
+    "lemma": "wiel",
+    "pos": "zn",
+    "article": "het",
+    "plural": "wielen",
+    "zh": "轮子",
+    "en": "wheel"
+  },
+  {
+    "id": "w_fiets",
+    "lemma": "fiets",
+    "pos": "zn",
+    "article": "de",
+    "plural": "fietsen",
+    "zh": "自行车",
+    "en": "bicycle"
+  },
+  {
+    "id": "w_huis",
+    "lemma": "huis",
+    "pos": "zn",
+    "article": "het",
+    "plural": "huizen",
+    "zh": "房子；家",
+    "en": "house, home"
+  },
+  {
+    "id": "w_thuis",
+    "lemma": "thuis",
+    "pos": "bw",
+    "zh": "在家",
+    "en": "at home"
+  },
+  {
+    "id": "w_duim",
+    "lemma": "duim",
+    "pos": "zn",
+    "article": "de",
+    "plural": "duimen",
+    "zh": "大拇指",
+    "en": "thumb"
+  },
+  {
+    "id": "w_goedemorgen",
+    "lemma": "goedemorgen",
+    "pos": "tw",
+    "zh": "早上好",
+    "en": "good morning"
+  },
+  {
+    "id": "w_hoe_gaat_het",
+    "lemma": "hoe gaat het",
+    "pos": "uitdr",
+    "zh": "你好吗？最近怎么样？",
+    "en": "how are you?"
+  },
+  {
+    "id": "w_tot_ziens",
+    "lemma": "tot ziens",
+    "pos": "uitdr",
+    "zh": "再见",
+    "en": "goodbye"
+  },
+  {
+    "id": "w_vijf",
+    "lemma": "vijf",
+    "pos": "telw",
+    "zh": "五",
+    "en": "five"
+  },
+  {
+    "id": "w_geit",
+    "lemma": "geit",
+    "pos": "zn",
+    "article": "de",
+    "plural": "geiten",
+    "zh": "山羊",
+    "en": "goat"
+  },
+  {
+    "id": "w_tijd",
+    "lemma": "tijd",
+    "pos": "zn",
+    "article": "de",
+    "plural": "tijden",
+    "zh": "时间",
+    "en": "time"
+  },
+  {
+    "id": "w_neus",
+    "lemma": "neus",
+    "pos": "zn",
+    "article": "de",
+    "plural": "neuzen",
+    "zh": "鼻子",
+    "en": "nose"
+  },
+  {
+    "id": "w_leuk",
+    "lemma": "leuk",
+    "pos": "bn",
+    "zh": "好玩的，有意思的，不错的",
+    "en": "nice, fun"
+  },
+  {
+    "id": "w_deur",
+    "lemma": "deur",
+    "pos": "zn",
+    "article": "de",
+    "plural": "deuren",
+    "zh": "门",
+    "en": "door"
+  },
+  {
+    "id": "w_euro",
+    "lemma": "euro",
+    "pos": "zn",
+    "article": "de",
+    "plural": "euro's",
+    "zh": "欧元",
+    "en": "euro"
+  },
+  {
+    "id": "w_vrouw",
+    "lemma": "vrouw",
+    "pos": "zn",
+    "article": "de",
+    "plural": "vrouwen",
+    "zh": "女人；妻子",
+    "en": "woman; wife"
+  },
+  {
+    "id": "w_blauw",
+    "lemma": "blauw",
+    "pos": "bn",
+    "zh": "蓝色的",
+    "en": "blue"
+  },
+  {
+    "id": "w_koud",
+    "lemma": "koud",
+    "pos": "bn",
+    "zh": "冷的",
+    "en": "cold"
+  },
+  {
+    "id": "w_kosten",
+    "lemma": "kosten",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "kost",
+      "jij": "kost",
+      "hij": "kost",
+      "wij": "kosten",
+      "pp": "gekost",
+      "aux": "hebben"
+    },
+    "zh": "花费，值（多少钱）",
+    "en": "to cost"
+  },
+  {
+    "id": "w_lachen",
+    "lemma": "lachen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "lach",
+      "jij": "lacht",
+      "hij": "lacht",
+      "wij": "lachen",
+      "pp": "gelachen",
+      "aux": "hebben"
+    },
+    "zh": "笑",
+    "en": "to laugh"
+  },
+  {
+    "id": "w_gezicht",
+    "lemma": "gezicht",
+    "pos": "zn",
+    "article": "het",
+    "plural": "gezichten",
+    "zh": "脸",
+    "en": "face"
+  },
+  {
+    "id": "w_glas",
+    "lemma": "glas",
+    "pos": "zn",
+    "article": "het",
+    "plural": "glazen",
+    "zh": "玻璃杯；玻璃",
+    "en": "glass"
+  },
+  {
+    "id": "w_achternaam",
+    "lemma": "achternaam",
+    "pos": "zn",
+    "article": "de",
+    "plural": "achternamen",
+    "zh": "姓",
+    "en": "surname"
+  },
+  {
+    "id": "w_goedenavond",
+    "lemma": "goedenavond",
+    "pos": "tw",
+    "zh": "晚上好",
+    "en": "good evening"
+  },
+  {
+    "id": "w_school",
+    "lemma": "school",
+    "pos": "zn",
+    "article": "de",
+    "plural": "scholen",
+    "zh": "学校",
+    "en": "school"
+  },
+  {
+    "id": "w_schaar",
+    "lemma": "schaar",
+    "pos": "zn",
+    "article": "de",
+    "plural": "scharen",
+    "zh": "剪刀",
+    "en": "scissors"
+  },
+  {
+    "id": "w_schrift",
+    "lemma": "schrift",
+    "pos": "zn",
+    "article": "het",
+    "plural": "schriften",
+    "zh": "练习本",
+    "en": "exercise book"
+  },
+  {
+    "id": "w_ring",
+    "lemma": "ring",
+    "pos": "zn",
+    "article": "de",
+    "plural": "ringen",
+    "zh": "戒指",
+    "en": "ring"
+  },
+  {
+    "id": "w_lang",
+    "lemma": "lang",
+    "pos": "bn",
+    "zh": "长的；（人）高的",
+    "en": "long; tall"
+  },
+  {
+    "id": "w_raam",
+    "lemma": "raam",
+    "pos": "zn",
+    "article": "het",
+    "plural": "ramen",
+    "zh": "窗户",
+    "en": "window"
+  },
+  {
+    "id": "w_water",
+    "lemma": "water",
+    "pos": "zn",
+    "article": "het",
+    "plural": null,
+    "zh": "水",
+    "en": "water"
+  },
+  {
+    "id": "w_werken",
+    "lemma": "werken",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "werk",
+      "jij": "werkt",
+      "hij": "werkt",
+      "wij": "werken",
+      "pp": "gewerkt",
+      "aux": "hebben"
+    },
+    "zh": "工作",
+    "en": "to work"
+  },
+  {
+    "id": "w_stap",
+    "lemma": "stap",
+    "pos": "zn",
+    "article": "de",
+    "plural": "stappen",
+    "zh": "步",
+    "en": "step"
+  },
+  {
+    "id": "w_spelen",
+    "lemma": "spelen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "speel",
+      "jij": "speelt",
+      "hij": "speelt",
+      "wij": "spelen",
+      "pp": "gespeeld",
+      "aux": "hebben"
+    },
+    "zh": "玩；演奏",
+    "en": "to play"
+  },
+  {
+    "id": "w_stuur",
+    "lemma": "stuur",
+    "pos": "zn",
+    "article": "het",
+    "plural": "sturen",
+    "zh": "方向盘；车把",
+    "en": "steering wheel; handlebars"
+  },
+  {
+    "id": "w_spreken",
+    "lemma": "spreken",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "spreek",
+      "jij": "spreekt",
+      "hij": "spreekt",
+      "wij": "spreken",
+      "pp": "gesproken",
+      "aux": "hebben"
+    },
+    "zh": "说（某种语言），讲",
+    "en": "to speak"
+  },
+  {
+    "id": "w_stoppen",
+    "lemma": "stoppen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "stop",
+      "jij": "stopt",
+      "hij": "stopt",
+      "wij": "stoppen",
+      "pp": "gestopt",
+      "aux": "hebben"
+    },
+    "zh": "停，停下",
+    "en": "to stop"
+  },
+  {
+    "id": "w_broer",
+    "lemma": "broer",
+    "pos": "zn",
+    "article": "de",
+    "plural": "broers",
+    "zh": "兄弟",
+    "en": "brother"
+  },
+  {
+    "id": "w_plein",
+    "lemma": "plein",
+    "pos": "zn",
+    "article": "het",
+    "plural": "pleinen",
+    "zh": "广场",
+    "en": "square"
+  },
+  {
+    "id": "w_drinken",
+    "lemma": "drinken",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "drink",
+      "jij": "drinkt",
+      "hij": "drinkt",
+      "wij": "drinken",
+      "pp": "gedronken",
+      "aux": "hebben"
+    },
+    "zh": "喝",
+    "en": "to drink"
+  },
+  {
+    "id": "w_trein",
+    "lemma": "trein",
+    "pos": "zn",
+    "article": "de",
+    "plural": "treinen",
+    "zh": "火车",
+    "en": "train"
+  },
+  {
+    "id": "w_trouwen",
+    "lemma": "trouwen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "trouw",
+      "jij": "trouwt",
+      "hij": "trouwt",
+      "wij": "trouwen",
+      "pp": "getrouwd",
+      "aux": "zijn"
+    },
+    "zh": "结婚",
+    "en": "to marry"
+  },
+  {
+    "id": "w_helpen",
+    "lemma": "helpen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "help",
+      "jij": "helpt",
+      "hij": "helpt",
+      "wij": "helpen",
+      "pp": "geholpen",
+      "aux": "hebben"
+    },
+    "zh": "帮助",
+    "en": "to help"
+  },
+  {
+    "id": "w_dansen",
+    "lemma": "dansen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "dans",
+      "jij": "danst",
+      "hij": "danst",
+      "wij": "dansen",
+      "pp": "gedanst",
+      "aux": "hebben"
+    },
+    "zh": "跳舞",
+    "en": "to dance"
+  },
+  {
+    "id": "w_bloed",
+    "lemma": "bloed",
+    "pos": "zn",
+    "article": "het",
+    "plural": null,
+    "zh": "血",
+    "en": "blood"
+  },
+  {
+    "id": "w_les",
+    "lemma": "les",
+    "pos": "zn",
+    "article": "de",
+    "plural": "lessen",
+    "zh": "课",
+    "en": "lesson"
+  },
+  {
+    "id": "w_sap",
+    "lemma": "sap",
+    "pos": "zn",
+    "article": "het",
+    "plural": "sappen",
+    "zh": "果汁",
+    "en": "juice"
+  },
+  {
+    "id": "w_pil",
+    "lemma": "pil",
+    "pos": "zn",
+    "article": "de",
+    "plural": "pillen",
+    "zh": "药片",
+    "en": "pill"
+  },
+  {
+    "id": "w_beetje",
+    "lemma": "beetje",
+    "pos": "zn",
+    "article": "het",
+    "plural": "beetjes",
+    "zh": "一点儿",
+    "en": "a bit, a little"
+  },
+  {
+    "id": "w_een_telw",
+    "lemma": "één",
+    "pos": "telw",
+    "zh": "一",
+    "en": "one"
+  },
+  {
+    "id": "w_drie",
+    "lemma": "drie",
+    "pos": "telw",
+    "zh": "三",
+    "en": "three"
+  },
+  {
+    "id": "w_vier",
+    "lemma": "vier",
+    "pos": "telw",
+    "zh": "四",
+    "en": "four"
+  },
+  {
+    "id": "w_zes",
+    "lemma": "zes",
+    "pos": "telw",
+    "zh": "六",
+    "en": "six"
+  },
+  {
+    "id": "w_zeven",
+    "lemma": "zeven",
+    "pos": "telw",
+    "zh": "七",
+    "en": "seven"
+  },
+  {
+    "id": "w_acht",
+    "lemma": "acht",
+    "pos": "telw",
+    "zh": "八",
+    "en": "eight"
+  },
+  {
+    "id": "w_negen",
+    "lemma": "negen",
+    "pos": "telw",
+    "zh": "九",
+    "en": "nine"
+  },
+  {
+    "id": "w_tien",
+    "lemma": "tien",
+    "pos": "telw",
+    "zh": "十",
+    "en": "ten"
+  },
+  {
+    "id": "w_elf",
+    "lemma": "elf",
+    "pos": "telw",
+    "zh": "十一",
+    "en": "eleven"
+  },
+  {
+    "id": "w_twaalf",
+    "lemma": "twaalf",
+    "pos": "telw",
+    "zh": "十二",
+    "en": "twelve"
+  },
+  {
+    "id": "w_dertien",
+    "lemma": "dertien",
+    "pos": "telw",
+    "zh": "十三",
+    "en": "thirteen"
+  },
+  {
+    "id": "w_veertien",
+    "lemma": "veertien",
+    "pos": "telw",
+    "zh": "十四",
+    "en": "fourteen"
+  },
+  {
+    "id": "w_vijftien",
+    "lemma": "vijftien",
+    "pos": "telw",
+    "zh": "十五",
+    "en": "fifteen"
+  },
+  {
+    "id": "w_zestien",
+    "lemma": "zestien",
+    "pos": "telw",
+    "zh": "十六",
+    "en": "sixteen"
+  },
+  {
+    "id": "w_zeventien",
+    "lemma": "zeventien",
+    "pos": "telw",
+    "zh": "十七",
+    "en": "seventeen"
+  },
+  {
+    "id": "w_achttien",
+    "lemma": "achttien",
+    "pos": "telw",
+    "zh": "十八",
+    "en": "eighteen"
+  },
+  {
+    "id": "w_negentien",
+    "lemma": "negentien",
+    "pos": "telw",
+    "zh": "十九",
+    "en": "nineteen"
+  },
+  {
+    "id": "w_twintig",
+    "lemma": "twintig",
+    "pos": "telw",
+    "zh": "二十",
+    "en": "twenty"
+  },
+  {
+    "id": "w_schrijven",
+    "lemma": "schrijven",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "schrijf",
+      "jij": "schrijft",
+      "hij": "schrijft",
+      "wij": "schrijven",
+      "pp": "geschreven",
+      "aux": "hebben"
+    },
+    "zh": "写",
+    "en": "to write"
+  },
+  {
+    "id": "w_spellen",
+    "lemma": "spellen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "spel",
+      "jij": "spelt",
+      "hij": "spelt",
+      "wij": "spellen",
+      "pp": "gespeld",
+      "aux": "hebben"
+    },
+    "zh": "拼写，拼读字母",
+    "en": "to spell"
+  },
+  {
+    "id": "w_nummer",
+    "lemma": "nummer",
+    "pos": "zn",
+    "article": "het",
+    "plural": "nummers",
+    "zh": "号码",
+    "en": "number"
+  },
+  {
+    "id": "w_huisnummer",
+    "lemma": "huisnummer",
+    "pos": "zn",
+    "article": "het",
+    "plural": "huisnummers",
+    "zh": "门牌号",
+    "en": "house number"
+  },
+  {
+    "id": "w_keer",
+    "lemma": "keer",
+    "pos": "zn",
+    "article": "de",
+    "plural": "keren",
+    "zh": "次",
+    "en": "time (occasion)"
+  },
+  {
+    "id": "w_cent",
+    "lemma": "cent",
+    "pos": "zn",
+    "article": "de",
+    "plural": "centen",
+    "zh": "分（钱）",
+    "en": "cent"
+  },
+  {
+    "id": "w_hoe_laat",
+    "lemma": "hoe laat",
+    "pos": "uitdr",
+    "zh": "几点",
+    "en": "what time"
+  },
+  {
+    "id": "w_half",
+    "lemma": "half",
+    "pos": "bn",
+    "zh": "半；（钟点）差半小时到……",
+    "en": "half; half past the previous hour"
+  },
+  {
+    "id": "w_kwart",
+    "lemma": "kwart",
+    "pos": "zn",
+    "article": "het",
+    "plural": "kwarten",
+    "zh": "一刻钟；四分之一",
+    "en": "quarter"
+  },
+  {
+    "id": "w_kleur",
+    "lemma": "kleur",
+    "pos": "zn",
+    "article": "de",
+    "plural": "kleuren",
+    "zh": "颜色",
+    "en": "colour"
+  },
+  {
+    "id": "w_groen",
+    "lemma": "groen",
+    "pos": "bn",
+    "zh": "绿色的",
+    "en": "green"
+  },
+  {
+    "id": "w_zwart",
+    "lemma": "zwart",
+    "pos": "bn",
+    "zh": "黑色的",
+    "en": "black"
+  },
+  {
+    "id": "w_wit",
+    "lemma": "wit",
+    "pos": "bn",
+    "zh": "白色的",
+    "en": "white"
+  },
+  {
+    "id": "w_oranje",
+    "lemma": "oranje",
+    "pos": "bn",
+    "zh": "橙色的",
+    "en": "orange"
+  },
+  {
+    "id": "w_paars",
+    "lemma": "paars",
+    "pos": "bn",
+    "zh": "紫色的",
+    "en": "purple"
+  },
+  {
+    "id": "w_mens",
+    "lemma": "mens",
+    "pos": "zn",
+    "article": "de",
+    "plural": "mensen",
+    "zh": "人",
+    "en": "person, human"
+  },
+  {
+    "id": "w_kind",
+    "lemma": "kind",
+    "pos": "zn",
+    "article": "het",
+    "plural": "kinderen",
+    "zh": "孩子",
+    "en": "child"
+  },
+  {
+    "id": "w_hand",
+    "lemma": "hand",
+    "pos": "zn",
+    "article": "de",
+    "plural": "handen",
+    "zh": "手",
+    "en": "hand"
+  },
+  {
+    "id": "w_been",
+    "lemma": "been",
+    "pos": "zn",
+    "article": "het",
+    "plural": "benen",
+    "zh": "腿",
+    "en": "leg"
+  },
+  {
+    "id": "w_hoofd",
+    "lemma": "hoofd",
+    "pos": "zn",
+    "article": "het",
+    "plural": "hoofden",
+    "zh": "头",
+    "en": "head"
+  },
+  {
+    "id": "w_doen",
+    "lemma": "doen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "doe",
+      "jij": "doet",
+      "hij": "doet",
+      "wij": "doen",
+      "pp": "gedaan",
+      "aux": "hebben"
+    },
+    "zh": "做",
+    "en": "to do"
+  },
+  {
+    "id": "w_pijn",
+    "lemma": "pijn",
+    "pos": "zn",
+    "article": "de",
+    "plural": "pijnen",
+    "zh": "疼，痛",
+    "en": "pain"
+  },
+  {
+    "id": "w_letter_a",
+    "lemma": "a",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 A",
+    "en": "the letter A",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_b",
+    "lemma": "b",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 B",
+    "en": "the letter B",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_c",
+    "lemma": "c",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 C",
+    "en": "the letter C",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_d",
+    "lemma": "d",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 D",
+    "en": "the letter D",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_e",
+    "lemma": "e",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 E",
+    "en": "the letter E",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_f",
+    "lemma": "f",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 F",
+    "en": "the letter F",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_g",
+    "lemma": "g",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 G",
+    "en": "the letter G",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_h",
+    "lemma": "h",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 H",
+    "en": "the letter H",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_i",
+    "lemma": "i",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 I",
+    "en": "the letter I",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_j",
+    "lemma": "j",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 J",
+    "en": "the letter J",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_k",
+    "lemma": "k",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 K",
+    "en": "the letter K",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_l",
+    "lemma": "l",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 L",
+    "en": "the letter L",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_m",
+    "lemma": "m",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 M",
+    "en": "the letter M",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_n",
+    "lemma": "n",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 N",
+    "en": "the letter N",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_o",
+    "lemma": "o",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 O",
+    "en": "the letter O",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_p",
+    "lemma": "p",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 P",
+    "en": "the letter P",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_q",
+    "lemma": "q",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 Q",
+    "en": "the letter Q",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_r",
+    "lemma": "r",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 R",
+    "en": "the letter R",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_s",
+    "lemma": "s",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 S",
+    "en": "the letter S",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_t",
+    "lemma": "t",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 T",
+    "en": "the letter T",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_u",
+    "lemma": "u",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 U",
+    "en": "the letter U",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_v",
+    "lemma": "v",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 V",
+    "en": "the letter V",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_w",
+    "lemma": "w",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 W",
+    "en": "the letter W",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_x",
+    "lemma": "x",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 X",
+    "en": "the letter X",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_y",
+    "lemma": "y",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 Y",
+    "en": "the letter Y",
+    "flags": ["letter"]
+  },
+  {
+    "id": "w_letter_z",
+    "lemma": "z",
+    "pos": "zn",
+    "article": "de",
+    "plural": null,
+    "zh": "字母 Z",
+    "en": "the letter Z",
+    "flags": ["letter"]
   }
 ]

@@ -25,13 +25,24 @@ export interface DictWordLike {
   forms_seen?: string[];
   verb_forms?: VerbForms | null;
   plural?: string | null;
+  flags?: string[];
+  first_lesson?: string;
 }
 
-/** form (lower case) → word id. The lemma wins over another word's inflected form. */
+/** NN lesson 20 is the alphabet: the words first met there are letters. */
+export const ALPHABET_LESSON = "NN20";
+
+/** Letters of the alphabet (P09) are entries for their sound only: never words of a sentence ("u", "i"). */
+export function isLetter(w: Pick<DictWordLike, "flags" | "first_lesson">): boolean {
+  return !!w.flags?.includes("letter") || w.first_lesson === ALPHABET_LESSON;
+}
+
+/** form (lower case) → word id. The lemma wins over another word's inflected form. Letters are left out. */
 export function buildFormIndex(words: DictWordLike[]): Map<string, string> {
   const index = new Map<string, string>();
   const weak = new Map<string, string>();
   for (const w of words) {
+    if (isLetter(w)) continue;
     index.set(normalizeForm(w.lemma), w.id);
     const forms = [
       ...(w.forms_seen ?? []),

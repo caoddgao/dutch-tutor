@@ -12,6 +12,7 @@
     "title": { "$ref": "common.schema.json#/$defs/trilingual" },
     "pack_lesson": { "$ref": "common.schema.json#/$defs/id" },
     "nn_lessons": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "reading": { "$ref": "common.schema.json#/$defs/id" },
     "sounds": {
       "type": "array",
       "items": {

@@ -4,7 +4,7 @@ import type { ContentBundle, CourseLessonRef, OwnLesson, OwnWord } from "./ownTy
 import { lineCount, packLessonParts, partRefs, suggestedParts } from "./split";
 import type { PackExercise, PackIndex, PackLesson, PackManifest, PackSentence, PackWord } from "./packTypes";
 import { fillBank, PACK_FORMAT_VERSION } from "./packTypes";
-import { buildFormIndex, tokenize, uncoveredWords } from "./tokenize";
+import { buildFormIndex, isLetter, tokenize, uncoveredWords } from "./tokenize";
 import { ownTexts, ttsKeyLookup } from "./ttsTexts";
 
 export type Rule = "schema" | 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -94,7 +94,9 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
         warn(1, `words/own.json ${w.id}`, `资料包里已有同一个词 ${same}，程序会用资料包的词条`);
     }
   }
-  const allWords = new Map<string, { id: string; lemma: string; pos: string }>([...ownWords, ...packWords]);
+  const allWords = new Map<string, { id: string; lemma: string; pos: string; flags?: string[]; first_lesson?: string }>(
+    [...ownWords, ...packWords],
+  );
   const formIndex = buildFormIndex([...ownWords.values(), ...packWords.values()]);
   const functionLemmas = new Set(content.functionWords.lemmas.map((l) => l.toLowerCase()));
   const wordRef = (id: string, where: string) => {
@@ -204,7 +206,11 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
     }
     if (pack) {
       for (const nn of lesson.nn_lessons ?? []) if (!pack.lessons[nn]) warn(1, where, `资料包里没有 ${nn}`);
+    } else if (nnIndex) {
+      for (const nn of lesson.nn_lessons ?? [])
+        if (!nnIndex.lessons.some((l) => l.id === nn)) err(1, where, `nn-index.json 里没有 ${nn}`);
     }
+    if (lesson.reading) checkReading(lesson, where);
     checkOwnExercises(lesson, where, {
       err,
       wordRef,
@@ -214,6 +220,23 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
         (!pack && lesson.kind === "main"),
       uniqueId: (id) => uniqueId(id, where),
     });
+  }
+
+  function checkReading(lesson: OwnLesson, where: string) {
+    const id = lesson.reading!;
+    if (lesson.kind !== "phonics") err(1, where, "只有发音入门课可以带认读小文");
+    const other = Object.values(content.lessons).find((l) => l.id !== lesson.id && l.reading === id);
+    if (other && other.id < lesson.id) err(1, where, `认读小文 ${id} 已经用在 ${other.id}`);
+    if (pack) {
+      const r = pack.lessons[id];
+      if (!r) warn(1, where, `资料包里没有认读小文 ${id}`);
+      else if (r.kind !== "reading") err(1, where, `${id} 不是认读小文（kind 是 ${r.kind}）`);
+      else if (!r.sentences.some((x) => x.role === "line")) err(1, where, `认读小文 ${id} 没有课文句`);
+    } else if (nnIndex) {
+      const r = nnIndex.lessons.find((l) => l.id === id);
+      if (!r) err(1, where, `nn-index.json 里没有认读小文 ${id}`);
+      else if (r.kind !== "reading") err(1, where, `${id} 不是认读小文（kind 是 ${r.kind}）`);
+    }
   }
 
   // ---------- own audio (rules 1, 3) ----------
@@ -242,6 +265,10 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
   if (pack) validatePack(pack, { err, warn, wordRef, functionLemmas });
 
   // ---------- rules 5 and 7 per course lesson ----------
+  const isLetterId = (id: string) => {
+    const w = allWords.get(id);
+    return !!w && isLetter(w);
+  };
   const lessonStats: LessonStat[] = [];
   const splits: SplitBoundary[] = [];
   const known = new Set<string>();
@@ -257,14 +284,17 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
             ref.part ? Math.max(0, siblings.indexOf(ref)) : 0
           ]
         : undefined;
+      // a phonics lesson's reading text counts as part of the lesson (rules 3, 5, 7)
+      const reading =
+        own?.reading && pack?.lessons[own.reading]?.kind === "reading" ? pack.lessons[own.reading] : undefined;
       if (packLesson && ref.part && view && !view.sentences.some((s) => s.role === "line"))
         err(1, ref.id, `这一部分没有课文句（${packLesson.id} 的课文句比部分少）`);
       if (packLesson && ref.part && ref.part.n > 1 && view?.sentences[0]) {
         const prev = packLesson.sentences[packLesson.sentences.indexOf(view.sentences[0]) - 1];
         splits.push({ id: ref.id, before: prev?.nl ?? "", after: view.sentences[0].nl });
       }
-      const taught = taughtWordIds(own, packLesson, view?.wordIds);
-      const used = usedWordIds(own, view?.sentences, formIndex);
+      const taught = taughtWordIds(own, packLesson, [...(view?.wordIds ?? []), ...(reading?.word_ids ?? [])]);
+      const used = usedWordIds(own, [...(view?.sentences ?? []), ...(reading?.sentences ?? [])], formIndex);
       const unknown = [...used].filter(
         (id) =>
           !taught.has(id) &&
@@ -274,10 +304,14 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
       );
       const newWords = packLesson
         ? (view?.wordIds ?? []).filter((id) => packWords.get(id)?.first_lesson === packLesson.id).length
-        : [...taught].filter((id) => !known.has(id)).length;
-      const sentences = (view?.sentences.filter((s) => s.role === "line").length ?? 0) + (own?.sentences?.length ?? 0);
+        : [...taught].filter((id) => !known.has(id) && !isLetterId(id)).length;
+      const sentences =
+        [...(view?.sentences ?? []), ...(reading?.sentences ?? [])].filter((s) => s.role === "line").length +
+        (own?.sentences?.length ?? 0);
       const over = [
-        ...(view?.full.filter((s) => (s.duration ?? 0) > MAX_OWN_SECONDS).map((s) => s.id) ?? []),
+        ...[...(view?.full ?? []), ...(reading?.sentences ?? [])]
+          .filter((s) => (s.duration ?? 0) > MAX_OWN_SECONDS)
+          .map((s) => s.id),
         ...(ownOverLimit.get(ref.id) ?? []),
       ];
       lessonStats.push({

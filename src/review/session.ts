@@ -41,7 +41,7 @@ export function cardsFromLessons(
   const sentences = new Map<string, ReviewCard>();
   const words = new Map<string, ReviewCard>();
   for (const l of lessons) {
-    for (const s of l.sentences) {
+    for (const s of [...l.sentences, ...(l.reading?.sentences ?? [])]) {
       if (!sentences.has(s.id))
         sentences.set(s.id, {
           item: placeholder(s.id, "sentence", l.id),
@@ -53,7 +53,7 @@ export function cardsFromLessons(
           lessonId: l.id,
         });
     }
-    for (const w of l.words) {
+    for (const w of [...l.words, ...(l.reading?.words ?? [])].filter((x) => !x.letter)) {
       if (!words.has(w.id))
         words.set(w.id, {
           item: placeholder(w.id, "word", l.id),

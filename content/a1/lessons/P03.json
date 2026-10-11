@@ -1,0 +1,164 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P03",
+  "kind": "phonics",
+  "title": {
+    "nl": "o · u",
+    "zh": "短元音 o、u",
+    "en": "Short vowels o, u"
+  },
+  "nn_lessons": ["NN06"],
+  "sounds": [
+    {
+      "grapheme": "o",
+      "note_zh": "短 o：嘴张开、嘴唇稍圆，像汉语“哦”，但更短，口形不动，一发就收。一个 o 后面跟辅音时读短音：kop、sok、pot、vol。",
+      "note_en": "Short o: mouth open, lips slightly rounded — a short 'o' as in British 'pot'.",
+      "word_ids": ["w_kop", "w_sok", "w_pot", "w_vol"]
+    },
+    {
+      "grapheme": "u",
+      "note_zh": "短 u：最容易读错的音。嘴唇轻轻拢圆，舌头放平、放松，发一个短促的“呃”。不是汉语的“乌”，也不是英语 bus 里的音：bus、mug、druk。",
+      "note_en": "Short u: lips lightly rounded, tongue relaxed — a short rounded 'uh'. Not 'oo', and not the vowel of English 'bus'.",
+      "word_ids": ["w_bus", "w_mug", "w_druk"]
+    },
+    {
+      "grapheme": "a",
+      "note_zh": "复习短 a：tas ↔ kop ↔ bus，只换中间的元音，意思就全变了。三个都是短音，一发就收，别拖长。",
+      "note_en": "Review short a: tas ↔ kop ↔ bus — only the vowel changes. All three are short.",
+      "word_ids": ["w_tas"]
+    }
+  ],
+  "word_ids": ["w_kop", "w_sok", "w_pot", "w_vol", "w_bus", "w_mug", "w_druk", "w_tas", "w_pas_op"],
+  "sentences": [
+    {
+      "id": "P03-S01",
+      "nl": "Een kop thee?",
+      "zh": "来杯茶吗？",
+      "en": "A cup of tea?"
+    },
+    {
+      "id": "P03-S02",
+      "nl": "Ja, een kop thee, graag.",
+      "zh": "好的，请来杯茶。",
+      "en": "Yes, a cup of tea, please."
+    },
+    {
+      "id": "P03-S03",
+      "nl": "Is dat uw tas?",
+      "zh": "那是您的包吗？",
+      "en": "Is that your bag?"
+    },
+    {
+      "id": "P03-S04",
+      "nl": "Nee, dat is niet mijn tas.",
+      "zh": "不，那不是我的包。",
+      "en": "No, that is not my bag."
+    },
+    {
+      "id": "P03-S05",
+      "nl": "Waar is mijn sok?",
+      "zh": "我的袜子在哪儿？",
+      "en": "Where is my sock?"
+    },
+    {
+      "id": "P03-S06",
+      "nl": "De bus is vol.",
+      "zh": "公交车满了。",
+      "en": "The bus is full."
+    },
+    {
+      "id": "P03-S07",
+      "nl": "Het is druk in de bus.",
+      "zh": "公交车上人很多。",
+      "en": "It is crowded on the bus."
+    },
+    {
+      "id": "P03-S08",
+      "nl": "Pas op, een mug!",
+      "zh": "小心，有蚊子！",
+      "en": "Watch out, a mosquito!"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P03-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P03-E1-1",
+          "word_id": "w_kop",
+          "options": ["kap", "kop", "kup"],
+          "answer": "kop"
+        },
+        {
+          "id": "P03-E1-2",
+          "word_id": "w_bus",
+          "options": ["bas", "bos", "bus"],
+          "answer": "bus"
+        },
+        {
+          "id": "P03-E1-3",
+          "word_id": "w_pot",
+          "options": ["pot", "put", "pet"],
+          "answer": "pot"
+        },
+        {
+          "id": "P03-E1-4",
+          "word_id": "w_mug",
+          "options": ["mag", "mog", "mug"],
+          "answer": "mug"
+        }
+      ]
+    },
+    {
+      "id": "P03-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P03-E2-1",
+          "word_id": "w_kop",
+          "options": ["w_kop", "w_kip", "w_kam"]
+        },
+        {
+          "id": "P03-E2-2",
+          "word_id": "w_mug",
+          "options": ["w_mug", "w_man", "w_mes"]
+        },
+        {
+          "id": "P03-E2-3",
+          "word_id": "w_sok",
+          "options": ["w_sok", "w_tas", "w_bus"]
+        }
+      ]
+    },
+    {
+      "id": "P03-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P03-E3-1",
+          "sentence_id": "P03-S07"
+        },
+        {
+          "id": "P03-E3-2",
+          "sentence_id": "P03-S03"
+        }
+      ]
+    }
+  ]
+}

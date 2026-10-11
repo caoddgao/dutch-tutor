@@ -3,11 +3,13 @@ import { useState } from "react";
 import { usePlayerState } from "../audio/hooks";
 import type { RtLesson } from "../content/model";
 
+export type ListenSource = Pick<RtLesson, "fullAudio" | "fullSegment" | "fullSentences" | "textType" | "part">;
+
 /**
- * Step ①: the whole original recording (a split lesson: its part of it); text hidden by default, can be
- * shown, Chinese optional.
+ * Step ① (and the start of a phonics lesson's reading text): the whole original recording (a split lesson:
+ * its part of it); text hidden by default, can be shown, Chinese optional.
  */
-export function ListenStep({ lesson }: { lesson: RtLesson }) {
+export function ListenStep({ lesson, reading = false }: { lesson: ListenSource; reading?: boolean }) {
   const [showText, setShowText] = useState(false);
   const [showZh, setShowZh] = useState(false);
   const state = usePlayerState();
@@ -28,11 +30,12 @@ export function ListenStep({ lesson }: { lesson: RtLesson }) {
           <Headphones size={20} aria-hidden />
         </span>
         <div>
-          <h2 className="listen-title">先完整听一两遍</h2>
+          <h2 className="listen-title">{reading ? "认读小文：先完整听一遍" : "先完整听一两遍"}</h2>
           <p className="muted">
             {lesson.textType === "text" ? "一段短文" : lesson.textType === "mixed" ? "对话和短文" : "一段对话"}
             {lesson.part && ` · 第 ${lesson.part.n} 部分（共 ${lesson.part.of} 部分）`}
-            {total > 0 && ` · 约 ${Math.max(1, Math.round(total))} 秒`}，先别看文字，听听能听出哪些词。
+            {total > 0 && ` · 约 ${Math.max(1, Math.round(total))} 秒`}
+            {reading ? "，先别看文字，听听能认出哪些学过的音和词。听完逐句跟读。" : "，先别看文字，听听能听出哪些词。"}
           </p>
         </div>
       </div>

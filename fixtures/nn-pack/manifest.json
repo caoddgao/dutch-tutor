@@ -3,13 +3,13 @@
   "source": "Dutch Tutor test fixture (self-written content, placeholder audio)",
   "created_at": "2026-10-09T12:00:00+02:00",
   "producer": "fixture",
-  "lessons": ["NN05", "NN21", "NN22"],
+  "lessons": ["NN05", "NN14", "NN21", "NN22"],
   "counts": {
-    "lessons": 3,
-    "sentences": 35,
-    "words": 58,
-    "exercises": 13,
-    "audio_files": 103
+    "lessons": 4,
+    "sentences": 42,
+    "words": 67,
+    "exercises": 15,
+    "audio_files": 120
   },
   "tts_voices": {
     "default": "nl-NL-FennaNeural",

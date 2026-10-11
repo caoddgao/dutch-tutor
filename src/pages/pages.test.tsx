@@ -93,15 +93,14 @@ describe("HomePage", () => {
     const stats = screen.getByRole("region", { name: "学习记录" });
     // 2 sentences learned, 2-day streak (yesterday and today)
     expect(within(stats).getAllByText("2")).toHaveLength(2);
-    expect(within(screen.getByRole("region", { name: "课程地图" })).getByText(/已学 1 \/ 57 课/)).toBeTruthy();
+    expect(within(screen.getByRole("region", { name: "课程地图" })).getByText(/已学 1 \/ 65 课/)).toBeTruthy();
   });
 
   it("asks for the pack when the phonics lessons are done and there is no pack", async () => {
     await renderAt(
       "#/",
       async ({ db }) => {
-        await completeLesson(db, "P01", []);
-        await completeLesson(db, "P02", []);
+        for (let n = 1; n <= 10; n++) await completeLesson(db, `P${String(n).padStart(2, "0")}`, []);
       },
       { pack: fsPackBackend(null) },
     );

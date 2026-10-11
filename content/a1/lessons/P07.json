@@ -1,0 +1,219 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "P07",
+  "kind": "phonics",
+  "title": {
+    "nl": "g · ch · sch · ng · r · v · w",
+    "zh": "辅音 g/ch、sch、ng、r、v/w",
+    "en": "Consonants g/ch, sch, ng, r, v/w"
+  },
+  "nn_lessons": ["NN09", "NN10"],
+  "reading": "NN16",
+  "sounds": [
+    {
+      "grapheme": "g · ch",
+      "note_zh": "g 和 ch 读同一个音：喉咙后部摩擦出来的气流，像汉语“喝”的 h，但更靠后、摩擦更重，有点像轻轻清嗓子。不读成英语的 g：lachen、gezicht、glas、achternaam。",
+      "note_en": "g and ch are the same sound: a rasping 'h' at the back of the throat (as in Scottish 'loch'), never English g.",
+      "word_ids": ["w_lachen", "w_gezicht", "w_glas", "w_achternaam"]
+    },
+    {
+      "grapheme": "sch",
+      "note_zh": "sch：先发 s，紧接着上面的 g/ch 摩擦音，读成“s + 喝”。不是英语的 sh：school、schaar、schrift。",
+      "note_en": "sch: s followed straight away by the throaty ch — not English 'sh'.",
+      "word_ids": ["w_school", "w_schaar", "w_schrift"]
+    },
+    {
+      "grapheme": "ng",
+      "note_zh": "ng：就是拼音 -ng 的音（“行”xíng 的结尾），g 不单独发出来：ring、lang。",
+      "note_en": "ng: like pinyin final -ng; the g is not pronounced on its own.",
+      "word_ids": ["w_ring", "w_lang"]
+    },
+    {
+      "grapheme": "r",
+      "note_zh": "r：词首的 r 可以用舌尖轻弹一下，也可以用喉咙发，两种都对，选一种练顺。词尾的 r 很轻，接近英语的 r：raam、rood、deur。",
+      "note_en": "r: at the start a tapped tongue-tip r or a throaty r — both are fine. At the end of a word it is soft.",
+      "word_ids": ["w_raam", "w_rood"]
+    },
+    {
+      "grapheme": "v · w",
+      "note_zh": "v 比英语的 v 轻，很多人读得接近 f。w：上齿轻碰下唇，嘴唇不撮圆，介于 v 和英语的 w 之间：water、werken、vrouw。",
+      "note_en": "v is softer than English v, often close to f. w: upper teeth lightly touch the lower lip, lips not rounded.",
+      "word_ids": ["w_water", "w_werken", "w_vrouw"]
+    }
+  ],
+  "word_ids": [
+    "w_lachen",
+    "w_gezicht",
+    "w_glas",
+    "w_achternaam",
+    "w_school",
+    "w_schaar",
+    "w_schrift",
+    "w_ring",
+    "w_lang",
+    "w_raam",
+    "w_rood",
+    "w_water",
+    "w_werken",
+    "w_vrouw",
+    "w_goedenavond",
+    "w_gaan"
+  ],
+  "sentences": [
+    {
+      "id": "P07-S01",
+      "nl": "Goedenavond!",
+      "zh": "晚上好！",
+      "en": "Good evening!"
+    },
+    {
+      "id": "P07-S02",
+      "nl": "Ik ga naar school.",
+      "zh": "我去学校。",
+      "en": "I am going to school."
+    },
+    {
+      "id": "P07-S03",
+      "nl": "Hij is lang.",
+      "zh": "他个子高。",
+      "en": "He is tall."
+    },
+    {
+      "id": "P07-S04",
+      "nl": "Wat is uw achternaam?",
+      "zh": "您姓什么？",
+      "en": "What is your surname?"
+    },
+    {
+      "id": "P07-S05",
+      "nl": "Een glas water, graag.",
+      "zh": "请来一杯水。",
+      "en": "A glass of water, please."
+    },
+    {
+      "id": "P07-S06",
+      "nl": "Waarom lach je?",
+      "zh": "你笑什么？",
+      "en": "Why are you laughing?"
+    },
+    {
+      "id": "P07-S07",
+      "nl": "Mijn vrouw werkt hier.",
+      "zh": "我妻子在这儿工作。",
+      "en": "My wife works here."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "P07-E1",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister. Wat hoort u?",
+        "zh": "听一听，选出听到的写法。",
+        "en": "Listen. Which spelling do you hear?"
+      },
+      "items": [
+        {
+          "id": "P07-E1-1",
+          "word_id": "w_school",
+          "options": ["school", "skool", "sool"],
+          "answer": "school"
+        },
+        {
+          "id": "P07-E1-2",
+          "word_id": "w_ring",
+          "options": ["rin", "ring", "rink"],
+          "answer": "ring"
+        },
+        {
+          "id": "P07-E1-3",
+          "word_id": "w_lachen",
+          "options": ["lachen", "lakken", "latten"],
+          "answer": "lachen"
+        },
+        {
+          "id": "P07-E1-4",
+          "word_id": "w_water",
+          "options": ["later", "vater", "water"],
+          "answer": "water"
+        }
+      ]
+    },
+    {
+      "id": "P07-E2",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Lees het woord. Welke klank past?",
+        "zh": "看拼写，选出正确的读音。",
+        "en": "Read the word. Which pronunciation matches?"
+      },
+      "items": [
+        {
+          "id": "P07-E2-1",
+          "word_id": "w_glas",
+          "options": ["w_glas", "w_bal", "w_taal"]
+        },
+        {
+          "id": "P07-E2-2",
+          "word_id": "w_lang",
+          "options": ["w_lang", "w_man", "w_lip"]
+        },
+        {
+          "id": "P07-E2-3",
+          "word_id": "w_schaar",
+          "options": ["w_schaar", "w_jaar", "w_zeep"]
+        }
+      ]
+    },
+    {
+      "id": "P07-E3",
+      "type": "order",
+      "instruction": {
+        "nl": "Maak de zin.",
+        "zh": "把词块排成句子。",
+        "en": "Make the sentence."
+      },
+      "items": [
+        {
+          "id": "P07-E3-1",
+          "sentence_id": "P07-S04"
+        },
+        {
+          "id": "P07-E3-2",
+          "sentence_id": "P07-S05"
+        }
+      ]
+    },
+    {
+      "id": "P07-E4",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "P07-E4-1",
+          "question": {
+            "nl": "Wat is uw achternaam?",
+            "zh": "您姓什么？",
+            "en": "What is your surname?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn achternaam is Chen.",
+              "zh": "我姓陈。",
+              "en": "My surname is Chen."
+            },
+            {
+              "nl": "Mijn achternaam is Wang.",
+              "zh": "我姓王。",
+              "en": "My surname is Wang."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

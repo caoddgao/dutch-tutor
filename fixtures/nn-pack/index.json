@@ -20,6 +20,24 @@
       "new_lemmas": ["de", "vis", "zijn", "in", "het", "net", "tas", "pan", "bed", "pin"]
     },
     {
+      "id": "NN14",
+      "kind": "reading",
+      "title": {
+        "nl": "Naar de markt",
+        "zh": "去市场",
+        "en": "To the market"
+      },
+      "sentence_count": 6,
+      "line_count": 6,
+      "new_word_count": 9,
+      "total_seconds": 16.3,
+      "max_sentence_seconds": 2.98,
+      "over_5s_count": 0,
+      "exercise_count": 2,
+      "skipped_exercises": 1,
+      "new_lemmas": ["zaterdag", "markt", "gaan", "mee", "op", "groot", "kopen", "kaas", "leuk"]
+    },
+    {
       "id": "NN21",
       "kind": "main",
       "title": {

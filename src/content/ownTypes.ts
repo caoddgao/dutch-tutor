@@ -103,6 +103,11 @@ export interface OwnLesson {
   pack_lesson?: string;
   /** phonics: NN lessons 1–20 whose keyword audio and exercises are reused when the pack is installed */
   nn_lessons?: string[];
+  /**
+   * phonics: an NN reading text (NN14–19, pack kind "reading") at the end of the lesson — listen to the original,
+   * then shadow it sentence by sentence; its exercises are not used (design §2.1)
+   */
+  reading?: string;
   sounds?: OwnSound[];
   /** main: pack sentences to teach, in order; default: all "line" and "extra" sentences */
   sentence_ids?: string[];
@@ -142,6 +147,7 @@ export interface OwnWord {
   forms_seen?: string[];
   zh: string;
   en: string;
+  /** "letter": a letter of the alphabet (P09) — not a vocabulary word, never part of a sentence */
   flags?: string[];
 }
 

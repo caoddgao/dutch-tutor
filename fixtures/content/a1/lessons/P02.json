@@ -1,0 +1,19 @@
+{
+  "id": "P02",
+  "kind": "phonics",
+  "title": {
+    "nl": "e",
+    "zh": "短元音 e",
+    "en": "Short vowel e"
+  },
+  "nn_lessons": ["NN05"],
+  "reading": "NN14",
+  "sounds": [
+    {
+      "grapheme": "e",
+      "note_zh": "短 e，短促。",
+      "word_ids": ["w_net", "w_bed"]
+    }
+  ],
+  "word_ids": ["w_net", "w_bed"]
+}

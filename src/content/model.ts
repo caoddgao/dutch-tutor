@@ -2,7 +2,7 @@
 import type { ContentBundle, CourseLessonRef, OwnExercise, OwnLesson, Tip } from "./ownTypes";
 import type { PackExercise, PackIndex, PackLesson, PackToken, PackWord, Pos, Trilingual, VerbForms } from "./packTypes";
 import { packLessonParts, partLetter, partRefs } from "./split";
-import { buildFormIndex, tokenize } from "./tokenize";
+import { buildFormIndex, isLetter, tokenize } from "./tokenize";
 import { voiceName } from "./ttsTexts";
 
 /** One playable item and its candidate sources, in the priority order of design §5.1. */
@@ -30,6 +30,8 @@ export interface RtWord {
   zhNn?: string;
   enNn?: string;
   firstLesson?: string;
+  /** A letter of the alphabet (P09): shown with the sounds, not a word card or a review item */
+  letter?: boolean;
   audio: AudioRef;
 }
 
@@ -68,6 +70,23 @@ export interface RtExtraBox {
 
 export type LessonKind = "phonics" | "main" | "test";
 
+/** A phonics lesson's reading text (NN14–19): listen to the original, then shadow it sentence by sentence. */
+export interface RtReading {
+  /** Pack lesson id */
+  id: string;
+  title: Trilingual;
+  textType?: "dialogue" | "text" | "mixed";
+  fullAudio?: AudioRef;
+  /** Everything in the recording, title included */
+  fullSentences: RtSentence[];
+  /** The text sentences, one per screen */
+  sentences: RtSentence[];
+  /** The text's word list */
+  words: RtWord[];
+  /** Words first taught in the reading text */
+  newWordIds: string[];
+}
+
 export interface RtPackExercise {
   /** Pack lesson the exercise comes from (for audio paths) */
   lessonId: string;
@@ -99,6 +118,8 @@ export interface RtLesson {
   extras: RtExtraBox[];
   packExercises: RtPackExercise[];
   ownExercises: OwnExercise[];
+  /** Phonics: the reading text at the end of the lesson (needs the pack) */
+  reading?: RtReading;
   /** Past participles are shown only after tip G14 (design §6) */
   showPastParticiple: boolean;
 }
@@ -208,12 +229,14 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
   const packIds = new Set(packWords.map((w) => w.id));
   const aliases = new Map<string, string>();
   const ownTts = new Map<string, AudioRef["tts"]>();
+  const letters = new Set<string>();
   for (const w of bundle.words) {
     const tts = { voice, text: w.lemma };
     const same = packIds.has(w.id) ? w.id : packByKey.get(key(w))?.id;
     if (same) {
       if (same !== w.id) aliases.set(w.id, same);
       if (!ownTts.has(same)) ownTts.set(same, tts);
+      if (isLetter(w)) letters.add(same);
       continue;
     }
     words.set(w.id, {
@@ -226,6 +249,7 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
       separable: w.separable ?? null,
       zh: w.zh,
       en: w.en,
+      letter: isLetter(w) || undefined,
       audio: { id: w.id, nn: nnByLemma.get(w.lemma.toLowerCase()), tts },
     });
   }
@@ -244,6 +268,7 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
       zhNn: w.zh_nn ?? undefined,
       enNn: w.en_nn ?? undefined,
       firstLesson: w.first_lesson,
+      letter: isLetter(w) || letters.has(w.id) || undefined,
       audio: { id: w.id, ...packAudio(w.audio, w.audio_source), tts: ownTts.get(w.id) },
     });
   }
@@ -311,6 +336,8 @@ export interface LessonSources {
   pack?: PackLesson;
   /** Phonics: linked NN lessons (keyword audio, exercises) */
   linked?: PackLesson[];
+  /** Phonics: the reading text (own.reading) */
+  reading?: PackLesson;
 }
 
 export function buildLesson(
@@ -363,7 +390,10 @@ export function buildLesson(
     const nn = keywordAudio.get(w.lemma.toLowerCase());
     return nn && !w.audio.nn ? { ...w, audio: { ...w.audio, nn } } : w;
   });
-  const newWordIds = pack ? wordIds.filter((wid) => dict.words.get(wid)?.firstLesson === pack.id) : [...wordIds];
+  const taughtBefore = pack ? new Set<string>() : ownWordsBefore(bundle, dict, id);
+  const newWordIds = (pack ? wordIds.filter((wid) => dict.words.get(wid)?.firstLesson === pack.id) : wordIds).filter(
+    (wid) => !dict.words.get(wid)?.letter && !taughtBefore.has(wid),
+  );
 
   const fullSentences = (view?.full ?? []).map(packSentenceView);
   let taught: RtSentence[];
@@ -394,7 +424,9 @@ export function buildLesson(
     })),
   }));
 
-  const packExercises: RtPackExercise[] = [...(pack && bookPart ? [pack] : []), ...linked].flatMap((l) =>
+  // an NN lesson linked to several phonics lessons gives its exercises to the first of them only
+  const exerciseSources = linked.filter((l) => firstLinkingLesson(bundle, l.id) === id);
+  const packExercises: RtPackExercise[] = [...(pack && bookPart ? [pack] : []), ...exerciseSources].flatMap((l) =>
     (l.exercises ?? [])
       .filter((e) => !e.skip && e.type !== "other" && Array.isArray(e.items))
       .map((exercise) => ({ lessonId: l.id, exercise })),
@@ -423,17 +455,63 @@ export function buildLesson(
     extras,
     packExercises,
     ownExercises: own?.exercises ?? [],
+    reading: sources.reading && own?.reading === sources.reading.id ? readingView(dict, sources.reading) : undefined,
     showPastParticiple: showPastParticiple(bundle, id),
   };
 }
 
-/** The pack lessons a course lesson needs: its own one, or the linked NN lessons of a phonics lesson. */
-export function packLessonsFor(bundle: ContentBundle, id: string): { main?: string; linked: string[] } {
+/** Words taught by the own lessons before this one (course order), as dictionary ids. */
+function ownWordsBefore(bundle: ContentBundle, dict: Dictionary, id: string): Set<string> {
+  const out = new Set<string>();
+  for (const cid of courseOrder(bundle)) {
+    if (cid === id) break;
+    const l = bundle.lessons[cid];
+    for (const wid of [...(l?.sounds ?? []).flatMap((s) => s.word_ids), ...(l?.word_ids ?? [])]) {
+      const resolved = dict.words.get(wid)?.id;
+      if (resolved) out.add(resolved);
+    }
+  }
+  return out;
+}
+
+/** The own lesson (in course order) that first lists an NN lesson in nn_lessons. */
+function firstLinkingLesson(bundle: ContentBundle, nnId: string): string | undefined {
+  return courseOrder(bundle).find((cid) => bundle.lessons[cid]?.nn_lessons?.includes(nnId));
+}
+
+function readingView(dict: Dictionary, pack: PackLesson): RtReading {
+  const full = pack.sentences.map(packSentenceView);
+  const ids: string[] = [];
+  for (const wid of pack.word_ids ?? []) {
+    const resolved = dict.words.get(wid)?.id;
+    if (resolved && !ids.includes(resolved)) ids.push(resolved);
+  }
+  return {
+    id: pack.id,
+    title: pack.title,
+    textType: pack.text_type,
+    fullAudio: pack.audio_full ? { id: `${pack.id}-full`, nn: pack.audio_full } : undefined,
+    fullSentences: full,
+    sentences: full.filter((s) => s.kind === "line"),
+    words: ids.map((wid) => dict.words.get(wid)!),
+    newWordIds: ids.filter((wid) => dict.words.get(wid)?.firstLesson === pack.id),
+  };
+}
+
+/**
+ * The pack lessons a course lesson needs: its own one, or the linked NN lessons and the reading text of a
+ * phonics lesson.
+ */
+export function packLessonsFor(
+  bundle: ContentBundle,
+  id: string,
+): { main?: string; linked: string[]; reading?: string } {
   const found = findCourseRef(bundle, id);
   if (!found) return { linked: [] };
   const own = bundle.lessons[id];
   return {
     main: found.ref.source === "pack" ? (found.ref.pack_id ?? found.ref.id) : undefined,
     linked: own?.nn_lessons ?? [],
+    reading: own?.reading,
   };
 }

@@ -147,6 +147,41 @@ describe("lesson page", () => {
     ]);
   });
 
+  it("phonics lessons end with the reading text: listen, then shadow it sentence by sentence", async () => {
+    const { raw } = await open("#/lesson/P02");
+    await screen.findByText("短 e，短促。");
+    const steps = within(screen.getByRole("navigation", { name: "上课步骤" }));
+    // P01 already uses NN05's exercises; the reading text's own exercises are not used
+    expect(steps.getAllByRole("button").map((b) => b.textContent)).toEqual(["1音", "2关键词", "3认读小文", "4完成"]);
+    fireEvent.click(steps.getByRole("button", { name: /认读小文/ }));
+    expect(await screen.findByText("认读小文：先完整听一遍")).toBeTruthy();
+    expect(screen.queryByText("Ik koop kaas.")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "显示原文" }));
+    expect(screen.getByText("Ik koop kaas.")).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: /下一步：逐句跟读/ }));
+    await screen.findByText("第 1 / 6 句");
+    expect(screen.getByText("今天是星期六。")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "跟读录音" })).toBeTruthy();
+    // words open their entries from the pack
+    fireEvent.click(screen.getByRole("button", { name: "zaterdag" }));
+    expect(within(screen.getByRole("region", { name: "词条" })).getByText("星期六")).toBeTruthy();
+    // back to the listening screen, then forward through all six sentences
+    fireEvent.click(screen.getByRole("button", { name: "上一个" }));
+    await screen.findByText("认读小文：先完整听一遍");
+    fireEvent.click(screen.getByRole("button", { name: /下一步：逐句跟读/ }));
+    for (let i = 1; i <= 6; i++) {
+      await screen.findByText(`第 ${i} / 6 句`);
+      fireEvent.click(screen.getByRole("button", { name: "下一个" }));
+    }
+    await screen.findByText("P02 学完了！");
+    await waitFor(() => expect(screen.getByText(/已进入复习/)).toBeTruthy());
+    const ids = (raw.prepare("SELECT item_id FROM review_items").all() as { item_id: string }[]).map((i) => i.item_id);
+    expect(ids).toContain("NN14-S05");
+    expect(ids).toContain("w_kaas");
+    expect(ids).not.toContain("NN14-S00");
+  });
+
   it("main lessons need the pack", async () => {
     await open("#/lesson/NN21", { pack: fsPackBackend(null) });
     expect(await screen.findByText("需要资料包")).toBeTruthy();

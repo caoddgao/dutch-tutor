@@ -19,11 +19,11 @@ export function DoneStep({ lesson, added, score, onRestart }: Props) {
       <h2 className="done-title">{lesson.code} 学完了！</h2>
       <ul className="done-stats">
         <li>
-          <strong>{lesson.sentences.length}</strong>
+          <strong>{lesson.sentences.length + (lesson.reading?.sentences.length ?? 0)}</strong>
           <span>句子</span>
         </li>
         <li>
-          <strong>{lesson.newWordIds.length}</strong>
+          <strong>{new Set([...lesson.newWordIds, ...(lesson.reading?.newWordIds ?? [])]).size}</strong>
           <span>新词</span>
         </li>
         {score && score.total > 0 && (

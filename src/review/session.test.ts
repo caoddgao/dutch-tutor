@@ -68,3 +68,19 @@ describe("review cards and distractors", () => {
     expect(sentence.options).toHaveLength(4);
   });
 });
+
+describe("reading texts in review", () => {
+  it("finds the sentences and words of a phonics lesson's reading text", () => {
+    const p02 = buildLesson(content, dict, "P02", {
+      own: content.lessons.P02,
+      reading: read<PackLesson>("lessons/NN14.json"),
+    })!;
+    const { cards, missing } = cardsFromLessons(
+      [item("NN14-S05", "sentence", "P02"), item("w_kaas", "word", "P02")],
+      [p02],
+      dict,
+    );
+    expect(cards.map((c) => c.nl)).toEqual(["Ik koop kaas.", "de kaas"]);
+    expect(missing).toBe(0);
+  });
+});

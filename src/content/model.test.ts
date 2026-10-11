@@ -15,7 +15,18 @@ const lesson = (id: string) => read<PackLesson>(`lessons/${id}.json`);
 describe("course view", () => {
   it("without a pack shows own lessons only and lists main lessons as missing", () => {
     const view = buildCourseView(CONTENT, null);
-    expect(view.find((s) => s.id === "phonics")!.lessons.map((l) => l.id)).toEqual(["P01", "P02"]);
+    expect(view.find((s) => s.id === "phonics")!.lessons.map((l) => l.id)).toEqual([
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+    ]);
     const main = view.find((s) => s.id === "main")!;
     expect(main.lessons).toEqual([]);
     expect(main.missing).toHaveLength(52);
@@ -55,6 +66,14 @@ describe("dictionary", () => {
     expect(dict.formIndex.get("woont")).toBe("w_wonen");
     // a different part of speech is a different word
     expect(dict.words.get("o_brood_ww")!.id).toBe("o_brood_ww");
+  });
+
+  it("letters of the alphabet are entries for their sound, never words of a sentence", () => {
+    const dict = buildDictionary(CONTENT, words);
+    expect(dict.words.get("w_letter_u")!.letter).toBe(true);
+    // "u" in a sentence is the pronoun, not the letter
+    expect(dict.formIndex.get("u")).toBe("w_u");
+    expect([...dict.formIndex.values()].some((id) => id.startsWith("w_letter_"))).toBe(false);
   });
 });
 
@@ -197,5 +216,56 @@ describe("lesson model", () => {
     expect(dict.words.get("w_vier")!.audio.nn).toBe("audio/NN21/S10.mp3");
     expect(dict.words.get("w_brood")!.audio.packTts).toBe("audio/words/w_brood.mp3");
     expect(dict.words.get("w_graag")!.audio.tts).toEqual({ voice: "nl-NL-FennaNeural", text: "graag" });
+  });
+});
+
+describe("phonics lessons P03–P10", () => {
+  const dict = buildDictionary(CONTENT, words);
+  const p = (id: string, sources: Parameters<typeof buildLesson>[3] = {}) =>
+    buildLesson(CONTENT, dict, id, { own: CONTENT.lessons[id], ...sources })!;
+
+  it("P09 shows the letters with the sounds; they are not new words or word cards", () => {
+    const l = p("P09");
+    expect(l.sounds.map((s) => s.grapheme)).toEqual(["a e i o u", "-ee", "e-", "h k q x z", "1–10", "11–20"]);
+    expect(l.words.filter((w) => w.letter)).toHaveLength(26);
+    expect(l.newWordIds.some((id) => id.startsWith("w_letter_"))).toBe(false);
+    // words taught in earlier phonics lessons (twee in P02, vijf in P06) are not new again
+    expect(l.newWordIds).not.toContain("w_twee");
+    expect(l.newWordIds).not.toContain("w_vijf");
+    expect(l.newWordIds).toContain("w_dertien");
+  });
+
+  it("the reading text needs the pack: without it the lesson has none", () => {
+    expect(CONTENT.lessons.P05.reading).toBe("NN14");
+    expect(p("P05").reading).toBeUndefined();
+  });
+
+  it("the reading text comes from the pack; its own exercises are not used", () => {
+    const l = p("P05", { reading: lesson("NN14") });
+    expect(l.reading!.title.nl).toBe("Naar de markt");
+    expect(l.reading!.fullAudio).toEqual({ id: "NN14-full", nn: "audio/NN14/full.mp3" });
+    expect(l.reading!.fullSentences[0].kind).toBe("title");
+    expect(l.reading!.sentences.map((s) => s.id)).toEqual([
+      "NN14-S01",
+      "NN14-S02",
+      "NN14-S03",
+      "NN14-S04",
+      "NN14-S05",
+      "NN14-S06",
+    ]);
+    expect(l.reading!.words.map((w) => w.id)).toContain("w_markt");
+    expect(l.reading!.newWordIds).toContain("w_kaas");
+    expect(l.packExercises.some((e) => e.lessonId === "NN14")).toBe(false);
+  });
+
+  it("an NN lesson linked to two phonics lessons gives its exercises to the first only", () => {
+    expect(CONTENT.lessons.P06.nn_lessons).toEqual(["NN09", "NN10"]);
+    expect(CONTENT.lessons.P07.nn_lessons).toEqual(["NN09", "NN10"]);
+    const nn09 = { ...lesson("NN05"), id: "NN09", nn_lesson: 9 };
+    expect(p("P06", { linked: [nn09] }).packExercises.map((e) => e.lessonId)).toContain("NN09");
+    const p07 = p("P07", { linked: [nn09] });
+    expect(p07.packExercises).toEqual([]);
+    // the keyword recordings are still reused
+    expect(p07.words.length).toBeGreaterThan(0);
   });
 });
