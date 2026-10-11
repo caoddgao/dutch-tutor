@@ -40,8 +40,9 @@ describe("CoursesPage", () => {
     expect(within(recommended[0] as HTMLElement).getByText("P02")).toBeTruthy();
     expect(screen.getAllByText("学过").length).toBe(1);
     // split lessons (design §2.1): one card per part
-    expect(screen.getByRole("link", { name: "第 21 课 a Bij de bakker" }).getAttribute("href")).toBe("#/lesson/NN21a");
-    expect(screen.getByRole("link", { name: "第 22 课 c Mijn buurman" }).getAttribute("href")).toBe("#/lesson/NN22c");
+    expect(screen.getByRole("link", { name: "第 21 课 Bij de bakker" }).getAttribute("href")).toBe("#/lesson/NN21");
+    expect(screen.getByRole("link", { name: "第 22 课 a Mijn buurman" }).getAttribute("href")).toBe("#/lesson/NN22a");
+    expect(screen.getByRole("link", { name: "第 22 课 b Mijn buurman" }).getAttribute("href")).toBe("#/lesson/NN22b");
     expect(screen.getByRole("link", { name: "复习P01" }).getAttribute("href")).toBe("#/review/lesson/P01");
     expect(screen.getByText("资料包里还没有：第 23–65 课")).toBeTruthy();
   });
@@ -71,27 +72,28 @@ describe("HomePage", () => {
       yesterday.setDate(yesterday.getDate() - 1);
       await completeLesson(
         db,
-        "NN21a",
+        "NN22a",
         [
-          { id: "NN21-S01", type: "sentence" },
-          { id: "NN21-S02", type: "sentence" },
-          { id: "w_brood", type: "word" },
+          { id: "NN22-S01", type: "sentence" },
+          { id: "NN22-S02", type: "sentence" },
+          { id: "w_wonen", type: "word" },
         ],
         yesterday,
       );
       await markStudyDay(db, yesterday);
-      await savePosition(db, "NN21b", 1, 2);
+      await savePosition(db, "NN22b", 1, 2);
       await markStudyDay(db, new Date());
     });
     const cont = await screen.findByRole("region", { name: "继续学习" });
-    expect(within(cont).getByText("Bij de bakker")).toBeTruthy();
+    expect(within(cont).getByText("Mijn buurman")).toBeTruthy();
     expect(within(cont).getByText("第 2 步 · 逐句学")).toBeTruthy();
-    expect(within(cont).getByText("3 / 5 句")).toBeTruthy();
+    // NN22b starts at S18 (course.json): 3 of the 20 text sentences
+    expect(within(cont).getByText("3 / 3 句")).toBeTruthy();
     expect(within(screen.getByRole("region", { name: "今日复习" })).getByText("3")).toBeTruthy();
     const stats = screen.getByRole("region", { name: "学习记录" });
     // 2 sentences learned, 2-day streak (yesterday and today)
     expect(within(stats).getAllByText("2")).toHaveLength(2);
-    expect(within(screen.getByRole("region", { name: "课程地图" })).getByText(/已学 1 \/ 92 课/)).toBeTruthy();
+    expect(within(screen.getByRole("region", { name: "课程地图" })).getByText(/已学 1 \/ 57 课/)).toBeTruthy();
   });
 
   it("asks for the pack when the phonics lessons are done and there is no pack", async () => {

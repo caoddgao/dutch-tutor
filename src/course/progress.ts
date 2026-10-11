@@ -2,7 +2,7 @@
 import type { CourseLesson, CourseSectionView } from "../content/model";
 import type { ContentBundle } from "../content/ownTypes";
 import type { PackIndex } from "../content/packTypes";
-import { partSize } from "../content/split";
+import { lineCount, partRefs, partSizes } from "../content/split";
 import type { LessonProgress } from "../storage/learning";
 import type { LessonReviewStat } from "../review/store";
 import type { CourseSection, LessonSummary } from "./types";
@@ -16,11 +16,16 @@ export function sentenceTotal(lesson: CourseLesson, bundle: ContentBundle, index
   if (lesson.source === "own") return bundle.lessons[lesson.id]?.sentences?.length ?? 0;
   const entry = index?.lessons.find((l) => l.id === lesson.packId);
   const count = entry?.sentence_count ?? 0;
+  const lines = entry ? lineCount(entry) : 0;
   const own = bundle.lessons[lesson.id];
+  // split lessons divide the text sentences; the word-list reading is in the last part (split.ts)
   const pack = own?.sentence_ids
     ? own.sentence_ids.length
     : lesson.part
-      ? partSize(count, lesson.part.n, lesson.part.of)
+      ? partSizes(
+          lines,
+          partRefs(bundle.course, lesson.packId ?? lesson.id).map((r) => r.part?.from),
+        )[lesson.part.n - 1] + (lesson.part.n === lesson.part.of ? Math.max(0, count - lines) : 0)
       : count;
   return pack + (own?.sentences?.length ?? 0);
 }

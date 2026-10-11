@@ -131,7 +131,7 @@ word("w_bruin", "bruin", "bn", "棕色的", "brown");
 noun("w_brood", "brood", "het", "broden", "面包", "bread");
 word("w_alstublieft", "alstublieft", "tw", "请；给您", "please; here you are", { zh_nn: "请", en_nn: "please" });
 word("w_anders_nog_iets", "anders nog iets", "uitdr", "还要别的吗", "anything else");
-word("w_nee", "nee", "tw", "不，不是", "no");
+word("w_nee", "nee", "tw", "不，不是", "no", { lessons: ["NN21", "NN22"] });
 word("w_dank_u_wel", "dank u wel", "uitdr", "非常感谢（礼貌）", "thank you very much");
 word("w_dank_u", "dank u", "uitdr", "谢谢您", "thank you (polite)");
 word("w_dat", "dat", "vnw", "那，那个", "that");
@@ -145,7 +145,10 @@ word("w_vijf", "vijf", "telw", "五", "five", { audio: "audio/NN21/S11.mp3", aud
 const N22 = { first: "NN22" };
 word("w_dit", "dit", "vnw", "这，这个", "this", N22);
 word("w_mijn", "mijn", "vnw", "我的", "my", N22);
-noun("w_buurman", "buurman", "de", "buren", "（男）邻居", "neighbour (man)", N22);
+noun("w_buurman", "buurman", "de", "buren", "（男）邻居", "neighbour (man)", {
+  ...N22,
+  fields: { forms_seen: ["buren"] },
+});
 word("w_karel", "Karel", "eigen", "卡雷尔（人名）", "Karel (name)", N22);
 word("w_hij", "hij", "vnw", "他", "he", N22);
 verb(
@@ -162,7 +165,7 @@ verb(
   "w_werken",
   "werken",
   { ik: "werk", jij: "werkt", hij: "werkt", wij: "werken", pp: "gewerkt", aux: "hebben" },
-  ["werkt"],
+  ["werkt", "werk"],
   "工作",
   "to work",
   N22,
@@ -175,7 +178,7 @@ verb(
   "w_fietsen",
   "fietsen",
   { ik: "fiets", jij: "fietst", hij: "fietst", wij: "fietsen", pp: "gefietst", aux: "hebben" },
-  ["fietst"],
+  ["fietst", "fiets"],
   "骑自行车",
   "to cycle",
   N22,
@@ -187,7 +190,7 @@ verb(
   "w_opbellen",
   "opbellen",
   { ik: "bel op", jij: "belt op", hij: "belt op", wij: "bellen op", pp: "opgebeld", aux: "hebben" },
-  ["belt", "op"],
+  ["belt", "bel", "op"],
   "打电话给",
   "to call (on the phone)",
   { ...N22, fields: { separable: "op|bellen" } },
@@ -203,6 +206,9 @@ word("w_grappig", "grappig", "bn", "有趣的，好笑的", "funny", {
   flags: ["not_in_nn_list"],
 });
 word("w_ik", "ik", "vnw", "我", "I", N22);
+word("w_ook", "ook", "bw", "也", "also, too", N22);
+word("w_maar", "maar", "vw", "但是", "but", N22);
+word("w_graag", "graag", "bw", "乐意，喜欢（做某事）", "gladly, like to", N22);
 word("w_jij", "jij", "vnw", "你", "you (informal)", N22);
 
 const wordById = new Map(words.map((w) => [w.id, w]));
@@ -332,7 +338,7 @@ const nn21Sentences = lessonSentences("NN21", [
   { role: "extra", ...t("vijf", "五", "five"), tokens: [["vijf", "w_vijf"]] },
 ]);
 // "De euro, niet de dollar" uses "niet" and "dollar": give them entries too.
-wordById.set("w_niet", word("w_niet", "niet", "bw", "不", "not", { lessons: ["NN21"] }));
+wordById.set("w_niet", word("w_niet", "niet", "bw", "不", "not", { lessons: ["NN21", "NN22"] }));
 wordById.set("w_dollar", noun("w_dollar", "dollar", "de", "dollars", "美元", "dollar", { flags: ["not_in_nn_list"] }));
 nn21Sentences[6].tokens!.push(
   { t: "niet", word_id: "w_niet" },
@@ -409,6 +415,150 @@ const nn22Sentences = lessonSentences("NN22", [
       ["aardig", "w_aardig"],
       ["en", "w_en"],
       ["grappig", "w_grappig"],
+    ],
+  },
+  // a longer text, so that the repo course's split point (NN22-S18) exists in the fixture too
+  {
+    ...t("Ik woon ook in Utrecht.", "我也住在乌得勒支。", "I live in Utrecht too."),
+    tokens: [
+      ["Ik", "w_ik"],
+      ["woon", "w_wonen"],
+      ["ook", "w_ook"],
+      ["in", "w_in"],
+      ["Utrecht", "w_utrecht"],
+    ],
+  },
+  {
+    ...t("Elke ochtend fiets ik naar mijn werk.", "我每天早上骑车去上班。", "Every morning I cycle to work."),
+    tokens: [
+      ["Elke", "w_elk"],
+      ["ochtend", "w_ochtend"],
+      ["fiets", "w_fietsen"],
+      ["ik", "w_ik"],
+      ["naar", "w_naar"],
+      ["mijn", "w_mijn"],
+      ["werk", "w_werk"],
+    ],
+  },
+  {
+    ...t("Karel fietst ook.", "卡雷尔也骑车。", "Karel cycles too."),
+    tokens: [
+      ["Karel", "w_karel"],
+      ["fietst", "w_fietsen"],
+      ["ook", "w_ook"],
+    ],
+  },
+  {
+    ...t("Hij fietst naar de bank.", "他骑车去银行。", "He cycles to the bank."),
+    tokens: [
+      ["Hij", "w_hij"],
+      ["fietst", "w_fietsen"],
+      ["naar", "w_naar"],
+      ["de", "w_de"],
+      ["bank", "w_bank"],
+    ],
+  },
+  {
+    ...t("Is het werk bij de bank grappig?", "银行的工作有意思吗？", "Is the work at the bank fun?"),
+    tokens: [
+      ["Is", "w_zijn"],
+      ["het", "w_het"],
+      ["werk", "w_werk"],
+      ["bij", "w_bij"],
+      ["de", "w_de"],
+      ["bank", "w_bank"],
+      ["grappig", "w_grappig"],
+    ],
+  },
+  {
+    ...t("Nee, het werk is niet grappig.", "不，工作没意思。", "No, the work is not fun."),
+    tokens: [
+      ["Nee", "w_nee"],
+      ["het", "w_het"],
+      ["werk", "w_werk"],
+      ["is", "w_zijn"],
+      ["niet", "w_niet"],
+      ["grappig", "w_grappig"],
+    ],
+  },
+  {
+    ...t("Maar Karel is grappig.", "但卡雷尔很风趣。", "But Karel is funny."),
+    tokens: [
+      ["Maar", "w_maar"],
+      ["Karel", "w_karel"],
+      ["is", "w_zijn"],
+      ["grappig", "w_grappig"],
+    ],
+  },
+  {
+    ...t("Hij is ook aardig.", "他人也很好。", "He is kind too."),
+    tokens: [
+      ["Hij", "w_hij"],
+      ["is", "w_zijn"],
+      ["ook", "w_ook"],
+      ["aardig", "w_aardig"],
+    ],
+  },
+  {
+    ...t("Hij belt mij elke ochtend op.", "他每天早上给我打电话。", "He calls me every morning."),
+    tokens: [
+      ["Hij", "w_hij"],
+      ["belt", "w_opbellen"],
+      ["mij", "w_mij"],
+      ["elke", "w_elk"],
+      ["ochtend", "w_ochtend"],
+      ["op", "w_opbellen"],
+    ],
+  },
+  {
+    ...t("Ik werk niet bij een bank.", "我不在银行工作。", "I don't work at a bank."),
+    tokens: [
+      ["Ik", "w_ik"],
+      ["werk", "w_werken"],
+      ["niet", "w_niet"],
+      ["bij", "w_bij"],
+      ["een", "w_een"],
+      ["bank", "w_bank"],
+    ],
+  },
+  {
+    ...t("Ik werk in Utrecht.", "我在乌得勒支工作。", "I work in Utrecht."),
+    tokens: [
+      ["Ik", "w_ik"],
+      ["werk", "w_werken"],
+      ["in", "w_in"],
+      ["Utrecht", "w_utrecht"],
+    ],
+  },
+  {
+    ...t("Karel en ik zijn buren.", "卡雷尔和我是邻居。", "Karel and I are neighbours."),
+    tokens: [
+      ["Karel", "w_karel"],
+      ["en", "w_en"],
+      ["ik", "w_ik"],
+      ["zijn", "w_zijn"],
+      ["buren", "w_buurman"],
+    ],
+  },
+  {
+    ...t("Ik bel Karel ook vaak op.", "我也经常给卡雷尔打电话。", "I often call Karel too."),
+    tokens: [
+      ["Ik", "w_ik"],
+      ["bel", "w_opbellen"],
+      ["Karel", "w_karel"],
+      ["ook", "w_ook"],
+      ["vaak", "w_vaak"],
+      ["op", "w_opbellen"],
+    ],
+  },
+  {
+    ...t("Ik woon graag in Utrecht.", "我喜欢住在乌得勒支。", "I like living in Utrecht."),
+    tokens: [
+      ["Ik", "w_ik"],
+      ["woon", "w_wonen"],
+      ["graag", "w_graag"],
+      ["in", "w_in"],
+      ["Utrecht", "w_utrecht"],
     ],
   },
 ]);
@@ -751,6 +901,7 @@ const index = {
       kind: l.kind,
       title: l.title,
       sentence_count: lines.length,
+      line_count: l.sentences.filter((s) => s.role === "line").length,
       new_word_count: newWords.length,
       total_seconds: r2(durations.reduce((a, b) => a + b, 0)),
       max_sentence_seconds: r2(Math.max(0, ...durations)),

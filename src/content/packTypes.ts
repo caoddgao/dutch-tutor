@@ -173,7 +173,10 @@ export interface PackIndexLesson {
   id: string;
   kind: PackLessonKind;
   title: Trilingual;
+  /** All sentences, the word-list reading included (03 §8) */
   sentence_count: number;
+  /** Text sentences only (`role: "line"`); lessons are split by this count (design §2.1). Older indexes lack it */
+  line_count?: number;
   new_word_count: number;
   total_seconds: number;
   max_sentence_seconds: number;

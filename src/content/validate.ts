@@ -1,7 +1,7 @@
 // Content checks, docs/01_DESIGN.md §11 rules 1–7. Pure: the CLI (scripts/validate-content.ts) loads files,
 // runs JSON Schema checks and passes everything in here.
 import type { ContentBundle, CourseLessonRef, OwnLesson, OwnWord } from "./ownTypes";
-import { packLessonParts, partRefs, suggestedParts } from "./split";
+import { lineCount, packLessonParts, partRefs, suggestedParts } from "./split";
 import type { PackExercise, PackIndex, PackLesson, PackManifest, PackSentence, PackWord } from "./packTypes";
 import { fillBank, PACK_FORMAT_VERSION } from "./packTypes";
 import { buildFormIndex, tokenize, uncoveredWords } from "./tokenize";
@@ -149,10 +149,10 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
       err(1, "course.json", `${packId} 的拆分不完整：${refs.map((r) => r.id).join("、")} 应该是第 1–${of} 部分`);
     const packLesson = pack?.lessons[packId];
     if (packLesson) {
-      const taught = new Set(packLesson.sentences.filter((x) => x.role !== "title").map((x) => x.id));
+      const lines = new Set(packLesson.sentences.filter((x) => x.role === "line").map((x) => x.id));
       for (const r of refs)
-        if (r.part?.from && !taught.has(r.part.from))
-          err(1, "course.json", `${r.id}：${packId} 里没有句子 ${r.part.from}`);
+        if (r.part?.from && !lines.has(r.part.from))
+          err(1, "course.json", `${r.id}：${packId} 里没有课文句 ${r.part.from}`);
     }
   }
   if (!pack && nnIndex) {
@@ -160,11 +160,7 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
       const want = suggestedParts(l, content.course.limits);
       const have = packRefs.get(l.id)?.length ?? 0;
       if (have > 0 && have < want)
-        warn(
-          7,
-          l.id,
-          `句子 ${l.sentence_count} 句、新词 ${l.new_word_count} 个，建议拆成 ${want} 部分（现在 ${have}）`,
-        );
+        warn(7, l.id, `课文 ${lineCount(l)} 句、新词 ${l.new_word_count} 个，建议拆成 ${want} 部分（现在 ${have}）`);
     }
   }
   for (const id of Object.keys(content.lessons)) {
@@ -261,6 +257,8 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
             ref.part ? Math.max(0, siblings.indexOf(ref)) : 0
           ]
         : undefined;
+      if (packLesson && ref.part && view && !view.sentences.some((s) => s.role === "line"))
+        err(1, ref.id, `这一部分没有课文句（${packLesson.id} 的课文句比部分少）`);
       if (packLesson && ref.part && ref.part.n > 1 && view?.sentences[0]) {
         const prev = packLesson.sentences[packLesson.sentences.indexOf(view.sentences[0]) - 1];
         splits.push({ id: ref.id, before: prev?.nl ?? "", after: view.sentences[0].nl });
@@ -290,7 +288,7 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
         overFiveSeconds: over,
       });
       if (unknown.length > 0) warn(5, ref.id, `${unknown.length} 个词不是本课新词、前面学过的词或功能词`);
-      if (sentences > max_sentences) warn(7, ref.id, `句子 ${sentences} 句，超过 ${max_sentences}，建议拆分`);
+      if (sentences > max_sentences) warn(7, ref.id, `课文 ${sentences} 句，超过 ${max_sentences}，建议拆分`);
       if (newWords > max_new_words) warn(7, ref.id, `新词 ${newWords} 个，超过 ${max_new_words}，建议拆分`);
       for (const id of taught) known.add(id);
     }
