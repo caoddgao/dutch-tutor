@@ -61,15 +61,19 @@ function spellingDistractors(word: RtWord, pool: RtWord[], rnd: () => number): R
   );
 }
 
-/** Generated questions for a main lesson: 2×E1, 2×E2, 2×E3, 1×E4, 2×E7 when the lesson has enough material. */
+/**
+ * Generated questions for a main lesson, as many of each kind as the lesson asks for (default 2×E1, 2×E2,
+ * 2×E3, 1×E4, 2×E7) when it has enough material.
+ */
 export function generatedGroups(lesson: RtLesson, dict: Dictionary, rnd: () => number): ExerciseGroup[] {
+  const n = lesson.autoCounts;
   const sentences = lesson.sentences.filter((s) => s.tokens.length >= 2 && s.zh?.trim());
   const groups: ExerciseGroup[] = [];
   if (sentences.length >= 2) {
     const listen = shuffle(
       sentences.filter((s) => hasAudio(s.audio)),
       rnd,
-    ).slice(0, 2);
+    ).slice(0, n.E1);
     if (listen.length > 0) {
       groups.push({
         id: `${lesson.id}-G-E1`,
@@ -86,7 +90,7 @@ export function generatedGroups(lesson: RtLesson, dict: Dictionary, rnd: () => n
     const read = shuffle(
       sentences.filter((s) => !listen.includes(s)),
       rnd,
-    ).slice(0, 2);
+    ).slice(0, n.E2);
     groups.push({
       id: `${lesson.id}-G-E2`,
       code: "E2",
@@ -106,7 +110,7 @@ export function generatedGroups(lesson: RtLesson, dict: Dictionary, rnd: () => n
     words.filter((w) => hasAudio(w.audio) && (lesson.newWordIds.length === 0 || lesson.newWordIds.includes(w.id))),
     rnd,
   );
-  const e3 = heard.slice(0, 2);
+  const e3 = heard.slice(0, n.E3);
   if (e3.length > 0 && pool.length >= 2) {
     groups.push({
       id: `${lesson.id}-G-E3`,
@@ -124,8 +128,8 @@ export function generatedGroups(lesson: RtLesson, dict: Dictionary, rnd: () => n
       }),
     });
   }
-  const e4word = heard[2] ?? heard[0];
-  if (e4word) {
+  const e4word = heard[n.E3] ?? heard[0];
+  if (e4word && n.E4 > 0) {
     const others = spellingDistractors(
       e4word,
       pool.filter((w) => hasAudio(w.audio)),
@@ -157,7 +161,7 @@ export function generatedGroups(lesson: RtLesson, dict: Dictionary, rnd: () => n
       return n >= 3 && n <= 7;
     }),
     rnd,
-  ).slice(0, 2);
+  ).slice(0, n.E7);
   if (orderable.length > 0) {
     groups.push({
       id: `${lesson.id}-G-E7`,

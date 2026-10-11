@@ -487,6 +487,28 @@
   border-radius: var(--radius-md);
   border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
 }
+.tip-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.tip-links-title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-3);
+}
+.tip-link {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+.tip-link > summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.tip-link[open] > summary {
+  margin-bottom: var(--space-3);
+}
 .tip-table {
   border-collapse: collapse;
   width: max-content;

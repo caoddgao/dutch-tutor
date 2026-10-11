@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G05",
+  "title": {
+    "zh": "问句里 jij 在动词后面：动词去掉 -t",
+    "en": "jij after the verb: no -t"
+  },
+  "body_zh": [
+    "平常说 jij woont。问句里 jij（或 je）放到动词后面时，动词去掉 -t：Woon jij hier?",
+    "只有 jij / je 这样变。u、hij、zij 在动词后面时 -t 保留：Woont u hier? Woont hij hier?",
+    "zijn 也一样：jij bent → Ben jij thuis?"
+  ],
+  "body_en": [
+    "Normally you say jij woont. When jij (or je) comes after the verb, as in a question, the -t goes: Woon jij hier?",
+    "Only jij / je does this. After u, hij or zij the -t stays: Woont u hier? Woont hij hier?",
+    "zijn works the same way: jij bent → Ben jij thuis?"
+  ],
+  "examples": [
+    {
+      "id": "G05-X1",
+      "nl": "Woon jij hier?",
+      "zh": "你住在这里吗？",
+      "en": "Do you live here?"
+    },
+    {
+      "id": "G05-X2",
+      "nl": "Fiets jij vaak?",
+      "zh": "你常骑自行车吗？",
+      "en": "Do you cycle often?"
+    },
+    {
+      "id": "G05-X3",
+      "nl": "Woont u ook hier?",
+      "zh": "您也住在这里吗？",
+      "en": "Do you live here too?"
+    }
+  ],
+  "pack_examples": ["NN22-X1"],
+  "table": {
+    "head": ["陈述句", "问句"],
+    "rows": [
+      ["jij woont", "woon jij?"],
+      ["jij bent", "ben jij?"],
+      ["u woont", "woont u?"],
+      ["hij woont", "woont hij?"]
+    ]
+  }
+}

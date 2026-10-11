@@ -49,12 +49,17 @@ export function formatReport(report: Report, title: string): string {
   const warns = report.issues.filter((i) => i.level === "warn");
   const lines = [`# ${title}`, "", `错误 ${errors.length} 条 · 提示 ${warns.length} 条`, ""];
   if (report.lessons.length > 0) {
-    lines.push("| 课 | 句数 | 新词 | 生词规则违规 | 超过 5 秒 |", "|---|---|---|---|---|");
+    lines.push("| 课 | 句数 | 新词 | 生词规则违规 | 超过 5 秒 | 练习（自动 + 课本） |", "|---|---|---|---|---|---|");
     for (const l of report.lessons) {
       const unknown = l.unknownWords.length
         ? `${l.unknownWords.length}（${l.unknownWords.slice(0, 8).join(", ")}）`
         : "0";
-      lines.push(`| ${l.id} | ${l.sentences} | ${l.newWords} | ${unknown} | ${l.overFiveSeconds.length} |`);
+      const ex = l.exercises
+        ? `${l.exercises.auto}${l.exercises.book !== undefined ? ` + ${l.exercises.book}` : ""}`
+        : "";
+      lines.push(
+        `| ${l.id} | ${l.sentences} | ${l.newWords ?? "—"} | ${unknown} | ${l.overFiveSeconds.length} | ${ex} |`,
+      );
     }
     lines.push("");
   }

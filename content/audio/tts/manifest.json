@@ -4,6 +4,21 @@
     "male": "nl-NL-MaartenNeural"
   },
   "entries": {
+    "00008af7dc19c820": {
+      "text": "In januari is het koud in Nederland.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.29
+    },
+    "0006748abfc121f0": {
+      "text": "In het weekend ben ik thuis.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.56
+    },
+    "00397e5dd97736b2": {
+      "text": "Dag, bent u nieuw in de straat?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.06
+    },
     "00e750d446870647": {
       "text": "goed",
       "voice": "nl-NL-FennaNeural",
@@ -14,10 +29,35 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "023ac3a00ce98158": {
+      "text": "Is het vandaag koud of warm?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.66
+    },
+    "023b80b42dd8f5a8": {
+      "text": "Ik ga nog niet uit bed.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.32
+    },
     "026f83acfd4e814e": {
       "text": "tien",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "02a80fc565cc8294": {
+      "text": "Dag Anna, ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "02d486d6cb1bd120": {
+      "text": "Wie is dat?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "030db5c69853cca2": {
+      "text": "Ik ga vroeg uit bed.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.3
     },
     "066598ad4930e39f": {
       "text": "pijn",
@@ -28,6 +68,11 @@
       "text": "mug",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "08441af2ebb6550a": {
+      "text": "Ik ga om zeven uur uit bed.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.87
     },
     "0885a951266fd7bd": {
       "text": "Het is twee uur.",
@@ -64,6 +109,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "0b33f00869783687": {
+      "text": "In het weekend ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.91
+    },
     "0b42762dba35a2a4": {
       "text": "gaan",
       "voice": "nl-NL-FennaNeural",
@@ -78,6 +128,11 @@
       "text": "tijd",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "0c7fa6071ef45493": {
+      "text": "Dag, bent u ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.17
     },
     "0cb65e36935064d6": {
       "text": "vier",
@@ -99,6 +154,21 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.93
     },
+    "0f868b2eb1a41e7e": {
+      "text": "Goedemiddag, ik wil ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.46
+    },
+    "0f8f384aea922169": {
+      "text": "Ik fiets vaak.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.99
+    },
+    "0fb1248032fc90f4": {
+      "text": "Wat is uw mobiele nummer?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.4
+    },
     "0fb2d6b76bf19c39": {
       "text": "werken",
       "voice": "nl-NL-FennaNeural",
@@ -109,10 +179,25 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "13a32b65d15ef8e1": {
+      "text": "Ik rook niet en ik beweeg regelmatig.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.4
+    },
     "151cf66719c343f0": {
       "text": "Nog een keer, graag.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.64
+    },
+    "15f40a59d36bd60f": {
+      "text": "Het is april. Het is warm.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.6
+    },
+    "16c04283b9f565a1": {
+      "text": "Waar is het toilet?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
     },
     "1765a7e98f3fd94a": {
       "text": "o",
@@ -134,10 +219,25 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "18322379bc83f891": {
+      "text": "Fietst u graag?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.09
+    },
+    "1896d11664e34a0e": {
+      "text": "Wij hebben een huis.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
+    },
     "18f1608563807231": {
       "text": "vuur",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "19205d47a83046d5": {
+      "text": "Wij wonen in Rotterdam.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.53
     },
     "19b957c08242472d": {
       "text": "Waar is mijn fiets?",
@@ -169,6 +269,21 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "2019be915457fb31": {
+      "text": "Het is vandaag erg koud.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.66
+    },
+    "214a3e78a9ac889f": {
+      "text": "Uw les begint om negen uur.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.85
+    },
+    "21664112c0ff9a24": {
+      "text": "Hoe laat begint de les?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.35
+    },
     "221cc1842912a421": {
       "text": "Het is half vier.",
       "voice": "nl-NL-FennaNeural",
@@ -178,6 +293,21 @@
       "text": "k",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "23bdd5bfae4803ca": {
+      "text": "Mijn zoon is elf.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.19
+    },
+    "252d257b9ee45db2": {
+      "text": "Ik ga niet zonder jas.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.25
+    },
+    "2553539c33bce805": {
+      "text": "Hoe gaat het met u?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.04
     },
     "25acf6608d015cf9": {
       "text": "ik",
@@ -193,6 +323,16 @@
       "text": "hij",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "26117049b2734fca": {
+      "text": "U ziet Anna in de straat.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.53
+    },
+    "26566fd09711df88": {
+      "text": "Ik luister naar het nieuws.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.35
     },
     "279579b3c393155f": {
       "text": "u",
@@ -214,15 +354,40 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "281e12964d92c65f": {
+      "text": "U fietst graag.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
+    },
     "285b36b40c830f6f": {
       "text": "zeventien",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.93
     },
+    "286755b8da478560": {
+      "text": "Wij werken samen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.14
+    },
+    "2a3ab147fe5d04f2": {
+      "text": "Waar woont uw familie?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.3
+    },
+    "2bbbf286506e9c3d": {
+      "text": "Ik heb geen dochter.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.09
+    },
     "2d0a45c6e1730023": {
       "text": "Dat is een kam.",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "2d1962e94ac3c0d4": {
+      "text": "Meestal een broodje kaas.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.59
     },
     "2d8e8437d35bc95d": {
       "text": "noot",
@@ -244,6 +409,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "307db95a9eb5e255": {
+      "text": "U wilt zich inschrijven.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.48
+    },
     "30e6ad8eb206ec70": {
       "text": "Rood of geel?",
       "voice": "nl-NL-FennaNeural",
@@ -253,6 +423,16 @@
       "text": "schrijven",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "30f479b141055426": {
+      "text": "Ik doe ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "31907c8c7fbe0c3b": {
+      "text": "Ik doe mijn jas aan.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.14
     },
     "327bc2e20241684a": {
       "text": "Ik ben thuis.",
@@ -264,10 +444,20 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.59
     },
+    "3377281019e76e76": {
+      "text": "Dat is niet moeilijk.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
+    },
     "33c02102094a16d9": {
       "text": "wonen",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "343f4158f0ddf47e": {
+      "text": "Hoe oud is je dochter?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.35
     },
     "348f4cf9da9d8c61": {
       "text": "hoofd",
@@ -283,6 +473,11 @@
       "text": "Ik heb twee kinderen.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.25
+    },
+    "35be35d9979425f1": {
+      "text": "Ik werk als lerares.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.35
     },
     "363cbc3419275a53": {
       "text": "Mijn vrouw werkt hier.",
@@ -309,6 +504,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "39cbfdd263532660": {
+      "text": "Hoe oud ben jij?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.14
+    },
     "3a4ab54e6f9d4f55": {
       "text": "bel",
       "voice": "nl-NL-FennaNeural",
@@ -319,10 +519,20 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "3b7f37d782bd8178": {
+      "text": "Mijn zoon is elf jaar oud.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.72
+    },
     "3c3d6c177b6e5822": {
       "text": "zoon",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "3d13784b984da758": {
+      "text": "In de herfst is het nat en donker.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.93
     },
     "3d1dcd8181ac9c46": {
       "text": "Ik ben Anna.",
@@ -344,20 +554,60 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "3f0aee16168f633e": {
+      "text": "Ik neem meestal brood met kaas.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.87
+    },
     "3f29e59001cce5c9": {
       "text": "pen",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "3f2ecf84885d5ce6": {
+      "text": "Zij werkt op een school.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.27
     },
     "3f46232f39a6453b": {
       "text": "Nee, dank je.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.25
     },
+    "3f5e8b1ded37e5df": {
+      "text": "U heeft een zoon. Hij is elf.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.92
+    },
+    "3facd8db6032e0d5": {
+      "text": "Ik neem ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "3fef96a29d21c27b": {
+      "text": "Ik ga ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "410b0076d4e2365f": {
+      "text": "Goedemorgen, ik ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.51
+    },
+    "429c35d5645cd119": {
+      "text": "Anna, waar ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.09
+    },
     "42d231372bbae19e": {
       "text": "of",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "430c2b5ac57aed9c": {
+      "text": "De slaapkamer is boven.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.72
     },
     "43110be0f2b8f7cc": {
       "text": "Dag, Anna!",
@@ -368,6 +618,11 @@
       "text": "blauw",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "4341ee18a0b8cb21": {
+      "text": "Deze slaapkamer is klein.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.9
     },
     "444f1d1ac3b0e18d": {
       "text": "twintig",
@@ -429,6 +684,16 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "49ac81283ef3593c": {
+      "text": "In het weekend werk ik niet.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.51
+    },
+    "4bccdb5914f94624": {
+      "text": "Ik neem soep.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
     "4c07d47663e84810": {
       "text": "Ik ben Sam.",
       "voice": "nl-NL-FennaNeural",
@@ -479,6 +744,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.06
     },
+    "54775ab7b4f2ab4b": {
+      "text": "Ik ben moe.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
     "54fa1f15f960bdce": {
       "text": "Dat is leuk!",
       "voice": "nl-NL-FennaNeural",
@@ -489,15 +759,35 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "57370df9df1fb779": {
+      "text": "Hoeveel seizoenen heeft Nederland?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.87
+    },
     "5771c6dac555c3f9": {
       "text": "hoe laat",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "57fcdfc3bb857c70": {
+      "text": "Goedemorgen, ik voel me niet goed.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.16
+    },
     "588aa53c217373ff": {
       "text": "Ik leer Nederlands.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.14
+    },
+    "59f6c712a67ed3d9": {
+      "text": "Wat doet u voor een gezond leven?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.85
+    },
+    "5aa5e0e4377aadaa": {
+      "text": "De fiets heeft veel voordelen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.9
     },
     "5abbef87acd1efd7": {
       "text": "geel",
@@ -514,6 +804,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "5c4f935e7e2c7b7d": {
+      "text": "Dit is een foto van mijn familie.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.85
+    },
     "5c6805f39bd69aac": {
       "text": "Het is koud.",
       "voice": "nl-NL-FennaNeural",
@@ -529,6 +824,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.09
     },
+    "5ea838797f0cca95": {
+      "text": "Nee, niet vaak.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.4
+    },
     "5edf90593c4a1881": {
       "text": "beetje",
       "voice": "nl-NL-FennaNeural",
@@ -538,6 +838,11 @@
       "text": "geit",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "6124cb29502c429d": {
+      "text": "Het voorjaar is ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.19
     },
     "626fec40771481d4": {
       "text": "De deur is blauw.",
@@ -574,6 +879,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "670ef08cc82f0ed8": {
+      "text": "Woon jij hier?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
     "676cd44dd5511c6c": {
       "text": "helpen",
       "voice": "nl-NL-FennaNeural",
@@ -588,6 +898,11 @@
       "text": "stoppen",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "68eb4918cbaa2ed9": {
+      "text": "Welk seizoen is het nu?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.38
     },
     "69a561d17384c28d": {
       "text": "hebben",
@@ -614,6 +929,16 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "6b722b3ed8d83cbc": {
+      "text": "De les begint om half negen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3
+    },
+    "6c0e7973dd829ce0": {
+      "text": "Zij is bijna twaalf.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.43
+    },
     "6c82f8ad8410a648": {
       "text": "p",
       "voice": "nl-NL-FennaNeural",
@@ -634,10 +959,30 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "6e4e8ca35bb1acc2": {
+      "text": "U heeft honger.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.96
+    },
+    "6edeb251a60c95e8": {
+      "text": "Ik heb geen fiets.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.06
+    },
+    "6f03e4b9246f2b7e": {
+      "text": "Ik fiets ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
     "6f2188a2bec43740": {
       "text": "huis",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "6f6efab129995b1a": {
+      "text": "Ik ga om ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.93
     },
     "6fd640d391bdd4db": {
       "text": "druk",
@@ -654,6 +999,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.59
     },
+    "763a6b1dff2ad581": {
+      "text": "Het is vrijdag.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
+    },
     "770c2d5aafc52517": {
       "text": "Goed, dank je. En met jou?",
       "voice": "nl-NL-FennaNeural",
@@ -664,6 +1014,16 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.96
     },
+    "7743167c9909b67e": {
+      "text": "Fiets jij ook vaak?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.19
+    },
+    "7767b990910de23b": {
+      "text": "Dit is de keuken.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.19
+    },
     "777b992855e02002": {
       "text": "kwart",
       "voice": "nl-NL-FennaNeural",
@@ -673,6 +1033,16 @@
       "text": "d",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "78209c3149aa1879": {
+      "text": "Vandaag is het woensdag.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.53
+    },
+    "7854fe254b98b641": {
+      "text": "Ik ga met de fiets naar mijn werk.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.66
     },
     "79b4005bc5b282e5": {
       "text": "bal",
@@ -694,6 +1064,16 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "7c5e9138286144b7": {
+      "text": "Waar woont u?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "7ca467a7168e9624": {
+      "text": "Waar woon jij?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.96
+    },
     "7cb8f94ddefc42b4": {
       "text": "Het is druk in de bus.",
       "voice": "nl-NL-FennaNeural",
@@ -709,6 +1089,16 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "7d2c863021f44e3b": {
+      "text": "Wat drink jij?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.91
+    },
+    "7d548fec7d622138": {
+      "text": "Fiets jij vaak?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.09
+    },
     "7d6b2ed95f94771c": {
       "text": "Het is kwart over twee.",
       "voice": "nl-NL-FennaNeural",
@@ -718,6 +1108,11 @@
       "text": "Ik ben twintig jaar.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.14
+    },
+    "7fbe00de60113080": {
+      "text": "Ik ga met de fiets.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
     },
     "805a60bcf80d9035": {
       "text": "neus",
@@ -734,10 +1129,20 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "8167ddca91b2f8c1": {
+      "text": "Welke dag is het vandaag?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.56
+    },
     "819e3a222ba56913": {
       "text": "Ik heb geen tijd.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.04
+    },
+    "8230300076be5e3e": {
+      "text": "Zij werkt ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
     },
     "824b1ed19dee067a": {
       "text": "man",
@@ -754,6 +1159,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "8406254b6094c4ac": {
+      "text": "Dag Anna, hoe gaat het?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.74
+    },
     "870cf4b5c98cc716": {
       "text": "hand",
       "voice": "nl-NL-FennaNeural",
@@ -763,6 +1173,11 @@
       "text": "Het kost zeven euro.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.66
+    },
+    "8839ad0dd0a43dd6": {
+      "text": "Ik fiets vaak naar school.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.35
     },
     "88a63a6644d28e72": {
       "text": "v",
@@ -774,10 +1189,35 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "894f705c27102e83": {
+      "text": "Ik ga niet ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "8961b16944d8a559": {
+      "text": "Hoe spelt u dat?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.09
+    },
+    "89f0d1819f11efd2": {
+      "text": "Ik zie je vaak in de straat.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.56
+    },
+    "8a43b678e87b988e": {
+      "text": "Op zondag is de bank dicht.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.69
+    },
     "8a708a90112dd8be": {
       "text": "goedemorgen",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.93
+    },
+    "8a9bba87ba4fcac7": {
+      "text": "Ik ben lerares.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.01
     },
     "8aad8d0f03a8f53a": {
       "text": "vol",
@@ -814,20 +1254,75 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "8c4fef33e55b2c05": {
+      "text": "Ik werk op een school.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
+    },
+    "8dfa22863e58f799": {
+      "text": "Mijn zoon is ...",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.96
+    },
+    "8e7c7a743a98013f": {
+      "text": "Ja, ik fiets graag.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.69
+    },
     "8ec163863f3e6418": {
       "text": "Kunt u dat spellen?",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.04
+    },
+    "90ed5dfb5d7cd4de": {
+      "text": "Nee, ik ga met de bus.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.69
+    },
+    "913ea0d40ced8e2a": {
+      "text": "Goedemorgen, ik ben ziek.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.82
     },
     "91637686e6f7dd2d": {
       "text": "deur",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "9278bf74df79e76c": {
+      "text": "Ik voel me slecht.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.06
+    },
+    "93b26a251ff56cb3": {
+      "text": "De fiets is goedkoop en praktisch.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3
+    },
+    "941681804716b91f": {
+      "text": "In de winter zijn de dagen kort.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.74
+    },
     "94c32ce3ba15eb73": {
       "text": "duur",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "94fdcec2df289314": {
+      "text": "Het is nu herfst.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.14
+    },
+    "9507f4766063157a": {
+      "text": "Hoe gaat het met jou?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
+    },
+    "955f1d9347d2a502": {
+      "text": "Ik heb twee jassen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
     },
     "95d08aeb180c9d44": {
       "text": "Tot ziens!",
@@ -858,6 +1353,11 @@
       "text": "nee",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "97f16c0916421d14": {
+      "text": "Woont u in Rotterdam?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.32
     },
     "9879bff746d018e6": {
       "text": "Anna",
@@ -899,6 +1399,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.82
     },
+    "9c2acf69cad398ff": {
+      "text": "Wat is uw werk?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.04
+    },
     "9c94049ffb4d470e": {
       "text": "Nee, dat is niet mijn tas.",
       "voice": "nl-NL-FennaNeural",
@@ -908,6 +1413,21 @@
       "text": "trein",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "9d10d7876a8ec661": {
+      "text": "Ik ga om half negen naar school.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.8
+    },
+    "9daa8514cde31769": {
+      "text": "Ik ga niet naar buiten.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.27
+    },
+    "9e8f40e6680a9193": {
+      "text": "Ik fiets niet vaak.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.14
     },
     "9f14f9261ffd5493": {
       "text": "kop",
@@ -939,6 +1459,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "a1dd8f8d6cb471b8": {
+      "text": "Ik woon in Rotterdam.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.27
+    },
     "a27444cdedef1001": {
       "text": "Is het duur?",
       "voice": "nl-NL-FennaNeural",
@@ -954,10 +1479,30 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "a495e89cd7f24bae": {
+      "text": "Hij is mijn broer.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.04
+    },
+    "a5c20fde998ebff8": {
+      "text": "Het regent en het is koud.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.66
+    },
     "a756534b630adff8": {
       "text": "paars",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "a869fe9208e91b97": {
+      "text": "Wat neemt u meestal als lunch?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.87
+    },
+    "a876d16a2e5b4d90": {
+      "text": "Het is nu zomer.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
     },
     "a889c441909013dc": {
       "text": "waar",
@@ -969,6 +1514,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "a9ed638ae23bd29b": {
+      "text": "Het voorjaar is fijn.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.51
+    },
     "aacc2e516aebf9be": {
       "text": "z",
       "voice": "nl-NL-FennaNeural",
@@ -978,6 +1528,11 @@
       "text": "Pas op, een mug!",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.3
+    },
+    "aafb1c6f876b1d9f": {
+      "text": "Anna, waar is het toilet?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.69
     },
     "abf9e67a03acd5c5": {
       "text": "Mijn vrouw is thuis.",
@@ -989,6 +1544,16 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "acf7328966e74bb7": {
+      "text": "Het regent veel in Nederland.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.8
+    },
+    "ae1167bca7c33749": {
+      "text": "U woont dicht bij uw werk.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.59
+    },
     "af8c8f2b53560e56": {
       "text": "geen",
       "voice": "nl-NL-FennaNeural",
@@ -998,6 +1563,21 @@
       "text": "Mijn achternaam is Wang.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.43
+    },
+    "b0270f7b32744265": {
+      "text": "Mijn huis heeft twee slaapkamers.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.13
+    },
+    "b0349211f0e99f19": {
+      "text": "Ik neem een broodje kaas.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.46
+    },
+    "b0949ef5a01d2184": {
+      "text": "Ik ben vierentwintig jaar oud.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.82
     },
     "b0bd618ea9cf583e": {
       "text": "zestien",
@@ -1009,6 +1589,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "b270e4c29088ecbe": {
+      "text": "U bent ziek. U belt de huisarts.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 4.02
+    },
     "b2a4c1103077398c": {
       "text": "goedenavond",
       "voice": "nl-NL-FennaNeural",
@@ -1019,13 +1604,58 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.91
     },
+    "b4201d7392093694": {
+      "text": "Ik ben dertig.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.99
+    },
+    "b4cf613a6b46a6c2": {
+      "text": "Mijn werk begint om negen uur.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.87
+    },
+    "b6671a47b05c6980": {
+      "text": "Op maandag werk ik niet.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.48
+    },
+    "b68f68a83ca4c7ac": {
+      "text": "Anna is lerares.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.27
+    },
     "b6abe73051ac0ae4": {
       "text": "f",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "b73b216b2b27994e": {
+      "text": "Ja, ik fiets vaak.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.66
+    },
+    "b74627c4f34ba961": {
+      "text": "Het is vandaag koud.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.32
+    },
+    "b8920a1c8e83e276": {
+      "text": "Het toilet is beneden, rechts.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.24
+    },
     "ba8481e586aa5fc2": {
       "text": "ring",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "badba89a4c918702": {
+      "text": "Woont u ook hier?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
+    },
+    "baf6230565baf038": {
+      "text": "Ik heb honger.",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
@@ -1044,8 +1674,18 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "bbc57217b91d62e6": {
+      "text": "U ziet een vrouw. Ze is nieuw in de straat.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 4.47
+    },
     "bdb0b3fef7b9c931": {
       "text": "welk",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
+    "be64902390c9213d": {
+      "text": "Ik ben ziek.",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
@@ -1064,10 +1704,20 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "bfa763c8690dcd4e": {
+      "text": "Morgen is het zaterdag.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.53
+    },
     "c045c5662537742a": {
       "text": "bloed",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "c0bdeb4fb4a58f46": {
+      "text": "U bent bij Anna thuis. U wilt naar het toilet.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 4.62
     },
     "c13664def0cf77e6": {
       "text": "negentien",
@@ -1084,6 +1734,21 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.22
     },
+    "c270e69fb47bdcd2": {
+      "text": "Om half negen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.14
+    },
+    "c279cb09521b9661": {
+      "text": "Hoe laat begint uw werk?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.4
+    },
+    "c48415fef2209dd4": {
+      "text": "Ik woon in deze straat.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.4
+    },
     "c49115b4f7746637": {
       "text": "Wat is uw nummer?",
       "voice": "nl-NL-FennaNeural",
@@ -1099,10 +1764,20 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "c6cf780d7ae4d148": {
+      "text": "Mijn broer woont ook hier.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.43
+    },
     "c6fc860ed5ae715c": {
       "text": "Geel, graag.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.38
+    },
+    "c74f7bc044d3f903": {
+      "text": "Hoe laat gaat u 's ochtends uit bed?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.93
     },
     "c919e5ea7859c7d0": {
       "text": "graag",
@@ -1129,15 +1804,35 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "cc377ef1440424d9": {
+      "text": "Hoeveel slaapkamers heeft uw huis?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.16
+    },
     "cc84f9d399ababd3": {
       "text": "j",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "ced93134f92f65aa": {
+      "text": "Onze woning heeft één slaapkamer.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.19
+    },
+    "cf70cb7a2484c96d": {
+      "text": "Nederland heeft vier seizoenen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.9
+    },
     "d188ad5bf5c940d8": {
       "text": "spelen",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "d1bd958f4e1d6a86": {
+      "text": "Goedemiddag, ik wil mij inschrijven.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 3.45
     },
     "d2a615fac6cf2aed": {
       "text": "jaar",
@@ -1154,6 +1849,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.32
     },
+    "d56f72004202c072": {
+      "text": "Het is zeven uur. U bent nog moe.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 4.18
+    },
     "d6d00f598fffadc3": {
       "text": "been",
       "voice": "nl-NL-FennaNeural",
@@ -1164,10 +1864,35 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "d8060326efc44203": {
+      "text": "Ik wandel veel.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.96
+    },
+    "d8a5007e1b4f5018": {
+      "text": "Ik betaal vandaag.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.22
+    },
+    "d960103429347eeb": {
+      "text": "Wandelen is gezond.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.35
+    },
+    "d97ca8026d260fe4": {
+      "text": "Het is warm.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 1.88
+    },
     "d9fd98fad0e377c0": {
       "text": "lachen",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "dadb908c9e9d189b": {
+      "text": "Om half zeven.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.17
     },
     "dcf15ff25b4594ac": {
       "text": "zeep",
@@ -1194,6 +1919,16 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "e16a79d5ca06096a": {
+      "text": "Ik woon in de Hoofdstraat.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.43
+    },
+    "e16e0847a39adc1f": {
+      "text": "Een jaar heeft vier seizoenen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.72
+    },
     "e23ce30933e851c3": {
       "text": "Ik ga graag dansen.",
       "voice": "nl-NL-FennaNeural",
@@ -1203,6 +1938,11 @@
       "text": "vijftien",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "e2b4634f7d7c4f83": {
+      "text": "Ik bel de huisarts.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.3
     },
     "e2e91e025fd2165b": {
       "text": "mes",
@@ -1249,6 +1989,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.43
     },
+    "ec6bb3b116aeaf4a": {
+      "text": "Eerst ga ik douchen.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.22
+    },
     "ec85df8e5e8e3728": {
       "text": "Waar is mijn sok?",
       "voice": "nl-NL-FennaNeural",
@@ -1269,6 +2014,21 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "f039430535ba475d": {
+      "text": "Mijn ouders wonen in Rotterdam.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.95
+    },
+    "f08dacb5f2b91e30": {
+      "text": "De zomer is heerlijk.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.4
+    },
+    "f0c5f1761b3a2a52": {
+      "text": "Ze zijn erg aardig.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.38
+    },
     "f24da8d67c3d605c": {
       "text": "Nederlands",
       "voice": "nl-NL-FennaNeural",
@@ -1283,6 +2043,11 @@
       "text": "doen",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "f3e162f7db6a69ab": {
+      "text": "Wij zien elkaar vaak.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.27
     },
     "f3fe47cfa756bdb7": {
       "text": "zes",
@@ -1309,10 +2074,25 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
     },
+    "f8a11ffd92b73cb8": {
+      "text": "Zij wonen naast ons.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.4
+    },
+    "f90793a25174f543": {
+      "text": "Dat huis is ruim.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.25
+    },
     "fad92df019c8fb54": {
       "text": "mens",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "fae420addf948d22": {
+      "text": "Wat is uw adres?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.12
     },
     "fae4757c8ebb553c": {
       "text": "naar",
@@ -1348,6 +2128,11 @@
       "text": "Ik drink een glas sap.",
       "voice": "nl-NL-FennaNeural",
       "duration": 2.3
+    },
+    "ffaa447159335d54": {
+      "text": "Mijn familie woont in China.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.66
     }
   }
 }

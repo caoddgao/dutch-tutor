@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN28",
+  "kind": "main",
+  "pack_lesson": "NN28",
+  "tip_links": ["G07"],
+  "auto_exercises": {
+    "E1": 2,
+    "E2": 1,
+    "E3": 2,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN28-A01",
+      "nl": "Dit is een foto van mijn familie.",
+      "zh": "这是我家人的照片。",
+      "en": "This is a photo of my family."
+    },
+    {
+      "id": "NN28-A02",
+      "nl": "Zij wonen naast ons.",
+      "zh": "他们住在我们隔壁。",
+      "en": "They live next door to us."
+    },
+    {
+      "id": "NN28-A03",
+      "nl": "Ze zijn erg aardig.",
+      "zh": "他们人很好。",
+      "en": "They are very nice."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN28-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN28-O1-1",
+          "context": {
+            "nl": "U ziet een vrouw. Ze is nieuw in de straat.",
+            "zh": "您看到一位女士，她是新搬来这条街的。",
+            "en": "You see a woman. She is new in the street."
+          },
+          "start": {
+            "nl": "Dag, bent u ...",
+            "zh": "您好，您是……",
+            "en": "Hello, are you ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Dag, bent u nieuw in de straat?",
+              "zh": "您好，您是新搬来这条街的吗？",
+              "en": "Hello, are you new in the street?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN28-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN28-O2-1",
+          "question": {
+            "nl": "Waar woont uw familie?",
+            "zh": "您的家人住在哪里？",
+            "en": "Where does your family live?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn familie woont in China.",
+              "zh": "我的家人住在中国。",
+              "en": "My family lives in China."
+            },
+            {
+              "nl": "Mijn ouders wonen in Rotterdam.",
+              "zh": "我父母住在鹿特丹。",
+              "en": "My parents live in Rotterdam."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

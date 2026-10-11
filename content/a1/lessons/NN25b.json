@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN25b",
+  "kind": "main",
+  "pack_lesson": "NN25",
+  "tip_links": ["G08"],
+  "auto_exercises": {
+    "E1": 2,
+    "E2": 1,
+    "E3": 2,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN25b-A01",
+      "nl": "Op maandag werk ik niet.",
+      "zh": "星期一我不上班。",
+      "en": "I don't work on Mondays."
+    },
+    {
+      "id": "NN25b-A02",
+      "nl": "In het weekend ben ik thuis.",
+      "zh": "周末我在家。",
+      "en": "At the weekend I am at home."
+    },
+    {
+      "id": "NN25b-A03",
+      "nl": "Op zondag is de bank dicht.",
+      "zh": "星期天银行关门。",
+      "en": "On Sunday the bank is closed."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN25b-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN25b-O1-1",
+          "context": {
+            "nl": "Morgen is het zaterdag.",
+            "zh": "明天是星期六。",
+            "en": "Tomorrow is Saturday."
+          },
+          "start": {
+            "nl": "In het weekend ...",
+            "zh": "周末……",
+            "en": "At the weekend ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "In het weekend werk ik niet.",
+              "zh": "周末我不上班。",
+              "en": "At the weekend I don't work."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN25b-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN25b-O2-1",
+          "question": {
+            "nl": "Welke dag is het vandaag?",
+            "zh": "今天星期几？",
+            "en": "What day is it today?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Vandaag is het woensdag.",
+              "zh": "今天星期三。",
+              "en": "Today is Wednesday."
+            },
+            {
+              "nl": "Het is vrijdag.",
+              "zh": "星期五。",
+              "en": "It is Friday."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

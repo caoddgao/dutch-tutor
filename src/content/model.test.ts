@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { CONTENT } from "./bundle";
-import { buildCourseView, buildDictionary, buildLesson } from "./model";
+import { buildCourseView, buildDictionary, buildLesson, packLessonsFor } from "./model";
 import type { PackIndex, PackLesson, PackWord } from "./packTypes";
 import { fixtureContent, FIXTURE_PACK_DIR } from "../test/services";
 
@@ -152,6 +152,41 @@ describe("lesson model", () => {
     expect(l.extras[0].sentences[0].audio.packTts).toMatch(/^audio\/tts\//);
   });
 
+  it("a tip shows the EXTRA-box sentences it cites, then our examples; the box is not shown again", () => {
+    const l = buildLesson(content, dict, "NN22", { own: content.lessons.NN22, pack: lesson("NN22") })!;
+    expect(l.tips.map((t) => t.id)).toEqual(["G02"]);
+    // the box has 3 sentences: enough examples, ours are not needed
+    expect(l.tips[0].examples.map((s) => s.id)).toEqual(["NN22-X1-1", "NN22-X1-2", "NN22-X1-3"]);
+    expect(l.tips[0].examples[0].audio.packTts).toMatch(/^audio\/tts\//);
+    expect(l.extras).toEqual([]);
+    // G01 was taught in NN21: linked back, not taught again
+    expect(l.tipLinks.map((t) => t.id)).toEqual(["G01"]);
+    expect(l.autoCounts).toEqual({ E1: 1, E2: 0, E3: 1, E4: 0, E7: 1 });
+    // one cited sentence: ours fill up
+    const one = structuredClone(content);
+    one.tips.G02.pack_examples = ["NN22-X1-2"];
+    const l1 = buildLesson(one, dict, "NN22", { own: one.lessons.NN22, pack: lesson("NN22") })!;
+    expect(l1.tips[0].examples.map((s) => s.id)).toEqual(["NN22-X1-2", "G02-X1"]);
+    // only a whole cited box is left out of the boxes
+    expect(l1.extras.map((x) => x.id)).toEqual(["NN22-X1"]);
+    // without the pack only our own examples
+    const bare = buildLesson(content, dict, "NN22", {
+      own: content.lessons.NN22,
+      pack: { ...lesson("NN22"), extras: [] },
+    })!;
+    expect(bare.tips[0].examples.map((s) => s.id)).toEqual(["G02-X1"]);
+  });
+
+  it("a lesson whose tips cite another lesson's EXTRA box loads that pack lesson too", () => {
+    const c = structuredClone(content);
+    c.lessons.NN21.tip_links = ["G02"];
+    expect(packLessonsFor(c, "NN21")).toMatchObject({ main: "NN21", tipPacks: ["NN22"] });
+    expect(packLessonsFor(c, "NN22").tipPacks).toEqual([]);
+    const l = buildLesson(c, dict, "NN21", { own: c.lessons.NN21, pack: lesson("NN21"), tipPacks: [lesson("NN22")] })!;
+    expect(l.tipLinks[0].examples.map((s) => s.id)).toContain("NN22-X1-1");
+    expect(l.autoCounts).toEqual({ E1: 1, E2: 1, E3: 1, E4: 1, E7: 1 });
+  });
+
   it("phonics lessons reuse keyword recordings and exercises from linked NN lessons", () => {
     const l = buildLesson(content, dict, "P01", { own: content.lessons.P01, linked: [lesson("NN05")] })!;
     expect(l.kind).toBe("phonics");
@@ -210,6 +245,14 @@ describe("lesson model", () => {
       "w_vier",
       "w_vijf",
       "w_dag",
+      "w_goedemiddag",
+      "w_adres",
+      "w_rotterdam",
+      "w_moeilijk",
+      "w_mobiel",
+      "w_inschrijven",
+      "w_zich",
+      "w_wie",
     ]);
     // zijn and de were first met in NN05
     expect(b.newWordIds).toEqual([
@@ -223,6 +266,14 @@ describe("lesson model", () => {
       "w_vier",
       "w_vijf",
       "w_dag",
+      "w_goedemiddag",
+      "w_adres",
+      "w_rotterdam",
+      "w_moeilijk",
+      "w_mobiel",
+      "w_inschrijven",
+      "w_zich",
+      "w_wie",
     ]);
     // an unsplit lesson next to it is unchanged
     const nn22 = buildLesson(split, d, "NN22", { pack: lesson("NN22") })!;

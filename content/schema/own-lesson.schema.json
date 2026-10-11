@@ -45,7 +45,19 @@
       }
     },
     "word_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
-    "tips": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "tips": { "type": "array", "maxItems": 2, "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "tip_links": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "auto_exercises": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "E1": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "E2": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "E3": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "E4": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "E7": { "type": "integer", "minimum": 0, "maximum": 3 }
+      }
+    },
     "exercises": { "type": "array", "items": { "$ref": "#/$defs/exercise" } }
   },
   "$defs": {

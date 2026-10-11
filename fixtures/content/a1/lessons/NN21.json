@@ -3,6 +3,7 @@
   "kind": "main",
   "pack_lesson": "NN21",
   "tips": ["G01"],
+  "auto_exercises": { "E1": 1, "E2": 1, "E3": 1, "E4": 1, "E7": 1 },
   "sentences": [
     {
       "id": "NN21-A01",
@@ -24,9 +25,9 @@
         {
           "id": "NN21-O1-1",
           "context": {
-            "nl": "U bent bij de bakker.",
-            "zh": "您在面包店。",
-            "en": "You are at the baker's."
+            "nl": "U bent op de markt.",
+            "zh": "您在市场上。",
+            "en": "You are at the market."
           },
           "start": {
             "nl": "Een brood, ...",

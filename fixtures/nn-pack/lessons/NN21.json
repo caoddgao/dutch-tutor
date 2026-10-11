@@ -338,7 +338,15 @@
     "w_tot_ziens",
     "w_vier",
     "w_vijf",
-    "w_dag"
+    "w_dag",
+    "w_goedemiddag",
+    "w_adres",
+    "w_rotterdam",
+    "w_moeilijk",
+    "w_mobiel",
+    "w_inschrijven",
+    "w_zich",
+    "w_wie"
   ],
   "exercises": [
     {

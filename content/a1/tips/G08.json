@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G08",
+  "title": {
+    "zh": "否定：niet 和 geen",
+    "en": "Negation: niet and geen"
+  },
+  "body_zh": [
+    "名词前面原来是 een 或者没有冠词时，用 geen 否定：Ik heb een fiets. → Ik heb geen fiets.",
+    "其他情况用 niet：否定动词、形容词、带 de / het 的名词等：Ik fiets niet. Dat is niet moeilijk.",
+    "niet 一般放在句子后面，但在形容词和介词前面：niet moeilijk，niet in Rotterdam。"
+  ],
+  "body_en": [
+    "Use geen before a noun that would have een or no article: Ik heb een fiets. → Ik heb geen fiets.",
+    "Use niet everywhere else: with verbs, adjectives, nouns with de / het: Ik fiets niet. Dat is niet moeilijk.",
+    "niet usually goes towards the end, but before an adjective or a preposition: niet moeilijk, niet in Rotterdam."
+  ],
+  "examples": [
+    {
+      "id": "G08-X1",
+      "nl": "Ik heb geen fiets.",
+      "zh": "我没有自行车。",
+      "en": "I don't have a bike."
+    },
+    {
+      "id": "G08-X2",
+      "nl": "Ik fiets niet vaak.",
+      "zh": "我不常骑自行车。",
+      "en": "I don't cycle often."
+    },
+    {
+      "id": "G08-X3",
+      "nl": "Dat is niet moeilijk.",
+      "zh": "那不难。",
+      "en": "That isn't difficult."
+    }
+  ]
+}

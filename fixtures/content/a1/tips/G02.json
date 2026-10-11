@@ -1,0 +1,17 @@
+{
+  "id": "G02",
+  "title": {
+    "zh": "规则动词的现在时",
+    "en": "Regular verbs in the present tense"
+  },
+  "body_zh": ["ik 后面用词干：ik woon。", "jij、u、hij 后面用词干加 -t：hij woont。"],
+  "examples": [
+    {
+      "id": "G02-X1",
+      "nl": "Hij werkt bij de bank.",
+      "zh": "他在银行工作。",
+      "en": "He works at the bank."
+    }
+  ],
+  "pack_examples": ["NN22-X1"]
+}

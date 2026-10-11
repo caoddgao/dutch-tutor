@@ -115,9 +115,25 @@ export interface OwnLesson {
   sentences?: OwnSentence[];
   /** Words taught in this lesson (phonics). Main lessons use the pack's word_ids */
   word_ids?: string[];
+  /** Tips taught in this lesson (0–2): each tip is taught once, in the lesson that first clearly uses it */
   tips?: string[];
+  /** Tips taught in an earlier lesson that this lesson uses again: shown as links back, not taught again */
+  tip_links?: string[];
+  /**
+   * main: how many generated questions of each kind (design §3.1); default E1 2, E2 2, E3 2, E4 1, E7 2.
+   * Generated questions and our own exercises together stay ≤ 9 per lesson.
+   */
+  auto_exercises?: Partial<Record<AutoCode, number>>;
   exercises?: OwnExercise[];
 }
+
+/** Kinds of generated questions in a main lesson */
+export type AutoCode = "E1" | "E2" | "E3" | "E4" | "E7";
+
+export const DEFAULT_AUTO: Record<AutoCode, number> = { E1: 2, E2: 2, E3: 2, E4: 1, E7: 2 };
+
+/** Generated + own exercise items in a lesson may not exceed this (design §3: 自动出题 ≤ 9 道) */
+export const MAX_AUTO_QUESTIONS = 9;
 
 export interface TipExample {
   id: string;
@@ -133,6 +149,12 @@ export interface Tip {
   body_zh: string[];
   body_en?: string[];
   examples: TipExample[];
+  /**
+   * Example sentences from the pack's EXTRA boxes (03 §4A), by box id ("NN22-X1") or sentence id
+   * ("NN22-X1-2"). Shown first when the pack is installed, our examples only fill up to 3; the NN text stays in
+   * the pack.
+   */
+  pack_examples?: string[];
   table?: { head: string[]; rows: string[][] };
 }
 

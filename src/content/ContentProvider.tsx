@@ -94,16 +94,19 @@ export function ContentProvider({ bundle, backend, ttsUrls, children }: Props) {
   const loadLesson = useCallback(
     async (id: string): Promise<RtLesson | null> => {
       const need = packLessonsFor(bundle, id);
-      const [main, reading, ...linked] = await Promise.all([
+      const present = (ls: (PackLesson | null)[]) => ls.filter((l): l is PackLesson => !!l);
+      const [main, reading, linked, tipPacks] = await Promise.all([
         need.main ? readPackLesson(need.main) : Promise.resolve(null),
         need.reading ? readPackLesson(need.reading) : Promise.resolve(null),
-        ...need.linked.map(readPackLesson),
+        Promise.all(need.linked.map(readPackLesson)).then(present),
+        Promise.all(need.tipPacks.map(readPackLesson)).then(present),
       ]);
       return buildLesson(bundle, dict, id, {
         own: bundle.lessons[id],
         pack: main ?? undefined,
-        linked: linked.filter((l): l is PackLesson => !!l),
+        linked,
         reading: reading ?? undefined,
+        tipPacks,
       });
     },
     [bundle, dict, readPackLesson],

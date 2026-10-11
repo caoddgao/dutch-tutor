@@ -1,0 +1,132 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN24a",
+  "kind": "main",
+  "pack_lesson": "NN24",
+  "tips": ["G07"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN24a-A01",
+      "nl": "Het is vandaag erg koud.",
+      "zh": "今天很冷。",
+      "en": "It is very cold today."
+    },
+    {
+      "id": "NN24a-A02",
+      "nl": "In januari is het koud in Nederland.",
+      "zh": "荷兰一月份很冷。",
+      "en": "In January it is cold in the Netherlands."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN24a-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN24a-O1-1",
+          "context": {
+            "nl": "Het is vandaag erg koud.",
+            "zh": "今天很冷。",
+            "en": "It is very cold today."
+          },
+          "start": {
+            "nl": "Ik ga niet ...",
+            "zh": "我不……",
+            "en": "I am not going ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga niet naar buiten.",
+              "zh": "我不出去。",
+              "en": "I am not going outside."
+            },
+            {
+              "nl": "Ik ga niet zonder jas.",
+              "zh": "我不穿外套就不出门。",
+              "en": "I am not going without a coat."
+            }
+          ]
+        },
+        {
+          "id": "NN24a-O1-2",
+          "context": {
+            "nl": "Het is april. Het is warm.",
+            "zh": "现在是四月，天气暖和。",
+            "en": "It is April. It is warm."
+          },
+          "start": {
+            "nl": "Het voorjaar is ...",
+            "zh": "春天……",
+            "en": "Spring is ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Het voorjaar is fijn.",
+              "zh": "春天很舒服。",
+              "en": "Spring is nice."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN24a-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN24a-O2-1",
+          "question": {
+            "nl": "Is het vandaag koud of warm?",
+            "zh": "今天冷还是暖和？",
+            "en": "Is it cold or warm today?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Het is vandaag koud.",
+              "zh": "今天冷。",
+              "en": "It is cold today."
+            },
+            {
+              "nl": "Het is warm.",
+              "zh": "很暖和。",
+              "en": "It is warm."
+            }
+          ]
+        },
+        {
+          "id": "NN24a-O2-2",
+          "question": {
+            "nl": "Hoeveel seizoenen heeft Nederland?",
+            "zh": "荷兰有几个季节？",
+            "en": "How many seasons does the Netherlands have?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Nederland heeft vier seizoenen.",
+              "zh": "荷兰有四个季节。",
+              "en": "The Netherlands has four seasons."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

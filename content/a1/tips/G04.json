@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G04",
+  "title": {
+    "zh": "疑问句",
+    "en": "Questions"
+  },
+  "body_zh": [
+    "问“是不是”的时候，把动词放到句子最前面：U woont hier. → Woont u hier?",
+    "用疑问词提问时，疑问词在最前面，动词紧跟着：Waar woont u?",
+    "常用疑问词：wat（什么）、waar（哪里）、wie（谁）、hoe（怎么样）、wanneer（什么时候）。"
+  ],
+  "body_en": [
+    "For a yes/no question, put the verb first: U woont hier. → Woont u hier?",
+    "With a question word, the question word comes first and the verb right after it: Waar woont u?",
+    "Common question words: wat (what), waar (where), wie (who), hoe (how), wanneer (when)."
+  ],
+  "examples": [
+    {
+      "id": "G04-X1",
+      "nl": "Woont u in Rotterdam?",
+      "zh": "您住在鹿特丹吗？",
+      "en": "Do you live in Rotterdam?"
+    },
+    {
+      "id": "G04-X2",
+      "nl": "Waar woont u?",
+      "zh": "您住在哪里？",
+      "en": "Where do you live?"
+    },
+    {
+      "id": "G04-X3",
+      "nl": "Wie is dat?",
+      "zh": "那是谁？",
+      "en": "Who is that?"
+    }
+  ],
+  "table": {
+    "head": ["疑问词", "中文"],
+    "rows": [
+      ["wat", "什么"],
+      ["waar", "哪里"],
+      ["wie", "谁"],
+      ["hoe", "怎么样"],
+      ["wanneer", "什么时候"]
+    ]
+  }
+}
