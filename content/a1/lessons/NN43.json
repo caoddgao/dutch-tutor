@@ -1,0 +1,193 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN43",
+  "kind": "main",
+  "pack_lesson": "NN43",
+  "tips": ["G12"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN43-A01",
+      "nl": "Ik heb een nieuwe bril nodig.",
+      "zh": "我需要一副新眼镜。",
+      "en": "I need new glasses."
+    },
+    {
+      "id": "NN43-A02",
+      "nl": "Mijn portemonnee is leeg.",
+      "zh": "我的钱包空了。",
+      "en": "My wallet is empty."
+    },
+    {
+      "id": "NN43-A03",
+      "nl": "Een ijsje kost twee euro.",
+      "zh": "一个冰淇淋两欧元。",
+      "en": "An ice cream costs two euros."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN43-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN43-O1-1",
+          "context": {
+            "nl": "U gaat de stad in.",
+            "zh": "您要进城去。",
+            "en": "You are going into town."
+          },
+          "start": {
+            "nl": "Ik neem ...",
+            "zh": "我带上……",
+            "en": "I take ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem mijn portemonnee mee.",
+              "zh": "我把钱包带上。",
+              "en": "I take my wallet along."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN43-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN43-O2-1",
+          "question": {
+            "nl": "Hoeveel kost een ijsje?",
+            "zh": "一个冰淇淋多少钱？",
+            "en": "How much does an ice cream cost?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Een ijsje kost ongeveer twee euro.",
+              "zh": "一个冰淇淋大约两欧元。",
+              "en": "An ice cream costs about two euros."
+            },
+            {
+              "nl": "Ik weet het niet precies.",
+              "zh": "我不太清楚。",
+              "en": "I don't know exactly."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN43-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Een nieuwe bril nodig?",
+          "zh": "需要新眼镜吗？",
+          "en": "Need new glasses?"
+        },
+        {
+          "nl": "Nu kost een bril bij ons maar 99 euro; normaal is dat 150 euro.",
+          "zh": "现在在我们店一副眼镜只要 99 欧元；平时是 150 欧元。",
+          "en": "Right now a pair of glasses costs only 99 euros with us; normally it is 150 euros."
+        },
+        {
+          "nl": "De tweede bril is gratis.",
+          "zh": "第二副免费。",
+          "en": "The second pair is free."
+        },
+        {
+          "nl": "U bent welkom van maandag tot en met zaterdag, van 9.00 tot 18.00 uur.",
+          "zh": "星期一到星期六 9 点到 18 点欢迎光临。",
+          "en": "You are welcome from Monday to Saturday, from 9.00 to 18.00."
+        },
+        {
+          "nl": "Op zondag zijn we dicht.",
+          "zh": "星期天不营业。",
+          "en": "On Sunday we are closed."
+        },
+        {
+          "nl": "U vindt ons in het winkelcentrum, naast de apotheek.",
+          "zh": "我们在购物中心里，药店旁边。",
+          "en": "You can find us in the shopping centre, next to the pharmacy."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN43-R1-1",
+          "question": {
+            "nl": "Hoeveel kost één bril nu?",
+            "zh": "现在一副眼镜多少钱？",
+            "en": "How much does one pair of glasses cost now?"
+          },
+          "options": [
+            {
+              "nl": "99 euro.",
+              "zh": "99 欧元。",
+              "en": "99 euros."
+            },
+            {
+              "nl": "150 euro.",
+              "zh": "150 欧元。",
+              "en": "150 euros."
+            },
+            {
+              "nl": "Niets.",
+              "zh": "不要钱。",
+              "en": "Nothing."
+            }
+          ],
+          "answer": "99 euro."
+        },
+        {
+          "id": "NN43-R1-2",
+          "question": {
+            "nl": "Op welke dag is de zaak dicht?",
+            "zh": "这家店哪天不营业？",
+            "en": "On which day is the shop closed?"
+          },
+          "options": [
+            {
+              "nl": "Op zondag.",
+              "zh": "星期天。",
+              "en": "On Sunday."
+            },
+            {
+              "nl": "Op zaterdag.",
+              "zh": "星期六。",
+              "en": "On Saturday."
+            },
+            {
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
+            }
+          ],
+          "answer": "Op zondag."
+        }
+      ]
+    }
+  ]
+}
