@@ -16,7 +16,7 @@
   最高级词形：own 词 duur / goed / leuk / lang / graag 加 forms_seen（duurst(e)、best(e)、leukst(e)、langst(e)、liefst）
 - [x] NN48（tip_links G19，NN48-X1 单独显示）：3/1/1/1，E9 生日聚会邮件
 - [x] NN49（只显示原书例句框）：3/1/1/1，E9 出行建议（时刻、票价）
-- [ ] NN50a（只用前面课的词）、NN50b
+- [x] NN50a（只用前面课的词）、NN50b：各 3/1/1/1，E9 停运通知 / 换乘短信
 - [ ] G16 钟点星期日期 → NN25b；G15 er is / er zijn → NN23（只加挂载）
 - [ ] 合成音（tts.yml → 合并 tts/update PR）
 - [ ] typecheck / lint / test / validate、CI 全绿，合并到 main，STATUS 记"已完成"

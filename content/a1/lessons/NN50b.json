@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN50b",
+  "kind": "main",
+  "pack_lesson": "NN50",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN50b-A01",
+      "nl": "Waar moet ik overstappen?",
+      "zh": "我要在哪里换车？",
+      "en": "Where do I have to change trains?"
+    },
+    {
+      "id": "NN50b-A02",
+      "nl": "De trein vertrekt van spoor 7.",
+      "zh": "火车从 7 号站台发车。",
+      "en": "The train leaves from platform 7."
+    },
+    {
+      "id": "NN50b-A03",
+      "nl": "Mag ik uw kaartje zien?",
+      "zh": "请出示您的车票。",
+      "en": "May I see your ticket?"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN50b-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN50b-O1-1",
+          "context": {
+            "nl": "U bent in de trein. De conducteur vraagt naar uw kaartje.",
+            "zh": "您在火车上，列车员要查票。",
+            "en": "You are on the train. The conductor asks for your ticket."
+          },
+          "start": {
+            "nl": "Alstublieft, hier is ...",
+            "zh": "给您，这是……",
+            "en": "Here you are, here is ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Alstublieft, hier is mijn kaartje.",
+              "zh": "给您，这是我的车票。",
+              "en": "Here you are, here is my ticket."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN50b-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN50b-O2-1",
+          "question": {
+            "nl": "Moet u overstappen?",
+            "zh": "您要换车吗？",
+            "en": "Do you have to change trains?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik moet in Rotterdam overstappen.",
+              "zh": "要，我得在鹿特丹换车。",
+              "en": "Yes, I have to change in Rotterdam."
+            },
+            {
+              "nl": "Nee, deze trein gaat direct naar Amsterdam.",
+              "zh": "不用，这趟车直达阿姆斯特丹。",
+              "en": "No, this train goes straight to Amsterdam."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN50b-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Hallo Rachid,",
+          "zh": "你好，拉希德：",
+          "en": "Hello Rachid,"
+        },
+        {
+          "nl": "Ik neem de trein van 14.05 uur uit Den Haag.",
+          "zh": "我坐 14:05 从海牙出发的火车。",
+          "en": "I am taking the 14.05 train from The Hague."
+        },
+        {
+          "nl": "In Rotterdam stap ik over op de trein naar Amsterdam.",
+          "zh": "我在鹿特丹换乘去阿姆斯特丹的火车。",
+          "en": "In Rotterdam I change to the train to Amsterdam."
+        },
+        {
+          "nl": "Die is om 15.40 uur in Amsterdam, op spoor 11.",
+          "zh": "那趟车 15:40 到阿姆斯特丹，停 11 号站台。",
+          "en": "It arrives in Amsterdam at 15.40, at platform 11."
+        },
+        {
+          "nl": "Kun jij me bij spoor 11 halen? Ik heb een zware koffer.",
+          "zh": "你能到 11 号站台接我吗？我的箱子很重。",
+          "en": "Can you pick me up at platform 11? I have a heavy suitcase."
+        },
+        {
+          "nl": "Groeten, Iva",
+          "zh": "祝好，伊娃",
+          "en": "Regards, Iva"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN50b-R1-1",
+          "question": {
+            "nl": "Waar stapt Iva over?",
+            "zh": "伊娃在哪里换车？",
+            "en": "Where does Iva change trains?"
+          },
+          "options": [
+            {
+              "nl": "In Rotterdam.",
+              "zh": "在鹿特丹。",
+              "en": "In Rotterdam."
+            },
+            {
+              "nl": "In Den Haag.",
+              "zh": "在海牙。",
+              "en": "In The Hague."
+            },
+            {
+              "nl": "In Amsterdam.",
+              "zh": "在阿姆斯特丹。",
+              "en": "In Amsterdam."
+            }
+          ],
+          "answer": "In Rotterdam."
+        },
+        {
+          "id": "NN50b-R1-2",
+          "question": {
+            "nl": "Hoe laat is Iva in Amsterdam?",
+            "zh": "伊娃几点到阿姆斯特丹？",
+            "en": "What time is Iva in Amsterdam?"
+          },
+          "options": [
+            {
+              "nl": "Om 15.40 uur.",
+              "zh": "15:40。",
+              "en": "At 15.40."
+            },
+            {
+              "nl": "Om 14.05 uur.",
+              "zh": "14:05。",
+              "en": "At 14.05."
+            },
+            {
+              "nl": "Om 11.00 uur.",
+              "zh": "11:00。",
+              "en": "At 11.00."
+            }
+          ],
+          "answer": "Om 15.40 uur."
+        }
+      ]
+    }
+  ]
+}

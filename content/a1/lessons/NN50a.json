@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN50a",
+  "kind": "main",
+  "pack_lesson": "NN50",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN50a-A01",
+      "nl": "Is deze plaats vrij?",
+      "zh": "这个座位空着吗？",
+      "en": "Is this seat free?"
+    },
+    {
+      "id": "NN50a-A02",
+      "nl": "Ja, die is vrij.",
+      "zh": "空着。",
+      "en": "Yes, it is free."
+    },
+    {
+      "id": "NN50a-A03",
+      "nl": "Deze trein gaat naar Rotterdam.",
+      "zh": "这趟火车开往鹿特丹。",
+      "en": "This train goes to Rotterdam."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN50a-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN50a-O1-1",
+          "context": {
+            "nl": "U bent in de trein. U wilt weten waar de trein naartoe gaat.",
+            "zh": "您在火车上，想知道这趟车开往哪里。",
+            "en": "You are on the train. You want to know where the train is going."
+          },
+          "start": {
+            "nl": "Gaat deze trein ...",
+            "zh": "这趟火车去……",
+            "en": "Does this train go ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Gaat deze trein naar Amsterdam?",
+              "zh": "这趟火车去阿姆斯特丹吗？",
+              "en": "Does this train go to Amsterdam?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN50a-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN50a-O2-1",
+          "question": {
+            "nl": "Reist u vaak met de trein?",
+            "zh": "您常坐火车吗？",
+            "en": "Do you often travel by train?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik reis elke dag met de trein naar mijn werk.",
+              "zh": "常坐，我每天坐火车去上班。",
+              "en": "Yes, I take the train to work every day."
+            },
+            {
+              "nl": "Nee, ik ga meestal met de fiets.",
+              "zh": "不常坐，我一般骑自行车。",
+              "en": "No, I usually go by bike."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN50a-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Belangrijk: op zaterdag 12 en zondag 13 oktober gaan er geen treinen tussen Den Haag en Rotterdam.",
+          "zh": "重要通知：10 月 12 日星期六和 13 日星期天，海牙和鹿特丹之间不通火车。",
+          "en": "Important: on Saturday 12 and Sunday 13 October there are no trains between The Hague and Rotterdam."
+        },
+        {
+          "nl": "Op vrijdag 11 oktober gaan de treinen nog normaal.",
+          "zh": "10 月 11 日星期五火车照常运行。",
+          "en": "On Friday 11 October the trains still run normally."
+        },
+        {
+          "nl": "Op zaterdag en zondag gaat er elke 15 minuten een bus vanaf het station.",
+          "zh": "星期六和星期天每 15 分钟有一班公共汽车从车站发车。",
+          "en": "On Saturday and Sunday a bus leaves the station every 15 minutes."
+        },
+        {
+          "nl": "Met de bus duurt de reis 45 minuten, met de trein 25 minuten.",
+          "zh": "坐公共汽车要 45 分钟，坐火车要 25 分钟。",
+          "en": "By bus the journey takes 45 minutes, by train 25 minutes."
+        },
+        {
+          "nl": "Op maandag 14 oktober gaan de treinen weer.",
+          "zh": "10 月 14 日星期一火车恢复运行。",
+          "en": "On Monday 14 October the trains run again."
+        },
+        {
+          "nl": "Meer informatie: kijk op de website.",
+          "zh": "详情请看网站。",
+          "en": "More information: see the website."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN50a-R1-1",
+          "question": {
+            "nl": "Op welke dag gaan er geen treinen?",
+            "zh": "哪天不通火车？",
+            "en": "On which day are there no trains?"
+          },
+          "options": [
+            {
+              "nl": "Op zondag.",
+              "zh": "星期天。",
+              "en": "On Sunday."
+            },
+            {
+              "nl": "Op vrijdag.",
+              "zh": "星期五。",
+              "en": "On Friday."
+            },
+            {
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
+            }
+          ],
+          "answer": "Op zondag."
+        },
+        {
+          "id": "NN50a-R1-2",
+          "question": {
+            "nl": "Hoe lang duurt de reis met de bus?",
+            "zh": "坐公共汽车要多久？",
+            "en": "How long does the journey take by bus?"
+          },
+          "options": [
+            {
+              "nl": "45 minuten.",
+              "zh": "45 分钟。",
+              "en": "45 minutes."
+            },
+            {
+              "nl": "25 minuten.",
+              "zh": "25 分钟。",
+              "en": "25 minutes."
+            },
+            {
+              "nl": "15 minuten.",
+              "zh": "15 分钟。",
+              "en": "15 minutes."
+            }
+          ],
+          "answer": "45 minuten."
+        }
+      ]
+    }
+  ]
+}
