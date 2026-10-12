@@ -1,0 +1,187 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN42b",
+  "kind": "main",
+  "pack_lesson": "NN42",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN42b-A01",
+      "nl": "Wij wonen op het platteland.",
+      "zh": "我们住在乡下。",
+      "en": "We live in the countryside."
+    },
+    {
+      "id": "NN42b-A02",
+      "nl": "Bedankt voor het bezoek!",
+      "zh": "谢谢你们来看我们！",
+      "en": "Thank you for the visit!"
+    },
+    {
+      "id": "NN42b-A03",
+      "nl": "Ik heb een pakje voor je.",
+      "zh": "我有个小包裹给你。",
+      "en": "I have a little parcel for you."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN42b-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN42b-O1-1",
+          "context": {
+            "nl": "U neemt afscheid na een bezoek.",
+            "zh": "做客结束，您道别。",
+            "en": "You say goodbye after a visit."
+          },
+          "start": {
+            "nl": "Bedankt voor ...",
+            "zh": "谢谢……",
+            "en": "Thank you for ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Bedankt voor de gezellige middag.",
+              "zh": "谢谢这个愉快的下午。",
+              "en": "Thank you for the pleasant afternoon."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN42b-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN42b-O2-1",
+          "question": {
+            "nl": "Wat neemt u mee als u op bezoek gaat?",
+            "zh": "您去别人家做客时带什么？",
+            "en": "What do you bring when you visit someone?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem meestal een cadeautje mee.",
+              "zh": "我一般带一份小礼物。",
+              "en": "I usually bring a little present."
+            },
+            {
+              "nl": "Meestal neem ik een fles wijn mee.",
+              "zh": "我一般带一瓶葡萄酒。",
+              "en": "I usually bring a bottle of wine."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN42b-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Hallo Sam, zaterdag kan ik niet op bezoek: mijn dochter is ziek.",
+          "zh": "萨姆你好，星期六我去不了你家：我女儿病了。",
+          "en": "Hello Sam, I can't visit on Saturday: my daughter is ill."
+        },
+        {
+          "nl": "Zondag kan ik wel; ik ben om 14.00 uur bij jullie.",
+          "zh": "星期天可以；我 14 点到你们家。",
+          "en": "Sunday is fine; I'll be at your place at 14.00."
+        },
+        {
+          "nl": "Om 17.00 uur moet ik weer weg, want om 18.00 uur ben ik aan het werk.",
+          "zh": "17 点我得走，因为 18 点我要上班。",
+          "en": "At 17.00 I have to leave again, because at 18.00 I'm at work."
+        },
+        {
+          "nl": "Ik neem de foto's van Frankrijk mee.",
+          "zh": "我把在法国拍的照片带去。",
+          "en": "I'll bring the photos from France."
+        },
+        {
+          "nl": "Groeten, Anna",
+          "zh": "祝好，安娜",
+          "en": "Regards, Anna"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN42b-R1-1",
+          "question": {
+            "nl": "Hoe laat is Anna op zondag bij Sam?",
+            "zh": "星期天安娜几点到萨姆家？",
+            "en": "What time is Anna at Sam's on Sunday?"
+          },
+          "options": [
+            {
+              "nl": "Om 14.00 uur.",
+              "zh": "14 点。",
+              "en": "At 14.00."
+            },
+            {
+              "nl": "Om 17.00 uur.",
+              "zh": "17 点。",
+              "en": "At 17.00."
+            },
+            {
+              "nl": "Om 18.00 uur.",
+              "zh": "18 点。",
+              "en": "At 18.00."
+            }
+          ],
+          "answer": "Om 14.00 uur."
+        },
+        {
+          "id": "NN42b-R1-2",
+          "question": {
+            "nl": "Waarom kan Anna zaterdag niet?",
+            "zh": "安娜星期六为什么去不了？",
+            "en": "Why can't Anna come on Saturday?"
+          },
+          "options": [
+            {
+              "nl": "Haar dochter is ziek.",
+              "zh": "她女儿病了。",
+              "en": "Her daughter is ill."
+            },
+            {
+              "nl": "Ze is aan het werk.",
+              "zh": "她要上班。",
+              "en": "She is at work."
+            },
+            {
+              "nl": "Ze is in Frankrijk.",
+              "zh": "她在法国。",
+              "en": "She is in France."
+            }
+          ],
+          "answer": "Haar dochter is ziek."
+        }
+      ]
+    }
+  ]
+}
