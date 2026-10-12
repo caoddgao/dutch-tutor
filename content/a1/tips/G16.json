@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G16",
+  "title": { "zh": "钟点、星期、日期的说法", "en": "Telling the time, days and dates" },
+  "body_zh": [
+    "问钟点：Hoe laat is het? 整点说 Het is drie uur.；“几点做某事”用 om：om drie uur。",
+    "半点要说下一个钟点：half vier = 3:30（离四点还差半小时）。一刻钟用 kwart over / kwart voor：kwart over drie = 3:15，kwart voor vier = 3:45。",
+    "星期几前面用 op：op maandag。一天里的时段：’s ochtends（上午）、’s middags（下午）、’s avonds（晚上）、’s nachts（夜里）。",
+    "日期是“星期 + 日 + 月”：maandag 3 maart；“在几月”用 in：in maart。"
+  ],
+  "body_en": [
+    "Asking the time: Hoe laat is het? On the hour: Het is drie uur. “At” a time is om: om drie uur.",
+    "Half past is said with the next hour: half vier = 3.30 (half an hour before four). Quarters are kwart over / kwart voor: kwart over drie = 3.15, kwart voor vier = 3.45.",
+    "Days take op: op maandag. Parts of the day: ’s ochtends (in the morning), ’s middags (in the afternoon), ’s avonds (in the evening), ’s nachts (at night).",
+    "A date is day + number + month: maandag 3 maart; “in” a month is in: in maart."
+  ],
+  "examples": [
+    {
+      "id": "G16-X1",
+      "nl": "De les begint om kwart over negen.",
+      "zh": "课 9:15 开始。",
+      "en": "The lesson starts at a quarter past nine."
+    },
+    {
+      "id": "G16-X2",
+      "nl": "Op maandag en dinsdag werk ik ’s ochtends.",
+      "zh": "星期一和星期二我上午工作。",
+      "en": "On Monday and Tuesday I work in the morning."
+    },
+    {
+      "id": "G16-X3",
+      "nl": "Op vrijdag 12 april is de bank dicht.",
+      "zh": "4 月 12 日星期五银行不开门。",
+      "en": "On Friday 12 April the bank is closed."
+    }
+  ],
+  "table": {
+    "head": ["钟点", "荷兰语"],
+    "rows": [
+      ["3:00", "drie uur"],
+      ["3:10", "tien over drie"],
+      ["3:15", "kwart over drie"],
+      ["3:30", "half vier"],
+      ["3:45", "kwart voor vier"],
+      ["3:50", "tien voor vier"]
+    ]
+  }
+}

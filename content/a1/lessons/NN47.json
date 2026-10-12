@@ -1,0 +1,194 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN47",
+  "kind": "main",
+  "pack_lesson": "NN47",
+  "tips": ["G19"],
+  "tip_links": ["G18"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN47-A01",
+      "nl": "Wat is uw beroep?",
+      "zh": "您是做什么工作的？",
+      "en": "What is your job?"
+    },
+    {
+      "id": "NN47-A02",
+      "nl": "Ik ben schilder.",
+      "zh": "我是油漆工。",
+      "en": "I am a painter."
+    },
+    {
+      "id": "NN47-A03",
+      "nl": "Ik werk met plezier.",
+      "zh": "我干活很开心。",
+      "en": "I enjoy my work."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN47-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN47-O1-1",
+          "context": {
+            "nl": "U vertelt over uw werk.",
+            "zh": "您讲讲自己的工作。",
+            "en": "You talk about your work."
+          },
+          "start": {
+            "nl": "Ik werk bij een ...",
+            "zh": "我在一家……工作。",
+            "en": "I work at a ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik werk bij een technisch bedrijf.",
+              "zh": "我在一家技术公司工作。",
+              "en": "I work at a technical company."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN47-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN47-O2-1",
+          "question": {
+            "nl": "Wat vindt u het leukst aan uw werk?",
+            "zh": "您觉得工作里最有意思的是什么？",
+            "en": "What do you like best about your work?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Het leukst vind ik mijn collega's.",
+              "zh": "我觉得最好的是我的同事。",
+              "en": "What I like best are my colleagues."
+            },
+            {
+              "nl": "Ik werk graag met mensen.",
+              "zh": "我喜欢和人打交道。",
+              "en": "I like working with people."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN47-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Bedrijf Jansen zoekt een schilder.",
+          "zh": "扬森公司招聘一名油漆工。",
+          "en": "The Jansen company is looking for a painter."
+        },
+        {
+          "nl": "U werkt op maandag, dinsdag en donderdag; op woensdag en vrijdag bent u vrij.",
+          "zh": "星期一、二、四上班；星期三和星期五休息。",
+          "en": "You work on Monday, Tuesday and Thursday; on Wednesday and Friday you are free."
+        },
+        {
+          "nl": "Het werk begint om 7.30 uur en is om 16.00 uur klaar.",
+          "zh": "工作 7:30 开始，16:00 结束。",
+          "en": "Work starts at 7.30 and finishes at 16.00."
+        },
+        {
+          "nl": "Van 12.00 tot 12.30 uur is er pauze.",
+          "zh": "12:00 到 12:30 休息。",
+          "en": "There is a break from 12.00 to 12.30."
+        },
+        {
+          "nl": "U heeft ervaring als schilder.",
+          "zh": "您要有油漆工的工作经验。",
+          "en": "You have experience as a painter."
+        },
+        {
+          "nl": "U kunt meneer Jansen bellen: 06-12345678.",
+          "zh": "可以打电话给扬森先生：06-12345678。",
+          "en": "You can call Mr Jansen: 06-12345678."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN47-R1-1",
+          "question": {
+            "nl": "Op welke dag werkt de schilder?",
+            "zh": "油漆工哪天上班？",
+            "en": "On which day does the painter work?"
+          },
+          "options": [
+            {
+              "nl": "Op dinsdag.",
+              "zh": "星期二。",
+              "en": "On Tuesday."
+            },
+            {
+              "nl": "Op woensdag.",
+              "zh": "星期三。",
+              "en": "On Wednesday."
+            },
+            {
+              "nl": "Op vrijdag.",
+              "zh": "星期五。",
+              "en": "On Friday."
+            }
+          ],
+          "answer": "Op dinsdag."
+        },
+        {
+          "id": "NN47-R1-2",
+          "question": {
+            "nl": "Hoe laat is het werk klaar?",
+            "zh": "工作几点结束？",
+            "en": "What time does work finish?"
+          },
+          "options": [
+            {
+              "nl": "Om 16.00 uur.",
+              "zh": "16:00。",
+              "en": "At 16.00."
+            },
+            {
+              "nl": "Om 7.30 uur.",
+              "zh": "7:30。",
+              "en": "At 7.30."
+            },
+            {
+              "nl": "Om 12.30 uur.",
+              "zh": "12:30。",
+              "en": "At 12.30."
+            }
+          ],
+          "answer": "Om 16.00 uur."
+        }
+      ]
+    }
+  ]
+}

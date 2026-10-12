@@ -239,6 +239,7 @@
     "id": "w_graag",
     "lemma": "graag",
     "pos": "bw",
+    "forms_seen": ["liever", "liefst"],
     "zh": "乐意；（点东西时）劳驾",
     "en": "gladly; please (when ordering)"
   },
@@ -576,7 +577,7 @@
     "id": "w_duur",
     "lemma": "duur",
     "pos": "bn",
-    "forms_seen": ["duurder"],
+    "forms_seen": ["duurder", "duurst", "duurste"],
     "zh": "贵的",
     "en": "expensive"
   },
@@ -651,7 +652,7 @@
     "id": "w_goed",
     "lemma": "goed",
     "pos": "bn",
-    "forms_seen": ["beter"],
+    "forms_seen": ["beter", "best", "beste"],
     "zh": "好的",
     "en": "good"
   },
@@ -766,6 +767,7 @@
     "id": "w_leuk",
     "lemma": "leuk",
     "pos": "bn",
+    "forms_seen": ["leuker", "leukst", "leukste"],
     "zh": "好玩的，有意思的，不错的",
     "en": "nice, fun"
   },
@@ -914,7 +916,7 @@
     "id": "w_lang",
     "lemma": "lang",
     "pos": "bn",
-    "forms_seen": ["langer"],
+    "forms_seen": ["langer", "langst", "langste"],
     "zh": "长的；（人）高的",
     "en": "long; tall"
   },

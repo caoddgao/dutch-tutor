@@ -1,0 +1,187 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN49",
+  "kind": "main",
+  "pack_lesson": "NN49",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN49-A01",
+      "nl": "Hoe lang duurt de reis?",
+      "zh": "路上要多久？",
+      "en": "How long does the journey take?"
+    },
+    {
+      "id": "NN49-A02",
+      "nl": "Ik ga met de tram naar het station.",
+      "zh": "我坐有轨电车去火车站。",
+      "en": "I take the tram to the station."
+    },
+    {
+      "id": "NN49-A03",
+      "nl": "Hier moet u uw adres invullen.",
+      "zh": "您要在这里填地址。",
+      "en": "You have to fill in your address here."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN49-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN49-O1-1",
+          "context": {
+            "nl": "U wilt naar het station. U vraagt de weg.",
+            "zh": "您要去火车站，向人问路。",
+            "en": "You want to go to the station. You ask the way."
+          },
+          "start": {
+            "nl": "Weet u waar ...",
+            "zh": "请问您知道……在哪儿吗？",
+            "en": "Do you know where ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Weet u waar het station is?",
+              "zh": "请问您知道火车站在哪儿吗？",
+              "en": "Do you know where the station is?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN49-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN49-O2-1",
+          "question": {
+            "nl": "Hoe gaat u naar uw werk?",
+            "zh": "您怎么去上班？",
+            "en": "How do you get to work?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga met de tram.",
+              "zh": "我坐有轨电车。",
+              "en": "I take the tram."
+            },
+            {
+              "nl": "Ik ga met de fiets.",
+              "zh": "我骑自行车。",
+              "en": "I go by bike."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN49-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Reisadvies: van Amsterdam Centraal naar Rotterdam Centraal",
+          "zh": "出行建议：阿姆斯特丹中央车站 → 鹿特丹中央车站",
+          "en": "Travel advice: from Amsterdam Centraal to Rotterdam Centraal"
+        },
+        {
+          "nl": "U vertrekt om 10.15 uur en bent om 11.20 uur in Rotterdam.",
+          "zh": "10:15 出发，11:20 到鹿特丹。",
+          "en": "You leave at 10.15 and are in Rotterdam at 11.20."
+        },
+        {
+          "nl": "De reis duurt 65 minuten.",
+          "zh": "路上要 65 分钟。",
+          "en": "The journey takes 65 minutes."
+        },
+        {
+          "nl": "Een kaartje kost 18,50 euro, voor kinderen 7,40 euro; kinderen onder 4 jaar reizen gratis.",
+          "zh": "车票 18.50 欧元，儿童 7.40 欧元；4 岁以下儿童免费。",
+          "en": "A ticket costs 18.50 euros, for children 7.40 euros; children under 4 travel free."
+        },
+        {
+          "nl": "Vanaf het station gaat er om 11.30 uur een tram naar de Hoofdstraat.",
+          "zh": "11:30 有一班有轨电车从车站开往大街。",
+          "en": "At 11.30 a tram leaves the station for the Hoofdstraat."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN49-R1-1",
+          "question": {
+            "nl": "Hoe laat vertrekt u uit Amsterdam?",
+            "zh": "您几点从阿姆斯特丹出发？",
+            "en": "What time do you leave Amsterdam?"
+          },
+          "options": [
+            {
+              "nl": "Om 10.15 uur.",
+              "zh": "10:15。",
+              "en": "At 10.15."
+            },
+            {
+              "nl": "Om 11.20 uur.",
+              "zh": "11:20。",
+              "en": "At 11.20."
+            },
+            {
+              "nl": "Om 11.30 uur.",
+              "zh": "11:30。",
+              "en": "At 11.30."
+            }
+          ],
+          "answer": "Om 10.15 uur."
+        },
+        {
+          "id": "NN49-R1-2",
+          "question": {
+            "nl": "Hoeveel betaalt een kind van 10 jaar?",
+            "zh": "10 岁的孩子付多少钱？",
+            "en": "How much does a 10-year-old child pay?"
+          },
+          "options": [
+            {
+              "nl": "7,40 euro.",
+              "zh": "7.40 欧元。",
+              "en": "7.40 euros."
+            },
+            {
+              "nl": "18,50 euro.",
+              "zh": "18.50 欧元。",
+              "en": "18.50 euros."
+            },
+            {
+              "nl": "Niets.",
+              "zh": "不用付钱。",
+              "en": "Nothing."
+            }
+          ],
+          "answer": "7,40 euro."
+        }
+      ]
+    }
+  ]
+}

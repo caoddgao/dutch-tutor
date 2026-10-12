@@ -1,0 +1,193 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN48",
+  "kind": "main",
+  "pack_lesson": "NN48",
+  "tip_links": ["G19"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN48-A01",
+      "nl": "Bedankt voor je mailtje!",
+      "zh": "谢谢你的邮件！",
+      "en": "Thanks for your email!"
+    },
+    {
+      "id": "NN48-A02",
+      "nl": "Morgen is de verjaardag van mijn oom.",
+      "zh": "明天是我叔叔的生日。",
+      "en": "Tomorrow is my uncle's birthday."
+    },
+    {
+      "id": "NN48-A03",
+      "nl": "Jammer genoeg heb ik geen tijd.",
+      "zh": "可惜我没有时间。",
+      "en": "Unfortunately I have no time."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN48-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN48-O1-1",
+          "context": {
+            "nl": "Uw vriendin heeft morgen haar verjaardag.",
+            "zh": "您的朋友明天过生日。",
+            "en": "Your friend has her birthday tomorrow."
+          },
+          "start": {
+            "nl": "Ik wens je ...",
+            "zh": "祝你……",
+            "en": "I wish you ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik wens je een fijne verjaardag!",
+              "zh": "祝你生日快乐！",
+              "en": "I wish you a happy birthday!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN48-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN48-O2-1",
+          "question": {
+            "nl": "Wanneer is uw verjaardag?",
+            "zh": "您的生日是哪天？",
+            "en": "When is your birthday?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn verjaardag is op 12 mei.",
+              "zh": "我的生日是 5 月 12 日。",
+              "en": "My birthday is on 12 May."
+            },
+            {
+              "nl": "In december.",
+              "zh": "在十二月。",
+              "en": "In December."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN48-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Lieve Iva,",
+          "zh": "亲爱的伊娃：",
+          "en": "Dear Iva,"
+        },
+        {
+          "nl": "Bedankt voor je mailtje en de mooie foto's.",
+          "zh": "谢谢你的邮件和漂亮的照片。",
+          "en": "Thanks for your email and the lovely photos."
+        },
+        {
+          "nl": "Op zaterdag 14 juni geef ik een feestje voor mijn verjaardag.",
+          "zh": "6 月 14 日星期六我办个生日聚会。",
+          "en": "On Saturday 14 June I am giving a party for my birthday."
+        },
+        {
+          "nl": "Het feestje is bij mij thuis en begint om 20.00 uur.",
+          "zh": "聚会在我家，20:00 开始。",
+          "en": "The party is at my place and starts at 20.00."
+        },
+        {
+          "nl": "Oom Rachid woont in Amerika, maar hij is er ook!",
+          "zh": "拉希德叔叔住在美国，不过他也会来！",
+          "en": "Uncle Rachid lives in America, but he will be there too!"
+        },
+        {
+          "nl": "Ben je er ook? Liefs, Omar",
+          "zh": "你也来吗？爱你的奥马尔",
+          "en": "Will you be there too? Love, Omar"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN48-R1-1",
+          "question": {
+            "nl": "Waar is het feestje?",
+            "zh": "聚会在哪里？",
+            "en": "Where is the party?"
+          },
+          "options": [
+            {
+              "nl": "Bij Omar thuis.",
+              "zh": "在奥马尔家。",
+              "en": "At Omar's place."
+            },
+            {
+              "nl": "Bij Iva thuis.",
+              "zh": "在伊娃家。",
+              "en": "At Iva's place."
+            },
+            {
+              "nl": "In Amerika.",
+              "zh": "在美国。",
+              "en": "In America."
+            }
+          ],
+          "answer": "Bij Omar thuis."
+        },
+        {
+          "id": "NN48-R1-2",
+          "question": {
+            "nl": "Wie woont in Amerika?",
+            "zh": "谁住在美国？",
+            "en": "Who lives in America?"
+          },
+          "options": [
+            {
+              "nl": "Oom Rachid.",
+              "zh": "拉希德叔叔。",
+              "en": "Uncle Rachid."
+            },
+            {
+              "nl": "Iva.",
+              "zh": "伊娃。",
+              "en": "Iva."
+            },
+            {
+              "nl": "Omar.",
+              "zh": "奥马尔。",
+              "en": "Omar."
+            }
+          ],
+          "answer": "Oom Rachid."
+        }
+      ]
+    }
+  ]
+}
