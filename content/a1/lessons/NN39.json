@@ -1,0 +1,187 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN39",
+  "kind": "main",
+  "pack_lesson": "NN39",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN39-A01",
+      "nl": "Zaterdag speel ik een wedstrijd.",
+      "zh": "星期六我有一场比赛。",
+      "en": "On Saturday I play a match."
+    },
+    {
+      "id": "NN39-A02",
+      "nl": "Onze ploeg wint vaak.",
+      "zh": "我们队经常赢。",
+      "en": "Our team often wins."
+    },
+    {
+      "id": "NN39-A03",
+      "nl": "Ik ren elke ochtend een half uur.",
+      "zh": "我每天早上跑半小时。",
+      "en": "I run for half an hour every morning."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN39-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN39-O1-1",
+          "context": {
+            "nl": "U vertelt over uw weekend.",
+            "zh": "您谈论您的周末。",
+            "en": "You talk about your weekend."
+          },
+          "start": {
+            "nl": "Zaterdag speel ik ...",
+            "zh": "星期六我……",
+            "en": "On Saturday I play ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Zaterdag speel ik een wedstrijd.",
+              "zh": "星期六我有一场比赛。",
+              "en": "On Saturday I play a match."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN39-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN39-O2-1",
+          "question": {
+            "nl": "Doet u aan sport?",
+            "zh": "您做运动吗？",
+            "en": "Do you do any sport?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik voetbal elke zaterdag.",
+              "zh": "做，我每个星期六踢足球。",
+              "en": "Yes, I play football every Saturday."
+            },
+            {
+              "nl": "Nee, maar ik wandel graag.",
+              "zh": "不做，不过我喜欢散步。",
+              "en": "No, but I like walking."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN39-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Hallo spelers, op zaterdag 18 oktober spelen we een wedstrijd in Rotterdam.",
+          "zh": "各位队员好，10 月 18 日星期六我们在鹿特丹有一场比赛。",
+          "en": "Hello players, on Saturday 18 October we play a match in Rotterdam."
+        },
+        {
+          "nl": "De bus vertrekt om 9.00 uur bij de school; de wedstrijd begint om 10.00 uur.",
+          "zh": "大巴 9 点从学校出发；比赛 10 点开始。",
+          "en": "The bus leaves from the school at 9.00; the match starts at 10.00."
+        },
+        {
+          "nl": "Op donderdag 16 oktober trainen we nog, om 19.00 uur.",
+          "zh": "10 月 16 日星期四我们还训练一次，晚上 7 点。",
+          "en": "On Thursday 16 October we still train, at 19.00."
+        },
+        {
+          "nl": "Op zondag 19 oktober trainen we niet.",
+          "zh": "10 月 19 日星期日不训练。",
+          "en": "On Sunday 19 October we don't train."
+        },
+        {
+          "nl": "Tot zaterdag, Sam",
+          "zh": "星期六见，萨姆",
+          "en": "See you on Saturday, Sam"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN39-R1-1",
+          "question": {
+            "nl": "Hoe laat vertrekt de bus?",
+            "zh": "大巴几点出发？",
+            "en": "What time does the bus leave?"
+          },
+          "options": [
+            {
+              "nl": "Om 9.00 uur.",
+              "zh": "9 点。",
+              "en": "At 9.00."
+            },
+            {
+              "nl": "Om 10.00 uur.",
+              "zh": "10 点。",
+              "en": "At 10.00."
+            },
+            {
+              "nl": "Om 19.00 uur.",
+              "zh": "晚上 7 点。",
+              "en": "At 19.00."
+            }
+          ],
+          "answer": "Om 9.00 uur."
+        },
+        {
+          "id": "NN39-R1-2",
+          "question": {
+            "nl": "Wanneer is de wedstrijd?",
+            "zh": "比赛是哪天？",
+            "en": "When is the match?"
+          },
+          "options": [
+            {
+              "nl": "Op zaterdag 18 oktober.",
+              "zh": "10 月 18 日星期六。",
+              "en": "On Saturday 18 October."
+            },
+            {
+              "nl": "Op donderdag 16 oktober.",
+              "zh": "10 月 16 日星期四。",
+              "en": "On Thursday 16 October."
+            },
+            {
+              "nl": "Op zondag 19 oktober.",
+              "zh": "10 月 19 日星期日。",
+              "en": "On Sunday 19 October."
+            }
+          ],
+          "answer": "Op zaterdag 18 oktober."
+        }
+      ]
+    }
+  ]
+}
