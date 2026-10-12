@@ -11,7 +11,7 @@
 施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f`（4a 合并后从 main 重开）· 子批 4b（NN51–55）· PR #33
 
 - [x] G20 weten / kennen（中英，pack_examples NN51-X1）+ NN51；own 词 kennen（NN51 word_ids）：3/1/1/1，E9 晚点退票说明
-- [ ] NN52（只显示原书例句框）
+- [x] NN52（只显示原书例句框）：3/1/1/1，E9 电影院节目单
 - [ ] NN53a（只用前面课的词）、NN53b（tip_links G11）
 - [ ] NN54（只显示原书例句框）
 - [ ] NN55（只显示原书例句框）
