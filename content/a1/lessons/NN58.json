@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN58",
+  "kind": "main",
+  "pack_lesson": "NN58",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN58-A01",
+      "nl": "Ik drink elke ochtend thee.",
+      "zh": "我每天早上喝茶。",
+      "en": "I drink tea every morning."
+    },
+    {
+      "id": "NN58-A02",
+      "nl": "In de pauze gaan we naar de kantine.",
+      "zh": "休息时我们去食堂。",
+      "en": "During the break we go to the canteen."
+    },
+    {
+      "id": "NN58-A03",
+      "nl": "Dat vind ik een vreemde gewoonte.",
+      "zh": "我觉得这个习惯很奇怪。",
+      "en": "I find that a strange habit."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN58-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN58-O1-1",
+          "context": {
+            "nl": "Een collega vraagt wat u ’s ochtends doet.",
+            "zh": "一位同事问您早上都做什么。",
+            "en": "A colleague asks what you do in the morning."
+          },
+          "start": {
+            "nl": "Elke ochtend ...",
+            "zh": "每天早上……",
+            "en": "Every morning ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Elke ochtend fiets ik naar mijn werk.",
+              "zh": "每天早上我骑车去上班。",
+              "en": "Every morning I cycle to work."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN58-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN58-O2-1",
+          "question": {
+            "nl": "Wat vindt u vreemd in Nederland?",
+            "zh": "在荷兰您觉得什么奇怪？",
+            "en": "What do you find strange in the Netherlands?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik vind het vreemd dat de gordijnen open zijn.",
+              "zh": "我觉得窗帘都开着很奇怪。",
+              "en": "I find it strange that the curtains are open."
+            },
+            {
+              "nl": "Ik vind het hier niet vreemd.",
+              "zh": "我觉得这里没什么奇怪的。",
+              "en": "I don't find it strange here."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN58-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Nieuws van de kantine",
+          "zh": "食堂通知",
+          "en": "News from the canteen"
+        },
+        {
+          "nl": "Vanaf maandag 3 november is de kantine open van 8.00 tot 15.00 uur.",
+          "zh": "从 11 月 3 日星期一起，食堂 8:00 到 15:00 开放。",
+          "en": "From Monday 3 November the canteen is open from 8.00 to 15.00."
+        },
+        {
+          "nl": "Een broodje kost 2 euro, soep 1,50 euro en een stuk fruit 0,50 euro.",
+          "zh": "面包 2 欧元，汤 1.50 欧元，水果一份 0.50 欧元。",
+          "en": "A roll costs 2 euros, soup 1.50 euros and a piece of fruit 0.50 euros."
+        },
+        {
+          "nl": "Op vrijdag is het fruit gratis.",
+          "zh": "星期五水果免费。",
+          "en": "On Friday the fruit is free."
+        },
+        {
+          "nl": "Op woensdag is er geen soep.",
+          "zh": "星期三没有汤。",
+          "en": "On Wednesday there is no soup."
+        },
+        {
+          "nl": "Heeft u een idee voor de lijst? Mail Anna.",
+          "zh": "对菜单有建议？请发邮件给安娜。",
+          "en": "Do you have an idea for the list? Email Anna."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN58-R1-1",
+          "question": {
+            "nl": "Wat kost soep?",
+            "zh": "汤多少钱？",
+            "en": "How much is soup?"
+          },
+          "options": [
+            {
+              "nl": "1,50 euro.",
+              "zh": "1.50 欧元。",
+              "en": "1.50 euros."
+            },
+            {
+              "nl": "2 euro.",
+              "zh": "2 欧元。",
+              "en": "2 euros."
+            },
+            {
+              "nl": "0,50 euro.",
+              "zh": "0.50 欧元。",
+              "en": "0.50 euros."
+            }
+          ],
+          "answer": "1,50 euro."
+        },
+        {
+          "id": "NN58-R1-2",
+          "question": {
+            "nl": "Wanneer is het fruit gratis?",
+            "zh": "水果哪天免费？",
+            "en": "When is the fruit free?"
+          },
+          "options": [
+            {
+              "nl": "Op vrijdag.",
+              "zh": "星期五。",
+              "en": "On Friday."
+            },
+            {
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
+            },
+            {
+              "nl": "Op woensdag.",
+              "zh": "星期三。",
+              "en": "On Wednesday."
+            }
+          ],
+          "answer": "Op vrijdag."
+        }
+      ]
+    }
+  ]
+}
