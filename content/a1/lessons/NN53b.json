@@ -1,0 +1,188 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN53b",
+  "kind": "main",
+  "pack_lesson": "NN53",
+  "tip_links": ["G11"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN53b-A01",
+      "nl": "U kunt hier pinnen.",
+      "zh": "这里可以刷卡。",
+      "en": "You can pay by card here."
+    },
+    {
+      "id": "NN53b-A02",
+      "nl": "Wilt u de bon?",
+      "zh": "您要小票吗？",
+      "en": "Would you like the receipt?"
+    },
+    {
+      "id": "NN53b-A03",
+      "nl": "Ik betaal contant.",
+      "zh": "我付现金。",
+      "en": "I pay cash."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN53b-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN53b-O1-1",
+          "context": {
+            "nl": "De pin in de winkel doet het niet.",
+            "zh": "商店的刷卡机坏了。",
+            "en": "The card machine in the shop is not working."
+          },
+          "start": {
+            "nl": "Dan betaal ik ...",
+            "zh": "那我就……付。",
+            "en": "Then I pay ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Dan betaal ik contant.",
+              "zh": "那我付现金。",
+              "en": "Then I pay cash."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN53b-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN53b-O2-1",
+          "question": {
+            "nl": "Betaalt u op de markt contant of met de pin?",
+            "zh": "在市场上您付现金还是刷卡？",
+            "en": "Do you pay cash or by card at the market?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Op de markt betaal ik meestal contant.",
+              "zh": "在市场上我一般付现金。",
+              "en": "At the market I usually pay cash."
+            },
+            {
+              "nl": "Ik betaal altijd met de pin.",
+              "zh": "我总是刷卡。",
+              "en": "I always pay by card."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN53b-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Belangrijk: vandaag kunt u in onze winkel niet pinnen.",
+          "zh": "重要通知：本店今天不能刷卡。",
+          "en": "Important: today you cannot pay by card in our shop."
+        },
+        {
+          "nl": "U kunt alleen contant betalen, niet met de pin en niet met uw telefoon.",
+          "zh": "只收现金，不能刷卡，也不能用手机付款。",
+          "en": "You can only pay cash, not by card and not with your phone."
+        },
+        {
+          "nl": "Vanaf morgen, dinsdag 4 maart, kunt u weer pinnen.",
+          "zh": "从明天 3 月 4 日星期二起可以照常刷卡。",
+          "en": "From tomorrow, Tuesday 4 March, you can pay by card again."
+        },
+        {
+          "nl": "Geen geld bij u? Bij de bank naast de markt kunt u geld halen.",
+          "zh": "没带现金？市场旁边的银行可以取钱。",
+          "en": "No cash on you? You can get money at the bank next to the market."
+        },
+        {
+          "nl": "Bedankt voor uw geduld!",
+          "zh": "感谢您的耐心！",
+          "en": "Thank you for your patience!"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN53b-R1-1",
+          "question": {
+            "nl": "Hoe kunt u vandaag betalen?",
+            "zh": "今天怎么付钱？",
+            "en": "How can you pay today?"
+          },
+          "options": [
+            {
+              "nl": "Contant.",
+              "zh": "付现金。",
+              "en": "Cash."
+            },
+            {
+              "nl": "Met de pin.",
+              "zh": "刷卡。",
+              "en": "By card."
+            },
+            {
+              "nl": "Met uw telefoon.",
+              "zh": "用手机。",
+              "en": "With your phone."
+            }
+          ],
+          "answer": "Contant."
+        },
+        {
+          "id": "NN53b-R1-2",
+          "question": {
+            "nl": "Waar kunt u geld halen?",
+            "zh": "在哪里可以取钱？",
+            "en": "Where can you get money?"
+          },
+          "options": [
+            {
+              "nl": "Bij de bank.",
+              "zh": "在银行。",
+              "en": "At the bank."
+            },
+            {
+              "nl": "In de winkel.",
+              "zh": "在这家店里。",
+              "en": "In the shop."
+            },
+            {
+              "nl": "Op de markt.",
+              "zh": "在市场上。",
+              "en": "At the market."
+            }
+          ],
+          "answer": "Bij de bank."
+        }
+      ]
+    }
+  ]
+}
