@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN57",
+  "kind": "main",
+  "pack_lesson": "NN57",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN57-A01",
+      "nl": "Ik ben gelukkig in Nederland.",
+      "zh": "我在荷兰过得很幸福。",
+      "en": "I am happy in the Netherlands."
+    },
+    {
+      "id": "NN57-A02",
+      "nl": "Wij gaan volgend jaar verhuizen.",
+      "zh": "我们明年要搬家。",
+      "en": "We are going to move next year."
+    },
+    {
+      "id": "NN57-A03",
+      "nl": "Geld is niet alles.",
+      "zh": "钱不是一切。",
+      "en": "Money isn't everything."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN57-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN57-O1-1",
+          "context": {
+            "nl": "U gaat verhuizen. U vertelt het aan een collega.",
+            "zh": "您要搬家了，告诉一位同事。",
+            "en": "You are going to move. You tell a colleague."
+          },
+          "start": {
+            "nl": "Wij verhuizen naar ...",
+            "zh": "我们要搬到……",
+            "en": "We are moving to ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Wij verhuizen naar een huis in Rotterdam.",
+              "zh": "我们要搬到鹿特丹的一所房子。",
+              "en": "We are moving to a house in Rotterdam."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN57-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN57-O2-1",
+          "question": {
+            "nl": "Bent u gelukkig in Nederland?",
+            "zh": "您在荷兰过得幸福吗？",
+            "en": "Are you happy in the Netherlands?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik ben hier heel gelukkig.",
+              "zh": "幸福，我在这里过得很好。",
+              "en": "Yes, I am very happy here."
+            },
+            {
+              "nl": "Meestal wel, maar soms is het moeilijk.",
+              "zh": "大多时候是，不过有时候也难。",
+              "en": "Mostly, but sometimes it is hard."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN57-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Beste vrienden,",
+          "zh": "亲爱的朋友们：",
+          "en": "Dear friends,"
+        },
+        {
+          "nl": "Op 1 juli verhuizen wij naar een nieuw huis.",
+          "zh": "7 月 1 日我们搬新家。",
+          "en": "On 1 July we are moving to a new house."
+        },
+        {
+          "nl": "Ons nieuwe adres is Hoofdstraat 12 in Den Haag.",
+          "zh": "新地址是海牙大街 12 号。",
+          "en": "Our new address is Hoofdstraat 12 in The Hague."
+        },
+        {
+          "nl": "Op zaterdag 5 juli geven wij een feestje, vanaf 15.00 uur.",
+          "zh": "7 月 5 日星期六我们办个聚会，15:00 开始。",
+          "en": "On Saturday 5 July we are giving a party, from 15.00."
+        },
+        {
+          "nl": "Ons nummer is nog steeds 06-34567890.",
+          "zh": "我们的电话号码还是 06-34567890。",
+          "en": "Our number is still 06-34567890."
+        },
+        {
+          "nl": "Groeten, Iva en Omar",
+          "zh": "祝好，伊娃和奥马尔",
+          "en": "Regards, Iva and Omar"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN57-R1-1",
+          "question": {
+            "nl": "Wanneer verhuizen Iva en Omar?",
+            "zh": "伊娃和奥马尔哪天搬家？",
+            "en": "When are Iva and Omar moving?"
+          },
+          "options": [
+            {
+              "nl": "Op 1 juli.",
+              "zh": "7 月 1 日。",
+              "en": "On 1 July."
+            },
+            {
+              "nl": "Op 5 juli.",
+              "zh": "7 月 5 日。",
+              "en": "On 5 July."
+            },
+            {
+              "nl": "Op 12 juli.",
+              "zh": "7 月 12 日。",
+              "en": "On 12 July."
+            }
+          ],
+          "answer": "Op 1 juli."
+        },
+        {
+          "id": "NN57-R1-2",
+          "question": {
+            "nl": "Wat is het nieuwe adres?",
+            "zh": "新地址是哪里？",
+            "en": "What is the new address?"
+          },
+          "options": [
+            {
+              "nl": "Hoofdstraat 12.",
+              "zh": "大街 12 号。",
+              "en": "Hoofdstraat 12."
+            },
+            {
+              "nl": "Hoofdstraat 5.",
+              "zh": "大街 5 号。",
+              "en": "Hoofdstraat 5."
+            },
+            {
+              "nl": "Hoofdstraat 15.",
+              "zh": "大街 15 号。",
+              "en": "Hoofdstraat 15."
+            }
+          ],
+          "answer": "Hoofdstraat 12."
+        }
+      ]
+    }
+  ]
+}
