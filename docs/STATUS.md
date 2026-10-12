@@ -8,9 +8,9 @@
 
 ## 进行中
 
-施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f`（4a 合并后从 main 重开）· 子批 4b（NN51–55）· PR 见下
+施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f`（4a 合并后从 main 重开）· 子批 4b（NN51–55）· PR #33
 
-- [ ] G20 weten / kennen（中英，pack_examples NN51-X1）+ NN51；own 词 kennen（NN51 word_ids）
+- [x] G20 weten / kennen（中英，pack_examples NN51-X1）+ NN51；own 词 kennen（NN51 word_ids）：3/1/1/1，E9 晚点退票说明
 - [ ] NN52（只显示原书例句框）
 - [ ] NN53a（只用前面课的词）、NN53b（tip_links G11）
 - [ ] NN54（只显示原书例句框）
@@ -86,6 +86,8 @@
 
 1. G15 挂在 NN23（介绍住房，默认"第一次明显用到"）、G16 挂在 NN25b（a 部分课文看不到，挂 b 保证例句只用学过的词）。
    请审核用真资料包确认 er is / er zijn 是否在 NN22 已明显出现；要改只需挪 `tips`。
+2. kennen 不在 nn-index 任何一课的新词里，G20 例句要用：已加 own 词 `w_kennen`（ken / kent），列进 NN51 的 `word_ids`
+   （第一次有正课自带词表）。有真资料包时与资料包词条合并，首次出现取更早的一课；请审核确认这样可以。
 
 ## 已知问题
 

@@ -1,0 +1,194 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN51",
+  "kind": "main",
+  "pack_lesson": "NN51",
+  "tips": ["G20"],
+  "word_ids": ["w_kennen"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN51-A01",
+      "nl": "De trein heeft tien minuten vertraging.",
+      "zh": "火车晚点十分钟。",
+      "en": "The train is ten minutes late."
+    },
+    {
+      "id": "NN51-A02",
+      "nl": "Ik betaal met mijn ov-chipkaart.",
+      "zh": "我用公交卡付钱。",
+      "en": "I pay with my public transport card."
+    },
+    {
+      "id": "NN51-A03",
+      "nl": "Wat is de oorzaak van de vertraging?",
+      "zh": "晚点的原因是什么？",
+      "en": "What is the cause of the delay?"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN51-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN51-O1-1",
+          "context": {
+            "nl": "Uw trein heeft vertraging. U belt uw baas.",
+            "zh": "您坐的火车晚点了，您给老板打电话。",
+            "en": "Your train is delayed. You call your boss."
+          },
+          "start": {
+            "nl": "Ik ben vandaag ...",
+            "zh": "我今天……",
+            "en": "Today I am ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ben vandaag een half uur te laat.",
+              "zh": "我今天要晚到半小时。",
+              "en": "Today I am half an hour late."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN51-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN51-O2-1",
+          "question": {
+            "nl": "Heeft uw trein vaak vertraging?",
+            "zh": "您坐的火车常晚点吗？",
+            "en": "Is your train often delayed?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Nee, meestal is de trein op tijd.",
+              "zh": "不常晚点，火车一般准时。",
+              "en": "No, the train is usually on time."
+            },
+            {
+              "nl": "Ja, in de winter vaak.",
+              "zh": "常晚点，冬天经常这样。",
+              "en": "Yes, often in winter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN51-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Heeft uw trein meer dan 30 minuten vertraging?",
+          "zh": "您坐的火车晚点超过 30 分钟了吗？",
+          "en": "Was your train more than 30 minutes late?"
+        },
+        {
+          "nl": "Dan hoeft u niet alles te betalen.",
+          "zh": "那您不用付全价。",
+          "en": "Then you do not have to pay the full price."
+        },
+        {
+          "nl": "Bij 30 tot 59 minuten vertraging is 50 procent van uw kaartje gratis.",
+          "zh": "晚点 30 到 59 分钟，车票退一半（50%）。",
+          "en": "With a delay of 30 to 59 minutes, 50 percent of your ticket is free."
+        },
+        {
+          "nl": "Bij een uur vertraging of meer is uw kaartje helemaal gratis.",
+          "zh": "晚点一小时或更久，车票全免。",
+          "en": "With a delay of an hour or more, your ticket is completely free."
+        },
+        {
+          "nl": "Stuur uw klacht binnen 14 dagen via internet.",
+          "zh": "请在 14 天内在网上提交投诉。",
+          "en": "Send your complaint via the internet within 14 days."
+        },
+        {
+          "nl": "Op het station of bij de conducteur kan dat niet.",
+          "zh": "在车站或找列车员都办不了。",
+          "en": "You cannot do this at the station or with the conductor."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN51-R1-1",
+          "question": {
+            "nl": "Uw trein heeft 45 minuten vertraging. Hoeveel van uw kaartje is gratis?",
+            "zh": "您坐的火车晚点 45 分钟，车票能免多少？",
+            "en": "Your train is 45 minutes late. How much of your ticket is free?"
+          },
+          "options": [
+            {
+              "nl": "50 procent.",
+              "zh": "50%。",
+              "en": "50 percent."
+            },
+            {
+              "nl": "100 procent.",
+              "zh": "100%。",
+              "en": "100 percent."
+            },
+            {
+              "nl": "30 procent.",
+              "zh": "30%。",
+              "en": "30 percent."
+            }
+          ],
+          "answer": "50 procent."
+        },
+        {
+          "id": "NN51-R1-2",
+          "question": {
+            "nl": "Hoe stuurt u een klacht?",
+            "zh": "怎么提交投诉？",
+            "en": "How do you send a complaint?"
+          },
+          "options": [
+            {
+              "nl": "Via internet.",
+              "zh": "在网上。",
+              "en": "Via the internet."
+            },
+            {
+              "nl": "Op het station.",
+              "zh": "在车站。",
+              "en": "At the station."
+            },
+            {
+              "nl": "Bij de conducteur.",
+              "zh": "找列车员。",
+              "en": "With the conductor."
+            }
+          ],
+          "answer": "Via internet."
+        }
+      ]
+    }
+  ]
+}

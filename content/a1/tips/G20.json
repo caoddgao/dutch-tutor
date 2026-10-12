@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G20",
+  "title": { "zh": "weten 和 kennen：都是“知道”", "en": "weten and kennen" },
+  "body_zh": [
+    "weten 是知道一件事、一个信息：Ik weet het. 后面常跟 waar、hoe、wanneer、dat 引出的一句话：Weet u waar het station is?",
+    "kennen 是认识一个人，熟悉一个地方或一样东西，后面直接跟名词：Ik ken hem. Ken jij Rotterdam?",
+    "变位：weten → ik weet，jij / hij weet，wij weten；kennen → ik ken，jij / hij kent，wij kennen。"
+  ],
+  "body_en": [
+    "weten is knowing a fact or a piece of information: Ik weet het. It is often followed by a clause with waar, hoe, wanneer or dat: Weet u waar het station is?",
+    "kennen is knowing a person, or being familiar with a place or a thing; a noun follows directly: Ik ken hem. Ken jij Rotterdam?",
+    "Forms: weten → ik weet, jij / hij weet, wij weten; kennen → ik ken, jij / hij kent, wij kennen."
+  ],
+  "examples": [
+    {
+      "id": "G20-X1",
+      "nl": "Weet jij hoe laat de trein vertrekt?",
+      "zh": "你知道火车几点开吗？",
+      "en": "Do you know what time the train leaves?"
+    },
+    { "id": "G20-X2", "nl": "Ken jij Rotterdam?", "zh": "你熟悉鹿特丹吗？", "en": "Do you know Rotterdam?" },
+    {
+      "id": "G20-X3",
+      "nl": "Ik weet het niet, ik ken die man niet.",
+      "zh": "我不知道，我不认识那个人。",
+      "en": "I don't know, I don't know that man."
+    }
+  ],
+  "pack_examples": ["NN51-X1"],
+  "table": {
+    "head": ["", "weten（知道某事）", "kennen（认识、熟悉）"],
+    "rows": [
+      ["ik", "weet", "ken"],
+      ["jij / u / hij / zij", "weet", "kent"],
+      ["wij / jullie / zij", "weten", "kennen"]
+    ]
+  }
+}

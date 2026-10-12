@@ -1735,5 +1735,20 @@
     "zh": "字母 Z",
     "en": "the letter Z",
     "flags": ["letter"]
+  },
+  {
+    "id": "w_kennen",
+    "lemma": "kennen",
+    "pos": "ww",
+    "verb_forms": {
+      "ik": "ken",
+      "jij": "kent",
+      "hij": "kent",
+      "wij": "kennen",
+      "pp": "gekend",
+      "aux": "hebben"
+    },
+    "zh": "认识；熟悉",
+    "en": "to know (a person, place or thing)"
   }
 ]
