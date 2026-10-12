@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN64",
+  "kind": "main",
+  "pack_lesson": "NN64",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN64-A01",
+      "nl": "In het park mag je niet roken.",
+      "zh": "公园里不能抽烟。",
+      "en": "You are not allowed to smoke in the park."
+    },
+    {
+      "id": "NN64-A02",
+      "nl": "Hard fietsen is gevaarlijk.",
+      "zh": "骑快车很危险。",
+      "en": "Cycling fast is dangerous."
+    },
+    {
+      "id": "NN64-A03",
+      "nl": "Dat is tegen de regels.",
+      "zh": "这违反规定。",
+      "en": "That is against the rules."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN64-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN64-O1-1",
+          "context": {
+            "nl": "Een man rookt in de trein.",
+            "zh": "有个男人在火车上抽烟。",
+            "en": "A man is smoking on the train."
+          },
+          "start": {
+            "nl": "Meneer, u mag hier ...",
+            "zh": "先生，这里……",
+            "en": "Sir, you are ... here"
+          },
+          "sample_answers": [
+            {
+              "nl": "Meneer, u mag hier niet roken.",
+              "zh": "先生，这里不能抽烟。",
+              "en": "Sir, you are not allowed to smoke here."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN64-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN64-O2-1",
+          "question": {
+            "nl": "Welke regel vindt u belangrijk?",
+            "zh": "您觉得哪条规定重要？",
+            "en": "Which rule do you think is important?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik vind het belangrijk dat iedereen op tijd is.",
+              "zh": "我觉得大家都准时很重要。",
+              "en": "I think it is important that everyone is on time."
+            },
+            {
+              "nl": "Op de fiets moet je voorzichtig zijn.",
+              "zh": "骑车要小心。",
+              "en": "On a bike you have to be careful."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN64-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Regels in het park",
+          "zh": "公园规定",
+          "en": "Rules in the park"
+        },
+        {
+          "nl": "Het park is open van 6.00 tot 0.00 uur.",
+          "zh": "公园 6:00 到 0:00 开放。",
+          "en": "The park is open from 6.00 to 0.00."
+        },
+        {
+          "nl": "Honden moeten altijd aan de lijn.",
+          "zh": "狗必须一直拴绳。",
+          "en": "Dogs must always be on a lead."
+        },
+        {
+          "nl": "Fietsen op het grasveld mag niet.",
+          "zh": "不能在草地上骑车。",
+          "en": "Cycling on the lawn is not allowed."
+        },
+        {
+          "nl": "Muziek mag tot 22.00 uur; daarna moet het rustig zijn.",
+          "zh": "22:00 以前可以放音乐，之后要保持安静。",
+          "en": "Music is allowed until 22.00; after that it must be quiet."
+        },
+        {
+          "nl": "Wie dat niet doet, betaalt een boete van 90 euro.",
+          "zh": "违者罚款 90 欧元。",
+          "en": "Anyone who does not do so pays a fine of 90 euros."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN64-R1-1",
+          "question": {
+            "nl": "Hoe laat gaat het park open?",
+            "zh": "公园几点开门？",
+            "en": "What time does the park open?"
+          },
+          "options": [
+            {
+              "nl": "Om 6.00 uur.",
+              "zh": "6:00。",
+              "en": "At 6.00."
+            },
+            {
+              "nl": "Om 22.00 uur.",
+              "zh": "22:00。",
+              "en": "At 22.00."
+            },
+            {
+              "nl": "Om 0.00 uur.",
+              "zh": "0:00。",
+              "en": "At 0.00."
+            }
+          ],
+          "answer": "Om 6.00 uur."
+        },
+        {
+          "id": "NN64-R1-2",
+          "question": {
+            "nl": "Wat mag niet?",
+            "zh": "什么是不允许的？",
+            "en": "What is not allowed?"
+          },
+          "options": [
+            {
+              "nl": "Fietsen op het grasveld.",
+              "zh": "在草地上骑车。",
+              "en": "Cycling on the lawn."
+            },
+            {
+              "nl": "Muziek om 20.00 uur.",
+              "zh": "20:00 放音乐。",
+              "en": "Music at 20.00."
+            },
+            {
+              "nl": "Een hond aan de lijn.",
+              "zh": "狗拴着绳。",
+              "en": "A dog on a lead."
+            }
+          ],
+          "answer": "Fietsen op het grasveld."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN63",
+  "kind": "main",
+  "pack_lesson": "NN63",
+  "tip_links": ["G14"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN63-A01",
+      "nl": "Mijn opa is in Nederland heel bekend.",
+      "zh": "我爷爷在荷兰很有名。",
+      "en": "My grandfather is very well known in the Netherlands."
+    },
+    {
+      "id": "NN63-A02",
+      "nl": "Mijn oma is vroeger beroemd geweest.",
+      "zh": "我奶奶以前很出名。",
+      "en": "My grandmother used to be famous."
+    },
+    {
+      "id": "NN63-A03",
+      "nl": "Plotseling herkent iedereen hem.",
+      "zh": "突然大家都认出他来了。",
+      "en": "Suddenly everyone recognises him."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN63-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN63-O1-1",
+          "context": {
+            "nl": "U ziet een bekende man op straat.",
+            "zh": "您在街上看到一个名人。",
+            "en": "You see a well-known man in the street."
+          },
+          "start": {
+            "nl": "Bent u niet ...",
+            "zh": "您不就是……吗？",
+            "en": "Aren't you ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Bent u niet die man van de televisie?",
+              "zh": "您不就是电视上那个人吗？",
+              "en": "Aren't you that man from television?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN63-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN63-O2-1",
+          "question": {
+            "nl": "Wie is in uw land heel bekend?",
+            "zh": "在您的国家谁很有名？",
+            "en": "Who is very well known in your country?"
+          },
+          "sample_answers": [
+            {
+              "nl": "In mijn land is de koning heel bekend.",
+              "zh": "在我的国家国王很有名。",
+              "en": "In my country the king is very well known."
+            },
+            {
+              "nl": "Een voetballer is bij ons heel bekend.",
+              "zh": "我们那里有一位足球运动员很有名。",
+              "en": "A footballer is very well known in our country."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN63-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Op donderdag 9 oktober vertelt een bekende voetballer over zijn leven.",
+          "zh": "10 月 9 日星期四，一位著名足球运动员讲他的人生经历。",
+          "en": "On Thursday 9 October a well-known footballer talks about his life."
+        },
+        {
+          "nl": "Hij begint om 19.30 uur, in de school aan de Hoofdstraat.",
+          "zh": "19:30 开始，地点在大街上的学校。",
+          "en": "He starts at 19.30, in the school on the Hoofdstraat."
+        },
+        {
+          "nl": "De deur is open vanaf 19.00 uur.",
+          "zh": "19:00 开门。",
+          "en": "The door is open from 19.00."
+        },
+        {
+          "nl": "Na het verhaal kunt u vragen stellen.",
+          "zh": "讲完以后可以提问。",
+          "en": "After the talk you can ask questions."
+        },
+        {
+          "nl": "Een kaartje kost 5 euro; studenten betalen 3 euro en kinderen niets.",
+          "zh": "门票 5 欧元；学生 3 欧元，儿童免费。",
+          "en": "A ticket costs 5 euros; students pay 3 euros and children nothing."
+        },
+        {
+          "nl": "Om 21.00 uur is het klaar.",
+          "zh": "21:00 结束。",
+          "en": "It finishes at 21.00."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN63-R1-1",
+          "question": {
+            "nl": "Hoe laat begint het verhaal?",
+            "zh": "讲座几点开始？",
+            "en": "What time does the talk start?"
+          },
+          "options": [
+            {
+              "nl": "Om 19.30 uur.",
+              "zh": "19:30。",
+              "en": "At 19.30."
+            },
+            {
+              "nl": "Om 19.00 uur.",
+              "zh": "19:00。",
+              "en": "At 19.00."
+            },
+            {
+              "nl": "Om 21.00 uur.",
+              "zh": "21:00。",
+              "en": "At 21.00."
+            }
+          ],
+          "answer": "Om 19.30 uur."
+        },
+        {
+          "id": "NN63-R1-2",
+          "question": {
+            "nl": "Hoeveel betaalt een student?",
+            "zh": "学生付多少钱？",
+            "en": "How much does a student pay?"
+          },
+          "options": [
+            {
+              "nl": "3 euro.",
+              "zh": "3 欧元。",
+              "en": "3 euros."
+            },
+            {
+              "nl": "5 euro.",
+              "zh": "5 欧元。",
+              "en": "5 euros."
+            },
+            {
+              "nl": "Niets.",
+              "zh": "不用付钱。",
+              "en": "Nothing."
+            }
+          ],
+          "answer": "3 euro."
+        }
+      ]
+    }
+  ]
+}
