@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN54",
+  "kind": "main",
+  "pack_lesson": "NN54",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN54-A01",
+      "nl": "Nederland is een klein land.",
+      "zh": "荷兰是个小国。",
+      "en": "The Netherlands is a small country."
+    },
+    {
+      "id": "NN54-A02",
+      "nl": "In het westen wonen veel mensen.",
+      "zh": "西部住着很多人。",
+      "en": "Many people live in the west."
+    },
+    {
+      "id": "NN54-A03",
+      "nl": "Op het platteland is het rustig.",
+      "zh": "乡下很安静。",
+      "en": "It is quiet in the countryside."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN54-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN54-O1-1",
+          "context": {
+            "nl": "U vertelt over uw geboorteland.",
+            "zh": "您讲讲自己的祖国。",
+            "en": "You talk about your native country."
+          },
+          "start": {
+            "nl": "In mijn land is het ...",
+            "zh": "在我的国家……",
+            "en": "In my country it is ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "In mijn land is het warm en droog.",
+              "zh": "我的国家天气又热又干。",
+              "en": "In my country it is warm and dry."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN54-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN54-O2-1",
+          "question": {
+            "nl": "Woont u liever in een stad of in een dorp?",
+            "zh": "您更喜欢住在城市还是村子里？",
+            "en": "Would you rather live in a city or in a village?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik woon liever in een dorp, daar is het rustig.",
+              "zh": "我更喜欢住在村子里，那里安静。",
+              "en": "I would rather live in a village, it is quiet there."
+            },
+            {
+              "nl": "Ik woon liever in de stad.",
+              "zh": "我更喜欢住在城里。",
+              "en": "I would rather live in the city."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN54-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Welkom in ons dorp!",
+          "zh": "欢迎来到我们村！",
+          "en": "Welcome to our village!"
+        },
+        {
+          "nl": "Het dorp ligt in het noorden, op 10 kilometer van het station.",
+          "zh": "村子在北部，离火车站 10 公里。",
+          "en": "The village is in the north, 10 kilometres from the station."
+        },
+        {
+          "nl": "Vanaf het station gaat er elk half uur een bus naar het dorp.",
+          "zh": "每半小时有一班公共汽车从车站开往村里。",
+          "en": "A bus goes from the station to the village every half hour."
+        },
+        {
+          "nl": "In het dorp is een oude molen; u kunt hem op zaterdag van 10.00 tot 16.00 uur bekijken, op zondag is hij dicht.",
+          "zh": "村里有一座老风车，星期六 10:00 到 16:00 可以参观，星期天不开放。",
+          "en": "There is an old windmill in the village; you can visit it on Saturday from 10.00 to 16.00, on Sunday it is closed."
+        },
+        {
+          "nl": "Op de boerderij naast de molen zijn paarden en schapen.",
+          "zh": "风车旁边的农场里有马和羊。",
+          "en": "On the farm next to the windmill there are horses and sheep."
+        },
+        {
+          "nl": "Een fiets kost 12 euro per dag.",
+          "zh": "租自行车每天 12 欧元。",
+          "en": "A bike costs 12 euros a day."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN54-R1-1",
+          "question": {
+            "nl": "Wanneer kunt u de molen bekijken?",
+            "zh": "什么时候可以参观风车？",
+            "en": "When can you visit the windmill?"
+          },
+          "options": [
+            {
+              "nl": "Op zaterdag om 11.00 uur.",
+              "zh": "星期六 11:00。",
+              "en": "On Saturday at 11.00."
+            },
+            {
+              "nl": "Op zondag om 11.00 uur.",
+              "zh": "星期天 11:00。",
+              "en": "On Sunday at 11.00."
+            },
+            {
+              "nl": "Op zaterdag om 17.00 uur.",
+              "zh": "星期六 17:00。",
+              "en": "On Saturday at 17.00."
+            }
+          ],
+          "answer": "Op zaterdag om 11.00 uur."
+        },
+        {
+          "id": "NN54-R1-2",
+          "question": {
+            "nl": "Wat is er op de boerderij?",
+            "zh": "农场里有什么？",
+            "en": "What is there on the farm?"
+          },
+          "options": [
+            {
+              "nl": "Paarden en schapen.",
+              "zh": "马和羊。",
+              "en": "Horses and sheep."
+            },
+            {
+              "nl": "Een molen.",
+              "zh": "一座风车。",
+              "en": "A windmill."
+            },
+            {
+              "nl": "Fietsen.",
+              "zh": "自行车。",
+              "en": "Bikes."
+            }
+          ],
+          "answer": "Paarden en schapen."
+        }
+      ]
+    }
+  ]
+}

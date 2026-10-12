@@ -13,7 +13,7 @@
 - [x] G20 weten / kennen（中英，pack_examples NN51-X1）+ NN51；own 词 kennen（NN51 word_ids）：3/1/1/1，E9 晚点退票说明
 - [x] NN52（只显示原书例句框）：3/1/1/1，E9 电影院节目单
 - [x] NN53a（只用前面课的词）、NN53b（tip_links G11，与 NN53 例句框同在最后一部分）：各 3/1/1/1，E9 咖啡馆营业时间 / 暂停刷卡通知
-- [ ] NN54（只显示原书例句框）
+- [x] NN54（只显示原书例句框）：3/1/1/1，E9 村庄游览介绍
 - [ ] NN55（只显示原书例句框）
 - [ ] 合成音（tts.yml → 合并 tts/update PR）
 - [ ] typecheck / lint / test / validate、CI 全绿，合并到 main，STATUS 记"已完成"
