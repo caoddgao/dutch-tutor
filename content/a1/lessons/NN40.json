@@ -1,0 +1,193 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN40",
+  "kind": "main",
+  "pack_lesson": "NN40",
+  "tip_links": ["G11"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN40-A01",
+      "nl": "In de pauze drinken we water.",
+      "zh": "中场休息时我们喝水。",
+      "en": "During the break we drink water."
+    },
+    {
+      "id": "NN40-A02",
+      "nl": "Na de wedstrijd moet ik douchen.",
+      "zh": "比赛结束后我得洗澡。",
+      "en": "After the match I have to shower."
+    },
+    {
+      "id": "NN40-A03",
+      "nl": "Jullie mogen niet vechten.",
+      "zh": "你们不许打架。",
+      "en": "You are not allowed to fight."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN40-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN40-O1-1",
+          "context": {
+            "nl": "Het is pauze in de wedstrijd.",
+            "zh": "比赛中场休息了。",
+            "en": "It is half-time in the match."
+          },
+          "start": {
+            "nl": "In de pauze wil ik ...",
+            "zh": "中场休息时我想……",
+            "en": "During the break I want ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "In de pauze wil ik water drinken.",
+              "zh": "中场休息时我想喝水。",
+              "en": "During the break I want to drink water."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN40-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN40-O2-1",
+          "question": {
+            "nl": "Kijkt u graag naar voetbal?",
+            "zh": "您喜欢看足球吗？",
+            "en": "Do you like watching football?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik kijk elke zaterdag.",
+              "zh": "喜欢，我每个星期六都看。",
+              "en": "Yes, I watch every Saturday."
+            },
+            {
+              "nl": "Nee, dat vind ik niet leuk.",
+              "zh": "不喜欢，我觉得没意思。",
+              "en": "No, I don't enjoy that."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN40-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Hallo allemaal, van maandag 3 tot en met vrijdag 14 november zijn de douches bij het veld dicht.",
+          "zh": "大家好，11 月 3 日星期一到 14 日星期五，球场边的淋浴间关闭。",
+          "en": "Hello everyone, from Monday 3 to Friday 14 November the showers at the field are closed."
+        },
+        {
+          "nl": "In die tijd kunnen jullie douchen in het gebouw van de school.",
+          "zh": "这段时间你们可以在学校楼里洗澡。",
+          "en": "During that time you can shower in the school building."
+        },
+        {
+          "nl": "Dat kan op dinsdag en donderdag van 18.00 tot 22.00 uur.",
+          "zh": "星期二和星期四 18 点到 22 点可以洗。",
+          "en": "That is possible on Tuesday and Thursday from 18.00 to 22.00."
+        },
+        {
+          "nl": "Op zaterdag kan het van 9.00 tot 13.00 uur.",
+          "zh": "星期六 9 点到 13 点可以洗。",
+          "en": "On Saturday it is possible from 9.00 to 13.00."
+        },
+        {
+          "nl": "Vanaf maandag 17 november kunnen jullie weer bij het veld douchen.",
+          "zh": "从 11 月 17 日星期一起，你们又可以在球场边洗澡了。",
+          "en": "From Monday 17 November you can shower at the field again."
+        },
+        {
+          "nl": "Tot ziens, Sam",
+          "zh": "再见，萨姆",
+          "en": "Goodbye, Sam"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN40-R1-1",
+          "question": {
+            "nl": "Vanaf wanneer kunnen de spelers weer bij het veld douchen?",
+            "zh": "队员们从哪天起又可以在球场边洗澡？",
+            "en": "From when can the players shower at the field again?"
+          },
+          "options": [
+            {
+              "nl": "Vanaf maandag 17 november.",
+              "zh": "从 11 月 17 日星期一起。",
+              "en": "From Monday 17 November."
+            },
+            {
+              "nl": "Vanaf maandag 3 november.",
+              "zh": "从 11 月 3 日星期一起。",
+              "en": "From Monday 3 November."
+            },
+            {
+              "nl": "Vanaf vrijdag 14 november.",
+              "zh": "从 11 月 14 日星期五起。",
+              "en": "From Friday 14 November."
+            }
+          ],
+          "answer": "Vanaf maandag 17 november."
+        },
+        {
+          "id": "NN40-R1-2",
+          "question": {
+            "nl": "Vanaf hoe laat kun je op zaterdag in de school douchen?",
+            "zh": "星期六几点起可以在学校洗澡？",
+            "en": "From what time can you shower at the school on Saturday?"
+          },
+          "options": [
+            {
+              "nl": "Vanaf 9.00 uur.",
+              "zh": "9 点起。",
+              "en": "From 9.00."
+            },
+            {
+              "nl": "Vanaf 13.00 uur.",
+              "zh": "13 点起。",
+              "en": "From 13.00."
+            },
+            {
+              "nl": "Vanaf 18.00 uur.",
+              "zh": "18 点起。",
+              "en": "From 18.00."
+            }
+          ],
+          "answer": "Vanaf 9.00 uur."
+        }
+      ]
+    }
+  ]
+}
