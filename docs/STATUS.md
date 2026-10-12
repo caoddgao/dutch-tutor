@@ -4,23 +4,11 @@
 
 ## 当前阶段
 
-**阶段 4 第 3 批完成并审核通过（已定事项 19）。** 下一步：第 4 批 4a（NN46–50），见已定事项 20。
+**阶段 4 第 4 批 4a 完成（NN46–50）。** 接着做 4b（NN51–55）、5a、5b。
 
 ## 进行中
 
-施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f` · 子批 4a（NN46–50）· PR #31
-（会话只能推送这一个分支：每个子批合并后，把它从最新 main 重开，接着做下一子批。）
-
-- [x] NN46（只显示原书例句框）：3/1/1/1，E9 老师停课邮件
-- [x] G19 最高级（中英，pack_examples NN47-X1）+ NN47（tips G19，tip_links G18）：3/1/1/1，E9 招聘广告；
-  最高级词形：own 词 duur / goed / leuk / lang / graag 加 forms_seen（duurst(e)、best(e)、leukst(e)、langst(e)、liefst）
-- [x] NN48（tip_links G19，NN48-X1 单独显示）：3/1/1/1，E9 生日聚会邮件
-- [x] NN49（只显示原书例句框）：3/1/1/1，E9 出行建议（时刻、票价）
-- [x] NN50a（只用前面课的词）、NN50b：各 3/1/1/1，E9 停运通知 / 换乘短信
-- [x] G16 钟点星期日期 → NN25b；G15 er is / er zijn → NN23（只加挂载）。G16 挂 b：同时讲钟点（25a）和星期（25b），
-  b 部分可用整课的词，例句不会越界；G15 挂 NN23（介绍住房，第一次明显用 er is / er zijn），请审核用真资料包确认
-- [ ] 合成音（tts.yml → 合并 tts/update PR）
-- [ ] typecheck / lint / test / validate、CI 全绿，合并到 main，STATUS 记"已完成"
+（无）
 
 ## 已完成
 
@@ -55,6 +43,11 @@
   比较级例句的词形：own 词 duur / goed / lang 加 forms_seen（duurder / beter / langer），不改分词程序。
   合成音 PR #28 新增 76 个音频文件（短句、E5/E6、小贴士例句 77 条），最长 4.47 秒。
   validate 错误 0、提示 0，NN39–45 生词违规 0（无资料包时）；typecheck、lint、151 个测试、format 全过。
+- 阶段 4 第 4 批 4a（PR #31/#32）：NN46–49、NN50a/b 共 6 节，每节 3/1/1/1（短句 18、E5 6、E6 6、E9 6 篇），每节自动题 9 道。
+  小贴士：NN47 = G19 最高级（pack_examples NN47-X1，链接 G18）· NN48 链接 G19（NN48-X1 单独显示）· NN46/49/50 只显示例句框；
+  补挂：G15 er is / er zijn → NN23（tips G06、G15）· G16 钟点星期日期 → NN25b（tips G16，链接 G08）。最高级词形：own 词
+  duur / goed / leuk / lang / graag 加 forms_seen。E9：停课邮件、招聘广告、生日聚会邮件、出行建议、停运通知、换乘短信。
+  NN50a 只用第 49 课以前的词。合成音 PR #32 新增 62 个音频，最长 4.36 秒；validate 错误 0、提示 0。
 
 ## 已定事项（摘要；详细见 git 历史里的旧版 STATUS）
 
@@ -98,7 +91,8 @@
 
 ## 待决问题
 
-（无）
+1. G15 挂在 NN23（介绍住房，默认"第一次明显用到"）、G16 挂在 NN25b（a 部分课文看不到，挂 b 保证例句只用学过的词）。
+   请审核用真资料包确认 er is / er zijn 是否在 NN22 已明显出现；要改只需挪 `tips`。
 
 ## 已知问题
 
