@@ -43,9 +43,9 @@
         {
           "id": "NN50a-O1-1",
           "context": {
-            "nl": "U bent in de trein. U wilt weten waar de trein naartoe gaat.",
-            "zh": "您在火车上，想知道这趟车开往哪里。",
-            "en": "You are on the train. You want to know where the train is going."
+            "nl": "U wilt weten waar de trein naartoe gaat.",
+            "zh": "您想知道这趟火车开往哪里。",
+            "en": "You want to know where the train is going."
           },
           "start": {
             "nl": "Gaat deze trein ...",

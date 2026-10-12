@@ -43,9 +43,9 @@
         {
           "id": "NN50b-O1-1",
           "context": {
-            "nl": "U bent in de trein. De conducteur vraagt naar uw kaartje.",
-            "zh": "您在火车上，列车员要查票。",
-            "en": "You are on the train. The conductor asks for your ticket."
+            "nl": "De conducteur vraagt naar uw kaartje.",
+            "zh": "列车员要查票。",
+            "en": "The conductor asks for your ticket."
           },
           "start": {
             "nl": "Alstublieft, hier is ...",
