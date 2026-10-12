@@ -4,19 +4,11 @@
 
 ## 当前阶段
 
-**阶段 4 第 4 批 4a 完成（NN46–50）。** 正在做 4b（NN51–55），之后 5a、5b。
+**阶段 4 第 4 批完成（4a NN46–50、4b NN51–55）。** 接着做第 5 批 5a（NN56–60）、5b（NN61–65）。
 
 ## 进行中
 
-施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f`（4a 合并后从 main 重开）· 子批 4b（NN51–55）· PR #33
-
-- [x] G20 weten / kennen（中英，pack_examples NN51-X1）+ NN51；own 词 kennen（NN51 word_ids）：3/1/1/1，E9 晚点退票说明
-- [x] NN52（只显示原书例句框）：3/1/1/1，E9 电影院节目单
-- [x] NN53a（只用前面课的词）、NN53b（tip_links G11，与 NN53 例句框同在最后一部分）：各 3/1/1/1，E9 咖啡馆营业时间 / 暂停刷卡通知
-- [x] NN54（只显示原书例句框）：3/1/1/1，E9 村庄游览介绍
-- [x] NN55（只显示原书例句框）：1/1/1/1（课文已 36 句），E9 游船广告
-- [ ] 合成音（tts.yml → 合并 tts/update PR）
-- [ ] typecheck / lint / test / validate、CI 全绿，合并到 main，STATUS 记"已完成"
+（无）
 
 ## 已完成
 
@@ -41,6 +33,10 @@
   补挂：G15 er is / er zijn → NN23（tips G06、G15）· G16 钟点星期日期 → NN25b（tips G16，链接 G08）。最高级词形：own 词
   duur / goed / leuk / lang / graag 加 forms_seen。E9：停课邮件、招聘广告、生日聚会邮件、出行建议、停运通知、换乘短信。
   NN50a 只用第 49 课以前的词。合成音 PR #32 新增 62 个音频，最长 4.36 秒；validate 错误 0、提示 0。
+- 阶段 4 第 4 批 4b（PR #33/#34）：NN51、52、53a/b、54、55 共 6 节；短句 / E5 / E6 / E9 每节 3/1/1/1，NN55 为 1/1/1/1（课文已 36 句），
+  每节自动题 9 道。小贴士：NN51 = G20 weten 和 kennen（pack_examples NN51-X1；own 词 kennen 列进 NN51 word_ids）· NN53b 链接 G11
+  （与例句框同在最后一部分）· NN52/53a/54/55 只显示例句框。E9：晚点退票说明、电影院节目单、咖啡馆营业时间、暂停刷卡通知、
+  村庄游览介绍、游船广告。NN53a 只用第 52 课以前的词。合成音 PR #34 新增 55 个音频，最长 4.73 秒；validate 错误 0、提示 0。
 
 ## 已定事项（摘要；详细见 git 历史里的旧版 STATUS）
 
