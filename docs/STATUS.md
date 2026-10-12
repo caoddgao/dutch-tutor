@@ -17,7 +17,8 @@
 - [x] NN48（tip_links G19，NN48-X1 单独显示）：3/1/1/1，E9 生日聚会邮件
 - [x] NN49（只显示原书例句框）：3/1/1/1，E9 出行建议（时刻、票价）
 - [x] NN50a（只用前面课的词）、NN50b：各 3/1/1/1，E9 停运通知 / 换乘短信
-- [ ] G16 钟点星期日期 → NN25b；G15 er is / er zijn → NN23（只加挂载）
+- [x] G16 钟点星期日期 → NN25b；G15 er is / er zijn → NN23（只加挂载）。G16 挂 b：同时讲钟点（25a）和星期（25b），
+  b 部分可用整课的词，例句不会越界；G15 挂 NN23（介绍住房，第一次明显用 er is / er zijn），请审核用真资料包确认
 - [ ] 合成音（tts.yml → 合并 tts/update PR）
 - [ ] typecheck / lint / test / validate、CI 全绿，合并到 main，STATUS 记"已完成"
 

@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G15",
+  "title": { "zh": "er is / er zijn：某处有……", "en": "er is / er zijn: there is, there are" },
+  "body_zh": [
+    "说某个地方“有”什么，用 er is（后面是一样东西）或 er zijn（后面是几样东西）：Er is een keuken. Er zijn twee slaapkamers.",
+    "地点放在句首时，动词仍在第二位，er 跟在动词后面：Boven is er een badkamer.",
+    "问“有没有”时把动词提前：Is er een toilet? 没有就用 geen：Er is geen badkamer."
+  ],
+  "body_en": [
+    "To say that there is something somewhere, use er is (one thing) or er zijn (several things): Er is een keuken. Er zijn twee slaapkamers.",
+    "When a place comes first, the verb stays in second place and er follows it: Boven is er een badkamer.",
+    "To ask whether there is something, put the verb first: Is er een toilet? If there is none, use geen: Er is geen badkamer."
+  ],
+  "examples": [
+    {
+      "id": "G15-X1",
+      "nl": "Beneden is er een keuken.",
+      "zh": "楼下有一个厨房。",
+      "en": "Downstairs there is a kitchen."
+    },
+    { "id": "G15-X2", "nl": "Er zijn twee slaapkamers.", "zh": "有两间卧室。", "en": "There are two bedrooms." },
+    { "id": "G15-X3", "nl": "Is er een toilet boven?", "zh": "楼上有厕所吗？", "en": "Is there a toilet upstairs?" }
+  ],
+  "table": {
+    "head": ["说法", "后面跟", "例子"],
+    "rows": [
+      ["er is", "一样东西", "Er is een keuken."],
+      ["er zijn", "几样东西", "Er zijn twee slaapkamers."],
+      ["is er …?", "问有没有", "Is er een toilet?"]
+    ]
+  }
+}
