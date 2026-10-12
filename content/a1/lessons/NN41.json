@@ -1,0 +1,193 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN41",
+  "kind": "main",
+  "pack_lesson": "NN41",
+  "tips": ["G18"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN41-A01",
+      "nl": "Mailen is gratis.",
+      "zh": "发邮件不要钱。",
+      "en": "Emailing is free."
+    },
+    {
+      "id": "NN41-A02",
+      "nl": "Ik heb contact met mijn familie in het buitenland.",
+      "zh": "我和在国外的家人保持联系。",
+      "en": "I am in touch with my family abroad."
+    },
+    {
+      "id": "NN41-A03",
+      "nl": "Ik stuur graag een kaartje.",
+      "zh": "我喜欢寄卡片。",
+      "en": "I like sending a card."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN41-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN41-O1-1",
+          "context": {
+            "nl": "U schrijft een kaartje aan uw familie.",
+            "zh": "您给家人写一张卡片。",
+            "en": "You write a card to your family."
+          },
+          "start": {
+            "nl": "Ik ben op vakantie in ...",
+            "zh": "我在……度假。",
+            "en": "I am on holiday in ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ben op vakantie in Frankrijk.",
+              "zh": "我在法国度假。",
+              "en": "I am on holiday in France."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN41-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN41-O2-1",
+          "question": {
+            "nl": "Belt u vaak met uw familie?",
+            "zh": "您常给家人打电话吗？",
+            "en": "Do you often call your family?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik bel elke zondag met mijn familie.",
+              "zh": "常打，我每个星期天给家人打电话。",
+              "en": "Yes, I call my family every Sunday."
+            },
+            {
+              "nl": "Nee, ik mail meestal.",
+              "zh": "不常打，我一般发邮件。",
+              "en": "No, I usually email."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN41-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Dag juf Anna,",
+          "zh": "安娜老师您好：",
+          "en": "Dear Ms Anna,"
+        },
+        {
+          "nl": "Mijn zoon Sam is ziek; hij is op dinsdag en woensdag thuis.",
+          "zh": "我儿子萨姆病了；星期二和星期三他在家。",
+          "en": "My son Sam is ill; he is at home on Tuesday and Wednesday."
+        },
+        {
+          "nl": "Op woensdag om 10.30 uur heeft hij een afspraak bij de huisarts.",
+          "zh": "星期三 10:30 他约了家庭医生。",
+          "en": "On Wednesday at 10.30 he has an appointment with the GP."
+        },
+        {
+          "nl": "Op donderdag om 8.30 uur is hij weer op school.",
+          "zh": "星期四 8:30 他就回学校上课。",
+          "en": "On Thursday at 8.30 he is back at school."
+        },
+        {
+          "nl": "U kunt mij altijd bellen op mijn mobiel.",
+          "zh": "您随时可以打我的手机。",
+          "en": "You can always call me on my mobile."
+        },
+        {
+          "nl": "Groeten, Omar",
+          "zh": "祝好，奥马尔",
+          "en": "Regards, Omar"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN41-R1-1",
+          "question": {
+            "nl": "Wanneer heeft Sam een afspraak bij de huisarts?",
+            "zh": "萨姆哪天约了家庭医生？",
+            "en": "When does Sam have an appointment with the GP?"
+          },
+          "options": [
+            {
+              "nl": "Op woensdag.",
+              "zh": "星期三。",
+              "en": "On Wednesday."
+            },
+            {
+              "nl": "Op dinsdag.",
+              "zh": "星期二。",
+              "en": "On Tuesday."
+            },
+            {
+              "nl": "Op donderdag.",
+              "zh": "星期四。",
+              "en": "On Thursday."
+            }
+          ],
+          "answer": "Op woensdag."
+        },
+        {
+          "id": "NN41-R1-2",
+          "question": {
+            "nl": "Waar is Sam op donderdag om 8.30 uur?",
+            "zh": "星期四 8:30 萨姆在哪里？",
+            "en": "Where is Sam on Thursday at 8.30?"
+          },
+          "options": [
+            {
+              "nl": "Op school.",
+              "zh": "在学校。",
+              "en": "At school."
+            },
+            {
+              "nl": "Thuis.",
+              "zh": "在家。",
+              "en": "At home."
+            },
+            {
+              "nl": "Bij de huisarts.",
+              "zh": "在家庭医生那里。",
+              "en": "At the GP's."
+            }
+          ],
+          "answer": "Op school."
+        }
+      ]
+    }
+  ]
+}

@@ -576,6 +576,7 @@
     "id": "w_duur",
     "lemma": "duur",
     "pos": "bn",
+    "forms_seen": ["duurder"],
     "zh": "贵的",
     "en": "expensive"
   },
@@ -650,6 +651,7 @@
     "id": "w_goed",
     "lemma": "goed",
     "pos": "bn",
+    "forms_seen": ["beter"],
     "zh": "好的",
     "en": "good"
   },
@@ -912,6 +914,7 @@
     "id": "w_lang",
     "lemma": "lang",
     "pos": "bn",
+    "forms_seen": ["langer"],
     "zh": "长的；（人）高的",
     "en": "long; tall"
   },
