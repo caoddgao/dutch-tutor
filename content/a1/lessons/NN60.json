@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN60",
+  "kind": "main",
+  "pack_lesson": "NN60",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN60-A01",
+      "nl": "Groeten uit het park!",
+      "zh": "来自公园的问候！",
+      "en": "Greetings from the park!"
+    },
+    {
+      "id": "NN60-A02",
+      "nl": "We zien veel vogels en vossen.",
+      "zh": "我们看到很多鸟和狐狸。",
+      "en": "We see a lot of birds and foxes."
+    },
+    {
+      "id": "NN60-A03",
+      "nl": "Deze kaart is voor mijn tante.",
+      "zh": "这张明信片是寄给我姨妈的。",
+      "en": "This card is for my aunt."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN60-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN60-O1-1",
+          "context": {
+            "nl": "U schrijft een kaart aan een vriend.",
+            "zh": "您给朋友写明信片。",
+            "en": "You write a card to a friend."
+          },
+          "start": {
+            "nl": "Hier is het ...",
+            "zh": "这里……",
+            "en": "Here it is ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Hier is het mooi en het weer is goed.",
+              "zh": "这里很美，天气也好。",
+              "en": "It is beautiful here and the weather is good."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN60-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN60-O2-1",
+          "question": {
+            "nl": "Welke dieren vindt u leuk?",
+            "zh": "您喜欢哪些动物？",
+            "en": "Which animals do you like?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik vind vogels leuk.",
+              "zh": "我喜欢鸟。",
+              "en": "I like birds."
+            },
+            {
+              "nl": "Ik vind katten het leukst.",
+              "zh": "我最喜欢猫。",
+              "en": "I like cats best."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN60-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Welkom in het park!",
+          "zh": "欢迎来到公园！",
+          "en": "Welcome to the park!"
+        },
+        {
+          "nl": "Het park is elke dag open van 8.00 tot 20.00 uur.",
+          "zh": "公园每天 8:00 到 20:00 开放。",
+          "en": "The park is open every day from 8.00 to 20.00."
+        },
+        {
+          "nl": "Een kaartje kost 12 euro; kinderen tot 6 jaar zijn gratis.",
+          "zh": "门票 12 欧元；6 岁以下儿童免费。",
+          "en": "A ticket costs 12 euros; children under 6 are free."
+        },
+        {
+          "nl": "In het park leven veel wilde dieren, zoals vossen en vogels.",
+          "zh": "公园里有很多野生动物，比如狐狸和鸟。",
+          "en": "Many wild animals live in the park, such as foxes and birds."
+        },
+        {
+          "nl": "Honden mogen niet in het park.",
+          "zh": "狗不能进公园。",
+          "en": "Dogs are not allowed in the park."
+        },
+        {
+          "nl": "Bewaar uw kaartje, dan kunt u op dezelfde dag terugkomen.",
+          "zh": "请保存好门票，当天可以再进来。",
+          "en": "Keep your ticket, then you can come back on the same day."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN60-R1-1",
+          "question": {
+            "nl": "Wat mag niet in het park?",
+            "zh": "什么不能进公园？",
+            "en": "What is not allowed in the park?"
+          },
+          "options": [
+            {
+              "nl": "Honden.",
+              "zh": "狗。",
+              "en": "Dogs."
+            },
+            {
+              "nl": "Kinderen.",
+              "zh": "孩子。",
+              "en": "Children."
+            },
+            {
+              "nl": "Vogels.",
+              "zh": "鸟。",
+              "en": "Birds."
+            }
+          ],
+          "answer": "Honden."
+        },
+        {
+          "id": "NN60-R1-2",
+          "question": {
+            "nl": "Hoeveel betaalt een kind van 4 jaar?",
+            "zh": "4 岁的孩子付多少钱？",
+            "en": "How much does a 4-year-old child pay?"
+          },
+          "options": [
+            {
+              "nl": "Niets.",
+              "zh": "不用付钱。",
+              "en": "Nothing."
+            },
+            {
+              "nl": "12 euro.",
+              "zh": "12 欧元。",
+              "en": "12 euros."
+            },
+            {
+              "nl": "6 euro.",
+              "zh": "6 欧元。",
+              "en": "6 euros."
+            }
+          ],
+          "answer": "Niets."
+        }
+      ]
+    }
+  ]
+}
