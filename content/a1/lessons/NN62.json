@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN62",
+  "kind": "main",
+  "pack_lesson": "NN62",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN62-A01",
+      "nl": "Deze zomer gaan we niet op reis.",
+      "zh": "今年夏天我们不出门旅行。",
+      "en": "This summer we are not going on a trip."
+    },
+    {
+      "id": "NN62-A02",
+      "nl": "Veel toeristen gaan naar Amsterdam.",
+      "zh": "很多游客去阿姆斯特丹。",
+      "en": "Many tourists go to Amsterdam."
+    },
+    {
+      "id": "NN62-A03",
+      "nl": "In het zuiden is het vaak warm.",
+      "zh": "南方常常很暖和。",
+      "en": "In the south it is often warm."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN62-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN62-O1-1",
+          "context": {
+            "nl": "Een collega vraagt waar u op vakantie gaat.",
+            "zh": "一位同事问您去哪儿度假。",
+            "en": "A colleague asks where you are going on holiday."
+          },
+          "start": {
+            "nl": "Wij gaan dit jaar ...",
+            "zh": "我们今年去……",
+            "en": "This year we are going ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Wij gaan dit jaar naar Frankrijk.",
+              "zh": "我们今年去法国。",
+              "en": "This year we are going to France."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN62-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN62-O2-1",
+          "question": {
+            "nl": "Gaat u in de zomer graag weg?",
+            "zh": "夏天您喜欢出门吗？",
+            "en": "Do you like going away in summer?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, ik ga graag naar het zuiden.",
+              "zh": "喜欢，我喜欢去南方。",
+              "en": "Yes, I like going to the south."
+            },
+            {
+              "nl": "Nee, ik ben het liefst thuis.",
+              "zh": "不喜欢，我最喜欢待在家里。",
+              "en": "No, I like being at home best."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN62-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Welkom in het museum!",
+          "zh": "欢迎来到博物馆！",
+          "en": "Welcome to the museum!"
+        },
+        {
+          "nl": "Het museum is open van dinsdag tot en met zondag, van 10.00 tot 17.00 uur.",
+          "zh": "博物馆星期二到星期天开放，10:00 到 17:00。",
+          "en": "The museum is open from Tuesday to Sunday, from 10.00 to 17.00."
+        },
+        {
+          "nl": "Op maandag is het museum dicht.",
+          "zh": "星期一闭馆。",
+          "en": "On Monday the museum is closed."
+        },
+        {
+          "nl": "Een kaartje kost 15 euro; studenten betalen 7,50 euro.",
+          "zh": "门票 15 欧元；学生 7.50 欧元。",
+          "en": "A ticket costs 15 euros; students pay 7.50 euros."
+        },
+        {
+          "nl": "Kinderen tot 12 jaar zijn gratis.",
+          "zh": "12 岁以下儿童免费。",
+          "en": "Children up to 12 are free."
+        },
+        {
+          "nl": "In de zomer is het hier druk, vooral na 12.00 uur.",
+          "zh": "夏天这里人多，尤其是 12:00 以后。",
+          "en": "In summer it is busy here, especially after 12.00."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN62-R1-1",
+          "question": {
+            "nl": "Op welke dag is het museum dicht?",
+            "zh": "博物馆哪天闭馆？",
+            "en": "On which day is the museum closed?"
+          },
+          "options": [
+            {
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
+            },
+            {
+              "nl": "Op dinsdag.",
+              "zh": "星期二。",
+              "en": "On Tuesday."
+            },
+            {
+              "nl": "Op zondag.",
+              "zh": "星期天。",
+              "en": "On Sunday."
+            }
+          ],
+          "answer": "Op maandag."
+        },
+        {
+          "id": "NN62-R1-2",
+          "question": {
+            "nl": "Hoeveel betaalt een student?",
+            "zh": "学生付多少钱？",
+            "en": "How much does a student pay?"
+          },
+          "options": [
+            {
+              "nl": "7,50 euro.",
+              "zh": "7.50 欧元。",
+              "en": "7.50 euros."
+            },
+            {
+              "nl": "15 euro.",
+              "zh": "15 欧元。",
+              "en": "15 euros."
+            },
+            {
+              "nl": "Niets.",
+              "zh": "不用付钱。",
+              "en": "Nothing."
+            }
+          ],
+          "answer": "7,50 euro."
+        }
+      ]
+    }
+  ]
+}

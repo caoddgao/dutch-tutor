@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN61",
+  "kind": "main",
+  "pack_lesson": "NN61",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN61-A01",
+      "nl": "Ik woon vlakbij het station.",
+      "zh": "我住在火车站附近。",
+      "en": "I live near the station."
+    },
+    {
+      "id": "NN61-A02",
+      "nl": "Tegenover ons huis is een grasveld.",
+      "zh": "我们家对面有一片草地。",
+      "en": "Opposite our house there is a lawn."
+    },
+    {
+      "id": "NN61-A03",
+      "nl": "Mijn buurman is heel vriendelijk.",
+      "zh": "我的邻居很友好。",
+      "en": "My neighbour is very friendly."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN61-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN61-O1-1",
+          "context": {
+            "nl": "Een nieuwe buurman vraagt waar de bank is.",
+            "zh": "一位新邻居问银行在哪儿。",
+            "en": "A new neighbour asks where the bank is."
+          },
+          "start": {
+            "nl": "De bank is ...",
+            "zh": "银行在……",
+            "en": "The bank is ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "De bank is vlakbij, tegenover het station.",
+              "zh": "银行很近，在火车站对面。",
+              "en": "The bank is close by, opposite the station."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN61-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN61-O2-1",
+          "question": {
+            "nl": "Woont u in een rustige buurt?",
+            "zh": "您住的街区安静吗？",
+            "en": "Do you live in a quiet neighbourhood?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, het is hier heel rustig.",
+              "zh": "安静，这里很安静。",
+              "en": "Yes, it is very quiet here."
+            },
+            {
+              "nl": "Nee, overdag is het druk.",
+              "zh": "不安静，白天很热闹。",
+              "en": "No, it is busy during the day."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN61-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Aan iedereen in de buurt,",
+          "zh": "致街区的各位：",
+          "en": "To everyone in the neighbourhood,"
+        },
+        {
+          "nl": "Op zaterdag 6 september is er een feest op het grasveld tegenover de school.",
+          "zh": "9 月 6 日星期六，学校对面的草地上办聚会。",
+          "en": "On Saturday 6 September there is a party on the lawn opposite the school."
+        },
+        {
+          "nl": "Het feest begint om 14.00 uur; om 17.00 uur is er muziek.",
+          "zh": "聚会 14:00 开始；17:00 有音乐。",
+          "en": "The party starts at 14.00; at 17.00 there is music."
+        },
+        {
+          "nl": "Neemt u een stoel mee?",
+          "zh": "请自带一把椅子。",
+          "en": "Will you bring a chair?"
+        },
+        {
+          "nl": "Om 22.00 uur moet het weer rustig zijn.",
+          "zh": "22:00 以后要恢复安静。",
+          "en": "At 22.00 it has to be quiet again."
+        },
+        {
+          "nl": "Vragen? U kunt meneer Jansen bellen: 06-45678901.",
+          "zh": "有问题？请打电话给扬森先生：06-45678901。",
+          "en": "Questions? You can call Mr Jansen: 06-45678901."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN61-R1-1",
+          "question": {
+            "nl": "Waar is het feest?",
+            "zh": "聚会在哪里？",
+            "en": "Where is the party?"
+          },
+          "options": [
+            {
+              "nl": "Op het grasveld.",
+              "zh": "在草地上。",
+              "en": "On the lawn."
+            },
+            {
+              "nl": "In de school.",
+              "zh": "在学校里。",
+              "en": "In the school."
+            },
+            {
+              "nl": "Bij meneer Jansen thuis.",
+              "zh": "在扬森先生家。",
+              "en": "At Mr Jansen's house."
+            }
+          ],
+          "answer": "Op het grasveld."
+        },
+        {
+          "id": "NN61-R1-2",
+          "question": {
+            "nl": "Hoe laat begint de muziek?",
+            "zh": "音乐几点开始？",
+            "en": "What time does the music start?"
+          },
+          "options": [
+            {
+              "nl": "Om 17.00 uur.",
+              "zh": "17:00。",
+              "en": "At 17.00."
+            },
+            {
+              "nl": "Om 14.00 uur.",
+              "zh": "14:00。",
+              "en": "At 14.00."
+            },
+            {
+              "nl": "Om 22.00 uur.",
+              "zh": "22:00。",
+              "en": "At 22.00."
+            }
+          ],
+          "answer": "Om 17.00 uur."
+        }
+      ]
+    }
+  ]
+}
