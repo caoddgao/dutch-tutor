@@ -12,7 +12,8 @@
 （会话只能推送这一个分支：每个子批合并后，把它从最新 main 重开，接着做下一子批。）
 
 - [x] NN46（只显示原书例句框）：3/1/1/1，E9 老师停课邮件
-- [ ] G19 最高级（中英，pack_examples NN47-X1）+ NN47（tips G19，tip_links G18）
+- [x] G19 最高级（中英，pack_examples NN47-X1）+ NN47（tips G19，tip_links G18）：3/1/1/1，E9 招聘广告；
+  最高级词形：own 词 duur / goed / leuk / lang / graag 加 forms_seen（duurst(e)、best(e)、leukst(e)、langst(e)、liefst）
 - [ ] NN48（tip_links G19，NN48-X1 单独显示）
 - [ ] NN49（只显示原书例句框）
 - [ ] NN50a（只用前面课的词）、NN50b

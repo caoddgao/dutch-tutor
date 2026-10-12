@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G19",
+  "title": { "zh": "最高级：最贵、最长、最喜欢", "en": "Superlatives" },
+  "body_zh": [
+    "三样或更多东西比较、说“最……”时，形容词后面加 -st：lang → langst，duur → duurst。",
+    "放在名词前面时再加 -e，前面用 de 或 het：de duurste fiets，het leukste werk。不放在名词前面时用 het + -st：In juni zijn de dagen het langst.",
+    "几个常用词不规则：goed → best，veel → meest，graag → liefst。“最喜欢做什么”就用 het liefst：Ik fiets het liefst.（我最喜欢骑车。）"
+  ],
+  "body_en": [
+    "To say “the most …” when comparing three or more things, add -st to the adjective: lang → langst, duur → duurst.",
+    "Before a noun, also add -e and use de or het: de duurste fiets, het leukste werk. When it is not before a noun, use het + -st: In juni zijn de dagen het langst.",
+    "A few common words are irregular: goed → best, veel → meest, graag → liefst. For what you like doing most, use het liefst: Ik fiets het liefst. (I like cycling best.)"
+  ],
+  "examples": [
+    {
+      "id": "G19-X1",
+      "nl": "Dit is de duurste fiets.",
+      "zh": "这是最贵的自行车。",
+      "en": "This is the most expensive bike."
+    },
+    {
+      "id": "G19-X2",
+      "nl": "Wat doe je het liefst in het weekend?",
+      "zh": "你周末最喜欢做什么？",
+      "en": "What do you like doing best at the weekend?"
+    },
+    {
+      "id": "G19-X3",
+      "nl": "In juni zijn de dagen het langst.",
+      "zh": "六月白天最长。",
+      "en": "In June the days are longest."
+    }
+  ],
+  "pack_examples": ["NN47-X1"],
+  "table": {
+    "head": ["原级", "比较级", "最高级", "意思"],
+    "rows": [
+      ["lang", "langer", "langst", "长"],
+      ["duur", "duurder", "duurst", "贵"],
+      ["leuk", "leuker", "leukst", "有意思"],
+      ["goed", "beter", "best", "好"],
+      ["veel", "meer", "meest", "多"],
+      ["graag", "liever", "liefst", "喜欢"]
+    ]
+  }
+}
