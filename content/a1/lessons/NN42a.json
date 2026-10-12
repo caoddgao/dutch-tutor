@@ -1,0 +1,193 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN42a",
+  "kind": "main",
+  "pack_lesson": "NN42",
+  "tip_links": ["G14"],
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN42a-A01",
+      "nl": "Zondag gaan wij op bezoek bij mijn broer.",
+      "zh": "星期天我们去我哥哥家做客。",
+      "en": "On Sunday we visit my brother."
+    },
+    {
+      "id": "NN42a-A02",
+      "nl": "Ik neem een cadeautje mee.",
+      "zh": "我带一份小礼物。",
+      "en": "I bring a little present."
+    },
+    {
+      "id": "NN42a-A03",
+      "nl": "Gisteren ben ik bij mijn broer op bezoek gegaan.",
+      "zh": "昨天我去哥哥家做客了。",
+      "en": "Yesterday I went to visit my brother."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN42a-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN42a-O1-1",
+          "context": {
+            "nl": "U gaat op bezoek bij een vriend.",
+            "zh": "您去一个朋友家做客。",
+            "en": "You are visiting a friend."
+          },
+          "start": {
+            "nl": "Ik neem ...",
+            "zh": "我带……",
+            "en": "I bring ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem een fles wijn mee.",
+              "zh": "我带一瓶葡萄酒。",
+              "en": "I bring a bottle of wine."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN42a-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN42a-O2-1",
+          "question": {
+            "nl": "Gaat u vaak op bezoek bij familie?",
+            "zh": "您常去亲戚家做客吗？",
+            "en": "Do you often visit family?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, elke zondag.",
+              "zh": "常去，每个星期天。",
+              "en": "Yes, every Sunday."
+            },
+            {
+              "nl": "Nee, mijn familie woont in het buitenland.",
+              "zh": "不常去，我的家人住在国外。",
+              "en": "No, my family lives abroad."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN42a-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Hallo Anna, op zaterdag 8 november geef ik een feestje bij mij thuis.",
+          "zh": "安娜你好，11 月 8 日星期六我在家办个聚会。",
+          "en": "Hello Anna, on Saturday 8 November I'm having a party at my place."
+        },
+        {
+          "nl": "Mijn adres is Hoofdstraat 12.",
+          "zh": "我的地址是 Hoofdstraat 12 号。",
+          "en": "My address is Hoofdstraat 12."
+        },
+        {
+          "nl": "Het feestje is van 15.00 tot 19.00 uur; om 17.00 uur is er soep.",
+          "zh": "聚会从 15 点到 19 点；17 点有汤喝。",
+          "en": "The party is from 15.00 to 19.00; at 17.00 there is soup."
+        },
+        {
+          "nl": "Neem jij een fles sap mee?",
+          "zh": "你带一瓶果汁来好吗？",
+          "en": "Will you bring a bottle of juice?"
+        },
+        {
+          "nl": "Mijn broer neemt kaas mee, en wijn heb ik al.",
+          "zh": "我哥哥带奶酪，葡萄酒我已经有了。",
+          "en": "My brother is bringing cheese, and I already have wine."
+        },
+        {
+          "nl": "Liefs, Sam",
+          "zh": "爱你的萨姆",
+          "en": "Love, Sam"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN42a-R1-1",
+          "question": {
+            "nl": "Hoe laat begint het feestje?",
+            "zh": "聚会几点开始？",
+            "en": "What time does the party start?"
+          },
+          "options": [
+            {
+              "nl": "Om 15.00 uur.",
+              "zh": "15 点。",
+              "en": "At 15.00."
+            },
+            {
+              "nl": "Om 17.00 uur.",
+              "zh": "17 点。",
+              "en": "At 17.00."
+            },
+            {
+              "nl": "Om 19.00 uur.",
+              "zh": "19 点。",
+              "en": "At 19.00."
+            }
+          ],
+          "answer": "Om 15.00 uur."
+        },
+        {
+          "id": "NN42a-R1-2",
+          "question": {
+            "nl": "Wat neemt Anna mee?",
+            "zh": "安娜要带什么？",
+            "en": "What does Anna bring?"
+          },
+          "options": [
+            {
+              "nl": "Een fles sap.",
+              "zh": "一瓶果汁。",
+              "en": "A bottle of juice."
+            },
+            {
+              "nl": "Kaas.",
+              "zh": "奶酪。",
+              "en": "Cheese."
+            },
+            {
+              "nl": "Wijn.",
+              "zh": "葡萄酒。",
+              "en": "Wine."
+            }
+          ],
+          "answer": "Een fles sap."
+        }
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@
 施工者：Claude · 分支 `claude/awesome-rubin-g8548e` · PR #27 · 3b（NN39–45，NN42 拆 42a/42b，共 8 节）
 
 - [x] G18 G12 G13（比较级例句用 own 词 duur/goed/lang 的 forms_seen：duurder/beter/langer）
-- [x] NN39  - [x] NN40  - [x] NN41  - [ ] NN42a  - [ ] NN42b  - [ ] NN43  - [ ] NN44  - [ ] NN45
+- [x] NN39  - [x] NN40  - [x] NN41  - [x] NN42a  - [ ] NN42b  - [ ] NN43  - [ ] NN44  - [ ] NN45
 - [ ] 合成音  - [ ] typecheck / lint / test / validate 全过、CI 全绿、合并
 
 ## 已完成
