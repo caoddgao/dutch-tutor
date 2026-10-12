@@ -4,11 +4,19 @@
 
 ## 当前阶段
 
-**阶段 4 第 4 批 4a 完成（NN46–50）。** 接着做 4b（NN51–55）、5a、5b。
+**阶段 4 第 4 批 4a 完成（NN46–50）。** 正在做 4b（NN51–55），之后 5a、5b。
 
 ## 进行中
 
-（无）
+施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f`（4a 合并后从 main 重开）· 子批 4b（NN51–55）· PR 见下
+
+- [ ] G20 weten / kennen（中英，pack_examples NN51-X1）+ NN51；own 词 kennen（NN51 word_ids）
+- [ ] NN52（只显示原书例句框）
+- [ ] NN53a（只用前面课的词）、NN53b（tip_links G11）
+- [ ] NN54（只显示原书例句框）
+- [ ] NN55（只显示原书例句框）
+- [ ] 合成音（tts.yml → 合并 tts/update PR）
+- [ ] typecheck / lint / test / validate、CI 全绿，合并到 main，STATUS 记"已完成"
 
 ## 已完成
 
