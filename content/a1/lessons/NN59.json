@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN59",
+  "kind": "main",
+  "pack_lesson": "NN59",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN59-A01",
+      "nl": "Wie is er aan de beurt?",
+      "zh": "轮到谁了？",
+      "en": "Whose turn is it?"
+    },
+    {
+      "id": "NN59-A02",
+      "nl": "Deze fiets is tweedehands.",
+      "zh": "这辆自行车是二手的。",
+      "en": "This bike is second-hand."
+    },
+    {
+      "id": "NN59-A03",
+      "nl": "Mijn telefoon is kapot.",
+      "zh": "我的手机坏了。",
+      "en": "My phone is broken."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN59-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN59-O1-1",
+          "context": {
+            "nl": "U wilt weten wat een jas kost.",
+            "zh": "您想知道一件外套多少钱。",
+            "en": "You want to know what a coat costs."
+          },
+          "start": {
+            "nl": "Hoeveel ...",
+            "zh": "……多少钱？",
+            "en": "How much ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Hoeveel kost deze jas?",
+              "zh": "这件外套多少钱？",
+              "en": "How much is this coat?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN59-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN59-O2-1",
+          "question": {
+            "nl": "Vindt u tweedehands spullen goed?",
+            "zh": "您觉得二手东西好吗？",
+            "en": "Do you like second-hand things?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, tweedehands is goedkoop.",
+              "zh": "好，二手的便宜。",
+              "en": "Yes, second-hand is cheap."
+            },
+            {
+              "nl": "Nee, ik heb liever nieuwe spullen.",
+              "zh": "不好，我更喜欢新东西。",
+              "en": "No, I prefer new things."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN59-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Fietsen huren bij het station",
+          "zh": "车站租自行车",
+          "en": "Bike hire at the station"
+        },
+        {
+          "nl": "Een gewone fiets: 10 euro per dag.",
+          "zh": "普通自行车：每天 10 欧元。",
+          "en": "A normal bike: 10 euros a day."
+        },
+        {
+          "nl": "Een fiets voor twee personen: 25 euro per dag.",
+          "zh": "双人自行车：每天 25 欧元。",
+          "en": "A bike for two people: 25 euros a day."
+        },
+        {
+          "nl": "Huurt u een gewone fiets voor vijf dagen? Dan betaalt u maar 40 euro.",
+          "zh": "普通自行车租五天只要 40 欧元。",
+          "en": "Hiring a normal bike for five days? Then you pay only 40 euros."
+        },
+        {
+          "nl": "Is de fiets kapot? Dan helpen wij u gratis.",
+          "zh": "车坏了？我们免费帮您修。",
+          "en": "Is the bike broken? Then we help you for free."
+        },
+        {
+          "nl": "Wij zijn open van 7.00 tot 19.00 uur.",
+          "zh": "营业时间 7:00 到 19:00。",
+          "en": "We are open from 7.00 to 19.00."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN59-R1-1",
+          "question": {
+            "nl": "Hoeveel kost een gewone fiets voor één dag?",
+            "zh": "普通自行车租一天多少钱？",
+            "en": "How much is a normal bike for one day?"
+          },
+          "options": [
+            {
+              "nl": "10 euro.",
+              "zh": "10 欧元。",
+              "en": "10 euros."
+            },
+            {
+              "nl": "25 euro.",
+              "zh": "25 欧元。",
+              "en": "25 euros."
+            },
+            {
+              "nl": "40 euro.",
+              "zh": "40 欧元。",
+              "en": "40 euros."
+            }
+          ],
+          "answer": "10 euro."
+        },
+        {
+          "id": "NN59-R1-2",
+          "question": {
+            "nl": "Wat betaalt u als de fiets kapot is?",
+            "zh": "车坏了要付多少钱？",
+            "en": "What do you pay if the bike is broken?"
+          },
+          "options": [
+            {
+              "nl": "Niets.",
+              "zh": "不用付钱。",
+              "en": "Nothing."
+            },
+            {
+              "nl": "10 euro.",
+              "zh": "10 欧元。",
+              "en": "10 euros."
+            },
+            {
+              "nl": "25 euro.",
+              "zh": "25 欧元。",
+              "en": "25 euros."
+            }
+          ],
+          "answer": "Niets."
+        }
+      ]
+    }
+  ]
+}
