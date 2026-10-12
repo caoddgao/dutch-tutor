@@ -1,0 +1,180 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN55",
+  "kind": "main",
+  "pack_lesson": "NN55",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN55-A01",
+      "nl": "Het pretpark is fantastisch!",
+      "zh": "游乐园棒极了！",
+      "en": "The theme park is fantastic!"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN55-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN55-O1-1",
+          "context": {
+            "nl": "Een vriend wil zaterdag een dagje op stap.",
+            "zh": "一位朋友星期六想出去玩一天。",
+            "en": "A friend wants to have a day out on Saturday."
+          },
+          "start": {
+            "nl": "Wat dacht je van ...",
+            "zh": "……怎么样？",
+            "en": "How about ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Wat dacht je van een dagje naar het strand?",
+              "zh": "去海滩玩一天怎么样？",
+              "en": "How about a day at the beach?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN55-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN55-O2-1",
+          "question": {
+            "nl": "Wat doet u graag op een vrije dag?",
+            "zh": "休息日您喜欢做什么？",
+            "en": "What do you like doing on a day off?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga graag naar het strand.",
+              "zh": "我喜欢去海滩。",
+              "en": "I like going to the beach."
+            },
+            {
+              "nl": "Ik fiets graag langs de rivier.",
+              "zh": "我喜欢沿着河边骑车。",
+              "en": "I like cycling along the river."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN55-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Varen op de rivier!",
+          "zh": "坐船游河！",
+          "en": "Boat trips on the river!"
+        },
+        {
+          "nl": "De boot vertrekt elke dag om 10.00 uur en om 14.00 uur bij de brug.",
+          "zh": "游船每天 10:00 和 14:00 在桥边出发。",
+          "en": "The boat leaves from the bridge every day at 10.00 and at 14.00."
+        },
+        {
+          "nl": "Op zaterdag gaat er ook een boot om 16.00 uur.",
+          "zh": "星期六 16:00 还有一班。",
+          "en": "On Saturday there is also a boat at 16.00."
+        },
+        {
+          "nl": "Na twee uur bent u weer terug bij de brug.",
+          "zh": "两小时后回到桥边。",
+          "en": "After two hours you are back at the bridge."
+        },
+        {
+          "nl": "Een kaartje kost 15 euro; kinderen tot 12 jaar betalen 8 euro.",
+          "zh": "船票 15 欧元；12 岁以下儿童 8 欧元。",
+          "en": "A ticket costs 15 euros; children up to 12 pay 8 euros."
+        },
+        {
+          "nl": "Op de boot kunt u iets drinken.",
+          "zh": "船上可以喝点东西。",
+          "en": "You can have a drink on the boat."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN55-R1-1",
+          "question": {
+            "nl": "Hoeveel betaalt een kind van 10 jaar?",
+            "zh": "10 岁的孩子付多少钱？",
+            "en": "How much does a 10-year-old child pay?"
+          },
+          "options": [
+            {
+              "nl": "8 euro.",
+              "zh": "8 欧元。",
+              "en": "8 euros."
+            },
+            {
+              "nl": "15 euro.",
+              "zh": "15 欧元。",
+              "en": "15 euros."
+            },
+            {
+              "nl": "12 euro.",
+              "zh": "12 欧元。",
+              "en": "12 euros."
+            }
+          ],
+          "answer": "8 euro."
+        },
+        {
+          "id": "NN55-R1-2",
+          "question": {
+            "nl": "Hoe laat vertrekt de tweede boot op maandag?",
+            "zh": "星期一第二班船几点出发？",
+            "en": "What time does the second boat leave on Monday?"
+          },
+          "options": [
+            {
+              "nl": "Om 14.00 uur.",
+              "zh": "14:00。",
+              "en": "At 14.00."
+            },
+            {
+              "nl": "Om 10.00 uur.",
+              "zh": "10:00。",
+              "en": "At 10.00."
+            },
+            {
+              "nl": "Om 16.00 uur.",
+              "zh": "16:00。",
+              "en": "At 16.00."
+            }
+          ],
+          "answer": "Om 14.00 uur."
+        }
+      ]
+    }
+  ]
+}
