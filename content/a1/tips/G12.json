@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G12",
+  "title": { "zh": "可分动词：小词跑到句末", "en": "Separable verbs" },
+  "body_zh": [
+    "有些动词前面带一个小词，比如 opbellen（打电话给）、meenemen（带上）、aandoen（穿上）；原形里它们连在一起。",
+    "在普通的句子里，变位的动词在第二位，小词放到句末：Ik bel je morgen op. Ik neem mijn bril mee.",
+    "和 wil、kan、moet 一起用时，原形放在句末、不分开：Ik wil je morgen opbellen."
+  ],
+  "body_en": [
+    "Some verbs start with a small word, such as opbellen (to call), meenemen (to take along) and aandoen (to put on); in the infinitive they are written as one word.",
+    "In a normal sentence the conjugated verb is in second place and the small word goes to the end: Ik bel je morgen op. Ik neem mijn bril mee.",
+    "With wil, kan or moet, the infinitive goes to the end and stays in one piece: Ik wil je morgen opbellen."
+  ],
+  "examples": [
+    { "id": "G12-X1", "nl": "Ik bel je morgen op.", "zh": "我明天给你打电话。", "en": "I'll call you tomorrow." },
+    { "id": "G12-X2", "nl": "Ik neem mijn bril mee.", "zh": "我把眼镜带上。", "en": "I take my glasses along." },
+    {
+      "id": "G12-X3",
+      "nl": "Doe je jas aan, het is koud.",
+      "zh": "穿上外套，天冷。",
+      "en": "Put your coat on, it's cold."
+    }
+  ],
+  "pack_examples": ["NN43-X1"],
+  "table": {
+    "head": ["原形", "句子里"],
+    "rows": [
+      ["opbellen", "Ik bel je op."],
+      ["meenemen", "Ik neem mijn bril mee."],
+      ["aandoen", "Ik doe mijn jas aan."]
+    ]
+  }
+}

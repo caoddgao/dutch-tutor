@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G18",
+  "title": { "zh": "比较级：更快、更贵、更好", "en": "Comparatives" },
+  "body_zh": [
+    "比较两样东西时，形容词后面加 -er，后面用 dan（比）：Mailen is sneller dan een brief.",
+    "拼写跟着读音变：groot → groter，goedkoop → goedkoper；以 r 结尾的加 -der：duur → duurder。",
+    "几个常用词不规则：goed → beter，veel → meer，graag → liever。"
+  ],
+  "body_en": [
+    "To compare two things, add -er to the adjective and use dan (than): Mailen is sneller dan een brief.",
+    "The spelling follows the sound: groot → groter, goedkoop → goedkoper; after r, add -der: duur → duurder.",
+    "A few common words are irregular: goed → beter, veel → meer, graag → liever."
+  ],
+  "examples": [
+    {
+      "id": "G18-X1",
+      "nl": "Bellen is duurder dan mailen.",
+      "zh": "打电话比发邮件贵。",
+      "en": "Calling is more expensive than emailing."
+    },
+    {
+      "id": "G18-X2",
+      "nl": "Mijn Nederlands is nu beter.",
+      "zh": "我的荷兰语现在更好了。",
+      "en": "My Dutch is better now."
+    },
+    {
+      "id": "G18-X3",
+      "nl": "In de zomer zijn de dagen langer.",
+      "zh": "夏天白天更长。",
+      "en": "In summer the days are longer."
+    }
+  ],
+  "pack_examples": ["NN41-X1"],
+  "table": {
+    "head": ["原级", "比较级", "意思"],
+    "rows": [
+      ["snel", "sneller", "更快"],
+      ["groot", "groter", "更大"],
+      ["goedkoop", "goedkoper", "更便宜"],
+      ["duur", "duurder", "更贵"],
+      ["goed", "beter", "更好"],
+      ["veel", "meer", "更多"]
+    ]
+  }
+}

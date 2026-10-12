@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/tip.schema.json",
+  "id": "G13",
+  "title": { "zh": "形容词加 -e", "en": "Adjectives with -e" },
+  "body_zh": [
+    "形容词放在名词前面时，一般要加 -e：een kleine stad，het oude huis。",
+    "只有一个例外：het 名词前面是 een、geen 或者没有冠词时，不加 -e：een klein land。",
+    "形容词放在 is、zijn 后面时不加 -e：Het huis is oud. 加 -e 时拼写跟着读音变：groot → grote，wit → witte。"
+  ],
+  "body_en": [
+    "An adjective before a noun usually gets -e: een kleine stad, het oude huis.",
+    "The one exception: before a het noun with een, geen or no article, there is no -e: een klein land.",
+    "After is or zijn there is no -e: Het huis is oud. With -e the spelling follows the sound: groot → grote, wit → witte."
+  ],
+  "examples": [
+    {
+      "id": "G13-X1",
+      "nl": "Ik woon in een kleine stad.",
+      "zh": "我住在一个小城市。",
+      "en": "I live in a small town."
+    },
+    {
+      "id": "G13-X2",
+      "nl": "Nederland is een klein land.",
+      "zh": "荷兰是个小国家。",
+      "en": "The Netherlands is a small country."
+    },
+    { "id": "G13-X3", "nl": "Het oude huis is mooi.", "zh": "那栋老房子很漂亮。", "en": "The old house is beautiful." }
+  ],
+  "pack_examples": ["NN44-X1"],
+  "table": {
+    "head": ["名词前面是", "de 名词", "het 名词"],
+    "rows": [
+      ["de / het / deze / mijn …", "de kleine stad", "het kleine land"],
+      ["een / geen / 不带冠词", "een kleine stad", "een klein land"],
+      ["is / zijn 后面", "De stad is klein.", "Het land is klein."]
+    ]
+  }
+}
