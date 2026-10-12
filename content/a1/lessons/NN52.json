@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN52",
+  "kind": "main",
+  "pack_lesson": "NN52",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN52-A01",
+      "nl": "Zullen we vanavond naar de bioscoop gaan?",
+      "zh": "我们今晚去看电影好吗？",
+      "en": "Shall we go to the cinema tonight?"
+    },
+    {
+      "id": "NN52-A02",
+      "nl": "Ik heb geen zin in een concert.",
+      "zh": "我不想去听音乐会。",
+      "en": "I don't feel like a concert."
+    },
+    {
+      "id": "NN52-A03",
+      "nl": "Ik ga graag uit met vrienden.",
+      "zh": "我喜欢和朋友出去玩。",
+      "en": "I like going out with friends."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN52-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN52-O1-1",
+          "context": {
+            "nl": "Uw vriend vraagt: gaan we zaterdag uit?",
+            "zh": "您的朋友问：我们星期六出去玩吗？",
+            "en": "Your friend asks: shall we go out on Saturday?"
+          },
+          "start": {
+            "nl": "Ja, leuk! Zullen we naar ...",
+            "zh": "好啊！我们去……好吗？",
+            "en": "Yes, nice! Shall we go to ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ja, leuk! Zullen we naar een restaurant gaan?",
+              "zh": "好啊！我们去饭馆好吗？",
+              "en": "Yes, nice! Shall we go to a restaurant?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN52-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN52-O2-1",
+          "question": {
+            "nl": "Wat doet u graag op zaterdagavond?",
+            "zh": "星期六晚上您喜欢做什么？",
+            "en": "What do you like doing on Saturday evening?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga graag naar de bioscoop.",
+              "zh": "我喜欢去看电影。",
+              "en": "I like going to the cinema."
+            },
+            {
+              "nl": "Ik ben het liefst thuis.",
+              "zh": "我最喜欢待在家里。",
+              "en": "I like being at home best."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN52-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Programma van de bioscoop in het centrum",
+          "zh": "市中心电影院节目单",
+          "en": "Programme of the cinema in the centre"
+        },
+        {
+          "nl": "Vrijdag: om 19.00 uur en om 21.30 uur een Nederlandse film.",
+          "zh": "星期五：19:00 和 21:30 放一部荷兰电影。",
+          "en": "Friday: a Dutch film at 19.00 and at 21.30."
+        },
+        {
+          "nl": "Zaterdag: om 14.00 uur een film voor kinderen.",
+          "zh": "星期六：14:00 放一部儿童片。",
+          "en": "Saturday: a children's film at 14.00."
+        },
+        {
+          "nl": "Zondag: geen voorstelling.",
+          "zh": "星期天：不放映。",
+          "en": "Sunday: no showing."
+        },
+        {
+          "nl": "Een kaartje kost 11 euro; kinderen betalen 7 euro.",
+          "zh": "票价 11 欧元，儿童 7 欧元。",
+          "en": "A ticket costs 11 euros; children pay 7 euros."
+        },
+        {
+          "nl": "In het café kunt u voor en na de film iets drinken.",
+          "zh": "电影前后可以在咖啡馆喝点东西。",
+          "en": "You can have a drink in the café before and after the film."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN52-R1-1",
+          "question": {
+            "nl": "Wanneer is de film voor kinderen?",
+            "zh": "儿童片哪天放？",
+            "en": "When is the children's film?"
+          },
+          "options": [
+            {
+              "nl": "Op zaterdag.",
+              "zh": "星期六。",
+              "en": "On Saturday."
+            },
+            {
+              "nl": "Op vrijdag.",
+              "zh": "星期五。",
+              "en": "On Friday."
+            },
+            {
+              "nl": "Op zondag.",
+              "zh": "星期天。",
+              "en": "On Sunday."
+            }
+          ],
+          "answer": "Op zaterdag."
+        },
+        {
+          "id": "NN52-R1-2",
+          "question": {
+            "nl": "Hoe laat begint de tweede film op vrijdag?",
+            "zh": "星期五第二场电影几点开始？",
+            "en": "What time does the second film start on Friday?"
+          },
+          "options": [
+            {
+              "nl": "Om 21.30 uur.",
+              "zh": "21:30。",
+              "en": "At 21.30."
+            },
+            {
+              "nl": "Om 19.00 uur.",
+              "zh": "19:00。",
+              "en": "At 19.00."
+            },
+            {
+              "nl": "Om 14.00 uur.",
+              "zh": "14:00。",
+              "en": "At 14.00."
+            }
+          ],
+          "answer": "Om 21.30 uur."
+        }
+      ]
+    }
+  ]
+}

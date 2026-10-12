@@ -1,0 +1,187 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN53a",
+  "kind": "main",
+  "pack_lesson": "NN53",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN53a-A01",
+      "nl": "Hoeveel moet ik betalen?",
+      "zh": "我要付多少钱？",
+      "en": "How much do I have to pay?"
+    },
+    {
+      "id": "NN53a-A02",
+      "nl": "Dat is samen 12 euro.",
+      "zh": "一共 12 欧元。",
+      "en": "That is 12 euros altogether."
+    },
+    {
+      "id": "NN53a-A03",
+      "nl": "Mag ik een tas?",
+      "zh": "能给我一个袋子吗？",
+      "en": "Can I have a bag?"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN53a-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN53a-O1-1",
+          "context": {
+            "nl": "U bent in een café. U wilt betalen.",
+            "zh": "您在咖啡馆，想结账。",
+            "en": "You are in a café. You want to pay."
+          },
+          "start": {
+            "nl": "Mag ik ...",
+            "zh": "我可以……",
+            "en": "May I ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Mag ik betalen, alstublieft?",
+              "zh": "请问我可以结账吗？",
+              "en": "May I pay, please?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN53a-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN53a-O2-1",
+          "question": {
+            "nl": "Hoe betaalt u meestal?",
+            "zh": "您一般怎么付钱？",
+            "en": "How do you usually pay?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik betaal meestal met mijn telefoon.",
+              "zh": "我一般用手机付钱。",
+              "en": "I usually pay with my phone."
+            },
+            {
+              "nl": "Ik betaal meestal met geld.",
+              "zh": "我一般付现金。",
+              "en": "I usually pay with cash."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN53a-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Café De Brug",
+          "zh": "桥头咖啡馆",
+          "en": "Café De Brug"
+        },
+        {
+          "nl": "Wij openen om 9.00 uur en sluiten om 18.00 uur.",
+          "zh": "我们 9:00 开门，18:00 关门。",
+          "en": "We open at 9.00 and close at 18.00."
+        },
+        {
+          "nl": "Op zaterdag sluiten wij om 15.00 uur; op zondag zijn wij dicht.",
+          "zh": "星期六 15:00 关门；星期天不营业。",
+          "en": "On Saturday we close at 15.00; on Sunday we are closed."
+        },
+        {
+          "nl": "Een broodje kaas kost 4,50 euro.",
+          "zh": "奶酪面包 4.50 欧元。",
+          "en": "A cheese roll costs 4.50 euros."
+        },
+        {
+          "nl": "U kunt hier niet met geld betalen, alleen met uw telefoon.",
+          "zh": "这里不收现金，只能用手机付款。",
+          "en": "You cannot pay with cash here, only with your phone."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN53a-R1-1",
+          "question": {
+            "nl": "Hoe laat sluit het café op zaterdag?",
+            "zh": "星期六咖啡馆几点关门？",
+            "en": "What time does the café close on Saturday?"
+          },
+          "options": [
+            {
+              "nl": "Om 15.00 uur.",
+              "zh": "15:00。",
+              "en": "At 15.00."
+            },
+            {
+              "nl": "Om 18.00 uur.",
+              "zh": "18:00。",
+              "en": "At 18.00."
+            },
+            {
+              "nl": "Om 9.00 uur.",
+              "zh": "9:00。",
+              "en": "At 9.00."
+            }
+          ],
+          "answer": "Om 15.00 uur."
+        },
+        {
+          "id": "NN53a-R1-2",
+          "question": {
+            "nl": "Hoe kunt u in het café betalen?",
+            "zh": "在咖啡馆怎么付钱？",
+            "en": "How can you pay in the café?"
+          },
+          "options": [
+            {
+              "nl": "Met uw telefoon.",
+              "zh": "用手机。",
+              "en": "With your phone."
+            },
+            {
+              "nl": "Met geld.",
+              "zh": "用现金。",
+              "en": "With cash."
+            },
+            {
+              "nl": "Met uw telefoon en met geld.",
+              "zh": "手机和现金都行。",
+              "en": "With your phone and with cash."
+            }
+          ],
+          "answer": "Met uw telefoon."
+        }
+      ]
+    }
+  ]
+}
