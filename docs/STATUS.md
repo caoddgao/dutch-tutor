@@ -14,7 +14,7 @@
 - [x] NN46（只显示原书例句框）：3/1/1/1，E9 老师停课邮件
 - [x] G19 最高级（中英，pack_examples NN47-X1）+ NN47（tips G19，tip_links G18）：3/1/1/1，E9 招聘广告；
   最高级词形：own 词 duur / goed / leuk / lang / graag 加 forms_seen（duurst(e)、best(e)、leukst(e)、langst(e)、liefst）
-- [ ] NN48（tip_links G19，NN48-X1 单独显示）
+- [x] NN48（tip_links G19，NN48-X1 单独显示）：3/1/1/1，E9 生日聚会邮件
 - [ ] NN49（只显示原书例句框）
 - [ ] NN50a（只用前面课的词）、NN50b
 - [ ] G16 钟点星期日期 → NN25b；G15 er is / er zijn → NN23（只加挂载）
