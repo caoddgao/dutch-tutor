@@ -2369,6 +2369,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.38
     },
+    "c72738af9f7398c5": {
+      "text": "Gaat u vaak naar uw familie?",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.59
+    },
     "c747e020d76bf840": {
       "text": "In de pauze wil ik water drinken.",
       "voice": "nl-NL-FennaNeural",
@@ -2589,6 +2594,11 @@
       "voice": "nl-NL-FennaNeural",
       "duration": 2.72
     },
+    "e20e19d2996f665b": {
+      "text": "Gisteren ben ik naar mijn broer gegaan.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.98
+    },
     "e23ce30933e851c3": {
       "text": "Ik ga graag dansen.",
       "voice": "nl-NL-FennaNeural",
@@ -2713,6 +2723,11 @@
       "text": "zijn",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "ecc6a79d635596fa": {
+      "text": "U gaat naar een vriend.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.25
     },
     "ecec2637ba32d4ef": {
       "text": "kosten",
@@ -2878,6 +2893,11 @@
       "text": "naar",
       "voice": "nl-NL-FennaNeural",
       "duration": 1.88
+    },
+    "fb18bf8645ac7f96": {
+      "text": "Zondag gaan wij naar mijn broer.",
+      "voice": "nl-NL-FennaNeural",
+      "duration": 2.61
     },
     "fd119ae74061ef06": {
       "text": "Mijn zoon is twee jaar.",
