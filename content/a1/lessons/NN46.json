@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN46",
+  "kind": "main",
+  "pack_lesson": "NN46",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN46-A01",
+      "nl": "Ik leer elke dag tien nieuwe woorden.",
+      "zh": "我每天学十个新词。",
+      "en": "I learn ten new words every day."
+    },
+    {
+      "id": "NN46-A02",
+      "nl": "Fouten zijn niet erg.",
+      "zh": "出错没关系。",
+      "en": "Mistakes are no problem."
+    },
+    {
+      "id": "NN46-A03",
+      "nl": "Herhalen is belangrijk.",
+      "zh": "复习很重要。",
+      "en": "Repeating is important."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN46-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN46-O1-1",
+          "context": {
+            "nl": "Een collega vraagt welke talen u spreekt.",
+            "zh": "一位同事问您会说哪些语言。",
+            "en": "A colleague asks which languages you speak."
+          },
+          "start": {
+            "nl": "Ik spreek ...",
+            "zh": "我会说……",
+            "en": "I speak ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik spreek Engels en een beetje Nederlands.",
+              "zh": "我会说英语和一点荷兰语。",
+              "en": "I speak English and a little Dutch."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN46-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN46-O2-1",
+          "question": {
+            "nl": "Hoe leert u nieuwe woorden?",
+            "zh": "您怎么学新词？",
+            "en": "How do you learn new words?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik herhaal de woorden elke dag.",
+              "zh": "我每天复习这些词。",
+              "en": "I repeat the words every day."
+            },
+            {
+              "nl": "Ik schrijf de woorden in een schrift.",
+              "zh": "我把词写在本子上。",
+              "en": "I write the words in a notebook."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN46-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Hallo allemaal,",
+          "zh": "大家好：",
+          "en": "Hello everyone,"
+        },
+        {
+          "nl": "Ik ben ziek, dus op maandag 6 oktober is er geen les.",
+          "zh": "我病了，所以 10 月 6 日星期一不上课。",
+          "en": "I am ill, so there is no lesson on Monday 6 October."
+        },
+        {
+          "nl": "We hebben les op woensdag 8 oktober, van 19.00 tot 21.00 uur.",
+          "zh": "10 月 8 日星期三上课，19:00 到 21:00。",
+          "en": "We have a lesson on Wednesday 8 October, from 19.00 to 21.00."
+        },
+        {
+          "nl": "Op vrijdag 10 oktober is de toets, om 10.00 uur.",
+          "zh": "10 月 10 日星期五考试，10:00 开始。",
+          "en": "The test is on Friday 10 October, at 10.00."
+        },
+        {
+          "nl": "Herhaal de woorden van les 5 en 6, en neem uw schrift mee.",
+          "zh": "请复习第 5、6 课的词，并带上本子。",
+          "en": "Go over the words of lessons 5 and 6, and bring your notebook."
+        },
+        {
+          "nl": "Groeten, Rachid",
+          "zh": "祝好，拉希德",
+          "en": "Regards, Rachid"
+        }
+      ],
+      "items": [
+        {
+          "id": "NN46-R1-1",
+          "question": {
+            "nl": "Wanneer is er geen les?",
+            "zh": "哪天不上课？",
+            "en": "When is there no lesson?"
+          },
+          "options": [
+            {
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
+            },
+            {
+              "nl": "Op woensdag.",
+              "zh": "星期三。",
+              "en": "On Wednesday."
+            },
+            {
+              "nl": "Op vrijdag.",
+              "zh": "星期五。",
+              "en": "On Friday."
+            }
+          ],
+          "answer": "Op maandag."
+        },
+        {
+          "id": "NN46-R1-2",
+          "question": {
+            "nl": "Hoe laat begint de toets?",
+            "zh": "考试几点开始？",
+            "en": "What time does the test start?"
+          },
+          "options": [
+            {
+              "nl": "Om 10.00 uur.",
+              "zh": "10:00。",
+              "en": "At 10.00."
+            },
+            {
+              "nl": "Om 19.00 uur.",
+              "zh": "19:00。",
+              "en": "At 19.00."
+            },
+            {
+              "nl": "Om 21.00 uur.",
+              "zh": "21:00。",
+              "en": "At 21.00."
+            }
+          ],
+          "answer": "Om 10.00 uur."
+        }
+      ]
+    }
+  ]
+}

@@ -8,10 +8,10 @@
 
 ## 进行中
 
-施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f` · 子批 4a（NN46–50）· PR 见下
+施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f` · 子批 4a（NN46–50）· PR #31
 （会话只能推送这一个分支：每个子批合并后，把它从最新 main 重开，接着做下一子批。）
 
-- [ ] NN46（只显示原书例句框）
+- [x] NN46（只显示原书例句框）：3/1/1/1，E9 老师停课邮件
 - [ ] G19 最高级（中英，pack_examples NN47-X1）+ NN47（tips G19，tip_links G18）
 - [ ] NN48（tip_links G19，NN48-X1 单独显示）
 - [ ] NN49（只显示原书例句框）
