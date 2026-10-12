@@ -1,0 +1,192 @@
+{
+  "$schema": "../../schema/own-lesson.schema.json",
+  "id": "NN56",
+  "kind": "main",
+  "pack_lesson": "NN56",
+  "auto_exercises": {
+    "E1": 1,
+    "E2": 1,
+    "E3": 1,
+    "E4": 1,
+    "E7": 1
+  },
+  "sentences": [
+    {
+      "id": "NN56-A01",
+      "nl": "Wat is uw hobby?",
+      "zh": "您的爱好是什么？",
+      "en": "What is your hobby?"
+    },
+    {
+      "id": "NN56-A02",
+      "nl": "In mijn vrije tijd ga ik zwemmen.",
+      "zh": "业余时间我去游泳。",
+      "en": "In my free time I go swimming."
+    },
+    {
+      "id": "NN56-A03",
+      "nl": "Ik zwem elke zaterdag.",
+      "zh": "我每个星期六游泳。",
+      "en": "I swim every Saturday."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "NN56-O1",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，把句子说完整。",
+        "en": "Listen to the situation and finish the sentence aloud."
+      },
+      "items": [
+        {
+          "id": "NN56-O1-1",
+          "context": {
+            "nl": "U stelt zich voor in de les.",
+            "zh": "您在课上做自我介绍。",
+            "en": "You introduce yourself in class."
+          },
+          "start": {
+            "nl": "In mijn vrije tijd ...",
+            "zh": "业余时间我……",
+            "en": "In my free time ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "In mijn vrije tijd fiets ik graag.",
+              "zh": "业余时间我喜欢骑车。",
+              "en": "In my free time I like cycling."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN56-O2",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord.",
+        "zh": "听问题，开口回答。",
+        "en": "Answer the question aloud."
+      },
+      "items": [
+        {
+          "id": "NN56-O2-1",
+          "question": {
+            "nl": "Hoeveel vrije tijd heeft u?",
+            "zh": "您有多少空闲时间？",
+            "en": "How much free time do you have?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik heb weinig vrije tijd, ik werk veel.",
+              "zh": "我空闲时间很少，工作很多。",
+              "en": "I have little free time, I work a lot."
+            },
+            {
+              "nl": "In het weekend heb ik veel vrije tijd.",
+              "zh": "周末我有很多空闲时间。",
+              "en": "At the weekend I have a lot of free time."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NN56-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选择正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Te koop: fiets voor kinderen van 6 tot 9 jaar",
+          "zh": "出售：6 到 9 岁儿童自行车",
+          "en": "For sale: bike for children aged 6 to 9"
+        },
+        {
+          "nl": "De fiets is twee jaar oud en nog heel goed.",
+          "zh": "车子用了两年，还很好。",
+          "en": "The bike is two years old and still very good."
+        },
+        {
+          "nl": "Prijs: 60 euro.",
+          "zh": "价格：60 欧元。",
+          "en": "Price: 60 euros."
+        },
+        {
+          "nl": "Een tas voor de fiets kost 10 euro extra.",
+          "zh": "车袋另加 10 欧元。",
+          "en": "A bag for the bike costs 10 euros extra."
+        },
+        {
+          "nl": "U kunt de fiets op zaterdag bekijken, van 10.00 tot 12.00 uur.",
+          "zh": "星期六 10:00 到 12:00 可以来看车。",
+          "en": "You can look at the bike on Saturday, from 10.00 to 12.00."
+        },
+        {
+          "nl": "U kunt Rachid bellen: 06-23456789.",
+          "zh": "请打电话给拉希德：06-23456789。",
+          "en": "You can call Rachid: 06-23456789."
+        }
+      ],
+      "items": [
+        {
+          "id": "NN56-R1-1",
+          "question": {
+            "nl": "Hoeveel betaalt u voor de fiets en de tas?",
+            "zh": "车子加车袋一共多少钱？",
+            "en": "How much do you pay for the bike and the bag?"
+          },
+          "options": [
+            {
+              "nl": "70 euro.",
+              "zh": "70 欧元。",
+              "en": "70 euros."
+            },
+            {
+              "nl": "60 euro.",
+              "zh": "60 欧元。",
+              "en": "60 euros."
+            },
+            {
+              "nl": "10 euro.",
+              "zh": "10 欧元。",
+              "en": "10 euros."
+            }
+          ],
+          "answer": "70 euro."
+        },
+        {
+          "id": "NN56-R1-2",
+          "question": {
+            "nl": "Hoe oud is de fiets?",
+            "zh": "这辆车用了几年？",
+            "en": "How old is the bike?"
+          },
+          "options": [
+            {
+              "nl": "Twee jaar.",
+              "zh": "两年。",
+              "en": "Two years."
+            },
+            {
+              "nl": "Zes jaar.",
+              "zh": "六年。",
+              "en": "Six years."
+            },
+            {
+              "nl": "Negen jaar.",
+              "zh": "九年。",
+              "en": "Nine years."
+            }
+          ],
+          "answer": "Twee jaar."
+        }
+      ]
+    }
+  ]
+}
