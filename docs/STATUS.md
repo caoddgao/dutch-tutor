@@ -11,7 +11,7 @@
 施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f`（5a 合并后从 main 重开）· 子批 5b（NN61–65）· PR #37
 
 - [x] NN61、NN62（只显示原书例句框）：各 3/1/1/1，E9 街区聚会通知 / 博物馆参观须知
-- [ ] NN63（tip_links G14）
+- [x] NN63（tip_links G14）：3/1/1/1，E9 讲座通知
 - [ ] NN64、NN65（只显示原书例句框）
 - [ ] 合成音（tts.yml → 合并 tts/update PR）
 - [ ] CI 全绿，合并到 main；STATUS 收尾（清空"进行中"，当前阶段改为"阶段 4 正课全部完成，等审核"）
