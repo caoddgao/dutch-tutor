@@ -8,7 +8,17 @@
 
 ## 进行中
 
-（无）
+施工者：Claude（云端会话）· 分支 `claude/funny-cray-05j16f` · 子批 4a（NN46–50）· PR 见下
+（会话只能推送这一个分支：每个子批合并后，把它从最新 main 重开，接着做下一子批。）
+
+- [ ] NN46（只显示原书例句框）
+- [ ] G19 最高级（中英，pack_examples NN47-X1）+ NN47（tips G19，tip_links G18）
+- [ ] NN48（tip_links G19，NN48-X1 单独显示）
+- [ ] NN49（只显示原书例句框）
+- [ ] NN50a（只用前面课的词）、NN50b
+- [ ] G16 钟点星期日期 → NN25b；G15 er is / er zijn → NN23（只加挂载）
+- [ ] 合成音（tts.yml → 合并 tts/update PR）
+- [ ] typecheck / lint / test / validate、CI 全绿，合并到 main，STATUS 记"已完成"
 
 ## 已完成
 
