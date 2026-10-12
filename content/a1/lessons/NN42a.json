@@ -3,7 +3,6 @@
   "id": "NN42a",
   "kind": "main",
   "pack_lesson": "NN42",
-  "tip_links": ["G14"],
   "auto_exercises": {
     "E1": 1,
     "E2": 1,
@@ -14,9 +13,9 @@
   "sentences": [
     {
       "id": "NN42a-A01",
-      "nl": "Zondag gaan wij op bezoek bij mijn broer.",
-      "zh": "星期天我们去我哥哥家做客。",
-      "en": "On Sunday we visit my brother."
+      "nl": "Zondag gaan wij naar mijn broer.",
+      "zh": "星期天我们去我哥哥家。",
+      "en": "On Sunday we go to my brother's."
     },
     {
       "id": "NN42a-A02",
@@ -26,9 +25,9 @@
     },
     {
       "id": "NN42a-A03",
-      "nl": "Gisteren ben ik bij mijn broer op bezoek gegaan.",
-      "zh": "昨天我去哥哥家做客了。",
-      "en": "Yesterday I went to visit my brother."
+      "nl": "Gisteren ben ik naar mijn broer gegaan.",
+      "zh": "昨天我去了哥哥家。",
+      "en": "Yesterday I went to my brother's."
     }
   ],
   "exercises": [
@@ -44,9 +43,9 @@
         {
           "id": "NN42a-O1-1",
           "context": {
-            "nl": "U gaat op bezoek bij een vriend.",
-            "zh": "您去一个朋友家做客。",
-            "en": "You are visiting a friend."
+            "nl": "U gaat naar een vriend.",
+            "zh": "您要去一个朋友家。",
+            "en": "You are going to a friend's house."
           },
           "start": {
             "nl": "Ik neem ...",
@@ -75,9 +74,9 @@
         {
           "id": "NN42a-O2-1",
           "question": {
-            "nl": "Gaat u vaak op bezoek bij familie?",
-            "zh": "您常去亲戚家做客吗？",
-            "en": "Do you often visit family?"
+            "nl": "Gaat u vaak naar uw familie?",
+            "zh": "您常去看家人吗？",
+            "en": "Do you often go to see your family?"
           },
           "sample_answers": [
             {
