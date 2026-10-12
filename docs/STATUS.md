@@ -8,7 +8,11 @@
 
 ## 进行中
 
-（无）
+施工者：Claude · 分支 `claude/awesome-rubin-g8548e` · PR （待开）· 3b（NN39–45，NN42 拆 42a/42b，共 8 节）
+
+- [ ] G18 G12 G13
+- [ ] NN39  - [ ] NN40  - [ ] NN41  - [ ] NN42a  - [ ] NN42b  - [ ] NN43  - [ ] NN44  - [ ] NN45
+- [ ] 合成音  - [ ] typecheck / lint / test / validate 全过、CI 全绿、合并
 
 ## 已完成
 
