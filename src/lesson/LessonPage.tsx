@@ -139,7 +139,7 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
     return () => {
       cancelled = true;
     };
-  }, [db, lesson.id, steps]);
+  }, [db, lesson.id, lesson.kind, steps]);
 
   useEffect(() => {
     if (lesson.kind !== "test") return;

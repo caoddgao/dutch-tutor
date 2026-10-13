@@ -132,7 +132,7 @@ export function ExamPage() {
       <aside className="card exam-official">
         <div>
           <h3>还想试试官方练习考？</h3>
-          <p className="muted">官方口语练习考约 30 分钟；阅读练习考有 19 题，限时 35 分钟。</p>
+          <p className="muted">官方口语练习考 30 分钟；阅读练习考有 19 题，限时 35 分钟。</p>
         </div>
         <a className="btn btn-ghost" href={OFFICIAL_URL} target="_blank" rel="noreferrer">
           打开官方练习考 <ExternalLink size={16} aria-hidden />

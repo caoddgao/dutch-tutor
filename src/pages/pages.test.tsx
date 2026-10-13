@@ -1,4 +1,4 @@
-import { act, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { saveExamResult } from "../storage/examResults";
 import { beforeEach, describe, expect, it } from "vitest";
 import { App } from "../App";
@@ -118,6 +118,20 @@ describe("HomePage", () => {
     );
     const cont = await screen.findByRole("region", { name: "继续学习" });
     expect(within(cont).getByText("导入资料包，开始学正课")).toBeTruthy();
+  });
+});
+
+describe("ExamPage", () => {
+  it("opens both parts with the agreed counts and links the official exam", async () => {
+    await renderAt("#/exam");
+    const official = screen.getByRole("link", { name: /打开官方练习考/ });
+    expect(official.getAttribute("href")).toBe("https://www.naarnederland.nl/en-GB/taking-practice-exams");
+    fireEvent.click(screen.getByRole("button", { name: "开始口语" }));
+    expect(await screen.findByText("第 1 / 22 题")).toBeTruthy();
+    expect(screen.getByText("Wat doet u op een vrije zaterdag?")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /返回考试/ }));
+    fireEvent.click(screen.getByRole("button", { name: "开始阅读" }));
+    expect(await screen.findByText("第 1 / 19 题")).toBeTruthy();
   });
 });
 
