@@ -189,9 +189,9 @@
               "en": "I like warm weather."
             },
             {
-              "nl": "Ik vind de lente fijn.",
-              "zh": "我喜欢春天。",
-              "en": "I like spring."
+              "nl": "Ik vind droog weer fijn.",
+              "zh": "我喜欢干燥的天气。",
+              "en": "I like dry weather."
             }
           ]
         },
@@ -270,9 +270,9 @@
               "en": "Where is the station?"
             },
             {
-              "nl": "Waar is de weg naar het station?",
-              "zh": "去车站的路在哪里？",
-              "en": "Where is the way to the station?"
+              "nl": "Waar is het station precies?",
+              "zh": "车站具体在哪里？",
+              "en": "Where exactly is the station?"
             }
           ]
         },
@@ -810,9 +810,14 @@
           "en": "The red bicycle costs sixty euros and the green one ninety."
         },
         {
-          "nl": "U kunt zaterdag tussen tien en twaalf uur kijken.",
-          "zh": "星期六十点到十二点可以来看。",
-          "en": "You can look on Saturday between ten and twelve."
+          "nl": "Vrijdag kunt u de rode en groene fiets tussen twee en vier uur bekijken.",
+          "zh": "星期五两点到四点可以看红色和绿色自行车。",
+          "en": "You can see the red and green bicycles on Friday between two and four."
+        },
+        {
+          "nl": "Zaterdag kunt u de blauwe fiets tussen tien en twaalf uur bekijken.",
+          "zh": "星期六十点到十二点可以看蓝色自行车。",
+          "en": "You can see the blue bicycle on Saturday between ten and twelve."
         },
         {
           "nl": "Op zondag is de winkel dicht.",
@@ -850,25 +855,25 @@
         {
           "id": "MOCK-R3-2",
           "question": {
-            "nl": "Wanneer kunt u de fietsen bekijken?",
-            "zh": "您什么时候可以来看自行车？",
-            "en": "When can you see the bicycles?"
+            "nl": "Wanneer kunt u de blauwe fiets bekijken?",
+            "zh": "您什么时候可以看蓝色自行车？",
+            "en": "When can you see the blue bicycle?"
           },
           "options": [
+            {
+              "nl": "Vrijdag tussen twee en vier uur.",
+              "zh": "星期五两点到四点。",
+              "en": "Friday between two and four."
+            },
             {
               "nl": "Zaterdag tussen tien en twaalf uur.",
               "zh": "星期六十点到十二点。",
               "en": "Saturday between ten and twelve."
             },
             {
-              "nl": "Zondag tussen tien en twaalf uur.",
-              "zh": "星期天十点到十二点。",
-              "en": "Sunday between ten and twelve."
-            },
-            {
-              "nl": "Zaterdag na twaalf uur.",
-              "zh": "星期六十二点以后。",
-              "en": "Saturday after twelve."
+              "nl": "Op zondag.",
+              "zh": "星期天。",
+              "en": "On Sunday."
             }
           ],
           "answer": "Zaterdag tussen tien en twaalf uur."

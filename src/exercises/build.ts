@@ -225,8 +225,8 @@ function packItemQuestion(ex: PackExercise, it: PackExerciseItem, rnd: () => num
   }
 }
 
-function ownGroup(
-  lesson: RtLesson,
+export function ownGroup(
+  lesson: Pick<RtLesson, "words" | "sentences">,
   ex: OwnExercise,
   dict: Dictionary,
   tts: TtsManifest,
