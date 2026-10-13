@@ -163,9 +163,9 @@
         {
           "id": "NN52-R1-2",
           "question": {
-            "nl": "Hoe laat begint de tweede film op vrijdag?",
-            "zh": "星期五第二场电影几点开始？",
-            "en": "What time does the second film start on Friday?"
+            "nl": "Hoe laat begint de tweede voorstelling op vrijdag?",
+            "zh": "星期五第二场几点开始？",
+            "en": "What time does the second showing start on Friday?"
           },
           "options": [
             {
