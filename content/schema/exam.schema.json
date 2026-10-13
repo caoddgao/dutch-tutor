@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "exam.schema.json",
+  "title": "结业模拟考",
+  "type": "object",
+  "required": ["id", "title", "exercises"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "title": { "$ref": "common.schema.json#/$defs/trilingual" },
+    "exercises": {
+      "type": "array",
+      "items": { "$ref": "own-lesson.schema.json#/$defs/exercise" }
+    }
+  }
+}
