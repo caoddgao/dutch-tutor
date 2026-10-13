@@ -109,9 +109,9 @@
               "en": "I call the general practitioner."
             },
             {
-              "nl": "Ik ga niet naar mijn werk en ik lig in bed.",
-              "zh": "我不去上班，躺在床上。",
-              "en": "I don't go to work and I stay in bed."
+              "nl": "Ik lig in bed.",
+              "zh": "我躺在床上休息。",
+              "en": "I stay in bed."
             }
           ]
         },
@@ -229,9 +229,9 @@
         {
           "id": "MOCK-OC-01",
           "context": {
-            "nl": "U bent te laat voor de les. De bus heeft vertraging.",
-            "zh": "您上课迟到了，公交车晚点了。",
-            "en": "You are late for class. The bus is delayed."
+            "nl": "U bent te laat voor de les.",
+            "zh": "您上课迟到了。",
+            "en": "You are late for class."
           },
           "start": {
             "nl": "Ik ben te laat, want de ...",
@@ -245,9 +245,9 @@
               "en": "I am late, because the bus is delayed."
             },
             {
-              "nl": "Ik ben te laat, want de bus was niet op tijd.",
-              "zh": "我迟到了，因为公交车没准时。",
-              "en": "I am late, because the bus was not on time."
+              "nl": "Ik ben te laat, want de trein was niet op tijd.",
+              "zh": "我迟到了，因为火车没准时。",
+              "en": "I am late, because the train was not on time."
             }
           ]
         },
@@ -454,9 +454,9 @@
         {
           "id": "MOCK-OC-10",
           "context": {
-            "nl": "U wilt zaterdag naar het museum. U vraagt uw buurman mee.",
-            "zh": "您星期六想去博物馆，约邻居一起去。",
-            "en": "You want to go to the museum on Saturday. You ask your neighbour along."
+            "nl": "U vraagt uw buurman mee naar het museum.",
+            "zh": "您约邻居一起去博物馆。",
+            "en": "You ask your neighbour to come to the museum."
           },
           "start": {
             "nl": "Gaat u ...",
