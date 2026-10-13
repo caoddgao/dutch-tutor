@@ -16,32 +16,40 @@ export function DoneStep({ lesson, added, score, onRestart }: Props) {
       <div className="done-icon">
         <PartyPopper size={34} aria-hidden />
       </div>
-      <h2 className="done-title">{lesson.code} 学完了！</h2>
+      <h2 className="done-title">
+        {lesson.code} {lesson.kind === "test" ? "完成了！" : "学完了！"}
+      </h2>
       <ul className="done-stats">
-        <li>
-          <strong>{lesson.sentences.length + (lesson.reading?.sentences.length ?? 0)}</strong>
-          <span>句子</span>
-        </li>
-        <li>
-          <strong>{new Set([...lesson.newWordIds, ...(lesson.reading?.newWordIds ?? [])]).size}</strong>
-          <span>新词</span>
-        </li>
+        {lesson.kind !== "test" && (
+          <>
+            <li>
+              <strong>{lesson.sentences.length + (lesson.reading?.sentences.length ?? 0)}</strong>
+              <span>句子</span>
+            </li>
+            <li>
+              <strong>{new Set([...lesson.newWordIds, ...(lesson.reading?.newWordIds ?? [])]).size}</strong>
+              <span>新词</span>
+            </li>
+          </>
+        )}
         {score && score.total > 0 && (
           <li>
             <strong>
               {score.correct}/{score.total}
             </strong>
-            <span>练习答对</span>
+            <span>{lesson.kind === "test" ? "测验得分" : "练习答对"}</span>
           </li>
         )}
       </ul>
-      <p className="muted done-text">
-        {added === null
-          ? "正在加入复习…"
-          : added > 0
-            ? `本课的 ${added} 个句子和词已进入复习，明天开始出现在“今日复习”里。`
-            : "本课的句子和词已经在复习里了，会按原来的安排出现。"}
-      </p>
+      {lesson.kind !== "test" && (
+        <p className="muted done-text">
+          {added === null
+            ? "正在加入复习…"
+            : added > 0
+              ? `本课的 ${added} 个句子和词已进入复习，明天开始出现在“今日复习”里。`
+              : "本课的句子和词已经在复习里了，会按原来的安排出现。"}
+        </p>
+      )}
       <div className="done-actions">
         <Link to="/courses" className="btn btn-primary">
           返回课程地图
@@ -49,7 +57,7 @@ export function DoneStep({ lesson, added, score, onRestart }: Props) {
         </Link>
         <button type="button" className="btn btn-ghost" onClick={onRestart}>
           <RotateCcw size={16} aria-hidden />
-          再学一遍
+          {lesson.kind === "test" ? "再测一次" : "再学一遍"}
         </button>
       </div>
     </div>

@@ -4,7 +4,15 @@ import { STATUS_LABEL, type DisplayStatus, type LessonSummary } from "../course/
 import { ProgressBar } from "./ProgressBar";
 import "./LessonCard.css";
 
-export function LessonCard({ lesson, status }: { lesson: LessonSummary; status: DisplayStatus }) {
+export function LessonCard({
+  lesson,
+  status,
+  score,
+}: {
+  lesson: LessonSummary;
+  status: DisplayStatus;
+  score?: { correct: number; total: number };
+}) {
   const pct = Math.round(lesson.progress * 100);
   const reviewable = lesson.status !== "new";
   return (
@@ -19,12 +27,19 @@ export function LessonCard({ lesson, status }: { lesson: LessonSummary; status: 
           <p className="zh lesson-zh">{lesson.title.zh}</p>
           <p className="en lesson-en">{lesson.title.en}</p>
         </div>
-        <div className={`lesson-card-progress${reviewable ? " has-review" : ""}`}>
-          <ProgressBar value={lesson.progress} label={`${lesson.code} ${reviewable ? "掌握度" : "进度"}`} />
-          <span className="lesson-pct">{pct}%</span>
-        </div>
+        {lesson.kind === "test" && score && (
+          <p className="muted">
+            上次得分 {score.correct} / {score.total} · 可重做
+          </p>
+        )}
+        {lesson.kind !== "test" && (
+          <div className={`lesson-card-progress${reviewable ? " has-review" : ""}`}>
+            <ProgressBar value={lesson.progress} label={`${lesson.code} ${reviewable ? "掌握度" : "进度"}`} />
+            <span className="lesson-pct">{pct}%</span>
+          </div>
+        )}
       </Link>
-      {reviewable && (
+      {reviewable && lesson.kind !== "test" && (
         <Link to={`/review/lesson/${lesson.id}`} className="lesson-card-review" aria-label={`复习${lesson.code}`}>
           <Repeat2 size={13} aria-hidden />
           复习

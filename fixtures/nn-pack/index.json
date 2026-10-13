@@ -143,6 +143,60 @@
         "dertig",
         "vierentwintig"
       ]
+    },
+    {
+      "id": "TT1",
+      "kind": "test",
+      "title": {
+        "nl": "Oefentoets 1",
+        "zh": "阶段测验 1",
+        "en": "Stage test 1"
+      },
+      "sentence_count": 0,
+      "line_count": 0,
+      "new_word_count": 0,
+      "total_seconds": 0,
+      "max_sentence_seconds": 0,
+      "over_5s_count": 0,
+      "exercise_count": 1,
+      "skipped_exercises": 0,
+      "new_lemmas": []
+    },
+    {
+      "id": "TT2",
+      "kind": "test",
+      "title": {
+        "nl": "Oefentoets 2",
+        "zh": "阶段测验 2",
+        "en": "Stage test 2"
+      },
+      "sentence_count": 0,
+      "line_count": 0,
+      "new_word_count": 0,
+      "total_seconds": 0,
+      "max_sentence_seconds": 0,
+      "over_5s_count": 0,
+      "exercise_count": 1,
+      "skipped_exercises": 0,
+      "new_lemmas": []
+    },
+    {
+      "id": "TT3",
+      "kind": "test",
+      "title": {
+        "nl": "Oefentoets 3",
+        "zh": "阶段测验 3",
+        "en": "Stage test 3"
+      },
+      "sentence_count": 0,
+      "line_count": 0,
+      "new_word_count": 0,
+      "total_seconds": 0,
+      "max_sentence_seconds": 0,
+      "over_5s_count": 0,
+      "exercise_count": 1,
+      "skipped_exercises": 0,
+      "new_lemmas": []
     }
   ]
 }

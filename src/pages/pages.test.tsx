@@ -1,4 +1,5 @@
 import { act, render, screen, within } from "@testing-library/react";
+import { saveExamResult } from "../storage/examResults";
 import { beforeEach, describe, expect, it } from "vitest";
 import { App } from "../App";
 import { completeLesson, markStudyDay, savePosition } from "../storage/learning";
@@ -52,6 +53,17 @@ describe("CoursesPage", () => {
     expect((await screen.findAllByText("需要资料包")).length).toBeGreaterThan(0);
     expect(screen.queryByText("Bij de bakker")).toBeNull();
     expect(screen.getByText(/第 21–65 课的课文/)).toBeTruthy();
+  });
+
+  it("places stage tests after lessons 35, 45 and 55 and shows the latest score", async () => {
+    await renderAt("#/courses", async ({ db }) => saveExamResult(db, "TT1", 7, 9));
+    await screen.findByText("上次得分 7 / 9 · 可重做");
+    const cards = [...document.querySelectorAll(".lesson-grid .lesson-card-link")].map((a) => a.getAttribute("href"));
+    expect(cards).toContain("#/lesson/TT1");
+    expect(cards.indexOf("#/lesson/TT1")).toBeGreaterThan(cards.indexOf("#/lesson/NN22b"));
+    expect(cards.indexOf("#/lesson/TT2")).toBeGreaterThan(cards.indexOf("#/lesson/TT1"));
+    expect(cards.indexOf("#/lesson/TT3")).toBeGreaterThan(cards.indexOf("#/lesson/TT2"));
+    expect(screen.getByRole("link", { name: "测验 1 Oefentoets 1" })).toBeTruthy();
   });
 });
 

@@ -1,0 +1,35 @@
+{
+  "id": "TT3",
+  "nn_lesson": 0,
+  "kind": "test",
+  "title": {
+    "nl": "Oefentoets 3",
+    "zh": "阶段测验 3",
+    "en": "Stage test 3"
+  },
+  "sentences": [],
+  "exercises": [
+    {
+      "id": "TT3-E1",
+      "nn_number": 1,
+      "type": "choose_one",
+      "instruction": {
+        "nl": "Omcirkel het goede antwoord.",
+        "zh": "圈出正确答案。",
+        "en": "Circle the correct answer."
+      },
+      "items": [
+        {
+          "id": "TT3-E1-1",
+          "prompt": "Wat koop je bij de bakker?",
+          "options": ["brood", "fiets", "trein"],
+          "answer": "brood",
+          "zh": "在面包店买什么？",
+          "en": "What do you buy at the bakery?"
+        }
+      ],
+      "skip": false,
+      "skip_reason": null
+    }
+  ]
+}
