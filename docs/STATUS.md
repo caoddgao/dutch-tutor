@@ -86,6 +86,8 @@
     审核会话直接修正（只改 E9，不涉及合成音）：NN50b 路线改为 Rotterdam → Den Haag 换车 → Amsterdam（原来经 Rotterdam 绕回，且干扰项 11.00
     不在短文里）；NN52 "tweede film" → "tweede voorstelling"；NN46 "Hallo allemaal" 配 "jullie schrift"；NN58 "idee voor de lijst" →
     "voor de kantine"；NN64 "0.00 uur" → "24.00 uur"。`--pack` 报告里 NN55、NN59 "课文 37 句"是把补充短句算进去的提示，拆分只看课文句，不用管。
+23. NN61–65 英文课题去掉 "Lesson 61." 前缀（2026-10-14，审核会话）：用户电脑上资料包的 index.json、lessons/NN61–65.json 和 NN_Pack\nn-index.json，
+    以及仓库 `content/a1/nn-index.json` 同步修改（与资料包 index 一致）。用户需在程序里重新导入资料包。
 
 ## 待决问题
 
@@ -94,6 +96,5 @@
 ## 已知问题
 
 - "生成合成音"工作流开的 PR 不会触发 CI（GitHub 的规定），合进主 PR 分支后由主 PR 的 CI 再跑一遍。
-- 真资料包 index.json 和 `content/a1/nn-index.json` 里 NN61–NN65 的英文标题带 "Lesson 61." 前缀（2026-10-14 仍在），课程卡会原样显示；待 DS 修资料包后同步 nn-index。
 - 无资料包时 nn-index 只列每课的新词：NN01–13 首次出现、只被 P 课关联的词在后面的课里会被误报（只是提示）。
 
