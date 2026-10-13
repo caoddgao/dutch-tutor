@@ -108,9 +108,9 @@
           "en": "Rules in the park"
         },
         {
-          "nl": "Het park is open van 6.00 tot 0.00 uur.",
-          "zh": "公园 6:00 到 0:00 开放。",
-          "en": "The park is open from 6.00 to 0.00."
+          "nl": "Het park is open van 6.00 tot 24.00 uur.",
+          "zh": "公园 6:00 到 24:00 开放。",
+          "en": "The park is open from 6.00 to 24.00."
         },
         {
           "nl": "Honden moeten altijd aan de lijn.",
@@ -153,9 +153,9 @@
               "en": "At 22.00."
             },
             {
-              "nl": "Om 0.00 uur.",
-              "zh": "0:00。",
-              "en": "At 0.00."
+              "nl": "Om 24.00 uur.",
+              "zh": "24:00。",
+              "en": "At 24.00."
             }
           ],
           "answer": "Om 6.00 uur."

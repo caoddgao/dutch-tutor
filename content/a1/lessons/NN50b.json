@@ -108,14 +108,14 @@
           "en": "Hello Rachid,"
         },
         {
-          "nl": "Ik neem de trein van 14.05 uur uit Den Haag.",
-          "zh": "我坐 14:05 从海牙出发的火车。",
-          "en": "I am taking the 14.05 train from The Hague."
+          "nl": "Ik neem de trein van 14.05 uur uit Rotterdam; om 14.30 uur ben ik in Den Haag.",
+          "zh": "我坐 14:05 从鹿特丹出发的火车，14:30 到海牙。",
+          "en": "I am taking the 14.05 train from Rotterdam; at 14.30 I am in The Hague."
         },
         {
-          "nl": "In Rotterdam stap ik over op de trein naar Amsterdam.",
-          "zh": "我在鹿特丹换乘去阿姆斯特丹的火车。",
-          "en": "In Rotterdam I change to the train to Amsterdam."
+          "nl": "In Den Haag stap ik over op de trein naar Amsterdam.",
+          "zh": "我在海牙换乘去阿姆斯特丹的火车。",
+          "en": "In The Hague I change to the train to Amsterdam."
         },
         {
           "nl": "Die is om 15.40 uur in Amsterdam, op spoor 11.",
@@ -143,14 +143,14 @@
           },
           "options": [
             {
-              "nl": "In Rotterdam.",
-              "zh": "在鹿特丹。",
-              "en": "In Rotterdam."
-            },
-            {
               "nl": "In Den Haag.",
               "zh": "在海牙。",
               "en": "In The Hague."
+            },
+            {
+              "nl": "In Rotterdam.",
+              "zh": "在鹿特丹。",
+              "en": "In Rotterdam."
             },
             {
               "nl": "In Amsterdam.",
@@ -158,7 +158,7 @@
               "en": "In Amsterdam."
             }
           ],
-          "answer": "In Rotterdam."
+          "answer": "In Den Haag."
         },
         {
           "id": "NN50b-R1-2",
@@ -179,9 +179,9 @@
               "en": "At 14.05."
             },
             {
-              "nl": "Om 11.00 uur.",
-              "zh": "11:00。",
-              "en": "At 11.00."
+              "nl": "Om 14.30 uur.",
+              "zh": "14:30。",
+              "en": "At 14.30."
             }
           ],
           "answer": "Om 15.40 uur."
