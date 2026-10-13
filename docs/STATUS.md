@@ -13,7 +13,7 @@
 - [x] 结业模拟考题库：口语 10+12、阅读 9+5×2；学完 NN65 后生词规则 0 违规，E9 人工复核。
 - [x] 模拟考试页面：听说读答题、自评、结果及官方练习考链接；浅色 / 深色主题。
 - [x] 扩展 exams/ 校验规则 2、4–6 和必要测试；仓库和假资料包校验均 0 错误。
-- [ ] 等审核触发合成音：运行 `gh workflow run tts.yml --ref codex/stage5-1-exams`（本环境 GH_TOKEN 返回 Forbidden）；合成音 PR 合到 #42 后复查 CI、合并并清空本栏。
+- [ ] 等审核触发合成音：运行 `gh workflow run tts.yml --ref codex/stage5-1-exams`（本环境 GH_TOKEN 返回 Forbidden）；#42 当前 CI 三项全绿，合成音 PR 合入后复查 CI、合并并清空本栏。
 
 ## 已完成
 
