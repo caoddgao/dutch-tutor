@@ -87,7 +87,26 @@
   position: relative;
   overflow-y: auto;
   display: grid;
+  gap: var(--space-3);
+}
+.practice-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
   gap: 2px;
+}
+.practice-group-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  background: var(--surface);
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 .practice-row {
   width: 100%;
@@ -128,18 +147,9 @@
   color: var(--text-3);
   font-size: var(--fs-xs);
 }
-.practice-row-meta {
-  flex: none;
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-}
-.practice-row-code {
-  color: var(--text-3);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-}
 .practice-row-star {
+  flex: none;
+  margin-top: 4px;
   color: var(--accent);
   fill: var(--accent);
 }

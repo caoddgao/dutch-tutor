@@ -4,8 +4,9 @@ import type { Assessment } from "../pronunciation/context";
 
 export interface SampleLesson {
   id: string;
+  /** Course-map code (`lessonCode()`), e.g. P01, 第 22 课 a */
+  code: string;
   label: string;
-  short: string;
 }
 
 export interface SampleSentence {
@@ -24,12 +25,15 @@ export interface SampleTake {
 }
 
 export const SAMPLE_LESSONS: SampleLesson[] = [
-  { id: "P01", label: "P01 · 短元音 a、e、i", short: "P01" },
-  { id: "P02", label: "P02 · 长元音 aa、ee", short: "P02" },
-  { id: "P03", label: "P03 · 短元音 o、u", short: "P03" },
-  { id: "NN21", label: "第 21 课 · 在面包店", short: "第 21 课" },
-  { id: "NN22a", label: "第 22 课 a · 我的邻居", short: "第 22 课 a" },
+  { id: "P01", code: "P01", label: "P01 · 短元音 a、e、i" },
+  { id: "P02", code: "P02", label: "P02 · 长元音 aa、ee" },
+  { id: "P03", code: "P03", label: "P03 · 短元音 o、u" },
+  { id: "NN21", code: "第 21 课", label: "第 21 课 · 在面包店" },
+  { id: "NN22a", code: "第 22 课 a", label: "第 22 课 a · 我的邻居" },
 ];
+
+/** The lesson studied most recently in the sample. */
+export const SAMPLE_LATEST = "NN22a";
 
 const rows: [string, string, string, string][] = [
   ["P01", "Dag, Anna!", "你好，安娜！", "Hello, Anna!"],

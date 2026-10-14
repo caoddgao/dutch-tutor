@@ -6,6 +6,7 @@ import { Waveform } from "../components/Waveform";
 import { ScorePanel } from "../pronunciation/ScorePanel";
 import {
   SAMPLE_HARD,
+  SAMPLE_LATEST,
   SAMPLE_LESSONS,
   SAMPLE_SENTENCES,
   sampleAssessment,
@@ -30,10 +31,11 @@ export function PracticePage() {
   const sample = params.get("sample");
   const studied = useMemo(() => (sample === "none" ? [] : SAMPLE_SENTENCES), [sample]);
   const scoring = params.get("score") !== "off";
-  const [lessonId, setLessonId] = useState(ALL);
+  // start on the lesson studied most recently; the list can be widened to all studied lessons
+  const [lessonId, setLessonId] = useState(SAMPLE_LATEST);
   const [hardOnly, setHardOnly] = useState(sample === "no-hard");
   const [hard, setHard] = useState<Set<string>>(() => new Set(sample === "no-hard" ? [] : SAMPLE_HARD));
-  const [selectedId, setSelectedId] = useState(studied[13]?.id ?? "");
+  const [selectedId, setSelectedId] = useState("");
   const [slow, setSlow] = useState(false);
 
   const shown = useMemo(
@@ -42,7 +44,8 @@ export function PracticePage() {
   );
   const current = shown.find((s) => s.id === selectedId) ?? shown[0];
   const lessons = SAMPLE_LESSONS.filter((l) => studied.some((s) => s.lessonId === l.id));
-  const lessonShort = new Map(SAMPLE_LESSONS.map((l) => [l.id, l.short]));
+  const groups = groupByLesson(shown);
+  const labelOf = (id: string) => SAMPLE_LESSONS.find((l) => l.id === id)?.label ?? id;
   const listRef = useRef<HTMLUListElement>(null);
 
   // keep the selected sentence visible in the list (e.g. after "随机来一句")
@@ -50,7 +53,9 @@ export function PracticePage() {
     const list = listRef.current;
     const row = list?.querySelector<HTMLElement>(".is-selected");
     if (!list || !row) return;
-    const top = row.offsetTop;
+    // the sticky lesson heading covers the top of the list
+    const head = row.closest(".practice-group")?.querySelector<HTMLElement>(".practice-group-head")?.offsetHeight ?? 0;
+    const top = row.offsetTop - head;
     if (top < list.scrollTop) list.scrollTop = top;
     else if (top + row.offsetHeight > list.scrollTop + list.clientHeight)
       list.scrollTop = top + row.offsetHeight - list.clientHeight;
@@ -123,25 +128,29 @@ export function PracticePage() {
         </div>
         {shown.length ? (
           <ul className="practice-rows" ref={listRef} aria-label="句子">
-            {shown.map((s) => (
-              <li key={s.id}>
-                <button
-                  type="button"
-                  className={`practice-row${s.id === current?.id ? " is-selected" : ""}`}
-                  aria-current={s.id === current?.id ? "true" : undefined}
-                  onClick={() => setSelectedId(s.id)}
-                >
-                  <span className="practice-row-text">
-                    <span className="nl practice-row-nl" lang="nl">
-                      {s.nl}
-                    </span>
-                    <span className="zh practice-row-zh">{s.zh}</span>
-                  </span>
-                  <span className="practice-row-meta">
-                    <span className="practice-row-code">{lessonShort.get(s.lessonId)}</span>
-                    {hard.has(s.id) && <Star size={14} className="practice-row-star" aria-label="难句" />}
-                  </span>
-                </button>
+            {groups.map((g) => (
+              <li key={g.lessonId} className="practice-group">
+                <h3 className="practice-group-head">{labelOf(g.lessonId)}</h3>
+                <ul aria-label={labelOf(g.lessonId)}>
+                  {g.sentences.map((s) => (
+                    <li key={s.id}>
+                      <button
+                        type="button"
+                        className={`practice-row${s.id === current?.id ? " is-selected" : ""}`}
+                        aria-current={s.id === current?.id ? "true" : undefined}
+                        onClick={() => setSelectedId(s.id)}
+                      >
+                        <span className="practice-row-text">
+                          <span className="nl practice-row-nl" lang="nl">
+                            {s.nl}
+                          </span>
+                          <span className="zh practice-row-zh">{s.zh}</span>
+                        </span>
+                        {hard.has(s.id) && <Star size={14} className="practice-row-star" aria-label="难句" />}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
@@ -156,7 +165,7 @@ export function PracticePage() {
           sentence={current}
           index={shown.indexOf(current)}
           total={shown.length}
-          lessonLabel={SAMPLE_LESSONS.find((l) => l.id === current.lessonId)?.label ?? ""}
+          lessonLabel={labelOf(current.lessonId)}
           isHard={hard.has(current.id)}
           onToggleHard={() => toggleHard(current.id)}
           scoring={scoring}
@@ -182,6 +191,17 @@ export function PracticePage() {
       )}
     </div>
   );
+}
+
+/** Consecutive sentences of the same lesson, in list order. */
+function groupByLesson<T extends { lessonId: string }>(items: T[]): { lessonId: string; sentences: T[] }[] {
+  const groups: { lessonId: string; sentences: T[] }[] = [];
+  for (const item of items) {
+    const last = groups[groups.length - 1];
+    if (last?.lessonId === item.lessonId) last.sentences.push(item);
+    else groups.push({ lessonId: item.lessonId, sentences: [item] });
+  }
+  return groups;
 }
 
 interface CardProps {
