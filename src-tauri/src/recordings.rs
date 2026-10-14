@@ -64,19 +64,31 @@ pub struct RecordingManifest {
 }
 
 fn valid_id(id: &str) -> bool {
-    !id.is_empty() && id.len() <= 150 && id.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, '_' | '-'))
+    !id.is_empty()
+        && id.len() <= 150
+        && id
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || matches!(c, '_' | '-'))
 }
 
 fn valid_audio_file(name: &str) -> bool {
-    valid_name(name) && ["webm", "ogg", "m4a", "mp3", "wav"].iter().any(|ext| name.ends_with(&format!(".{ext}")))
+    valid_name(name)
+        && ["webm", "ogg", "m4a", "mp3", "wav"]
+            .iter()
+            .any(|ext| name.ends_with(&format!(".{ext}")))
 }
 
 fn validate_manifest(manifest: &RecordingManifest) -> Result<(), RecordingError> {
     if manifest.version != 1 || manifest.recordings.len() > 10000 || manifest.marks.len() > 10000 {
         return Err(err("bad_manifest", "unsupported recording folder"));
     }
-    if manifest.recordings.iter().any(|r| !valid_id(&r.audio_id) || !valid_audio_file(&r.file_name))
-        || manifest.marks.iter().any(|m| !valid_id(&m.target_id) || !matches!(m.target_type.as_str(), "sentence" | "word"))
+    if manifest
+        .recordings
+        .iter()
+        .any(|r| !valid_id(&r.audio_id) || !valid_audio_file(&r.file_name))
+        || manifest.marks.iter().any(|m| {
+            !valid_id(&m.target_id) || !matches!(m.target_type.as_str(), "sentence" | "word")
+        })
     {
         return Err(err("bad_manifest", "invalid recording entry"));
     }
@@ -85,42 +97,50 @@ fn validate_manifest(manifest: &RecordingManifest) -> Result<(), RecordingError>
 
 fn plain_file(path: &Path) -> Result<(), RecordingError> {
     let meta = fs::symlink_metadata(path).map_err(|e| err("io", e))?;
-    if !meta.file_type().is_file() { return Err(err("bad_manifest", "not a plain recording file")); }
+    if !meta.file_type().is_file() {
+        return Err(err("bad_manifest", "not a plain recording file"));
+    }
     Ok(())
 }
 
-#[tauri::command]
-pub fn export_recording_folder<R: Runtime>(
-    app: AppHandle<R>, dir: String, recordings: Vec<VoiceEntry>, marks: Vec<UnnaturalMark>,
+fn export_folder_files(
+    source: &Path,
+    target: &Path,
+    manifest: &RecordingManifest,
 ) -> Result<(), RecordingError> {
-    let target = PathBuf::from(dir);
-    if !target.is_dir() { return Err(err("io", "destination folder is missing")); }
-    let manifest = RecordingManifest { version: 1, recordings, marks };
-    validate_manifest(&manifest)?;
-    let source = self::dir(&app)?;
+    if !target.is_dir() {
+        return Err(err("io", "destination folder is missing"));
+    }
+    validate_manifest(manifest)?;
     for entry in &manifest.recordings {
         let from = source.join(&entry.file_name);
         plain_file(&from)?;
         fs::copy(from, target.join(&entry.file_name)).map_err(|e| err("io", e))?;
     }
-    let json = serde_json::to_vec_pretty(&manifest).map_err(|e| err("io", e))?;
+    let json = serde_json::to_vec_pretty(manifest).map_err(|e| err("io", e))?;
     fs::write(target.join(MANIFEST), json).map_err(|e| err("io", e))
 }
 
-#[tauri::command]
-pub fn import_recording_folder<R: Runtime>(app: AppHandle<R>, dir: String) -> Result<RecordingManifest, RecordingError> {
-    let source = PathBuf::from(dir);
+fn import_folder_files(source: &Path, target: &Path) -> Result<RecordingManifest, RecordingError> {
     let bytes = fs::read(source.join(MANIFEST)).map_err(|e| err("io", e))?;
-    if bytes.len() > 2_000_000 { return Err(err("bad_manifest", "recording list is too large")); }
-    let mut manifest: RecordingManifest = serde_json::from_slice(&bytes).map_err(|e| err("bad_manifest", e))?;
+    if bytes.len() > 2_000_000 {
+        return Err(err("bad_manifest", "recording list is too large"));
+    }
+    let mut manifest: RecordingManifest =
+        serde_json::from_slice(&bytes).map_err(|e| err("bad_manifest", e))?;
     validate_manifest(&manifest)?;
-    let target = self::dir(&app)?;
-    fs::create_dir_all(&target).map_err(|e| err("io", e))?;
-    let nonce = SystemTime::now().duration_since(UNIX_EPOCH).map_err(|e| err("io", e))?.as_nanos();
+    fs::create_dir_all(target).map_err(|e| err("io", e))?;
+    let nonce = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map_err(|e| err("io", e))?
+        .as_nanos();
     for (i, entry) in manifest.recordings.iter_mut().enumerate() {
         let from = source.join(&entry.file_name);
         plain_file(&from)?;
-        let ext = Path::new(&entry.file_name).extension().and_then(|x| x.to_str()).unwrap_or("webm");
+        let ext = Path::new(&entry.file_name)
+            .extension()
+            .and_then(|x| x.to_str())
+            .unwrap_or("webm");
         let to = target.join(format!("import_{nonce}_{i}.{ext}"));
         fs::copy(from, &to).map_err(|e| err("io", e))?;
         entry.file_path = Some(to.display().to_string());
@@ -129,9 +149,36 @@ pub fn import_recording_folder<R: Runtime>(app: AppHandle<R>, dir: String) -> Re
 }
 
 #[tauri::command]
+pub fn export_recording_folder<R: Runtime>(
+    app: AppHandle<R>,
+    dir: String,
+    recordings: Vec<VoiceEntry>,
+    marks: Vec<UnnaturalMark>,
+) -> Result<(), RecordingError> {
+    let manifest = RecordingManifest {
+        version: 1,
+        recordings,
+        marks,
+    };
+    export_folder_files(&self::dir(&app)?, &PathBuf::from(dir), &manifest)
+}
+
+#[tauri::command]
+pub fn import_recording_folder<R: Runtime>(
+    app: AppHandle<R>,
+    dir: String,
+) -> Result<RecordingManifest, RecordingError> {
+    import_folder_files(&PathBuf::from(dir), &self::dir(&app)?)
+}
+
+#[tauri::command]
 pub fn write_recording_transcript(path: String, html: String) -> Result<(), RecordingError> {
     let destination = PathBuf::from(path);
-    if destination.extension().and_then(|x| x.to_str()).map(|x| x.to_ascii_lowercase()) != Some("html".into())
+    if destination
+        .extension()
+        .and_then(|x| x.to_str())
+        .map(|x| x.to_ascii_lowercase())
+        != Some("html".into())
         || html.len() > 5_000_000
     {
         return Err(err("bad_file", "expected an HTML transcript"));
@@ -179,7 +226,11 @@ pub fn delete_recording<R: Runtime>(app: AppHandle<R>, name: String) -> Result<(
 
 #[cfg(test)]
 mod tests {
-    use super::{valid_name, validate_manifest, RecordingManifest, UnnaturalMark, VoiceEntry};
+    use super::{
+        export_folder_files, import_folder_files, valid_name, validate_manifest, RecordingManifest,
+        UnnaturalMark, VoiceEntry,
+    };
+    use std::fs;
 
     #[test]
     fn only_plain_file_names() {
@@ -195,11 +246,52 @@ mod tests {
     fn rejects_unsafe_recording_folders() {
         let mut manifest = RecordingManifest {
             version: 1,
-            recordings: vec![VoiceEntry { audio_id: "NN21-S01".into(), file_name: "NN21-S01.webm".into(), duration: None, file_path: None }],
-            marks: vec![UnnaturalMark { target_id: "NN21-S01".into(), target_type: "sentence".into() }],
+            recordings: vec![VoiceEntry {
+                audio_id: "NN21-S01".into(),
+                file_name: "NN21-S01.webm".into(),
+                duration: None,
+                file_path: None,
+            }],
+            marks: vec![UnnaturalMark {
+                target_id: "NN21-S01".into(),
+                target_type: "sentence".into(),
+            }],
         };
         assert!(validate_manifest(&manifest).is_ok());
         manifest.recordings[0].file_name = "../escape.webm".into();
         assert!(validate_manifest(&manifest).is_err());
+    }
+
+    #[test]
+    fn transfers_audio_and_marks_together() {
+        let root =
+            std::env::temp_dir().join(format!("dutch-tutor-recording-test-{}", std::process::id()));
+        let original = root.join("original");
+        let exported = root.join("exported");
+        let imported = root.join("imported");
+        fs::create_dir_all(&original).unwrap();
+        fs::create_dir_all(&exported).unwrap();
+        fs::write(original.join("NN21-S01.webm"), b"audio").unwrap();
+        let manifest = RecordingManifest {
+            version: 1,
+            recordings: vec![VoiceEntry {
+                audio_id: "NN21-S01".into(),
+                file_name: "NN21-S01.webm".into(),
+                duration: Some(1.2),
+                file_path: None,
+            }],
+            marks: vec![UnnaturalMark {
+                target_id: "NN21-S02".into(),
+                target_type: "sentence".into(),
+            }],
+        };
+        export_folder_files(&original, &exported, &manifest).unwrap();
+        let restored = import_folder_files(&exported, &imported).unwrap();
+        assert_eq!(restored.marks[0].target_id, "NN21-S02");
+        assert_eq!(
+            fs::read(restored.recordings[0].file_path.as_ref().unwrap()).unwrap(),
+            b"audio"
+        );
+        fs::remove_dir_all(root).unwrap();
     }
 }

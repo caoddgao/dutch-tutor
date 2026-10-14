@@ -54,13 +54,13 @@ function sentence(s: RtSentence, ownIds: Set<string>): RecordingItem {
 }
 
 function word(w: RtWord, bundle: ContentBundle): RecordingItem {
-  const own = bundle.words.some((x) => x.id === w.id);
+  const own = w.origin === "own" || (!w.origin && bundle.words.some((x) => x.id === w.id));
   return {
     id: w.audio.id,
     nl: w.lemma,
     zh: w.zh,
     kind: "word",
-    origin: own && !w.audio.nn && !w.audio.packTts ? "own" : "book",
+    origin: own ? "own" : "book",
     audio: w.audio,
   };
 }
@@ -142,9 +142,29 @@ export function packRecordingItems(lesson: PackLesson, dict: Dictionary, bundle:
     })),
   );
   const ids = [...(lesson.word_ids ?? []), ...(lesson.keywords ?? []).map((k) => k.word_id)];
+  const exerciseAudio: RecordingItem[] = (lesson.exercises ?? []).flatMap((exercise) =>
+    exercise.items.flatMap((item) =>
+      item.audio && item.prompt && item.zh
+        ? [
+            {
+              id: item.id,
+              nl: item.prompt,
+              zh: item.zh,
+              kind: "sentence" as const,
+              origin: "book" as const,
+              audio: {
+                id: item.id,
+                ...(item.audio.startsWith("audio/tts/") ? { packTts: item.audio } : { nn: item.audio }),
+              },
+            },
+          ]
+        : [],
+    ),
+  );
   return uniqueItems([
     ...lines,
     ...extras,
+    ...exerciseAudio,
     ...ids.flatMap((id) => {
       const w = dict.words.get(id);
       return w ? [word(w, bundle)] : [];
