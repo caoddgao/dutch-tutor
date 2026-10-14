@@ -4,6 +4,7 @@ mod pack;
 mod recordings;
 mod startup;
 
+use tauri::Manager;
 use tauri_plugin_sql::{Migration, MigrationKind};
 
 /// Database location; the SQL plugin resolves it inside the app's config directory.
@@ -65,9 +66,15 @@ pub fn run() {
             backup::save_safety_backup,
             startup::startup_ready,
         ])
-        .setup(|_app| {
+        .on_page_load(|webview, payload| {
+            if payload.event() == tauri::webview::PageLoadEvent::Started {
+                webview.state::<startup::Probe>().mark_page_start();
+            }
+        })
+        .setup(|app| {
+            app.state::<startup::Probe>().mark_setup();
             #[cfg(windows)]
-            if let Some(window) = tauri::Manager::get_webview_window(_app, "main") {
+            if let Some(window) = tauri::Manager::get_webview_window(app, "main") {
                 microphone::allow_microphone(&window);
             }
             Ok(())
