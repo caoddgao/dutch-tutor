@@ -8,7 +8,7 @@
 
 ## 进行中
 
-施工者：Claude · 分支 `claude/stage5-5b-xlsx` · PR 待开 · 5-5b 表格版导出（已定事项 29）
+施工者：Claude · 分支 `claude/stage5-5b-xlsx` · PR #53 · 5-5b 表格版导出（已定事项 29）
 
 - [ ] 1. 选前端生成 .xlsx 的库（体积小、离线、许可证允许）；保存仍走保存对话框 + `write_export_file`，Rust 只放行 .json / .xlsx。
 - [ ] 2. 设置"学习数据"加"导出成表格（只供查看）"：课程进度、测验成绩、学习天数、复习统计四页，中文列名，课号用 `lessonCode()`；
