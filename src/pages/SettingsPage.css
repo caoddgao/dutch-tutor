@@ -139,9 +139,11 @@
   color: var(--text-2);
   font-size: var(--fs-sm);
 }
-.azure-usage progress {
+.azure-usage .progress {
   width: 160px;
-  accent-color: var(--brand-orange);
+}
+.azure-usage .progress > span {
+  background: var(--accent);
 }
 .azure-usage small {
   color: var(--text-3);

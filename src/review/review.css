@@ -18,6 +18,7 @@
   flex-direction: column;
 }
 .review-body {
+  animation: rise-in 0.2s var(--ease);
   display: flex;
   flex-direction: column;
   gap: var(--space-5);

@@ -71,7 +71,10 @@ export function AppShell() {
               </Link>
             </div>
           )}
-          <Outlet />
+          {/* keyed by route: each page fades in when it opens */}
+          <div key={pathname} className="page">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>
