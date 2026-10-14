@@ -1,7 +1,7 @@
 # 审核会话交接手册
 
 > 给"审核 / 设计会话"（claude.ai 里与用户对话、链接用户电脑的那个会话）用。新开审核会话时先读本文件 + `docs/STATUS.md`。
-> 最后更新：2026-10-12 凌晨（第二个审核会话交接）。
+> 最后更新：2026-10-14 凌晨（第三个审核会话交接）。
 
 ## 1. 用户与分工
 
@@ -38,14 +38,15 @@
 - 数据目录 `%APPDATA%\nl.dutchtutor.app\`；不做代码签名；连续天数 = 有学习记录的自然日。
 - Azure：用户本机环境变量 `AZURE_SPEECH_KEY` / `AZURE_SPEECH_REGION=eastus`；GitHub Secrets 同名（已修好）。F0 限速 20 次/分钟。发音评分支持 nl-NL（无韵律、无音素名）。
 
-## 4. 当前进度（2026-10-12 凌晨）
+## 4. 当前进度（2026-10-14 凌晨）
 
-- 阶段 1–3 完成；T1 通过。阶段 4 第 1–3 批（P01–P10、NN21–45、小贴士 G01–G14、G17、G18、E9）全部审核通过并合并。
-- T2：用户已装 v0.1.19 并导入资料包，测试正常；一周实际学习与施工并行，有意见再调整后续批次。
-- **下一步**：第 4 批 4a（NN46–50）已出开工提示词（STATUS 已定事项 20）→ 审 4a → 4b（NN51–55）→ 第 5 批（NN56–65）。
-  阶段 4 之后还有阶段测验 / 结业模拟考、阶段 5（真人录音模式等），见 02_PLAN。
-- 真资料包 `nn-pack` 是 DS 最终版（68 课），`content/a1/nn-index.json` 与它一致。DS 目前没有任务。
-- 施工方 Claude / Codex 轮流（CLAUDE.md 规矩 8、AGENTS.md）。审核会话有推送权限，小修正可直接开分支改、触发合成音、合并（如 PR #29）。
+- 阶段 1–4 完成并审核通过（P01–P10、NN21–65、小贴士 G01–G20、E9），见 STATUS 已定事项 22、23。
+- 阶段 5 分四个子批（STATUS 已定事项 24）：5-1 阶段测验 + 结业模拟考已合并（PR #42，已定事项 25）；
+  **5-2 录音模式已交给 Codex 施工**（含导出录音稿、`docs/RECORDING_GUIDE.md`，01 §5.5）→ 5-3 Azure 发音评分 → 5-4 备份、报错导出、打磨。
+  正式版 v1.0.0 等审核和 T3 后由用户决定。
+- 真资料包 `nn-pack` 是 DS 最终版（68 课：NN01–65 + TT1–TT3）；2026-10-14 审核会话已在用户电脑上去掉 NN61–65 英文课题的 "Lesson 61." 前缀，
+  仓库 `content/a1/nn-index.json` 同步（与资料包 index 内容一致）。DS 目前没有任务。
+- 施工方 Claude / Codex 轮流。审核会话有推送权限，小修正直接在施工分支或新分支上改、触发合成音、收尾合并（如 PR #39、#42）。
 
 ## 5. 审核方法
 
@@ -87,3 +88,9 @@
 - 改了 03/04 要同步到用户电脑 `Dutch_Tutor_v2\docs\`（DS 读本机副本），用新文件名提交后在电脑上 cp 覆盖并核对 sha256。
 - DS 常停下来问问题：给答案时顺带写"以后同类情况按此规则，不用再问"，并把规则补进 03/04。
 - 给施工会话的提示词要说明"新窗口、先读 STATUS.md"，不要依赖旧会话上下文。
+- **合成音工作流的日志看不到**（日志存放地址被云端代理拦截）。"Content check" 失败多半是我们写的句子超过 5 秒：两句式情景提示
+  （"U … . U … ."）约 50 字以上就可能超，改成一句再触发。
+- **草稿 PR 不能直接合并**：用 `gh api -X POST repos/caoddgao/dutch-tutor/pulls/<n>/ccr/ready_for_review` 转正式，再 `PUT .../merge`。
+- 施工方合并前要过 `npm run format:check`（prettier）；审核会话改了 JSON / Markdown 后先 `npx prettier --write <文件>`。
+- 截图：Playwright 用 `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`，`headless: false` + `args: ['--headless=new']`（旧 headless 已移除）。
+- 无资料包校验只认 nn-index 里第 21 课起的新词和 own 词：eten、komen、maken、tafel、koffie 等 NN01–20 的词会报"找不到词条"，自编内容避开或补 own 词。
