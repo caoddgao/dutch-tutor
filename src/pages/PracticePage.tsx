@@ -1,19 +1,25 @@
-import { ChevronLeft, ChevronRight, Mic, PackageOpen, Play, Shuffle, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Mic, PackageOpen, Pause, Play, Shuffle, Square, Star } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
+import { useAudio } from "../audio/context";
+import { usePeaks, usePlayerState } from "../audio/hooks";
+import { player } from "../audio/player";
+import type { Take } from "../audio/recordings";
+import { useShadowRecorder } from "../audio/useShadowRecorder";
 import { EmptyState } from "../components/EmptyState";
 import { Waveform } from "../components/Waveform";
+import { formatRecent } from "../format";
 import type { PracticeSentence } from "../practice/data";
 import { usePracticeData, type PracticeData } from "../practice/usePracticeData";
 import { useAzure } from "../pronunciation/context";
-import { ScorePanel } from "../pronunciation/ScorePanel";
-import { sampleAssessment, samplePeaks, sampleTakes } from "./practiceSample";
 import "../components/PlayerBar.css";
 import "../pronunciation/score.css";
 import "./PracticePage.css";
 
 const ALL = "all";
 const BARS = 64;
+/** Longest take, as when shadowing in the lesson; recording stops by itself after this. */
+const MAX_RECORD_SECONDS = 15;
 
 /** Free shadowing of any studied sentence (design §7, decisions 29, 30). */
 export function PracticePage() {
@@ -61,7 +67,6 @@ function Practice({ data }: { data: PracticeData }) {
   const [hardOnly, setHardOnly] = useState(false);
   const [hard, setHard] = useState<Set<string>>(() => new Set());
   const [selectedId, setSelectedId] = useState("");
-  const [slow, setSlow] = useState(false);
 
   const shown = useMemo(
     () => studied.filter((s) => (lessonId === ALL || s.lessonId === lessonId) && (!hardOnly || hard.has(s.id))),
@@ -182,8 +187,6 @@ function Practice({ data }: { data: PracticeData }) {
           isHard={hard.has(current.id)}
           onToggleHard={() => toggleHard(current.id)}
           scoring={scoring}
-          slow={slow}
-          onSlow={setSlow}
           onMove={(step) => {
             const next = shown[shown.indexOf(current) + step];
             if (next) setSelectedId(next.id);
@@ -225,26 +228,67 @@ interface CardProps {
   isHard: boolean;
   onToggleHard: () => void;
   scoring: boolean;
-  slow: boolean;
-  onSlow: (slow: boolean) => void;
   onMove: (step: number) => void;
 }
 
-function PracticeCard({
-  sentence,
-  index,
-  total,
-  lessonLabel,
-  isHard,
-  onToggleHard,
-  scoring,
-  slow,
-  onSlow,
-  onMove,
-}: CardProps) {
-  const takes = sampleTakes(sentence);
+/**
+ * One sentence: listen (normal / slow), record, compare with the original. Takes are the same as when
+ * shadowing in the lesson (newest three per audio ID); practising here is not a review and does not
+ * change mastery.
+ */
+function PracticeCard({ sentence, index, total, lessonLabel, isHard, onToggleHard, scoring, onMove }: CardProps) {
+  const { resolve, rate, setRate, recordings } = useAudio();
+  const state = usePlayerState();
+  const resolved = resolve(sentence.audio);
+  const id = sentence.audio.id;
+  const origTag = `bar:${id}`;
+  const mineTag = `mine:${id}`;
+  const origPeaks = usePeaks(resolved?.url, BARS);
+  const [takes, setTakes] = useState<Take[]>([]);
   const latest = takes[0];
-  const seed = sentence.nl.length;
+  const minePeaks = usePeaks(latest?.url, BARS);
+
+  useEffect(() => {
+    let cancelled = false;
+    recordings
+      .takes(id)
+      .then((t) => !cancelled && setTakes(t))
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, [id, recordings]);
+
+  // leaving the sentence stops playback (and any recording, see useShadowRecorder)
+  useEffect(() => () => player.stop(), []);
+
+  const playOriginal = () => {
+    if (resolved) void player.play(resolved.url, { rate, tag: origTag });
+  };
+  const playTake = (t: Take | undefined = latest) => {
+    if (t) void player.play(t.url, { tag: `${mineTag}:${t.id}` });
+  };
+  const playAlternate = (t: Take | undefined = latest) => {
+    if (!resolved || !t) return;
+    void player.playSequence([
+      { url: resolved.url, opts: { rate, tag: origTag } },
+      { url: t.url, opts: { tag: `${mineTag}:${t.id}` } },
+    ]);
+  };
+
+  const { rec, start, stop } = useShadowRecorder(id, MAX_RECORD_SECONDS, async (recording) => {
+    await recordings.savePractice(id, recording);
+    const next = await recordings.takes(id);
+    setTakes(next);
+    if (resolved) playAlternate(next[0]);
+    else playTake(next[0]);
+  });
+
+  const playingTag = state.playing ? state.tag : null;
+  const origPlaying = playingTag === origTag;
+  const recording = rec.kind === "recording";
+  const progressOf = (tag: string) => (playingTag === tag ? state.progress : 0);
+
   return (
     <section className="card practice-card" aria-label="练习卡">
       <div className="practice-card-top">
@@ -272,71 +316,104 @@ function PracticeCard({
       </div>
 
       <div className="immersive practice-player" aria-label="播放与录音">
-        <button type="button" className="play-button" aria-label="播放原声">
-          <Play size={26} fill="currentColor" strokeWidth={0} aria-hidden />
+        <button
+          type="button"
+          className="play-button"
+          disabled={!resolved || recording}
+          aria-label={origPlaying ? "暂停" : "播放原声"}
+          onClick={() => (origPlaying ? player.stop() : playOriginal())}
+        >
+          {origPlaying ? (
+            <Pause size={26} fill="currentColor" strokeWidth={0} aria-hidden />
+          ) : (
+            <Play size={26} fill="currentColor" strokeWidth={0} aria-hidden />
+          )}
         </button>
         <div className="player-waves">
           <div className="player-wave-row">
             <span className="player-wave-label">原声</span>
-            <Waveform peaks={samplePeaks(seed, BARS, 0.82)} progress={0} bars={BARS} label="原声声波" />
+            <Waveform peaks={resolved ? origPeaks : null} progress={progressOf(origTag)} bars={BARS} label="原声声波" />
           </div>
           {latest && (
             <div className="player-wave-row">
               <span className="player-wave-label player-wave-label-mine">我的</span>
               <Waveform
-                peaks={samplePeaks(seed + 3, BARS, 0.95)}
-                progress={0}
+                peaks={minePeaks}
+                progress={progressOf(`${mineTag}:${latest.id}`)}
                 bars={BARS}
                 variant="mine"
                 label="我的录音声波"
               />
             </div>
           )}
+          {!resolved && <span className="player-hint">这一句暂时没有原声</span>}
+          {rec.kind === "error" && (
+            <span className="player-hint player-error" role="alert">
+              {rec.message}
+            </span>
+          )}
         </div>
         <div className="practice-player-tools">
           <div className="player-compare" role="radiogroup" aria-label="播放速度">
-            <button type="button" role="radio" aria-checked={!slow} onClick={() => onSlow(false)}>
+            <button type="button" role="radio" aria-checked={rate !== 0.75} onClick={() => setRate(1)}>
               正常
             </button>
-            <button type="button" role="radio" aria-checked={slow} onClick={() => onSlow(true)}>
+            <button type="button" role="radio" aria-checked={rate === 0.75} onClick={() => setRate(0.75)}>
               慢速 0.75×
             </button>
           </div>
-          <button type="button" className="player-pill player-record practice-record">
-            <Mic size={16} aria-hidden />
-            录音
+          <button
+            type="button"
+            className={`player-pill player-record practice-record${recording ? " is-recording" : ""}`}
+            disabled={rec.kind === "saving"}
+            aria-label={recording ? "停止录音" : undefined}
+            onClick={() => (recording ? void stop() : void start())}
+          >
+            {recording ? <Square size={14} fill="currentColor" aria-hidden /> : <Mic size={16} aria-hidden />}
+            {recording ? `停止 0:${String(rec.seconds).padStart(2, "0")}` : rec.kind === "saving" ? "保存中" : "录音"}
           </button>
-          {latest && (
+          {latest && !recording && (
             <div className="player-compare" role="group" aria-label="对比播放">
-              <button type="button">原声</button>
-              <button type="button">我的</button>
-              <button type="button">交替</button>
+              <button type="button" onClick={playOriginal} disabled={!resolved}>
+                原声
+              </button>
+              <button type="button" onClick={() => playTake()}>
+                我的
+              </button>
+              <button type="button" onClick={() => playAlternate()} disabled={!resolved}>
+                交替
+              </button>
             </div>
           )}
         </div>
       </div>
 
-      <div className={`practice-lower${scoring && latest ? "" : " is-single"}`}>
-        {scoring && latest && (
-          <section className="practice-score">
-            <h3>刚才这次的评分</h3>
-            <ScorePanel result={sampleAssessment(sentence, latest.score)} />
-          </section>
-        )}
+      <div className="practice-lower is-single">
         <section className="practice-takes">
           <h3>最近 3 次录音</h3>
           {takes.length ? (
             <ul>
-              {takes.map((take, i) => (
-                <li key={take.id}>
-                  <button type="button" className="audio-btn audio-btn-sm" aria-label={`播放第 ${i + 1} 次录音`}>
-                    <Play size={14} fill="currentColor" strokeWidth={0} aria-hidden />
-                  </button>
-                  <span className="practice-take-when">{take.when}</span>
-                  <span className="practice-take-len">{take.seconds.toFixed(1)} 秒</span>
-                  {scoring && <span className="practice-take-score">{take.score} 分</span>}
-                </li>
-              ))}
+              {takes.map((take, i) => {
+                const playing = playingTag === `${mineTag}:${take.id}`;
+                return (
+                  <li key={take.id}>
+                    <button
+                      type="button"
+                      className="audio-btn audio-btn-sm"
+                      aria-label={playing ? "暂停" : `播放第 ${i + 1} 次录音`}
+                      onClick={() => (playing ? player.stop() : playTake(take))}
+                    >
+                      {playing ? (
+                        <Pause size={14} fill="currentColor" strokeWidth={0} aria-hidden />
+                      ) : (
+                        <Play size={14} fill="currentColor" strokeWidth={0} aria-hidden />
+                      )}
+                    </button>
+                    <span className="practice-take-when">{formatRecent(take.createdAt)}</span>
+                    <span className="practice-take-len">{take.duration.toFixed(1)} 秒</span>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <p className="muted">还没有录过这一句。点"录音"，读完再点一次停止。</p>

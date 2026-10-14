@@ -1,8 +1,17 @@
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../App";
+import { RecordingStore } from "../audio/recordings";
 import { completeLesson, savePosition } from "../storage/learning";
 import { fsPackBackend, testServices } from "../test/services";
+
+vi.mock("../audio/recorder", async (original) => ({
+  ...(await original<typeof import("../audio/recorder")>()),
+  startRecording: async () => ({
+    stop: async () => ({ blob: new Blob(["take"], { type: "audio/webm" }), mime: "audio/webm", duration: 1.5 }),
+    cancel: () => undefined,
+  }),
+}));
 
 type Services = ReturnType<typeof testServices>;
 
@@ -95,5 +104,41 @@ describe("PracticePage", () => {
     await screen.findByRole("region", { name: "练习卡" });
     expect(lessonSelect().value).toBe("P02");
     expect(screen.getByText(/另有 1 课学过/)).toBeTruthy();
+  });
+
+  it("records takes shared with lesson shadowing, keeps the newest three and leaves reviews alone", async () => {
+    const t = await studied();
+    // a take made while shadowing NN21-S01 in the lesson
+    const store = new RecordingStore(t.services.db, t.services.recordingFiles);
+    await store.savePractice("NN21-S01", { blob: new Blob(["x"]), mime: "audio/webm", duration: 2.25 });
+    const reviews = t.raw.prepare("SELECT COUNT(*) AS n FROM review_items").get();
+    const progress = t.raw.prepare("SELECT * FROM lesson_progress ORDER BY lesson_id").all();
+    await renderAt("#/practice", t);
+    await screen.findByRole("region", { name: "练习卡" });
+    const takes = () => within(card()).queryAllByRole("button", { name: /播放第 \d 次录音/ });
+    await waitFor(() => expect(takes()).toHaveLength(1));
+    expect(within(card()).getByText("2.3 秒")).toBeTruthy();
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(within(card()).getByRole("button", { name: "录音" }));
+      fireEvent.click(await within(card()).findByRole("button", { name: "停止录音" }));
+      await within(card()).findByRole("button", { name: "录音" });
+    }
+    await waitFor(() => expect(takes()).toHaveLength(3));
+    expect(within(card()).getAllByText("刚才")).toHaveLength(3);
+    expect(within(card()).queryByText("2.3 秒")).toBeNull();
+    expect(within(card()).getByRole("group", { name: "对比播放" })).toBeTruthy();
+    expect(t.raw.prepare("SELECT COUNT(*) AS n FROM recordings WHERE audio_id = 'NN21-S01'").get()).toEqual({ n: 3 });
+    expect(t.raw.prepare("SELECT COUNT(*) AS n FROM review_items").get()).toEqual(reviews);
+    expect(t.raw.prepare("SELECT * FROM lesson_progress ORDER BY lesson_id").all()).toEqual(progress);
+  });
+
+  it("switches between normal and slow playback", async () => {
+    await renderAt("#/practice", await studied());
+    await screen.findByRole("region", { name: "练习卡" });
+    const slow = screen.getByRole("radio", { name: "慢速 0.75×" });
+    fireEvent.click(slow);
+    expect(slow.getAttribute("aria-checked")).toBe("true");
+    expect(screen.getByRole("radio", { name: "正常" }).getAttribute("aria-checked")).toBe("false");
   });
 });
