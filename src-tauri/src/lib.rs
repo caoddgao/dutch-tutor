@@ -1,4 +1,5 @@
 mod azure;
+mod backup;
 mod pack;
 mod recordings;
 
@@ -21,6 +22,12 @@ fn migrations() -> Vec<Migration> {
             version: 2,
             description: "exam results",
             sql: include_str!("../migrations/0002_exam_results.sql"),
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 3,
+            description: "feedback context",
+            sql: include_str!("../migrations/0003_feedback_context.sql"),
             kind: MigrationKind::Up,
         },
     ]
@@ -50,6 +57,9 @@ pub fn run() {
             azure::clear_azure_key,
             azure::test_azure_connection,
             azure::assess_pronunciation,
+            backup::write_export_file,
+            backup::read_backup_file,
+            backup::save_safety_backup,
         ])
         .setup(|_app| {
             #[cfg(windows)]

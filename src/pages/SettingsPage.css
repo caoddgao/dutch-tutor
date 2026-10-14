@@ -146,3 +146,39 @@
 .azure-usage small {
   color: var(--text-3);
 }
+
+.settings-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Restore confirmation: inline, warm accent so it reads as "careful" without alarm */
+.restore-confirm {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: var(--accent-soft);
+  animation: rise-in 0.22s var(--ease);
+}
+.restore-confirm-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--accent-text);
+}
+.restore-confirm p {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.restore-confirm-note {
+  color: var(--text) !important;
+  font-weight: 600;
+}
+.restore-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}

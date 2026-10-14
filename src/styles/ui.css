@@ -269,3 +269,23 @@
   background: #e5484d;
   color: #fff;
 }
+
+/* Motion: content rises in gently (turned off by prefers-reduced-motion in base.css) */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import { Segmented } from "../components/Segmented";
 import { PackSection } from "./PackSection";
 import { AzureSection } from "./AzureSection";
+import { BackupSection } from "./BackupSection";
 import { useSettings } from "../settings/context";
 import {
   DEFAULT_SETTINGS,
@@ -202,6 +203,8 @@ export function SettingsPage() {
           </Link>
         </div>
       </section>
+
+      <BackupSection />
 
       <section className="card settings-section">
         <h2 className="section-title">关于</h2>

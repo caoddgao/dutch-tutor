@@ -12,6 +12,7 @@ import { createDefaultRecordingFiles } from "./audio/recordings";
 import { CONTENT, TTS_URLS } from "./content/bundle";
 import { createDefaultPackBackend } from "./pack/backend";
 import type { AppServices } from "./services";
+import { createDefaultDataFiles } from "./storage/dataFiles";
 import { createDevHttpDb, getDb, type SqlDb } from "./storage/db";
 import { createLocalSettingsStore, readCachedSettings } from "./storage/settingsStore";
 import { createSqliteSettingsStore } from "./storage/sqliteSettingsStore";
@@ -32,6 +33,7 @@ const services: AppServices = {
   content: CONTENT,
   ttsUrls: TTS_URLS,
   recordingFiles: createDefaultRecordingFiles(),
+  dataFiles: createDefaultDataFiles(),
 };
 
 createRoot(document.getElementById("root")!).render(
