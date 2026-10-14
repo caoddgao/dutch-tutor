@@ -6,6 +6,7 @@ import { Segmented } from "../components/Segmented";
 import { PackSection } from "./PackSection";
 import { AzureSection } from "./AzureSection";
 import { BackupSection } from "./BackupSection";
+import { ReportSection } from "./ReportSection";
 import { useSettings } from "../settings/context";
 import {
   DEFAULT_SETTINGS,
@@ -205,6 +206,8 @@ export function SettingsPage() {
       </section>
 
       <BackupSection />
+
+      <ReportSection />
 
       <section className="card settings-section">
         <h2 className="section-title">关于</h2>

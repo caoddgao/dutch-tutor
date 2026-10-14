@@ -17,7 +17,9 @@
     顺手修：权限里补 `dialog:allow-save`（5-2 的"导出录音稿"用了保存对话框却没开权限）。迁移 0003 给 feedback 加 lesson_id / nl / zh。
 - [x] 3 报错按钮：上课页、复习页句卡 / 词卡"报错"小按钮，原因四选一 + 备注，存 feedback 表（迁移只追加）
   - 记录：原因存 translation / dutch / audio / other（"unnatural" 留给录音模式的标记）；复习页答完才显示"报错"，免得 R2 弹窗泄露原文。
-- [ ] 4 报错导出：设置里"导出报错"一个文件（课号、id、荷兰语、中文、原因、备注、时间），记 exported_at，显示未导出条数
+- [x] 4 报错导出：设置里"导出报错"一个文件（课号、id、荷兰语、中文、原因、备注、时间），记 exported_at，显示未导出条数
+  - 记录：报错导出为 JSON（`format: dutch-tutor-reports`，每条 lesson / type / id / nl / zh / reason / reason_zh / note / reported_at）；
+    默认只导出未导出的，全部导出过时按钮变"重新导出全部"。
 - [ ] 5 打磨：空状态 / 错误提示中文人话、去开发者视角文字、适度动效（reduced-motion）、"本月用量"进度条跟随主题
 - [ ] 6 性能：冷启动 < 3 秒实测，测法和结果写进 STATUS
 - [ ] 7 收尾：全部检查通过、CI 全绿、合并；STATUS 写"已完成"、清空"进行中"、压缩到 ≤ 100 行
