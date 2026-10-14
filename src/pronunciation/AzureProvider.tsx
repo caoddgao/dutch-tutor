@@ -5,6 +5,7 @@ import { recordingToWav } from "./wav";
 
 export function AzureProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<AzureStatus | null>(null);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     if (!isTauri()) return;
@@ -13,7 +14,9 @@ export function AzureProvider({ children }: { children: ReactNode }) {
       .then((value) => {
         if (!cancelled) setStatus(value);
       })
-      .catch(() => undefined);
+      .catch(() => {
+        if (!cancelled) setLoadError(true);
+      });
     return () => {
       cancelled = true;
     };
@@ -29,18 +32,25 @@ export function AzureProvider({ children }: { children: ReactNode }) {
   }, []);
   const assess = useCallback(async (blob: Blob, reference: string): Promise<Assessment> => {
     const { bytes, duration } = await recordingToWav(blob);
-    const result = await invoke<Assessment>("assess_pronunciation", {
-      audio: Array.from(bytes),
-      referenceText: reference,
-      duration,
-    });
-    setStatus((previous) => (previous ? { ...previous, month_seconds: result.month_seconds } : previous));
-    return result;
+    try {
+      const result = await invoke<Assessment>("assess_pronunciation", {
+        audio: Array.from(bytes),
+        referenceText: reference,
+        duration,
+      });
+      setStatus((previous) => (previous ? { ...previous, month_seconds: result.month_seconds } : previous));
+      return result;
+    } catch (error) {
+      invoke<AzureStatus>("azure_status")
+        .then(setStatus)
+        .catch(() => undefined);
+      throw error;
+    }
   }, []);
 
   const value = useMemo(
-    () => ({ status, save, clearKey, testConnection, assess }),
-    [status, save, clearKey, testConnection, assess],
+    () => ({ status, loadError, save, clearKey, testConnection, assess }),
+    [status, loadError, save, clearKey, testConnection, assess],
   );
   return <AzureContext.Provider value={value}>{children}</AzureContext.Provider>;
 }

@@ -19,7 +19,7 @@ describe("optional pronunciation scoring", () => {
     }));
     vi.stubGlobal(
       "fetch",
-      vi.fn(async () => new Response(new Blob(["voice"]))),
+      vi.fn(async () => ({ ok: true, blob: async () => new Blob(["voice"]) })),
     );
     const recordings = {
       takes: async () => [{ id: 1, audioId: "q", url: "blob:take", duration: 1, createdAt: "now" }],

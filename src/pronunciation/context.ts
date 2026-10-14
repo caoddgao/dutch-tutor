@@ -19,6 +19,7 @@ export interface Assessment {
 
 export interface AzureContextValue {
   status: AzureStatus | null;
+  loadError?: boolean;
   save(region: string, key: string, enabled: boolean): Promise<void>;
   clearKey(): Promise<void>;
   testConnection(): Promise<void>;
@@ -63,6 +64,12 @@ export function azureErrorMessage(error: unknown): string {
       return "请先在设置中开启发音评分。";
     case "storage":
       return "本机评分设置无法读取或保存，请稍后再试。";
+    case "reference":
+      return "请选择一条参考答案再评分。";
+    case "response":
+      return "Azure 暂时没有返回评分，请稍后再试。";
+    case "service":
+      return "Azure 评分服务暂时不可用，请稍后再试。";
     default:
       return "评分暂时不可用，请稍后再试。";
   }

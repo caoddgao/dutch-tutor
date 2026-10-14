@@ -3,7 +3,7 @@ import { useState } from "react";
 import { azureErrorMessage, useAzure } from "../pronunciation/context";
 
 export function AzureSection() {
-  const { status, save, clearKey, testConnection } = useAzure();
+  const { status, loadError, save, clearKey, testConnection } = useAzure();
   const [draft, setDraft] = useState({ base: "", region: "" });
   const [key, setKey] = useState("");
   const [busy, setBusy] = useState(false);
@@ -31,7 +31,9 @@ export function AzureSection() {
       {!isTauri() ? (
         <p className="settings-row-desc">请在已安装的程序里设置发音评分。</p>
       ) : !status ? (
-        <p className="settings-row-desc">正在读取评分设置……</p>
+        <p className="settings-row-desc">
+          {loadError ? "评分设置读取失败，请重新打开程序后再试。" : "正在读取评分设置……"}
+        </p>
       ) : (
         <>
           <label className="azure-field">
@@ -113,9 +115,15 @@ export function AzureSection() {
             />
           </div>
           <div className="azure-usage">
-            <span>本月已用约 {Math.ceil(status.month_seconds / 60)} / 300 分钟</span>
+            <span>
+              本程序本月送评约{" "}
+              {status.month_seconds > 0 && status.month_seconds < 6
+                ? "不足 0.1"
+                : (status.month_seconds / 60).toFixed(1)}{" "}
+              / 300 分钟
+            </span>
             <progress max={300 * 60} value={status.month_seconds} aria-label="本月发音评分用量" />
-            <small>Azure 免费额度每月 5 小时</small>
+            <small>Azure 免费额度每月共 5 小时；这里仅统计本程序</small>
           </div>
           {message && (
             <p className="recording-message" role="status">

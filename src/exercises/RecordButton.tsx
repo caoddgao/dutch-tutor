@@ -69,6 +69,7 @@ export function RecordButton({
       setBlob(recording.blob);
       setAssessment(null);
       setAssessError("");
+      setAssessError("");
       void player.play(saved.url, { tag: `mine:${id}` });
       onRecorded?.();
     } catch {
