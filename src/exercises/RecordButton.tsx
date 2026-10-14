@@ -69,7 +69,6 @@ export function RecordButton({
       setBlob(recording.blob);
       setAssessment(null);
       setAssessError("");
-      setAssessError("");
       void player.play(saved.url, { tag: `mine:${id}` });
       onRecorded?.();
     } catch {
@@ -150,6 +149,7 @@ export function RecordButton({
                 onChange={(e) => {
                   setReferenceIndex(Number(e.target.value));
                   setAssessment(null);
+                  setAssessError("");
                 }}
               >
                 {references.map((text, index) => (
