@@ -1,7 +1,9 @@
+import { ReportButton } from "../components/ReportButton";
 import type { RtSentence } from "../content/model";
 import { SentenceText } from "./SentenceText";
 
 interface Props {
+  lessonId: string;
   sentence: RtSentence;
   index: number;
   total: number;
@@ -15,7 +17,7 @@ interface Props {
  * Step ② (and the sentences of a reading text): one sentence per screen — big Dutch centred, Chinese below,
  * English optional.
  */
-export function SentenceStep({ sentence, index, total, label, selectedWord, onWord }: Props) {
+export function SentenceStep({ lessonId, sentence, index, total, label, selectedWord, onWord }: Props) {
   return (
     <div className="sentence-step">
       <div className="sentence-meta">
@@ -25,6 +27,7 @@ export function SentenceStep({ sentence, index, total, label, selectedWord, onWo
         {label && <span className="tag tag-recommended">{label}</span>}
         {sentence.speaker && <span className="speaker-chip">{sentence.speaker}</span>}
         {sentence.kind === "added" && <span className="tag tag-new">补充短句</span>}
+        <ReportButton target={{ type: "sentence", id: sentence.id, lessonId, nl: sentence.nl, zh: sentence.zh }} />
       </div>
       <div className="sentence-display">
         <SentenceText

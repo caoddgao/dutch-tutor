@@ -5,6 +5,7 @@ import { useAudio } from "../audio/context";
 import { player } from "../audio/player";
 import { AudioButton } from "../components/AudioButton";
 import { EmptyState } from "../components/EmptyState";
+import { ReportButton } from "../components/ReportButton";
 import { RecordButton } from "../exercises/RecordButton";
 import { SentenceText } from "../lesson/SentenceText";
 import { useServices } from "../servicesContext";
@@ -128,6 +129,17 @@ export function ReviewSession({ source, lessonId, title }: Props) {
       <section className="card review-card-main">
         <QuestionBody key={q.key} q={q} result={result} onAnswer={answer} />
         <div className="ex-footer">
+          {result && (
+            <ReportButton
+              target={{
+                type: q.card.item.item_type,
+                id: q.card.item.item_id,
+                lessonId: q.card.lessonId,
+                nl: q.card.nl,
+                zh: q.card.zh,
+              }}
+            />
+          )}
           {result && (
             <p
               className={`ex-feedback ${result === "good" ? "is-right" : result === "bad" ? "is-wrong" : ""}`}

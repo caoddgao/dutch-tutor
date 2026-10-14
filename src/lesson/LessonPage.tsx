@@ -339,6 +339,7 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
           {pos.step === STEP.intro && lesson.kind === "phonics" && <SoundsStep lesson={lesson} />}
           {sentence && (
             <SentenceStep
+              lessonId={lesson.id}
               sentence={sentence}
               index={pos.index}
               total={lesson.sentences.length}
@@ -350,6 +351,7 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
           {readingListen && <ListenStep lesson={readingListen} reading />}
           {readingSentence && (
             <SentenceStep
+              lessonId={lesson.id}
               sentence={readingSentence}
               index={pos.index - 1}
               total={readingCount}

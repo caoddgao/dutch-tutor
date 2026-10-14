@@ -1,4 +1,5 @@
 import { AudioButton } from "../components/AudioButton";
+import { ReportButton } from "../components/ReportButton";
 import type { RtLesson, RtWord } from "../content/model";
 import { WordEntry } from "./WordEntry";
 
@@ -23,6 +24,7 @@ export function WordsStep({
           第 {index + 1} / {total} 个词
         </span>
         {isNew && <span className="tag tag-recommended">新词</span>}
+        <ReportButton target={{ type: "word", id: word.id, lessonId: lesson.id, nl: word.lemma, zh: word.zh }} />
       </div>
       <WordEntry word={word} showPastParticiple={lesson.showPastParticiple} variant="card" />
       {examples.length > 0 && (

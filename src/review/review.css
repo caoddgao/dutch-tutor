@@ -137,3 +137,7 @@
     display: none;
   }
 }
+.ex-footer .report-btn {
+  margin-left: 0;
+  margin-right: auto;
+}
