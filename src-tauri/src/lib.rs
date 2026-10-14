@@ -1,7 +1,10 @@
 mod azure;
+mod backup;
 mod pack;
 mod recordings;
+mod startup;
 
+use tauri::Manager;
 use tauri_plugin_sql::{Migration, MigrationKind};
 
 /// Database location; the SQL plugin resolves it inside the app's config directory.
@@ -23,12 +26,20 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0002_exam_results.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 3,
+            description: "feedback context",
+            sql: include_str!("../migrations/0003_feedback_context.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let probe = startup::Probe::from_env();
     tauri::Builder::default()
+        .manage(probe)
         .plugin(tauri_plugin_dialog::init())
         .plugin(
             tauri_plugin_sql::Builder::default()
@@ -50,10 +61,20 @@ pub fn run() {
             azure::clear_azure_key,
             azure::test_azure_connection,
             azure::assess_pronunciation,
+            backup::write_export_file,
+            backup::read_backup_file,
+            backup::save_safety_backup,
+            startup::startup_ready,
         ])
-        .setup(|_app| {
+        .on_page_load(|webview, payload| {
+            if payload.event() == tauri::webview::PageLoadEvent::Started {
+                webview.state::<startup::Probe>().mark_page_start();
+            }
+        })
+        .setup(|app| {
+            app.state::<startup::Probe>().mark_setup();
             #[cfg(windows)]
-            if let Some(window) = tauri::Manager::get_webview_window(_app, "main") {
+            if let Some(window) = tauri::Manager::get_webview_window(app, "main") {
                 microphone::allow_microphone(&window);
             }
             Ok(())

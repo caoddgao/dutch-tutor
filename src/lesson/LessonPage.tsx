@@ -339,6 +339,8 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
           {pos.step === STEP.intro && lesson.kind === "phonics" && <SoundsStep lesson={lesson} />}
           {sentence && (
             <SentenceStep
+              key={sentence.id}
+              lessonId={lesson.id}
               sentence={sentence}
               index={pos.index}
               total={lesson.sentences.length}
@@ -346,10 +348,12 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
               onWord={lookupWord}
             />
           )}
-          {word && <WordsStep lesson={lesson} word={word} index={pos.index} total={cards.length} />}
+          {word && <WordsStep key={word.id} lesson={lesson} word={word} index={pos.index} total={cards.length} />}
           {readingListen && <ListenStep lesson={readingListen} reading />}
           {readingSentence && (
             <SentenceStep
+              key={readingSentence.id}
+              lessonId={lesson.id}
               sentence={readingSentence}
               index={pos.index - 1}
               total={readingCount}

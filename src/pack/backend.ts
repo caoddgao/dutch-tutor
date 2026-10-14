@@ -35,15 +35,15 @@ export function packErrorMessage(err: unknown): string {
   const e = err as Partial<PackErrorPayload> | undefined;
   switch (e?.code) {
     case "not_a_pack":
-      return "这个文件夹里没有 manifest.json，请选择资料包文件夹（nn-pack）。";
+      return "这个文件夹不是资料包。请选择整理好的资料包文件夹（一般叫 nn-pack）。";
     case "format_version":
-      return `资料包的格式版本是 ${e.detail}，这个版本的程序只认版本 1。请更新程序或重新整理资料包。`;
+      return "这份资料包和现在的程序不配套。请更新程序，或换一份新整理的资料包。";
     case "incomplete":
-      return `资料包不完整，缺少 ${e.detail}。`;
+      return "资料包不完整，缺了一些文件。请换一份完整的资料包再导入。";
     case "same_dir":
       return "选中的是程序里已导入的那份资料包，请选择原来的资料包文件夹。";
     case "bad_json":
-      return "资料包里的文件格式不对，无法读取。";
+      return "资料包里有文件读不出来，可能已损坏。请换一份资料包再导入。";
     default:
       return "导入失败：无法复制文件，请确认文件夹可以访问、磁盘空间足够。";
   }

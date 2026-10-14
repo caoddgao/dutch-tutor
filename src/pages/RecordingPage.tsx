@@ -135,7 +135,7 @@ export function RecordingPage() {
       await recordings.exportFolder(path);
       setMessage("录音和标记已导出到所选文件夹。");
     } catch {
-      setMessage("导出失败，请检查文件夹是否可写。");
+      setMessage("导出没有成功，请换一个文件夹再试。");
     } finally {
       setBusy(false);
     }

@@ -133,6 +133,9 @@
   max-width: var(--content-max);
   margin: 0 auto;
 }
+.page {
+  animation: rise-in 0.24s var(--ease);
+}
 
 /* Narrow window: sidebar collapses to icons */
 @media (max-width: 960px) {

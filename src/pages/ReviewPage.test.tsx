@@ -77,6 +77,8 @@ describe("review", () => {
     fireEvent.click(wrong);
     await waitFor(() => expect(raw.prepare("SELECT COUNT(*) AS n FROM review_log").get()).toEqual({ n: 1 }));
     const status = screen.getByRole("status").textContent;
+    // after answering, the card can be reported
+    expect(screen.getByRole("button", { name: "报错" })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /下一个/ }));
     if (status?.startsWith("没关系")) expect(await screen.findByText(/^2 \/ 5$/)).toBeTruthy();
     else expect(await screen.findByText(/^2 \/ 4$/)).toBeTruthy();

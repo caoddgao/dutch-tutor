@@ -1,6 +1,7 @@
 import { isTauri } from "@tauri-apps/api/core";
 import { useState } from "react";
 import { azureErrorMessage, useAzure } from "../pronunciation/context";
+import { ProgressBar } from "../components/ProgressBar";
 
 export function AzureSection() {
   const { status, loadError, save, clearKey, testConnection } = useAzure();
@@ -122,7 +123,7 @@ export function AzureSection() {
                 : (status.month_seconds / 60).toFixed(1)}{" "}
               / 300 分钟
             </span>
-            <progress max={300 * 60} value={status.month_seconds} aria-label="本月发音评分用量" />
+            <ProgressBar value={status.month_seconds / (300 * 60)} label="本月发音评分用量" />
             <small>Azure 免费额度每月共 5 小时；这里仅统计本程序</small>
           </div>
           {message && (

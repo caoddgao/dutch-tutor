@@ -7,6 +7,7 @@ import { CONTENT } from "../content/bundle";
 import type { PackBackend } from "../pack/backend";
 import type { PackManifest } from "../content/packTypes";
 import type { AppServices } from "../services";
+import type { DataFiles } from "../storage/dataFiles";
 import { createTestDb } from "../storage/testDb";
 import { memoryStore } from "./memoryStore";
 import { loadContent } from "../../scripts/lib/contentFiles";
@@ -54,7 +55,32 @@ export function testServices(over: Partial<AppServices> & { settingsData?: Recor
     content: CONTENT,
     ttsUrls: {},
     recordingFiles: createMemoryRecordingFiles(),
+    dataFiles: memoryDataFiles(),
     ...over,
   };
   return { services, settingsData: data, db, raw };
+}
+
+/** Exports land in `saved`; `nextImport` is what the next import returns; safety copies in `safety`. */
+export function memoryDataFiles(): DataFiles & {
+  saved: { name: string; text: string }[];
+  safety: string[];
+  nextImport: string | null;
+} {
+  const files = {
+    saved: [] as { name: string; text: string }[],
+    safety: [] as string[],
+    nextImport: null as string | null,
+    async exportText(name: string, text: string) {
+      files.saved.push({ name, text });
+      return true;
+    },
+    async importText() {
+      return files.nextImport;
+    },
+    async saveSafetyCopy(_stamp: string, text: string) {
+      files.safety.push(text);
+    },
+  };
+  return files;
 }

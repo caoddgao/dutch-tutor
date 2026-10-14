@@ -26,7 +26,7 @@ describe("资料包 settings", () => {
       }),
     );
     expect(await screen.findByText("资料包需要重新导入")).toBeTruthy();
-    expect(screen.getByText(/格式版本 2，这个版本的程序只认版本 1/)).toBeTruthy();
+    expect(screen.getByText(/和现在的程序不配套/)).toBeTruthy();
     expect(screen.getByRole("button", { name: "重新导入" })).toBeTruthy();
   });
 
@@ -64,7 +64,7 @@ describe("资料包 settings", () => {
     await act(async () => {
       fireEvent.click(screen.getByRole("button", { name: "重新导入" }));
     });
-    expect(screen.getByRole("alert").textContent).toContain("格式版本是 2");
+    expect(screen.getByRole("alert").textContent).toContain("和现在的程序不配套");
   });
 
   it("notices a newer pack in the original folder (created_at changed)", async () => {

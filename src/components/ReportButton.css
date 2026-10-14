@@ -1,0 +1,178 @@
+/* Quiet "报错" button on sentence / word cards */
+.report-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  padding: 3px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.75;
+  transition:
+    opacity 0.15s var(--ease),
+    background 0.15s var(--ease),
+    color 0.15s var(--ease);
+}
+.report-btn:hover,
+.report-btn:focus-visible {
+  opacity: 1;
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text-2);
+}
+.report-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.report-btn.is-sent {
+  opacity: 1;
+  color: var(--success-text);
+}
+
+.report-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+  background: rgba(11, 14, 21, 0.45);
+  backdrop-filter: blur(2px);
+  animation: fade-in 0.16s var(--ease);
+}
+.report-dialog {
+  width: min(460px, 100%);
+  max-height: calc(100vh - 2 * var(--space-5));
+  overflow-y: auto;
+  display: grid;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-card-hover);
+  animation: rise-in 0.2s var(--ease);
+}
+.report-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.report-close {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+}
+.report-close:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+.report-close:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.report-target {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.report-target .nl {
+  font-size: var(--fs-nl-md);
+  font-weight: 600;
+}
+.report-target .zh {
+  font-size: var(--fs-sm);
+}
+.report-form {
+  display: grid;
+  gap: var(--space-4);
+}
+.report-reasons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.report-reasons legend {
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+  color: var(--text-2);
+}
+.report-reason {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s var(--ease),
+    border-color 0.15s var(--ease),
+    color 0.15s var(--ease);
+}
+.report-reason:hover {
+  background: var(--surface-hover);
+}
+.report-reason input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.report-reason[data-checked] {
+  border-color: var(--primary-fill);
+  background: var(--primary-soft);
+  color: var(--primary-text);
+}
+.report-reason:has(input:focus-visible) {
+  box-shadow: var(--focus-ring);
+}
+.report-note {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--text-2);
+  font-weight: 600;
+}
+.report-note textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-weight: 400;
+}
+.report-note textarea::placeholder {
+  color: var(--text-disabled);
+}
+.report-note textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.report-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+.report-hint {
+  font-size: var(--fs-xs);
+}

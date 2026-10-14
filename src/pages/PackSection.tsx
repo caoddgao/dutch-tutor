@@ -49,8 +49,8 @@ export function PackSection() {
               <div className="settings-row-label">资料包需要重新导入</div>
               <div className="settings-row-desc">
                 {packStatus === "outdated"
-                  ? `已导入的资料包是格式版本 ${packInfo?.manifest?.format_version}，这个版本的程序只认版本 1。请选择新整理的 nn-pack 文件夹重新导入。`
-                  : "已导入的资料包文件不完整或已损坏，读不出来。请选择 nn-pack 文件夹重新导入。"}
+                  ? "已导入的资料包和现在的程序不配套。请选择新整理的资料包文件夹（nn-pack）重新导入。"
+                  : "已导入的资料包不完整或已损坏，读不出来。请选择资料包文件夹（nn-pack）重新导入。"}
               </div>
             </>
           ) : (

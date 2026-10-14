@@ -82,6 +82,25 @@ describe("lesson page", () => {
     await screen.findByText("第 2 / 12 句");
   });
 
+  it("sentence and word cards have a report button", async () => {
+    const { raw } = await open("#/lesson/NN21");
+    await screen.findByText("先完整听一两遍");
+    fireEvent.click(screen.getByRole("button", { name: /下一步：逐句学/ }));
+    await screen.findByText("第 1 / 12 句");
+    fireEvent.click(screen.getByRole("button", { name: "报错" }));
+    fireEvent.click(screen.getByLabelText("音频有问题"));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "提交" }));
+    });
+    expect(raw.prepare("SELECT target_type, category, lesson_id FROM feedback").all()).toEqual([
+      { target_type: "sentence", category: "audio", lesson_id: "NN21" },
+    ]);
+    const steps = within(screen.getByRole("navigation", { name: "上课步骤" }));
+    fireEvent.click(steps.getByRole("button", { name: /词卡/ }));
+    await screen.findByText(/第 1 \/ \d+ 个词/);
+    expect(screen.getByRole("button", { name: "报错" })).toBeTruthy();
+  });
+
   it("finishing puts sentences and new words into the review queue", async () => {
     const { raw } = await open("#/lesson/NN21");
     await screen.findByText("先完整听一两遍");
