@@ -1,5 +1,7 @@
-import { Download, ShieldCheck, Upload } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Download, ShieldCheck, Table2, Upload } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import { ContentContext } from "../content/context";
+import { buildCourseView } from "../content/model";
 import { formatDateTime } from "../format";
 import { useServices } from "../servicesContext";
 import {
@@ -14,7 +16,9 @@ import {
   type BackupFile,
 } from "../storage/backup";
 import type { SqlDb } from "../storage/db";
+import { buildLearningTables, learningTableFileName } from "../storage/learningTables";
 import { writeCachedSettings } from "../storage/settingsStore";
+import { buildWorkbook } from "../storage/workbook";
 
 const RESTORED_FLAG = "dutch-tutor.restored";
 
@@ -32,9 +36,18 @@ function reloadApp() {
 
 type Notice = { kind: "success" | "error"; text: string } | null;
 
-/** Settings → 学习数据: export one backup file, restore from one (design §8). */
+const TABLE_DESC =
+  "课程进度、测验成绩、学习天数和复习统计各占一页，可以用 Excel 或 WPS 打开查看。" +
+  "表格只供查看，不能用来恢复；换电脑或重装请用上面的“导出学习数据”。";
+
+/**
+ * Settings → 学习数据: export one backup file, restore from one (design §8);
+ * an Excel workbook to look at, which cannot be restored from (decision 29).
+ */
 export function BackupSection({ onRestored = reloadApp }: { onRestored?: () => void }) {
-  const { db, settings: store, dataFiles } = useServices();
+  const { db, settings: store, dataFiles, content } = useServices();
+  // lesson titles of pack lessons come from the installed pack's index
+  const course = useContext(ContentContext)?.course;
   const [busy, setBusy] = useState(false);
   // the page reloads after a restore; say so once it is back
   const [notice, setNotice] = useState<Notice>(() =>
@@ -58,6 +71,29 @@ export function BackupSection({ onRestored = reloadApp }: { onRestored?: () => v
       const backup = await collectBackup(await db(), store, now);
       const saved = await dataFiles.exportText(backupFileName(now), serializeBackup(backup), "保存学习数据备份");
       if (saved) setNotice({ kind: "success", text: "学习数据已导出。换电脑或重装后，用“从备份恢复”选这个文件即可。" });
+    } catch {
+      setNotice({ kind: "error", text: "导出没有成功，请换个保存位置再试一次。" });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const exportTables = async () => {
+    setBusy(true);
+    setNotice(null);
+    try {
+      const now = new Date();
+      const sheets = await buildLearningTables(await db(), course ?? buildCourseView(content, null), content, now);
+      const saved = await dataFiles.exportWorkbook(
+        learningTableFileName(now),
+        await buildWorkbook(sheets),
+        "保存学习数据表格",
+      );
+      if (saved)
+        setNotice({
+          kind: "success",
+          text: "表格已导出，可以用 Excel 或 WPS 打开查看。它不能用来恢复，恢复请用“导出学习数据”保存的文件。",
+        });
     } catch {
       setNotice({ kind: "error", text: "导出没有成功，请换个保存位置再试一次。" });
     } finally {
@@ -150,6 +186,16 @@ export function BackupSection({ onRestored = reloadApp }: { onRestored?: () => v
             从备份恢复
           </button>
         </div>
+      </div>
+      <div className="settings-row">
+        <div className="settings-row-text">
+          <div className="settings-row-label">学习情况表格</div>
+          <div className="settings-row-desc">{TABLE_DESC}</div>
+        </div>
+        <button type="button" className="btn btn-ghost btn-small" disabled={busy} onClick={exportTables}>
+          <Table2 size={15} aria-hidden />
+          导出成表格（只供查看）
+        </button>
       </div>
 
       {summary && (

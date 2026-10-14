@@ -1,9 +1,10 @@
-import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { ServicesContext } from "../servicesContext";
 import { addReport } from "../storage/feedback";
 import type { SqlDb } from "../storage/db";
 import { memoryDataFiles, testServices } from "../test/services";
+import { readWorkbook } from "../test/workbook";
 import { ReportSection } from "./ReportSection";
 
 const word = { type: "word" as const, id: "w_huis", lessonId: "P05", nl: "huis", zh: "房子" };
@@ -75,6 +76,34 @@ describe("ReportSection", () => {
       fireEvent.click(screen.getByRole("button", { name: "重新导出全部" }));
     });
     expect(JSON.parse(files.saved[1].text).count).toBe(2);
+  });
+
+  it("exports an Excel table instead when chosen, and counts it as exported too", async () => {
+    const { files, raw } = await setup(async (db) => {
+      await addReport(db, sentence, "translation", "应该是“早安”", new Date(2026, 9, 14, 8, 5));
+      await addReport(db, word, "audio", "", new Date(2026, 9, 14, 21, 40));
+    });
+    fireEvent.click(screen.getByRole("radio", { name: "Excel 表格" }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "导出报错" }));
+    });
+    await waitFor(() => expect(screen.getByRole("status").textContent).toMatch(/已导出 2 条/));
+    expect(files.saved).toHaveLength(0);
+    expect(files.workbooks).toHaveLength(1);
+    expect(files.workbooks[0].name).toMatch(/^Dutch-Tutor-内容报错-\d{4}-\d{2}-\d{2}\.xlsx$/);
+    const sheets = await readWorkbook(files.workbooks[0].bytes);
+    expect(sheets).toEqual([
+      {
+        sheet: "内容报错",
+        data: [
+          ["课号", "类型", "荷兰语", "中文", "原因", "备注", "报错时间"],
+          ["第 21 课", "句子", "Goedemorgen!", "早上好！", "翻译不对", "应该是“早安”", "2026-10-14 08:05"],
+          ["P05", "词", "huis", "房子", "音频有问题", null, "2026-10-14 21:40"],
+        ],
+      },
+    ]);
+    expect(await screen.findByText("2 条都已导出")).toBeTruthy();
+    expect(raw.prepare("SELECT COUNT(*) AS n FROM feedback WHERE exported_at IS NOT NULL").get()).toEqual({ n: 2 });
   });
 
   it("nothing to export yet", async () => {

@@ -1,11 +1,14 @@
-// Where exported files go and imported files come from (backups, content reports).
+// Where exported files go and imported files come from (backups, content reports, Excel tables).
 // Desktop app: the system save / open dialogs and small Rust commands (src-tauri/src/backup.rs).
 // Browser dev server: a download and a file picker.
 import { invoke, isTauri } from "@tauri-apps/api/core";
+import { XLSX_MIME } from "./workbook";
 
 export interface DataFiles {
   /** Asks where to save and writes the text; false when the learner cancels. */
   exportText(defaultName: string, text: string, title: string): Promise<boolean>;
+  /** Same for an Excel workbook (`.xlsx`). */
+  exportWorkbook(defaultName: string, bytes: Uint8Array, title: string): Promise<boolean>;
   /** Asks for a backup file and returns its text; null when the learner cancels. */
   importText(title: string): Promise<string | null>;
   /** Keeps a copy of the current data inside the app data folder before a restore. */
@@ -13,6 +16,16 @@ export interface DataFiles {
 }
 
 const JSON_FILTER = [{ name: "备份文件", extensions: ["json"] }];
+const XLSX_FILTER = [{ name: "Excel 表格", extensions: ["xlsx"] }];
+
+function download(name: string, blob: Blob) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
 
 export function createTauriDataFiles(): DataFiles {
   return {
@@ -21,6 +34,13 @@ export function createTauriDataFiles(): DataFiles {
       const path = await save({ title, defaultPath: defaultName, filters: JSON_FILTER });
       if (!path) return false;
       await invoke("write_export_file", { path, text });
+      return true;
+    },
+    async exportWorkbook(defaultName, bytes, title) {
+      const { save } = await import("@tauri-apps/plugin-dialog");
+      const path = await save({ title, defaultPath: defaultName, filters: XLSX_FILTER });
+      if (!path) return false;
+      await invoke("write_export_file", { path, bytes: Array.from(bytes) });
       return true;
     },
     async importText(title) {
@@ -37,12 +57,11 @@ export function createBrowserDataFiles(): DataFiles {
   const safety: string[] = [];
   return {
     async exportText(defaultName, text) {
-      const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = defaultName;
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      download(defaultName, new Blob([text], { type: "application/json" }));
+      return true;
+    },
+    async exportWorkbook(defaultName, bytes) {
+      download(defaultName, new Blob([bytes as Uint8Array<ArrayBuffer>], { type: XLSX_MIME }));
       return true;
     },
     importText() {

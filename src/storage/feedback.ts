@@ -1,6 +1,9 @@
 // Content reports (design §7): the "报错" button on sentence and word cards, exported for later revision.
 // Rows share the feedback table with recording mode's "unnatural" marks, which are not reports.
+import { formatDateTime } from "../format";
 import type { SqlDb } from "./db";
+import type { LessonName } from "./learningTables";
+import type { TableSheet } from "./workbook";
 
 export type ReportCategory = "translation" | "dutch" | "audio" | "other";
 
@@ -135,8 +138,41 @@ export async function markReportsExported(db: SqlDb, ids: number[], now = new Da
   }
 }
 
+const TYPE_ZH: Record<string, string> = {
+  sentence: "句子",
+  word: "词",
+  exercise: "练习",
+  tip: "小贴士",
+  audio: "音频",
+};
+
+/** The same reports as an Excel sheet to read (decision 29); lesson codes as on the course map, local times. */
+export function reportTable(file: ReportExport, names: Map<string, LessonName>): TableSheet {
+  return {
+    name: "内容报错",
+    columns: [
+      { title: "课号", width: 12 },
+      { title: "类型", width: 8 },
+      { title: "荷兰语", width: 32 },
+      { title: "中文", width: 24 },
+      { title: "原因", width: 14 },
+      { title: "备注", width: 32 },
+      { title: "报错时间", width: 18 },
+    ],
+    rows: file.reports.map((r) => [
+      r.lesson ? (names.get(r.lesson)?.code ?? r.lesson) : "",
+      TYPE_ZH[r.type] ?? r.type,
+      r.nl,
+      r.zh,
+      r.reason_zh,
+      r.note,
+      formatDateTime(r.reported_at),
+    ]),
+  };
+}
+
 const p2 = (n: number) => String(n).padStart(2, "0");
 
-export function reportFileName(d: Date): string {
-  return `Dutch-Tutor-内容报错-${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}.json`;
+export function reportFileName(d: Date, ext: "json" | "xlsx" = "json"): string {
+  return `Dutch-Tutor-内容报错-${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}.${ext}`;
 }

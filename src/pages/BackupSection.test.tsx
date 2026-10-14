@@ -1,9 +1,10 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ServicesContext } from "../servicesContext";
 import { collectBackup, serializeBackup } from "../storage/backup";
 import { savePosition } from "../storage/learning";
 import { memoryDataFiles, testServices } from "../test/services";
+import { readWorkbook } from "../test/workbook";
 import { BackupSection } from "./BackupSection";
 
 async function setup() {
@@ -36,6 +37,22 @@ describe("BackupSection", () => {
     expect(files.saved[0].name).toMatch(/^Dutch-Tutor-学习数据-\d{4}-\d{2}-\d{2}\.json$/);
     expect(JSON.parse(files.saved[0].text).tables.lesson_progress[0].lesson_id).toBe("NN21");
     expect(screen.getByRole("status").textContent).toMatch(/已导出/);
+  });
+
+  it("exports an Excel workbook to look at, and says it cannot be restored from", async () => {
+    const { files, db } = await setup();
+    await savePosition(db, "NN21", 2, 3);
+    expect(screen.getByText(/表格只供查看，不能用来恢复/)).toBeTruthy();
+    await click("导出成表格（只供查看）");
+    // the Excel writer loads on first use
+    await waitFor(() => expect(screen.getByRole("status").textContent).toMatch(/不能用来恢复/));
+    expect(files.saved).toHaveLength(0);
+    expect(files.workbooks).toHaveLength(1);
+    expect(files.workbooks[0].name).toMatch(/^Dutch-Tutor-学习数据表-\d{4}-\d{2}-\d{2}\.xlsx$/);
+    const sheets = await readWorkbook(files.workbooks[0].bytes);
+    expect(sheets.map((s) => s.sheet)).toEqual(["课程进度", "测验成绩", "学习天数", "复习统计"]);
+    // without the content context the codes still follow the course map; the lesson is opened, not finished
+    expect(sheets[0].data.find((r) => r[0] === "第 21 课")?.[3]).toBe("未学");
   });
 
   it("refuses a bad file in plain words and changes nothing", async () => {
