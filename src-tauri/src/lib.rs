@@ -41,6 +41,9 @@ pub fn run() {
             pack::read_pack_file,
             recordings::save_recording,
             recordings::delete_recording,
+            recordings::export_recording_folder,
+            recordings::import_recording_folder,
+            recordings::write_recording_transcript,
         ])
         .setup(|_app| {
             #[cfg(windows)]

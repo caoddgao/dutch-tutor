@@ -20,6 +20,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   );
   const [voice, setVoice] = useState<Map<string, string>>(new Map());
   const recordings = useMemo(() => new RecordingStore(services.db, services.recordingFiles), [services]);
+  const refreshVoice = useCallback(async () => setVoice(await recordings.voiceUrls()), [recordings]);
 
   useEffect(() => player.setRate(rate), [rate]);
 
@@ -45,8 +46,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       rate,
       setRate,
       recordings,
+      refreshVoice,
     }),
-    [voice, backend, packStatus, ttsUrl, rate, setRate, recordings],
+    [voice, backend, packStatus, ttsUrl, rate, setRate, recordings, refreshVoice],
   );
   return <AudioCtx.Provider value={value}>{children}</AudioCtx.Provider>;
 }
