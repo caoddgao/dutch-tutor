@@ -8,7 +8,7 @@
 
 ## 进行中
 
-施工者：Codex · 分支：`codex/stage5-3-azure-pronunciation` · PR：待建
+施工者：Codex · 分支：`codex/stage5-3-azure-pronunciation` · PR：#46
 
 - [ ] 本机密钥 / 区域设置、连接测试与评分开关；不得写入日志或仓库。
 - [ ] Rust 后端 Azure 发音评分、nl-NL 结果解析、F0 每分钟 20 次限速与本月用量。
