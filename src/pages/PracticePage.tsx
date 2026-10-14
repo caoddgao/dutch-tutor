@@ -4,14 +4,15 @@ import { Link } from "react-router";
 import { useAudio } from "../audio/context";
 import { usePeaks, usePlayerState } from "../audio/hooks";
 import { player } from "../audio/player";
-import type { Take } from "../audio/recordings";
+import type { Take, TakeAssessment } from "../audio/recordings";
 import { useShadowRecorder } from "../audio/useShadowRecorder";
 import { EmptyState } from "../components/EmptyState";
 import { Waveform } from "../components/Waveform";
 import { formatRecent } from "../format";
 import type { PracticeSentence } from "../practice/data";
 import { usePracticeData, type PracticeData } from "../practice/usePracticeData";
-import { useAzure } from "../pronunciation/context";
+import { azureErrorMessage, useAzure } from "../pronunciation/context";
+import { ScorePanel } from "../pronunciation/ScorePanel";
 import "../components/PlayerBar.css";
 import "../pronunciation/score.css";
 import "./PracticePage.css";
@@ -209,6 +210,13 @@ function Practice({ data }: { data: PracticeData }) {
   );
 }
 
+/** The bytes of an earlier take, for scoring it. */
+async function takeAudio(url: string): Promise<Blob> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("audio");
+  return response.blob();
+}
+
 /** Consecutive sentences of the same lesson, in list order. */
 function groupByLesson<T extends { lessonId: string }>(items: T[]): { lessonId: string; sentences: T[] }[] {
   const groups: { lessonId: string; sentences: T[] }[] = [];
@@ -231,13 +239,17 @@ interface CardProps {
   onMove: (step: number) => void;
 }
 
+type ScoreState = { kind: "idle" } | { kind: "scoring" } | { kind: "error"; message: string };
+
 /**
  * One sentence: listen (normal / slow), record, compare with the original. Takes are the same as when
  * shadowing in the lesson (newest three per audio ID); practising here is not a review and does not
- * change mastery.
+ * change mastery. With pronunciation scoring on, each new take is scored against the sentence (the usual
+ * rate limit and monthly usage apply) and the score is kept with the take.
  */
 function PracticeCard({ sentence, index, total, lessonLabel, isHard, onToggleHard, scoring, onMove }: CardProps) {
   const { resolve, rate, setRate, recordings } = useAudio();
+  const { assess } = useAzure();
   const state = usePlayerState();
   const resolved = resolve(sentence.audio);
   const id = sentence.audio.id;
@@ -247,6 +259,9 @@ function PracticeCard({ sentence, index, total, lessonLabel, isHard, onToggleHar
   const [takes, setTakes] = useState<Take[]>([]);
   const latest = takes[0];
   const minePeaks = usePeaks(latest?.url, BARS);
+  const [score, setScore] = useState<ScoreState>({ kind: "idle" });
+  // the take recorded on this visit (its score is "刚才这次的评分")
+  const [freshId, setFreshId] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -276,12 +291,30 @@ function PracticeCard({ sentence, index, total, lessonLabel, isHard, onToggleHar
     ]);
   };
 
+  const scoreTake = async (take: Take, blob?: Blob) => {
+    setScore({ kind: "scoring" });
+    try {
+      const audio = blob ?? (await takeAudio(take.url));
+      const { total, accuracy, fluency, completeness, low_words } = await assess(audio, sentence.nl);
+      const result: TakeAssessment = { total, accuracy, fluency, completeness, low_words };
+      // the score is shown even if it cannot be kept
+      await recordings.saveAssessment(take.id, result).catch(() => undefined);
+      setTakes((old) => old.map((t) => (t.id === take.id ? { ...t, assessment: result } : t)));
+      setScore({ kind: "idle" });
+    } catch (error) {
+      setScore({ kind: "error", message: azureErrorMessage(error) });
+    }
+  };
+
   const { rec, start, stop } = useShadowRecorder(id, MAX_RECORD_SECONDS, async (recording) => {
     await recordings.savePractice(id, recording);
     const next = await recordings.takes(id);
     setTakes(next);
+    setFreshId(next[0]?.id ?? null);
+    setScore({ kind: "idle" });
     if (resolved) playAlternate(next[0]);
     else playTake(next[0]);
+    if (scoring && next[0]) void scoreTake(next[0], recording.blob);
   });
 
   const playingTag = state.playing ? state.tag : null;
@@ -388,7 +421,35 @@ function PracticeCard({ sentence, index, total, lessonLabel, isHard, onToggleHar
         </div>
       </div>
 
-      <div className="practice-lower is-single">
+      <div className={`practice-lower${scoring && latest ? "" : " is-single"}`}>
+        {scoring && latest && (
+          <section className="practice-score" aria-live="polite">
+            <h3>{latest.id === freshId ? "刚才这次的评分" : "最近一次的评分"}</h3>
+            {score.kind === "scoring" ? (
+              <p className="muted">评分中…</p>
+            ) : latest.assessment ? (
+              <ScorePanel result={{ ...latest.assessment, month_seconds: 0 }} />
+            ) : (
+              <>
+                {score.kind === "error" ? (
+                  <p className="notice notice-error" role="alert">
+                    {score.message}
+                  </p>
+                ) : (
+                  <p className="muted">这次录音还没有评分。</p>
+                )}
+                <button
+                  type="button"
+                  className="btn btn-primary btn-small"
+                  disabled={recording || rec.kind === "saving"}
+                  onClick={() => void scoreTake(latest)}
+                >
+                  {score.kind === "error" ? "再评一次" : "给这次录音评分"}
+                </button>
+              </>
+            )}
+          </section>
+        )}
         <section className="practice-takes">
           <h3>最近 3 次录音</h3>
           {takes.length ? (
@@ -411,6 +472,9 @@ function PracticeCard({ sentence, index, total, lessonLabel, isHard, onToggleHar
                     </button>
                     <span className="practice-take-when">{formatRecent(take.createdAt)}</span>
                     <span className="practice-take-len">{take.duration.toFixed(1)} 秒</span>
+                    {scoring && take.assessment && (
+                      <span className="practice-take-score">{Math.round(take.assessment.total)} 分</span>
+                    )}
                   </li>
                 );
               })}
