@@ -4,18 +4,18 @@ use base64::Engine;
 use chrono::Utc;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use std::collections::VecDeque;
 use std::fs::{self, OpenOptions};
 use std::io::Write;
 use std::path::PathBuf;
 use std::sync::{Mutex, OnceLock};
-use std::time::{Duration, Instant};
+use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use tauri::{AppHandle, Manager, Runtime};
 
 const CONFIG_FILE: &str = "azure-speech.json";
 const USAGE_FILE: &str = "azure-usage.json";
+const RATE_FILE: &str = "azure-request-times.json";
 const MAX_PER_MINUTE: usize = 20;
-static REQUESTS: OnceLock<Mutex<VecDeque<Instant>>> = OnceLock::new();
+static RATE_LOCK: OnceLock<Mutex<()>> = OnceLock::new();
 static USAGE_LOCK: OnceLock<Mutex<()>> = OnceLock::new();
 
 #[derive(Debug, Serialize)]
@@ -226,29 +226,40 @@ pub async fn test_azure_connection<R: Runtime>(app: AppHandle<R>) -> Result<(), 
     }
 }
 
-fn reserve_request(now: Instant) -> Result<(), AzureError> {
-    let mut requests = REQUESTS
-        .get_or_init(|| Mutex::new(VecDeque::new()))
-        .lock()
-        .map_err(|_| error("service"))?;
-    while requests
-        .front()
-        .is_some_and(|at| now.duration_since(*at) >= Duration::from_secs(60))
-    {
-        requests.pop_front();
-    }
+fn reserve_window(requests: &mut Vec<u64>, now_ms: u64) -> Result<(), AzureError> {
+    requests.retain(|at| *at <= now_ms && now_ms - *at < 60_000);
+    requests.sort_unstable();
     if requests.len() >= MAX_PER_MINUTE {
-        let wait = 60u64.saturating_sub(
-            now.duration_since(*requests.front().expect("nonempty"))
-                .as_secs(),
-        );
+        let wait_ms = requests[0].saturating_add(60_000).saturating_sub(now_ms);
         return Err(AzureError {
             code: "rate_limited",
-            retry_after: Some(wait.max(1)),
+            retry_after: Some(wait_ms.div_ceil(1000).max(1)),
         });
     }
-    requests.push_back(now);
+    requests.push(now_ms);
     Ok(())
+}
+
+fn reserve_request<R: Runtime>(app: &AppHandle<R>) -> Result<(), AzureError> {
+    let _guard = RATE_LOCK
+        .get_or_init(|| Mutex::new(()))
+        .lock()
+        .map_err(|_| error("storage"))?;
+    let path = file(app, RATE_FILE)?;
+    let mut requests: Vec<u64> = match fs::read(&path) {
+        Ok(bytes) => serde_json::from_slice(&bytes).map_err(|_| error("storage"))?,
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Vec::new(),
+        Err(_) => return Err(error("storage")),
+    };
+    let now_ms = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map_err(|_| error("storage"))?
+        .as_millis() as u64;
+    reserve_window(&mut requests, now_ms)?;
+    write_private(
+        path,
+        &serde_json::to_vec(&requests).map_err(|_| error("storage"))?,
+    )
 }
 
 fn score(value: &Value, key: &str) -> Result<f64, AzureError> {
@@ -325,7 +336,7 @@ pub async fn assess_pronunciation<R: Runtime>(
     if reference.is_empty() || reference.len() > 500 {
         return Err(error("reference"));
     }
-    reserve_request(Instant::now())?;
+    reserve_request(&app)?;
     let settings = json!({
         "ReferenceText": reference,
         "GradingSystem": "HundredMark",
@@ -364,9 +375,8 @@ pub async fn assess_pronunciation<R: Runtime>(
 
 #[cfg(test)]
 mod tests {
-    use super::{parse_assessment, reserve_request, valid_region};
+    use super::{parse_assessment, reserve_window, valid_region};
     use serde_json::json;
-    use std::time::{Duration, Instant};
 
     #[test]
     fn region_cannot_change_host() {
@@ -391,12 +401,14 @@ mod tests {
 
     #[test]
     fn allows_at_most_twenty_requests_in_a_rolling_minute() {
-        let now = Instant::now();
+        let now = 1_000_000;
+        let mut requests = Vec::new();
         for _ in 0..20 {
-            reserve_request(now).unwrap();
+            reserve_window(&mut requests, now).unwrap();
         }
-        let limited = reserve_request(now).unwrap_err();
+        let limited = reserve_window(&mut requests, now).unwrap_err();
         assert_eq!(limited.code, "rate_limited");
-        assert!(reserve_request(now + Duration::from_secs(60)).is_ok());
+        assert_eq!(limited.retry_after, Some(60));
+        assert!(reserve_window(&mut requests, now + 60_000).is_ok());
     }
 }
