@@ -1,5 +1,6 @@
 // Learner recordings: practice takes (last 3 per item, design §5.3) and real-voice sources (priority 1, §5.1).
 import { convertFileSrc, invoke, isTauri } from "@tauri-apps/api/core";
+import type { Assessment } from "../pronunciation/context";
 import type { SqlDb } from "../storage/db";
 import { extensionFor, type Recording } from "./recorder";
 
@@ -11,7 +12,11 @@ export interface Take {
   url: string;
   duration: number;
   createdAt: string;
+  /** Azure score of a practice take, when it was scored */
+  assessment?: TakeAssessment | null;
 }
+
+export type TakeAssessment = Omit<Assessment, "month_seconds">;
 
 /** Where recording files go. */
 export interface RecordingFiles {
@@ -58,6 +63,7 @@ interface Row {
   file_path: string;
   duration: number | null;
   created_at: string;
+  assessment?: string | null;
 }
 
 interface MarkRow {
@@ -81,6 +87,18 @@ interface ImportResult {
 
 const safeId = (audioId: string) => audioId.replace(/[^A-Za-z0-9_-]/g, "_");
 
+const PRACTICE_TAKES =
+  "SELECT id, audio_id, file_path, duration, created_at, assessment FROM recordings WHERE audio_id = $1 AND kind = 'practice' ORDER BY id DESC";
+
+function parseAssessment(text: string | null | undefined): TakeAssessment | null {
+  if (!text) return null;
+  try {
+    return JSON.parse(text) as TakeAssessment;
+  } catch {
+    return null;
+  }
+}
+
 export class RecordingStore {
   constructor(
     private readonly db: () => Promise<SqlDb>,
@@ -94,15 +112,13 @@ export class RecordingStore {
       url: this.files.url(r.file_path),
       duration: r.duration ?? 0,
       createdAt: r.created_at,
+      assessment: parseAssessment(r.assessment),
     };
   }
 
   async takes(audioId: string): Promise<Take[]> {
     const db = await this.db();
-    const rows = await db.select<Row[]>(
-      "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'practice' ORDER BY id DESC",
-      [audioId],
-    );
+    const rows = await db.select<Row[]>(PRACTICE_TAKES, [audioId]);
     return rows.map((r) => this.toTake(r));
   }
 
@@ -116,15 +132,22 @@ export class RecordingStore {
       path,
       rec.duration,
     ]);
-    const rows = await db.select<Row[]>(
-      "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'practice' ORDER BY id DESC",
-      [audioId],
-    );
+    const rows = await db.select<Row[]>(PRACTICE_TAKES, [audioId]);
     for (const old of rows.slice(KEEP_TAKES)) {
       await this.files.remove(old.file_path).catch(() => undefined);
       await db.execute("DELETE FROM recordings WHERE id = $1", [old.id]);
     }
     return this.toTake(rows[0]);
+  }
+
+  /** Keeps the Azure score of a practice take next to it (practice page). */
+  async saveAssessment(takeId: number, assessment: TakeAssessment): Promise<void> {
+    const db = await this.db();
+    const { total, accuracy, fluency, completeness, low_words } = assessment;
+    await db.execute("UPDATE recordings SET assessment = $1 WHERE id = $2 AND kind = 'practice'", [
+      JSON.stringify({ total, accuracy, fluency, completeness, low_words }),
+      takeId,
+    ]);
   }
 
   /** Newest real-voice recording per audio_id (recording mode, stage 5). */

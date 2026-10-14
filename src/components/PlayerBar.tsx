@@ -1,10 +1,10 @@
 import { Mic, Pause, Play, Square } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { useAudio } from "../audio/context";
 import { usePeaks, usePlayerState } from "../audio/hooks";
 import { player } from "../audio/player";
-import { recorderErrorMessage, RecorderError, startRecording, type ActiveRecording } from "../audio/recorder";
 import type { Take } from "../audio/recordings";
+import { useShadowRecorder } from "../audio/useShadowRecorder";
 import type { AudioRef } from "../content/model";
 import { Waveform } from "./Waveform";
 import "./PlayerBar.css";
@@ -23,9 +23,6 @@ interface Props {
   nav?: ReactNode;
 }
 
-type RecState =
-  { kind: "idle" } | { kind: "recording"; seconds: number } | { kind: "saving" } | { kind: "error"; message: string };
-
 /**
  * The dark immersive player bar (design §7): glowing orange play button, waveform, 0.75× slow mode,
  * shadowing with original / mine / alternate playback and both waveforms.
@@ -38,16 +35,11 @@ export function PlayerBar({ audio, segment, canRecord = true, nav }: Props) {
   const origTag = `bar:${id}`;
   const mineTag = `mine:${id}`;
   const origPeaks = usePeaks(resolved?.url, BARS, segment?.start, segment?.end);
-  // both belong to the current item; a different item starts clean
+  // belongs to the current item; a different item starts clean
   const [takeOf, setTakeOf] = useState<{ id: string; take: Take | null }>({ id: "", take: null });
-  const [recOf, setRecOf] = useState<{ id: string; rec: RecState }>({ id: "", rec: { kind: "idle" } });
   const take = takeOf.id === id ? takeOf.take : null;
-  const rec: RecState = recOf.id === id ? recOf.rec : { kind: "idle" };
   const setTake = useCallback((t: Take | null) => setTakeOf({ id, take: t }), [id]);
-  const setRec = useCallback((r: RecState) => setRecOf({ id, rec: r }), [id]);
   const minePeaks = usePeaks(take?.url, BARS);
-  const active = useRef<ActiveRecording | null>(null);
-  const timer = useRef<number | null>(null);
 
   // load the latest take of this item
   useEffect(() => {
@@ -62,16 +54,8 @@ export function PlayerBar({ audio, segment, canRecord = true, nav }: Props) {
     };
   }, [id, canRecord, recordings, setTake]);
 
-  // leaving the item stops playback and any recording
-  useEffect(
-    () => () => {
-      player.stop();
-      active.current?.cancel();
-      active.current = null;
-      if (timer.current) window.clearInterval(timer.current);
-    },
-    [id],
-  );
+  // leaving the item stops playback (and any recording, see useShadowRecorder)
+  useEffect(() => () => player.stop(), [id]);
 
   const playOriginal = useCallback(() => {
     if (!resolved) return;
@@ -96,39 +80,15 @@ export function PlayerBar({ audio, segment, canRecord = true, nav }: Props) {
     [resolved, take, rate, origTag, mineTag, segment?.start, segment?.end],
   );
 
-  const stopRecording = useCallback(async () => {
-    const r = active.current;
-    if (!r) return;
-    active.current = null;
-    if (timer.current) window.clearInterval(timer.current);
-    setRec({ kind: "saving" });
-    try {
-      const recording = await r.stop();
-      const saved = await recordings.savePractice(id, recording);
-      setTake(saved);
-      setRec({ kind: "idle" });
-      playAlternate(saved);
-    } catch {
-      setRec({ kind: "error", message: "录音没有保存成功，请再试一次。" });
-    }
-  }, [id, recordings, playAlternate, setRec, setTake]);
-
-  const startRec = useCallback(async () => {
-    player.stop();
-    try {
-      active.current = await startRecording();
-    } catch (e) {
-      setRec({ kind: "error", message: recorderErrorMessage(e instanceof RecorderError ? e.code : "unsupported") });
-      return;
-    }
-    const started = Date.now();
-    setRec({ kind: "recording", seconds: 0 });
-    timer.current = window.setInterval(() => {
-      const seconds = Math.floor((Date.now() - started) / 1000);
-      if (seconds >= MAX_RECORD_SECONDS) void stopRecording();
-      else setRec({ kind: "recording", seconds });
-    }, 250);
-  }, [stopRecording, setRec]);
+  const {
+    rec,
+    start: startRec,
+    stop: stopRecording,
+  } = useShadowRecorder(id, MAX_RECORD_SECONDS, async (recording) => {
+    const saved = await recordings.savePractice(id, recording);
+    setTake(saved);
+    playAlternate(saved);
+  });
 
   const origPlaying = state.playing && state.tag === origTag;
   const minePlaying = state.playing && state.tag === mineTag;

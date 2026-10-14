@@ -32,6 +32,12 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0003_feedback_context.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 4,
+            description: "practice",
+            sql: include_str!("../migrations/0004_practice.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 
