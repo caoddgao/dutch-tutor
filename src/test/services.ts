@@ -61,18 +61,27 @@ export function testServices(over: Partial<AppServices> & { settingsData?: Recor
   return { services, settingsData: data, db, raw };
 }
 
-/** Exports land in `saved`; `nextImport` is what the next import returns; safety copies in `safety`. */
+/**
+ * Exports land in `saved` (text) and `workbooks` (Excel bytes); `nextImport` is what the next import returns;
+ * safety copies in `safety`.
+ */
 export function memoryDataFiles(): DataFiles & {
   saved: { name: string; text: string }[];
+  workbooks: { name: string; bytes: Uint8Array }[];
   safety: string[];
   nextImport: string | null;
 } {
   const files = {
     saved: [] as { name: string; text: string }[],
+    workbooks: [] as { name: string; bytes: Uint8Array }[],
     safety: [] as string[],
     nextImport: null as string | null,
     async exportText(name: string, text: string) {
       files.saved.push({ name, text });
+      return true;
+    },
+    async exportWorkbook(name: string, bytes: Uint8Array) {
+      files.workbooks.push({ name, bytes });
       return true;
     },
     async importText() {

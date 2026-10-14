@@ -1,5 +1,6 @@
 //! Learning-data backup files (design §8) and the content-report export (§7).
-//! The front end builds and checks the JSON; this side only reads and writes the files.
+//! The front end builds and checks the JSON and the Excel tables; this side only reads and writes the files.
+//! Exports are `.json` text or `.xlsx` workbooks, nothing else; only `.json` is ever read back.
 //! Nothing here touches the Azure key file or the recordings folder.
 
 use serde::Serialize;
@@ -25,11 +26,31 @@ fn err(code: &'static str, detail: impl ToString) -> BackupError {
     }
 }
 
-fn is_json(path: &Path) -> bool {
+fn has_extension(path: &Path, ext: &str) -> bool {
     path.extension()
         .and_then(|x| x.to_str())
-        .map(|x| x.eq_ignore_ascii_case("json"))
+        .map(|x| x.eq_ignore_ascii_case(ext))
         .unwrap_or(false)
+}
+
+fn is_json(path: &Path) -> bool {
+    has_extension(path, "json")
+}
+
+/// An `.xlsx` workbook is a zip archive; its first bytes are the zip signature.
+const ZIP_MAGIC: &[u8] = b"PK\x03\x04";
+
+fn write_xlsx_file(path: &Path, bytes: &[u8]) -> Result<(), BackupError> {
+    if !has_extension(path, "xlsx") {
+        return Err(err("bad_file", "expected a .xlsx file"));
+    }
+    if bytes.len() as u64 > MAX_BYTES {
+        return Err(err("too_large", bytes.len()));
+    }
+    if !bytes.starts_with(ZIP_MAGIC) {
+        return Err(err("bad_file", "not an .xlsx workbook"));
+    }
+    fs::write(path, bytes).map_err(|e| err("io", e))
 }
 
 fn write_json_file(path: &Path, text: &str) -> Result<(), BackupError> {
@@ -88,10 +109,20 @@ fn save_safety_copy(dir: &Path, stamp: &str, text: &str) -> Result<PathBuf, Back
     Ok(path)
 }
 
-/// Writes a backup or report file to a place the learner picked in the save dialog.
+/// Writes an exported file to a place the learner picked in the save dialog:
+/// `text` to a `.json` file (backup, reports), or `bytes` to a `.xlsx` workbook (tables to look at).
 #[tauri::command]
-pub fn write_export_file(path: String, text: String) -> Result<(), BackupError> {
-    write_json_file(&PathBuf::from(path), &text)
+pub fn write_export_file(
+    path: String,
+    text: Option<String>,
+    bytes: Option<Vec<u8>>,
+) -> Result<(), BackupError> {
+    let path = PathBuf::from(path);
+    match (text, bytes) {
+        (Some(text), None) => write_json_file(&path, &text),
+        (None, Some(bytes)) => write_xlsx_file(&path, &bytes),
+        _ => Err(err("bad_file", "expected text or bytes")),
+    }
 }
 
 /// Reads a backup file the learner picked in the open dialog.
@@ -117,7 +148,10 @@ pub fn save_safety_backup<R: Runtime>(
 
 #[cfg(test)]
 mod tests {
-    use super::{read_json_file, save_safety_copy, valid_stamp, write_json_file, KEEP_SAFETY};
+    use super::{
+        read_json_file, save_safety_copy, valid_stamp, write_export_file, write_json_file,
+        KEEP_SAFETY,
+    };
     use std::fs;
 
     fn temp(name: &str) -> std::path::PathBuf {
@@ -142,6 +176,28 @@ mod tests {
         fs::write(dir.join("bad.json"), [0xff, 0xfe, 0x00]).unwrap();
         assert!(read_json_file(&dir.join("bad.json")).is_err());
         assert!(read_json_file(&dir.join("missing.json")).is_err());
+        fs::remove_dir_all(dir).unwrap();
+    }
+
+    #[test]
+    fn exports_only_json_text_or_xlsx_workbooks() {
+        let dir = temp("export");
+        let path = |name: &str| dir.join(name).to_string_lossy().into_owned();
+        let workbook = b"PK\x03\x04rest of the zip".to_vec();
+        write_export_file(path("table.xlsx"), None, Some(workbook.clone())).unwrap();
+        assert_eq!(fs::read(dir.join("table.xlsx")).unwrap(), workbook);
+        write_export_file(path("TABLE.XLSX"), None, Some(workbook.clone())).unwrap();
+        write_export_file(path("reports.json"), Some("{}".into()), None).unwrap();
+        assert_eq!(fs::read_to_string(dir.join("reports.json")).unwrap(), "{}");
+        // wrong extension, wrong content, or text and bytes swapped
+        assert!(write_export_file(path("table.csv"), None, Some(workbook.clone())).is_err());
+        assert!(write_export_file(path("table.exe"), None, Some(workbook.clone())).is_err());
+        assert!(write_export_file(path("table.xlsx"), None, Some(b"not a zip".to_vec())).is_err());
+        assert!(write_export_file(path("table.xlsx"), Some("{}".into()), None).is_err());
+        assert!(write_export_file(path("reports.json"), None, Some(workbook.clone())).is_err());
+        assert!(write_export_file(path("reports.json"), None, None).is_err());
+        assert!(write_export_file(path("x.json"), Some("{}".into()), Some(workbook)).is_err());
+        assert!(!dir.join("table.csv").exists());
         fs::remove_dir_all(dir).unwrap();
     }
 

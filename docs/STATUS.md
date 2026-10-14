@@ -10,13 +10,16 @@
 
 施工者：Claude · 分支 `claude/stage5-5b-xlsx` · PR #53 · 5-5b 表格版导出（已定事项 29）
 
-- [ ] 1. 选前端生成 .xlsx 的库（体积小、离线、许可证允许）；保存仍走保存对话框 + `write_export_file`，Rust 只放行 .json / .xlsx。
+- [x] 1. 选前端生成 .xlsx 的库（体积小、离线、许可证允许）；保存仍走保存对话框 + `write_export_file`，Rust 只放行 .json / .xlsx。
 - [ ] 2. 设置"学习数据"加"导出成表格（只供查看）"：课程进度、测验成绩、学习天数、复习统计四页，中文列名，课号用 `lessonCode()`；
       界面写清楚表格不能用来恢复。
 - [ ] 3. 设置"内容报错"导出可选 JSON 或 Excel；Excel 列：课号、类型、荷兰语、中文、原因、备注、报错时间（本地时间）；两种都记 exported_at。
 - [ ] 4. 测试（表格能读回、列名和行数对、中文不乱码）；浅 / 深截图直接发给用户，不进仓库。
 
 半路决定：
+- 表格库用 `write-excel-file`（MIT，只依赖 fflate，压缩后约 25 KB，第一次导出时才加载，不拖慢启动）；测试用 `read-excel-file`（MIT，
+  只在开发依赖）独立读回。没选 SheetJS（npm 上的版本停在 0.18.5、有已知漏洞）和 exceljs（依赖多、体积大）。
+- `write_export_file` 改成 `text`（只写 .json）或 `bytes`（只写 .xlsx，且须是 zip 开头）二选一；读回仍只认 .json。
 
 ## 已完成
 
