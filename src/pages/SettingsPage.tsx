@@ -1,6 +1,7 @@
 import { getVersion } from "@tauri-apps/api/app";
 import { isTauri } from "@tauri-apps/api/core";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { Segmented } from "../components/Segmented";
 import { PackSection } from "./PackSection";
 import { useSettings } from "../settings/context";
@@ -183,6 +184,21 @@ export function SettingsPage() {
       </section>
 
       <PackSection />
+
+      <section className="card settings-section">
+        <h2 className="section-title">真人录音</h2>
+        <div className="settings-row">
+          <div className="settings-row-text">
+            <div className="settings-row-label">录音模式</div>
+            <div className="settings-row-desc">
+              按课录制句子和词，保存后自动替换播放音源。也可以导出录音稿和录音文件夹。
+            </div>
+          </div>
+          <Link className="btn btn-primary btn-small" to="/settings/recording">
+            进入录音模式
+          </Link>
+        </div>
+      </section>
 
       <section className="card settings-section">
         <h2 className="section-title">关于</h2>

@@ -60,6 +60,25 @@ interface Row {
   created_at: string;
 }
 
+interface MarkRow {
+  target_id: string;
+  target_type: "sentence" | "word";
+}
+interface TransferEntry {
+  audio_id: string;
+  file_name: string;
+  file_path?: string;
+  duration: number | null;
+}
+interface TransferMark {
+  target_id: string;
+  target_type: "sentence" | "word";
+}
+interface ImportResult {
+  recordings: TransferEntry[];
+  marks: TransferMark[];
+}
+
 const safeId = (audioId: string) => audioId.replace(/[^A-Za-z0-9_-]/g, "_");
 
 export class RecordingStore {
@@ -117,5 +136,104 @@ export class RecordingStore {
     const map = new Map<string, string>();
     for (const r of rows) map.set(r.audio_id, this.files.url(r.file_path));
     return map;
+  }
+
+  /** One approved voice per audio ID; practice takes are unaffected. */
+  async saveVoice(audioId: string, rec: Recording): Promise<Take> {
+    const db = await this.db();
+    const previous = await db.select<Row[]>(
+      "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'voice'",
+      [audioId],
+    );
+    const name = `${safeId(audioId)}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${extensionFor(rec.mime)}`;
+    const path = await this.files.write(name, rec.blob);
+    try {
+      await db.execute("INSERT INTO recordings (audio_id, kind, file_path, duration) VALUES ($1, 'voice', $2, $3)", [
+        audioId,
+        path,
+        rec.duration,
+      ]);
+    } catch (error) {
+      await this.files.remove(path).catch(() => undefined);
+      throw error;
+    }
+    const [row] = await db.select<Row[]>(
+      "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'voice' ORDER BY id DESC LIMIT 1",
+      [audioId],
+    );
+    for (const old of previous) {
+      try {
+        await db.execute("DELETE FROM recordings WHERE id = $1", [old.id]);
+        await this.files.remove(old.file_path).catch(() => undefined);
+      } catch {
+        /* The new voice remains usable; the old index can be cleaned up on a later replacement. */
+      }
+    }
+    return this.toTake(row);
+  }
+
+  async unnaturalIds(): Promise<Set<string>> {
+    const db = await this.db();
+    const rows = await db.select<MarkRow[]>("SELECT target_id, target_type FROM feedback WHERE category = 'unnatural'");
+    return new Set(rows.map((r) => r.target_id));
+  }
+
+  async markUnnatural(audioId: string, kind: "sentence" | "word", marked: boolean): Promise<void> {
+    const db = await this.db();
+    if (marked) {
+      const rows = await db.select<MarkRow[]>(
+        "SELECT target_id, target_type FROM feedback WHERE category = 'unnatural' AND target_id = $1",
+        [audioId],
+      );
+      if (!rows.length)
+        await db.execute("INSERT INTO feedback (target_type, target_id, category) VALUES ($1, $2, 'unnatural')", [
+          kind,
+          audioId,
+        ]);
+    } else {
+      await db.execute("DELETE FROM feedback WHERE category = 'unnatural' AND target_id = $1", [audioId]);
+    }
+  }
+
+  async exportFolder(dir: string): Promise<void> {
+    const db = await this.db();
+    const rows = await db.select<Row[]>(
+      "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE kind = 'voice' ORDER BY id",
+    );
+    const latest = new Map(rows.map((r) => [r.audio_id, r]));
+    const marks = await db.select<MarkRow[]>(
+      "SELECT target_id, target_type FROM feedback WHERE category = 'unnatural'",
+    );
+    await invoke("export_recording_folder", {
+      dir,
+      recordings: [...latest.values()].map((r) => ({
+        audio_id: r.audio_id,
+        file_name: r.file_path.split(/[\\/]/).pop()!,
+        duration: r.duration,
+      })),
+      marks,
+    });
+  }
+
+  async importFolder(dir: string): Promise<void> {
+    const result = await invoke<ImportResult>("import_recording_folder", { dir });
+    const db = await this.db();
+    for (const row of result.recordings) {
+      if (!row.file_path) continue;
+      const old = await db.select<Row[]>(
+        "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE kind = 'voice' AND audio_id = $1",
+        [row.audio_id],
+      );
+      await db.execute("INSERT INTO recordings (audio_id, kind, file_path, duration) VALUES ($1, 'voice', $2, $3)", [
+        row.audio_id,
+        row.file_path,
+        row.duration,
+      ]);
+      for (const previous of old) {
+        await db.execute("DELETE FROM recordings WHERE id = $1", [previous.id]);
+        await this.files.remove(previous.file_path).catch(() => undefined);
+      }
+    }
+    for (const mark of result.marks) await this.markUnnatural(mark.target_id, mark.target_type, true);
   }
 }

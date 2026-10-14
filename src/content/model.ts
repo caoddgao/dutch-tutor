@@ -30,6 +30,8 @@ export interface AudioRef {
 
 export interface RtWord {
   id: string;
+  /** Whether the dictionary entry came from the installed book pack or our own word list. */
+  origin?: "book" | "own";
   lemma: string;
   pos: Pos;
   article: "de" | "het" | "de/het" | null;
@@ -259,6 +261,7 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
     }
     words.set(w.id, {
       id: w.id,
+      origin: "own",
       lemma: w.lemma,
       pos: w.pos,
       article: w.article ?? null,
@@ -275,6 +278,7 @@ export function buildDictionary(bundle: ContentBundle, packWords: PackWord[] = [
     if (words.has(w.id)) continue;
     words.set(w.id, {
       id: w.id,
+      origin: "book",
       lemma: w.lemma,
       pos: w.pos,
       article: w.article,

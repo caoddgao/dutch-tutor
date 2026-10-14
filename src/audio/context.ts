@@ -9,6 +9,8 @@ export interface AudioContextValue {
   rate: number;
   setRate(rate: number): void;
   recordings: RecordingStore;
+  /** Reloads recorded voices after recording mode saves or imports files. */
+  refreshVoice(): Promise<void>;
 }
 
 export const AudioCtx = createContext<AudioContextValue | null>(null);
