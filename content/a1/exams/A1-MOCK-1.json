@@ -540,56 +540,31 @@
         {
           "id": "MOCK-E3-01",
           "word_id": "w_fiets",
-          "options": [
-            "fiets",
-            "fietz",
-            "viets",
-            "fies"
-          ],
+          "options": ["fiets", "fietz", "viets", "fies"],
           "answer": "fiets"
         },
         {
           "id": "MOCK-E3-02",
           "word_id": "w_water",
-          "options": [
-            "water",
-            "watter",
-            "vater",
-            "waater"
-          ],
+          "options": ["water", "watter", "vater", "waater"],
           "answer": "water"
         },
         {
           "id": "MOCK-E3-03",
           "word_id": "w_werken",
-          "options": [
-            "werken",
-            "werkenn",
-            "wercken",
-            "werkan"
-          ],
+          "options": ["werken", "werkenn", "wercken", "werkan"],
           "answer": "werken"
         },
         {
           "id": "MOCK-E3-04",
           "word_id": "w_boek",
-          "options": [
-            "boek",
-            "boeck",
-            "bouk",
-            "boeg"
-          ],
+          "options": ["boek", "boeck", "bouk", "boeg"],
           "answer": "boek"
         },
         {
           "id": "MOCK-E3-05",
           "word_id": "w_huis",
-          "options": [
-            "huis",
-            "huys",
-            "hous",
-            "huiz"
-          ],
+          "options": ["huis", "huys", "hous", "huiz"],
           "answer": "huis"
         }
       ]
@@ -606,42 +581,22 @@
         {
           "id": "MOCK-E4-01",
           "word_id": "w_dag",
-          "options": [
-            "w_dag",
-            "w_bus",
-            "w_boek",
-            "w_huis"
-          ]
+          "options": ["w_dag", "w_bus", "w_boek", "w_huis"]
         },
         {
           "id": "MOCK-E4-02",
           "word_id": "w_bus",
-          "options": [
-            "w_bus",
-            "w_dag",
-            "w_water",
-            "w_goed"
-          ]
+          "options": ["w_bus", "w_dag", "w_water", "w_goed"]
         },
         {
           "id": "MOCK-E4-03",
           "word_id": "w_goed",
-          "options": [
-            "w_goed",
-            "w_twee",
-            "w_werken",
-            "w_dag"
-          ]
+          "options": ["w_goed", "w_twee", "w_werken", "w_dag"]
         },
         {
           "id": "MOCK-E4-04",
           "word_id": "w_twee",
-          "options": [
-            "w_twee",
-            "w_fiets",
-            "w_goed",
-            "w_huis"
-          ]
+          "options": ["w_twee", "w_fiets", "w_goed", "w_huis"]
         }
       ]
     },
