@@ -1,3 +1,4 @@
+mod azure;
 mod pack;
 mod recordings;
 
@@ -44,6 +45,11 @@ pub fn run() {
             recordings::export_recording_folder,
             recordings::import_recording_folder,
             recordings::write_recording_transcript,
+            azure::azure_status,
+            azure::save_azure_config,
+            azure::clear_azure_key,
+            azure::test_azure_connection,
+            azure::assess_pronunciation,
         ])
         .setup(|_app| {
             #[cfg(windows)]

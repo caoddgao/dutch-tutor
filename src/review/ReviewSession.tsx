@@ -195,7 +195,7 @@ function QuestionBody({
           <p className="en review-en">{q.card.en}</p>
           <p className="muted">用荷兰语说出来</p>
         </div>
-        {!heard && <RecordButton id={`review-${q.card.item.item_id}`} />}
+        <RecordButton id={`review-${q.card.item.item_id}`} references={[q.card.nl]} canScore={heard} />
         {!heard ? (
           <button
             type="button"

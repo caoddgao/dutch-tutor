@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Segmented } from "../components/Segmented";
 import { PackSection } from "./PackSection";
+import { AzureSection } from "./AzureSection";
 import { useSettings } from "../settings/context";
 import {
   DEFAULT_SETTINGS,
@@ -184,6 +185,8 @@ export function SettingsPage() {
       </section>
 
       <PackSection />
+
+      <AzureSection />
 
       <section className="card settings-section">
         <h2 className="section-title">真人录音</h2>
