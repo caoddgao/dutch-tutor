@@ -1,0 +1,80 @@
+.pronunciation-score {
+  width: 100%;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+.pronunciation-score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
+  gap: var(--space-2);
+}
+.pronunciation-score-grid > div {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  text-align: center;
+}
+.pronunciation-score-grid span {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
+.pronunciation-score-grid strong {
+  color: var(--primary-text);
+  font-size: var(--fs-xl);
+  font-variant-numeric: tabular-nums;
+}
+.pronunciation-score-grid > div:first-child strong {
+  color: var(--accent-text);
+}
+.pronunciation-words {
+  margin-top: var(--space-3);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.pronunciation-words > strong {
+  color: var(--text);
+}
+.pronunciation-words p {
+  margin: var(--space-2) 0 0;
+}
+.pronunciation-words ul {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+}
+.pronunciation-words li {
+  display: flex;
+  gap: var(--space-2);
+  padding: 5px 9px;
+  border-radius: var(--radius-pill);
+  color: var(--danger-text);
+  background: var(--danger-soft);
+}
+.record-reference {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.record-reference select {
+  max-width: 260px;
+  padding: 9px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--surface);
+  font: inherit;
+}
+@media (max-width: 560px) {
+  .pronunciation-score-grid {
+    grid-template-columns: repeat(2, minmax(90px, 1fr));
+  }
+}

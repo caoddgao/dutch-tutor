@@ -332,7 +332,7 @@ function OralView({ q, done, onAnswer }: Props<OralQuestion>) {
           </div>
         )}
       </div>
-      {!q.example && <RecordButton id={q.id} />}
+      {!q.example && <RecordButton id={q.id} references={q.samples.map((s) => s.nl)} canScore={revealed} />}
       {!revealed ? (
         <button type="button" className="btn btn-ghost q-reveal-btn" onClick={() => setRevealed(true)}>
           看参考答案
