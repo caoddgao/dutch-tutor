@@ -36,6 +36,10 @@ function reloadApp() {
 
 type Notice = { kind: "success" | "error"; text: string } | null;
 
+const TABLE_DESC =
+  "课程进度、测验成绩、学习天数和复习统计各占一页，可以用 Excel 或 WPS 打开查看。" +
+  "表格只供查看，不能用来恢复；换电脑或重装请用上面的“导出学习数据”。";
+
 /**
  * Settings → 学习数据: export one backup file, restore from one (design §8);
  * an Excel workbook to look at, which cannot be restored from (decision 29).
@@ -186,10 +190,7 @@ export function BackupSection({ onRestored = reloadApp }: { onRestored?: () => v
       <div className="settings-row">
         <div className="settings-row-text">
           <div className="settings-row-label">学习情况表格</div>
-          <div className="settings-row-desc">
-            课程进度、测验成绩、学习天数和复习统计各占一页，可以用 Excel 或 WPS 打开查看。表格只供查看，不能用来恢复；
-            换电脑或重装请用上面的“导出学习数据”。
-          </div>
+          <div className="settings-row-desc">{TABLE_DESC}</div>
         </div>
         <button type="button" className="btn btn-ghost btn-small" disabled={busy} onClick={exportTables}>
           <Table2 size={15} aria-hidden />
