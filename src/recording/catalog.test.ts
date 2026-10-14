@@ -31,6 +31,7 @@ describe("recording catalog", () => {
     expect(new Set(ids).size).toBe(ids.length);
     expect(items.find((item) => item.id === "NN21-S09")?.origin).toBe("book");
     expect(items.find((item) => item.id === "NN21-A01")?.origin).toBe("own");
+    expect(items.find((item) => item.id === "w_brood")?.origin).toBe("book");
   });
 
   it("keeps early original lessons accessible and lists mock exam speech", () => {

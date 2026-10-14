@@ -141,31 +141,35 @@ export class RecordingStore {
   /** One approved voice per audio ID; practice takes are unaffected. */
   async saveVoice(audioId: string, rec: Recording): Promise<Take> {
     const db = await this.db();
+    const previous = await db.select<Row[]>(
+      "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'voice'",
+      [audioId],
+    );
     const name = `${safeId(audioId)}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${extensionFor(rec.mime)}`;
     const path = await this.files.write(name, rec.blob);
     try {
-      const previous = await db.select<Row[]>(
-        "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'voice'",
-        [audioId],
-      );
       await db.execute("INSERT INTO recordings (audio_id, kind, file_path, duration) VALUES ($1, 'voice', $2, $3)", [
         audioId,
         path,
         rec.duration,
       ]);
-      for (const old of previous) {
-        await db.execute("DELETE FROM recordings WHERE id = $1", [old.id]);
-        await this.files.remove(old.file_path).catch(() => undefined);
-      }
-      const [row] = await db.select<Row[]>(
-        "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'voice' ORDER BY id DESC LIMIT 1",
-        [audioId],
-      );
-      return this.toTake(row);
     } catch (error) {
       await this.files.remove(path).catch(() => undefined);
       throw error;
     }
+    const [row] = await db.select<Row[]>(
+      "SELECT id, audio_id, file_path, duration, created_at FROM recordings WHERE audio_id = $1 AND kind = 'voice' ORDER BY id DESC LIMIT 1",
+      [audioId],
+    );
+    for (const old of previous) {
+      try {
+        await db.execute("DELETE FROM recordings WHERE id = $1", [old.id]);
+        await this.files.remove(old.file_path).catch(() => undefined);
+      } catch {
+        /* The new voice remains usable; the old index can be cleaned up on a later replacement. */
+      }
+    }
+    return this.toTake(row);
   }
 
   async unnaturalIds(): Promise<Set<string>> {

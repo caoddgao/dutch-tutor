@@ -120,13 +120,17 @@ export function lessonRecordingItems(lesson: RtLesson, bundle: ContentBundle): R
 
 /** Original NN01–20 material is also available in recording mode, even when a phonics lesson only links its audio. */
 export function packRecordingItems(lesson: PackLesson, dict: Dictionary, bundle: ContentBundle): RecordingItem[] {
+  const bookAudio = (id: string, path: string | null | undefined, source?: string): AudioRef => ({
+    id,
+    ...(path ? (source?.startsWith("tts:") || path.startsWith("audio/tts/") ? { packTts: path } : { nn: path }) : {}),
+  });
   const lines: RecordingItem[] = lesson.sentences.map((s) => ({
     id: s.id,
     nl: s.nl,
     zh: s.zh,
     kind: "sentence",
     origin: "book",
-    audio: { id: s.id, ...(s.audio ? { nn: s.audio } : {}) },
+    audio: bookAudio(s.id, s.audio),
   }));
   const extras: RecordingItem[] = (lesson.extras ?? []).flatMap((box) =>
     box.sentences.map((s) => ({
@@ -135,10 +139,7 @@ export function packRecordingItems(lesson: PackLesson, dict: Dictionary, bundle:
       zh: s.zh,
       kind: "sentence",
       origin: "book",
-      audio: {
-        id: s.id,
-        ...(s.audio ? (s.audio_source?.startsWith("tts:") ? { packTts: s.audio } : { nn: s.audio }) : {}),
-      },
+      audio: bookAudio(s.id, s.audio, s.audio_source),
     })),
   );
   const ids = [...(lesson.word_ids ?? []), ...(lesson.keywords ?? []).map((k) => k.word_id)];
@@ -152,10 +153,7 @@ export function packRecordingItems(lesson: PackLesson, dict: Dictionary, bundle:
               zh: item.zh,
               kind: "sentence" as const,
               origin: "book" as const,
-              audio: {
-                id: item.id,
-                ...(item.audio.startsWith("audio/tts/") ? { packTts: item.audio } : { nn: item.audio }),
-              },
+              audio: bookAudio(item.id, item.audio),
             },
           ]
         : [],

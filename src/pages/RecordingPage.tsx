@@ -23,15 +23,19 @@ type LessonOption = { id: string; label: string; mode: "course" | "book" | "exam
 export function RecordingPage() {
   const { bundle, course, dict, packIndex, packStatus, backend, loadLesson } = useContent();
   const { resolve, recordings, refreshVoice } = useAudio();
-  const options = useMemo<LessonOption[]>(
-    () => [
-      ...course.flatMap((section) =>
-        section.lessons.map((lesson) => ({
-          id: lesson.id,
-          label: `${lesson.code} · ${lesson.title?.zh ?? ""}`,
-          mode: "course" as const,
-        })),
-      ),
+  const options = useMemo<LessonOption[]>(() => {
+    const sectionOptions = (id: "phonics" | "main" | "tests") =>
+      course
+        .filter((section) => section.id === id)
+        .flatMap((section) =>
+          section.lessons.map((lesson) => ({
+            id: lesson.id,
+            label: `${lesson.code} · ${lesson.title?.zh ?? ""}`,
+            mode: "course" as const,
+          })),
+        );
+    return [
+      ...sectionOptions("phonics"),
       ...(packIndex?.lessons ?? [])
         .filter((lesson) => /^NN(?:0[1-9]|1\d|20)$/.test(lesson.id))
         .map((lesson) => ({
@@ -39,14 +43,15 @@ export function RecordingPage() {
           label: `原书第 ${Number(lesson.id.slice(2))} 课 · ${lesson.title.zh}`,
           mode: "book" as const,
         })),
+      ...sectionOptions("main"),
+      ...sectionOptions("tests"),
       ...Object.values(bundle.exams ?? {}).map((exam) => ({
         id: exam.id,
         label: exam.title.zh,
         mode: "exam" as const,
       })),
-    ],
-    [bundle, course, packIndex],
-  );
+    ];
+  }, [bundle, course, packIndex]);
   const [selected, setSelected] = useState(options[0]?.id ?? "");
   const option = useMemo(() => options.find((x) => x.id === selected) ?? options[0], [options, selected]);
   const [loaded, setLoaded] = useState<{ key: string; items: RecordingItem[] }>({ key: "", items: [] });
@@ -313,7 +318,6 @@ function RecordingRow({ item, number, source, recorded, marked, onMark, onSaved 
       const current = active.current;
       active.current = null;
       const result = await current.stop();
-      if (draftUrl) URL.revokeObjectURL(draftUrl);
       setDraft(result);
       setDraftUrl(URL.createObjectURL(result.blob));
       setState("idle");
@@ -331,11 +335,12 @@ function RecordingRow({ item, number, source, recorded, marked, onMark, onSaved 
     setState("saving");
     try {
       await recordings.saveVoice(item.id, draft);
-      await onSaved();
       setDraft(null);
+      setDraftUrl(null);
       setState("idle");
+      await onSaved();
     } catch {
-      setError("录音没有保存成功，请再试一次。");
+      setError("保存或更新音源失败，请重新打开页面确认后再试。");
       setState("idle");
     }
   };
