@@ -58,6 +58,26 @@ export function ownTexts(content: ContentBundle): OwnText[] {
       }
     }
   }
+  for (const [key, exam] of Object.entries(content.exams ?? {})) {
+    const where = `exams/${key}.json`;
+    for (const ex of exam.exercises) {
+      if (ex.type === "oral_complete")
+        for (const it of ex.items) {
+          out.push({ id: `${it.id}-C`, kind: "prompt", text: it.context.nl, voice: def, where: `${where} ${it.id}` });
+          out.push({ id: `${it.id}-B`, kind: "prompt", text: it.start.nl, voice: def, where: `${where} ${it.id}` });
+          it.sample_answers.forEach((a, i) =>
+            out.push({ id: `${it.id}-A${i + 1}`, kind: "prompt", text: a.nl, voice: def, where: `${where} ${it.id}` }),
+          );
+        }
+      if (ex.type === "oral_answer")
+        for (const it of ex.items) {
+          out.push({ id: `${it.id}-Q`, kind: "prompt", text: it.question.nl, voice: def, where: `${where} ${it.id}` });
+          it.sample_answers.forEach((a, i) =>
+            out.push({ id: `${it.id}-A${i + 1}`, kind: "prompt", text: a.nl, voice: def, where: `${where} ${it.id}` }),
+          );
+        }
+    }
+  }
   for (const [key, tip] of Object.entries(content.tips)) {
     for (const ex of tip.examples) {
       out.push({ id: ex.id, kind: "example", text: ex.nl, voice: def, where: `tips/${key}.json ${ex.id}` });

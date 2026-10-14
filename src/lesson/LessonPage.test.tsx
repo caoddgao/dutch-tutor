@@ -20,6 +20,21 @@ async function open(hash: string, over: Parameters<typeof testServices>[0] = {})
 }
 
 describe("lesson page", () => {
+  it("scores a pack stage test and allows a fresh attempt", async () => {
+    const { raw } = await open("#/lesson/TT1", { content: CONTENT });
+    await screen.findByText("第 1 / 1 题");
+    fireEvent.click(screen.getByRole("button", { name: "brood" }));
+    fireEvent.click(screen.getByRole("button", { name: /完成练习/ }));
+    expect(await screen.findByText("测验 1 完成了！")).toBeTruthy();
+    await waitFor(() =>
+      expect(raw.prepare("SELECT correct, total FROM exam_results WHERE id = 'TT1'").get()).toEqual({
+        correct: 1,
+        total: 1,
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "再测一次" }));
+    expect(await screen.findByText("第 1 / 1 题")).toBeTruthy();
+  });
   it("runs the six steps of a main lesson and resumes where the learner left off", async () => {
     const { raw, services } = await open("#/lesson/NN21");
     await screen.findByText("先完整听一两遍");

@@ -1065,6 +1065,32 @@ const lessons: Record<string, PackLesson> = {
     extras: nn22Extras,
     notes: "",
   },
+  ...Object.fromEntries(
+    [1, 2, 3].map((n) => {
+      const id = `TT${n}`;
+      return [
+        id,
+        {
+          id,
+          nn_lesson: 0,
+          kind: "test" as const,
+          title: t(`Oefentoets ${n}`, `阶段测验 ${n}`, `Stage test ${n}`),
+          sentences: [],
+          exercises: [
+            ex(`${id}-E1`, 1, "choose_one", instr.circle, [
+              {
+                prompt: "Wat koop je bij de bakker?",
+                options: ["brood", "fiets", "trein"],
+                answer: "brood",
+                zh: "在面包店买什么？",
+                en: "What do you buy at the bakery?",
+              },
+            ]),
+          ],
+        } satisfies PackLesson,
+      ];
+    }),
+  ),
 };
 
 // ---------------------------------------------------------------- index + manifest

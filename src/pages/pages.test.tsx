@@ -1,4 +1,5 @@
-import { act, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import { saveExamResult } from "../storage/examResults";
 import { beforeEach, describe, expect, it } from "vitest";
 import { App } from "../App";
 import { completeLesson, markStudyDay, savePosition } from "../storage/learning";
@@ -53,6 +54,17 @@ describe("CoursesPage", () => {
     expect(screen.queryByText("Bij de bakker")).toBeNull();
     expect(screen.getByText(/第 21–65 课的课文/)).toBeTruthy();
   });
+
+  it("places stage tests after lessons 35, 45 and 55 and shows the latest score", async () => {
+    await renderAt("#/courses", async ({ db }) => saveExamResult(db, "TT1", 7, 9));
+    await screen.findByText("上次得分 7 / 9 · 可重做");
+    const cards = [...document.querySelectorAll(".lesson-grid .lesson-card-link")].map((a) => a.getAttribute("href"));
+    expect(cards).toContain("#/lesson/TT1");
+    expect(cards.indexOf("#/lesson/TT1")).toBeGreaterThan(cards.indexOf("#/lesson/NN22b"));
+    expect(cards.indexOf("#/lesson/TT2")).toBeGreaterThan(cards.indexOf("#/lesson/TT1"));
+    expect(cards.indexOf("#/lesson/TT3")).toBeGreaterThan(cards.indexOf("#/lesson/TT2"));
+    expect(screen.getByRole("link", { name: "测验 1 Oefentoets 1" })).toBeTruthy();
+  });
 });
 
 describe("HomePage", () => {
@@ -106,6 +118,20 @@ describe("HomePage", () => {
     );
     const cont = await screen.findByRole("region", { name: "继续学习" });
     expect(within(cont).getByText("导入资料包，开始学正课")).toBeTruthy();
+  });
+});
+
+describe("ExamPage", () => {
+  it("opens both parts with the agreed counts and links the official exam", async () => {
+    await renderAt("#/exam");
+    const official = screen.getByRole("link", { name: /打开官方练习考/ });
+    expect(official.getAttribute("href")).toBe("https://www.naarnederland.nl/en-GB/taking-practice-exams");
+    fireEvent.click(screen.getByRole("button", { name: "开始口语" }));
+    expect(await screen.findByText("第 1 / 22 题")).toBeTruthy();
+    expect(screen.getByText("Wat doet u op een vrije zaterdag?")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /返回考试/ }));
+    fireEvent.click(screen.getByRole("button", { name: "开始阅读" }));
+    expect(await screen.findByText("第 1 / 19 题")).toBeTruthy();
   });
 });
 

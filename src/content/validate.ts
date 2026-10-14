@@ -1,6 +1,6 @@
 // Content checks, docs/01_DESIGN.md §11 rules 1–7. Pure: the CLI (scripts/validate-content.ts) loads files,
 // runs JSON Schema checks and passes everything in here.
-import type { ContentBundle, CourseLessonRef, OwnLesson, OwnWord, Tip } from "./ownTypes";
+import type { ContentBundle, CourseLessonRef, OwnExercise, OwnLesson, OwnWord, Tip } from "./ownTypes";
 import { DEFAULT_AUTO, MAX_AUTO_QUESTIONS } from "./ownTypes";
 import { buildDictionary, courseOrder, extraLessonId, extraSentences, isNewIn } from "./model";
 import { lineCount, packLessonParts, partRefs, partSizes, suggestedParts } from "./split";
@@ -428,12 +428,83 @@ export function validateContent({ content, pack, nnIndex, ttsFileExists }: Valid
     }
   }
 
+  // The fixture pack intentionally contains only a few NN lessons. Fill its missing dictionary entries from
+  // nn-index for the mock exam, while preferring real pack entries whenever present.
+  const packedLemmas = new Set((pack?.words ?? []).map((w) => w.lemma.toLowerCase()));
+  const examWords = [
+    ...(pack?.words ?? []),
+    ...(nnIndex ? indexWords(nnIndex, content) : []).filter((w) => !packedLemmas.has(w.lemma.toLowerCase())),
+  ];
+  const examDict = buildDictionary(content, examWords);
+  const examFormIndex = examDict.formIndex;
+  const examKnown = new Set(known);
+  for (const w of examWords)
+    if (w.first_lesson && /^NN\d+$/.test(w.first_lesson) && Number(w.first_lesson.slice(2)) <= 65)
+      examKnown.add(examDict.words.get(w.id)?.id ?? w.id);
+  for (const w of examDict.words.values()) if (w.firstLesson) examKnown.add(w.id);
+
+  // The mock exam is taken after NN65. Its original text follows the same checks as lesson E5/E6/E9,
+  // but has no per-lesson exercise cap and introduces no new words.
+  for (const [key, exam] of Object.entries(content.exams ?? {})) {
+    const where = `exams/${key}.json`;
+    if (exam.id !== key) err(1, where, `文件名和 id 不一致：${exam.id}`);
+    uniqueId(exam.id, where);
+    checkTrilingual(exam.title, `${where} 标题`, err);
+    const asLesson: OwnLesson = { id: exam.id, kind: "main", exercises: exam.exercises };
+    checkOwnExercises(asLesson, where, {
+      err,
+      wordRef,
+      sentenceExists: () => false,
+      uniqueId: (id) => uniqueId(id, where),
+    });
+    const count = (type: OwnExercise["type"]) =>
+      exam.exercises.filter((ex) => ex.type === type).reduce((n, ex) => n + ex.items.length, 0);
+    if (count("oral_answer") !== 10 || count("oral_complete") !== 12)
+      err(6, where, "口语须有问答 10 题、补全句子 12 题");
+    if (
+      count("listen_choose") + count("choose_audio") !== 9 ||
+      count("read_passage") !== 10 ||
+      exam.exercises.filter((ex) => ex.type === "read_passage").length !== 5
+    )
+      err(6, where, "阅读须有技术性阅读 9 题、功能性阅读 5 篇各 2 题");
+    for (const ex of exam.exercises)
+      if (ex.type === "oral_answer")
+        for (const item of ex.items)
+          if (item.sample_answers.length < 2 || item.sample_answers.length > 3)
+            err(6, `${where} ${item.id}`, "问答须有 2–3 个参考答案");
+    for (const text of oralTexts(asLesson)) checkWords(text.nl, `${where} ${text.id}`, true, examFormIndex);
+    for (const ex of exam.exercises)
+      if (ex.type === "read_passage") {
+        for (const [i, line] of ex.passage.entries())
+          checkWords(line.nl, `${where} ${ex.id} 短文 ${i + 1}`, true, examFormIndex);
+        for (const item of ex.items) {
+          checkWords(item.question.nl, `${where} ${item.id} 问题`, true, examFormIndex);
+          for (const option of item.options) checkWords(option.nl, `${where} ${item.id} 选项`, true, examFormIndex);
+        }
+      }
+    const used = usedWordIds(asLesson, undefined, examFormIndex, content.tips);
+    const unknown = [...used]
+      .map((id) => examDict.words.get(id)?.id ?? id)
+      .filter(
+        (id) =>
+          !examKnown.has(id) &&
+          examDict.words.get(id)?.pos !== "eigen" &&
+          !functionLemmas.has((examDict.words.get(id)?.lemma ?? "").toLowerCase()),
+      );
+    if (unknown.length > 0)
+      warn(
+        5,
+        where,
+        `${unknown.length} 个词在学完 NN65 后仍未教过：${unknown.map((id) => examDict.words.get(id)?.lemma ?? id).join("、")}`,
+      );
+  }
+
   return { issues, lessons: lessonStats, missingTts, splits };
 
   /** Rule 4: every word of our own text maps to an entry (with a pack, or with own words / nn-index lemmas). */
-  function checkWords(nl: string, where: string, names = false) {
+  function checkWords(nl: string, where: string, names = false, index = formIndex) {
     if (!pack && ownWords.size === 0) return;
-    for (const tok of tokenize(nl, formIndex)) {
+    for (const tok of tokenize(nl, index)) {
       // a name in the middle of a spoken answer (Ik heet Chen Wang) is not a dictionary word
       if (!tok.word_id && !(names && /^\p{Lu}/u.test(tok.t) && !nl.startsWith(tok.t)))
         err(4, where, `“${tok.t}”找不到对应词条`);

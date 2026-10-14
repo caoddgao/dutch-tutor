@@ -8,6 +8,7 @@ import { useContent } from "../content/context";
 import type { RtLesson } from "../content/model";
 import { useServices } from "../servicesContext";
 import { completeLesson, getProgress, markStudyDay, savePosition } from "../storage/learning";
+import { latestExamResults, saveExamResult } from "../storage/examResults";
 import { buildExercises, type ExerciseGroup } from "../exercises/build";
 import { ExercisesStep, type Score } from "../exercises/ExercisesStep";
 import { DoneStep } from "./DoneStep";
@@ -128,13 +129,28 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
       .then((p) => {
         if (cancelled) return;
         const saved = steps.find((s) => s.code === p?.current_step);
-        setPos(saved ? { step: saved.code, index: p!.current_index } : { step: steps[0].code, index: 0 });
+        setPos(
+          lesson.kind !== "test" && saved
+            ? { step: saved.code, index: p!.current_index }
+            : { step: steps[0].code, index: 0 },
+        );
       })
       .catch(() => !cancelled && setPos({ step: steps[0].code, index: 0 }));
     return () => {
       cancelled = true;
     };
-  }, [db, lesson.id, steps]);
+  }, [db, lesson.id, lesson.kind, steps]);
+
+  useEffect(() => {
+    if (lesson.kind !== "test") return;
+    db()
+      .then(latestExamResults)
+      .then((rows) => {
+        const result = rows.find((row) => row.id === lesson.id);
+        if (result) setScore({ correct: result.correct, total: result.total });
+      })
+      .catch(() => undefined);
+  }, [db, lesson.id, lesson.kind]);
 
   const countFor = useCallback(
     (code: StepCode) =>
@@ -354,6 +370,10 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
               }
               onFinish={(s) => {
                 setScore(s);
+                if (lesson.kind === "test")
+                  db()
+                    .then((d) => saveExamResult(d, lesson.id, s.correct, s.total))
+                    .catch(() => undefined);
                 nextStep();
               }}
             />
@@ -366,6 +386,7 @@ function Lesson({ lesson }: { lesson: RtLesson }) {
               onRestart={() => {
                 completing.current = false;
                 setAdded(null);
+                setScore(null);
                 go(steps[0].code);
               }}
             />

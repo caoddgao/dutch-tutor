@@ -1,0 +1,1059 @@
+{
+  "id": "A1-MOCK-1",
+  "title": {
+    "nl": "Oefenexamen A1",
+    "zh": "A1 结业模拟考",
+    "en": "A1 practice exam"
+  },
+  "exercises": [
+    {
+      "id": "MOCK-OA",
+      "type": "oral_answer",
+      "instruction": {
+        "nl": "Geef antwoord op de vraag.",
+        "zh": "听问题，开口回答，再看参考答案自评。",
+        "en": "Answer the question aloud, then assess yourself."
+      },
+      "items": [
+        {
+          "id": "MOCK-OA-01",
+          "question": {
+            "nl": "Wat doet u op een vrije zaterdag?",
+            "zh": "休息的星期六您做什么？",
+            "en": "What do you do on a free Saturday?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik wandel met mijn vriendin.",
+              "zh": "我和女朋友散步。",
+              "en": "I walk with my girlfriend."
+            },
+            {
+              "nl": "Ik kijk thuis televisie.",
+              "zh": "我在家看电视。",
+              "en": "I watch TV at home."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-02",
+          "question": {
+            "nl": "Hoe reist u naar uw werk?",
+            "zh": "您怎么去上班？",
+            "en": "How do you travel to work?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga met de fiets.",
+              "zh": "我骑自行车去。",
+              "en": "I go by bicycle."
+            },
+            {
+              "nl": "Ik neem de bus.",
+              "zh": "我坐公交车。",
+              "en": "I take the bus."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-03",
+          "question": {
+            "nl": "Wat neemt u bij het ontbijt?",
+            "zh": "您早餐吃什么？",
+            "en": "What do you have for breakfast?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem brood met kaas.",
+              "zh": "我吃面包配奶酪。",
+              "en": "I have bread with cheese."
+            },
+            {
+              "nl": "Ik neem fruit en thee.",
+              "zh": "我吃水果，喝茶。",
+              "en": "I have fruit and tea."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-04",
+          "question": {
+            "nl": "Waar is de markt in uw buurt?",
+            "zh": "您家附近的市场在哪里？",
+            "en": "Where is the market in your neighbourhood?"
+          },
+          "sample_answers": [
+            {
+              "nl": "De markt is bij het station.",
+              "zh": "市场在车站旁边。",
+              "en": "The market is near the station."
+            },
+            {
+              "nl": "De markt is in mijn straat.",
+              "zh": "市场在我的街上。",
+              "en": "The market is on my street."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-05",
+          "question": {
+            "nl": "Wat doet u als u ziek bent?",
+            "zh": "您生病时怎么办？",
+            "en": "What do you do when you are ill?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik bel de huisarts.",
+              "zh": "我给家庭医生打电话。",
+              "en": "I call the general practitioner."
+            },
+            {
+              "nl": "Ik lig in bed.",
+              "zh": "我躺在床上休息。",
+              "en": "I stay in bed."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-06",
+          "question": {
+            "nl": "Hoe laat begint uw cursus?",
+            "zh": "您的课程几点开始？",
+            "en": "What time does your course begin?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Mijn cursus begint om negen uur.",
+              "zh": "我的课九点开始。",
+              "en": "My course begins at nine."
+            },
+            {
+              "nl": "De les begint om half tien.",
+              "zh": "课九点半开始。",
+              "en": "The lesson begins at half past nine."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-07",
+          "question": {
+            "nl": "Met wie spreekt u Nederlands?",
+            "zh": "您和谁说荷兰语？",
+            "en": "With whom do you speak Dutch?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik spreek Nederlands met mijn buurman.",
+              "zh": "我和邻居说荷兰语。",
+              "en": "I speak Dutch with my neighbour."
+            },
+            {
+              "nl": "Ik oefen met een vriend.",
+              "zh": "我和朋友练习。",
+              "en": "I practise with a friend."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-08",
+          "question": {
+            "nl": "Wat neemt u mee op vakantie?",
+            "zh": "您度假会带什么？",
+            "en": "What do you take on holiday?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik neem mijn jas mee.",
+              "zh": "我带上外套。",
+              "en": "I take my coat."
+            },
+            {
+              "nl": "Ik neem mijn tas mee.",
+              "zh": "我带上包。",
+              "en": "I take my bag."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-09",
+          "question": {
+            "nl": "Wat voor weer vindt u prettig?",
+            "zh": "您喜欢什么样的天气？",
+            "en": "What kind of weather do you like?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik vind warm weer prettig.",
+              "zh": "我喜欢暖和的天气。",
+              "en": "I like warm weather."
+            },
+            {
+              "nl": "Ik vind droog weer fijn.",
+              "zh": "我喜欢干燥的天气。",
+              "en": "I like dry weather."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OA-10",
+          "question": {
+            "nl": "Wat doet u na de les?",
+            "zh": "下课后您做什么？",
+            "en": "What do you do after class?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga naar huis.",
+              "zh": "我回家。",
+              "en": "I go home."
+            },
+            {
+              "nl": "Ik drink iets met een collega.",
+              "zh": "我和同事喝点东西。",
+              "en": "I have a drink with a colleague."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MOCK-OC",
+      "type": "oral_complete",
+      "instruction": {
+        "nl": "Maak de zin af.",
+        "zh": "听情景，补全句子，再看参考答案自评。",
+        "en": "Listen to the situation, complete the sentence, then assess yourself."
+      },
+      "items": [
+        {
+          "id": "MOCK-OC-01",
+          "context": {
+            "nl": "U bent te laat voor de les.",
+            "zh": "您上课迟到了。",
+            "en": "You are late for class."
+          },
+          "start": {
+            "nl": "Ik ben te laat, want de ...",
+            "zh": "我迟到了，因为……",
+            "en": "I am late, because the ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ben te laat, want de bus heeft vertraging.",
+              "zh": "我迟到了，因为公交车晚点了。",
+              "en": "I am late, because the bus is delayed."
+            },
+            {
+              "nl": "Ik ben te laat, want de trein was niet op tijd.",
+              "zh": "我迟到了，因为火车没准时。",
+              "en": "I am late, because the train was not on time."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-02",
+          "context": {
+            "nl": "U wilt de weg naar het station weten.",
+            "zh": "您想知道去车站的路。",
+            "en": "You want to know the way to the station."
+          },
+          "start": {
+            "nl": "Waar is ...",
+            "zh": "……在哪里？",
+            "en": "Where is ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Waar is het station?",
+              "zh": "车站在哪里？",
+              "en": "Where is the station?"
+            },
+            {
+              "nl": "Waar is het station precies?",
+              "zh": "车站具体在哪里？",
+              "en": "Where exactly is the station?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-03",
+          "context": {
+            "nl": "U belt de dokter omdat u ziek bent.",
+            "zh": "您生病了，给医生打电话。",
+            "en": "You call the doctor because you are ill."
+          },
+          "start": {
+            "nl": "Ik wil ...",
+            "zh": "我想……",
+            "en": "I want ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik wil graag een afspraak.",
+              "zh": "我想预约。",
+              "en": "I would like an appointment."
+            },
+            {
+              "nl": "Ik wil vandaag de dokter spreken.",
+              "zh": "我想今天和医生谈谈。",
+              "en": "I want to speak to the doctor today."
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-04",
+          "context": {
+            "nl": "U vraagt in de winkel naar de prijs.",
+            "zh": "您在商店问价格。",
+            "en": "You ask for the price in the shop."
+          },
+          "start": {
+            "nl": "Hoeveel kost ...",
+            "zh": "……多少钱？",
+            "en": "How much does ... cost?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Hoeveel kost deze fiets?",
+              "zh": "这辆自行车多少钱？",
+              "en": "How much does this bicycle cost?"
+            },
+            {
+              "nl": "Hoeveel kost dit boek?",
+              "zh": "这本书多少钱？",
+              "en": "How much does this book cost?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-05",
+          "context": {
+            "nl": "Uw vriendin is op bezoek.",
+            "zh": "您的朋友来做客。",
+            "en": "Your friend is visiting."
+          },
+          "start": {
+            "nl": "Welkom! Wil je ...",
+            "zh": "欢迎！你想……吗？",
+            "en": "Welcome! Would you like ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Welkom! Wil je iets drinken?",
+              "zh": "欢迎！你想喝点什么吗？",
+              "en": "Welcome! Would you like something to drink?"
+            },
+            {
+              "nl": "Welkom! Wil je thee?",
+              "zh": "欢迎！你想喝茶吗？",
+              "en": "Welcome! Would you like some tea?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-06",
+          "context": {
+            "nl": "U wilt met de bus reizen.",
+            "zh": "您想坐公交车出行。",
+            "en": "You want to travel by bus."
+          },
+          "start": {
+            "nl": "Wanneer vertrekt ...",
+            "zh": "……什么时候出发？",
+            "en": "When does ... leave?"
+          },
+          "sample_answers": [
+            {
+              "nl": "Wanneer vertrekt de bus?",
+              "zh": "公交车什么时候出发？",
+              "en": "When does the bus leave?"
+            },
+            {
+              "nl": "Wanneer vertrekt de bus naar Utrecht?",
+              "zh": "去乌得勒支的公交车什么时候出发？",
+              "en": "When does the bus to Utrecht leave?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-07",
+          "context": {
+            "nl": "Uw vriend heeft een nieuwe baan.",
+            "zh": "您的朋友找到新工作。",
+            "en": "Your friend has a new job."
+          },
+          "start": {
+            "nl": "Wat ...",
+            "zh": "什么……",
+            "en": "What ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Wat leuk voor jou!",
+              "zh": "真为你高兴！",
+              "en": "How nice for you!"
+            },
+            {
+              "nl": "Wat voor werk doe je?",
+              "zh": "你做什么工作？",
+              "en": "What kind of work do you do?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-08",
+          "context": {
+            "nl": "U neemt afscheid na de lunch.",
+            "zh": "午餐后您要告别。",
+            "en": "You say goodbye after lunch."
+          },
+          "start": {
+            "nl": "Bedankt ...",
+            "zh": "谢谢……",
+            "en": "Thank you ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Bedankt voor de lunch!",
+              "zh": "谢谢您的午餐！",
+              "en": "Thank you for lunch!"
+            },
+            {
+              "nl": "Bedankt, het was heel fijn!",
+              "zh": "谢谢，今天很愉快！",
+              "en": "Thank you, it was very nice!"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-09",
+          "context": {
+            "nl": "U kunt het antwoord niet verstaan.",
+            "zh": "您没听懂答案。",
+            "en": "You cannot understand the answer."
+          },
+          "start": {
+            "nl": "Kunt u ...",
+            "zh": "您能……吗？",
+            "en": "Can you ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Kunt u dat nog een keer zeggen?",
+              "zh": "您能再说一遍吗？",
+              "en": "Can you say that once more?"
+            },
+            {
+              "nl": "Kunt u langzaam spreken?",
+              "zh": "您能说慢一点吗？",
+              "en": "Can you speak slowly?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-10",
+          "context": {
+            "nl": "U vraagt uw buurman mee naar het museum.",
+            "zh": "您约邻居一起去博物馆。",
+            "en": "You ask your neighbour to come to the museum."
+          },
+          "start": {
+            "nl": "Gaat u ...",
+            "zh": "您去……吗？",
+            "en": "Are you going ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Gaat u met mij mee?",
+              "zh": "您和我一起去吗？",
+              "en": "Will you come with me?"
+            },
+            {
+              "nl": "Gaat u zaterdag mee?",
+              "zh": "您星期六一起去吗？",
+              "en": "Will you come on Saturday?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-11",
+          "context": {
+            "nl": "U zoekt uw tas en vraagt hulp.",
+            "zh": "您在找包，向人求助。",
+            "en": "You are looking for your bag and ask for help."
+          },
+          "start": {
+            "nl": "Weet u ...",
+            "zh": "您知道……吗？",
+            "en": "Do you know ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Weet u waar mijn tas is?",
+              "zh": "您知道我的包在哪里吗？",
+              "en": "Do you know where my bag is?"
+            },
+            {
+              "nl": "Weet u misschien waar mijn zwarte tas is?",
+              "zh": "您是不是知道我的黑色包在哪里？",
+              "en": "Do you perhaps know where my black bag is?"
+            }
+          ]
+        },
+        {
+          "id": "MOCK-OC-12",
+          "context": {
+            "nl": "U bent moe en wilt naar huis.",
+            "zh": "您累了，想回家。",
+            "en": "You are tired and want to go home."
+          },
+          "start": {
+            "nl": "Ik ...",
+            "zh": "我……",
+            "en": "I ..."
+          },
+          "sample_answers": [
+            {
+              "nl": "Ik ga nu naar huis.",
+              "zh": "我现在回家。",
+              "en": "I am going home now."
+            },
+            {
+              "nl": "Ik ben moe en ga naar huis.",
+              "zh": "我累了，要回家。",
+              "en": "I am tired and going home."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MOCK-E3",
+      "type": "listen_choose",
+      "instruction": {
+        "nl": "Luister en kies de goede spelling.",
+        "zh": "听词，选择正确拼写。",
+        "en": "Listen and choose the correct spelling."
+      },
+      "items": [
+        {
+          "id": "MOCK-E3-01",
+          "word_id": "w_fiets",
+          "options": ["fiets", "fietz", "viets", "fies"],
+          "answer": "fiets"
+        },
+        {
+          "id": "MOCK-E3-02",
+          "word_id": "w_water",
+          "options": ["water", "watter", "vater", "waater"],
+          "answer": "water"
+        },
+        {
+          "id": "MOCK-E3-03",
+          "word_id": "w_werken",
+          "options": ["werken", "werkenn", "wercken", "werkan"],
+          "answer": "werken"
+        },
+        {
+          "id": "MOCK-E3-04",
+          "word_id": "w_boek",
+          "options": ["boek", "boeck", "bouk", "boeg"],
+          "answer": "boek"
+        },
+        {
+          "id": "MOCK-E3-05",
+          "word_id": "w_huis",
+          "options": ["huis", "huys", "hous", "huiz"],
+          "answer": "huis"
+        }
+      ]
+    },
+    {
+      "id": "MOCK-E4",
+      "type": "choose_audio",
+      "instruction": {
+        "nl": "Kies de uitspraak van het woord.",
+        "zh": "看词，选择正确读音。",
+        "en": "Choose the pronunciation of the word."
+      },
+      "items": [
+        {
+          "id": "MOCK-E4-01",
+          "word_id": "w_dag",
+          "options": ["w_dag", "w_bus", "w_boek", "w_huis"]
+        },
+        {
+          "id": "MOCK-E4-02",
+          "word_id": "w_bus",
+          "options": ["w_bus", "w_dag", "w_water", "w_goed"]
+        },
+        {
+          "id": "MOCK-E4-03",
+          "word_id": "w_goed",
+          "options": ["w_goed", "w_twee", "w_werken", "w_dag"]
+        },
+        {
+          "id": "MOCK-E4-04",
+          "word_id": "w_twee",
+          "options": ["w_twee", "w_fiets", "w_goed", "w_huis"]
+        }
+      ]
+    },
+    {
+      "id": "MOCK-R1",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选出正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Beste Omar,",
+          "zh": "亲爱的奥马尔：",
+          "en": "Dear Omar,"
+        },
+        {
+          "nl": "Op zaterdag 15 maart ga ik naar het museum in Utrecht.",
+          "zh": "3 月 15 日星期六我去乌得勒支的博物馆。",
+          "en": "On Saturday 15 March I am going to the museum in Utrecht."
+        },
+        {
+          "nl": "De trein vertrekt om 10.12 uur; het museum gaat om 11.00 uur open.",
+          "zh": "火车 10:12 出发；博物馆 11:00 开门。",
+          "en": "The train leaves at 10.12; the museum opens at 11.00."
+        },
+        {
+          "nl": "Om 12.30 uur gaan we naar het restaurant naast het museum.",
+          "zh": "12:30 我们去博物馆旁边的饭馆。",
+          "en": "At 12.30 we go to the restaurant next to the museum."
+        },
+        {
+          "nl": "Ga je mee? Stuur me voor vrijdag een mailtje.",
+          "zh": "你一起去吗？星期五之前给我发个邮件。",
+          "en": "Are you coming? Send me an e-mail before Friday."
+        },
+        {
+          "nl": "Groeten, Iva",
+          "zh": "祝好，伊娃",
+          "en": "Regards, Iva"
+        }
+      ],
+      "items": [
+        {
+          "id": "MOCK-R1-1",
+          "question": {
+            "nl": "Hoe laat vertrekt de trein?",
+            "zh": "火车几点出发？",
+            "en": "What time does the train leave?"
+          },
+          "options": [
+            {
+              "nl": "Om 10.12 uur.",
+              "zh": "10:12。",
+              "en": "At 10.12."
+            },
+            {
+              "nl": "Om 11.00 uur.",
+              "zh": "11:00。",
+              "en": "At 11.00."
+            },
+            {
+              "nl": "Om 12.30 uur.",
+              "zh": "12:30。",
+              "en": "At 12.30."
+            }
+          ],
+          "answer": "Om 10.12 uur."
+        },
+        {
+          "id": "MOCK-R1-2",
+          "question": {
+            "nl": "Waar zijn Iva en Omar om 12.30 uur?",
+            "zh": "12:30 伊娃和奥马尔在哪里？",
+            "en": "Where are Iva and Omar at 12.30?"
+          },
+          "options": [
+            {
+              "nl": "In het restaurant.",
+              "zh": "在饭馆。",
+              "en": "In the restaurant."
+            },
+            {
+              "nl": "In het museum.",
+              "zh": "在博物馆里。",
+              "en": "In the museum."
+            },
+            {
+              "nl": "In de trein.",
+              "zh": "在火车上。",
+              "en": "On the train."
+            }
+          ],
+          "answer": "In het restaurant."
+        }
+      ]
+    },
+    {
+      "id": "MOCK-R2",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选出正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Praktijk dokter Bakker",
+          "zh": "巴克医生诊所",
+          "en": "Dr Bakker's practice"
+        },
+        {
+          "nl": "De praktijk is open van maandag tot en met vrijdag, van 8.00 tot 17.00 uur.",
+          "zh": "诊所星期一到星期五开放，8:00 到 17:00。",
+          "en": "The practice is open Monday to Friday, from 8.00 to 17.00."
+        },
+        {
+          "nl": "Op donderdag na 12.00 uur is de praktijk dicht.",
+          "zh": "星期四 12:00 以后诊所关门。",
+          "en": "On Thursday after 12.00 the practice is closed."
+        },
+        {
+          "nl": "Voor een afspraak belt u tussen 8.00 en 10.00 uur: 030-1234567.",
+          "zh": "预约请在 8:00 到 10:00 之间打电话：030-1234567。",
+          "en": "For an appointment, call between 8.00 and 10.00: 030-1234567."
+        },
+        {
+          "nl": "In het weekend is de praktijk dicht.",
+          "zh": "周末诊所不开门。",
+          "en": "At the weekend the practice is closed."
+        }
+      ],
+      "items": [
+        {
+          "id": "MOCK-R2-1",
+          "question": {
+            "nl": "Wanneer belt u voor een afspraak?",
+            "zh": "什么时候打电话预约？",
+            "en": "When do you call for an appointment?"
+          },
+          "options": [
+            {
+              "nl": "Tussen 8.00 en 10.00 uur.",
+              "zh": "8:00 到 10:00 之间。",
+              "en": "Between 8.00 and 10.00."
+            },
+            {
+              "nl": "Tussen 12.00 en 17.00 uur.",
+              "zh": "12:00 到 17:00 之间。",
+              "en": "Between 12.00 and 17.00."
+            },
+            {
+              "nl": "Op donderdag na 12.00 uur.",
+              "zh": "星期四 12:00 以后。",
+              "en": "On Thursday after 12.00."
+            }
+          ],
+          "answer": "Tussen 8.00 en 10.00 uur."
+        },
+        {
+          "id": "MOCK-R2-2",
+          "question": {
+            "nl": "Op welke dag is de praktijk dicht?",
+            "zh": "诊所哪天不开门？",
+            "en": "On which day is the practice closed?"
+          },
+          "options": [
+            {
+              "nl": "Op zaterdag.",
+              "zh": "星期六。",
+              "en": "On Saturday."
+            },
+            {
+              "nl": "Op maandag.",
+              "zh": "星期一。",
+              "en": "On Monday."
+            },
+            {
+              "nl": "Op vrijdag.",
+              "zh": "星期五。",
+              "en": "On Friday."
+            }
+          ],
+          "answer": "Op zaterdag."
+        }
+      ]
+    },
+    {
+      "id": "MOCK-R3",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选出正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Te koop: vier stoelen",
+          "zh": "出售：四把椅子",
+          "en": "For sale: four chairs"
+        },
+        {
+          "nl": "De stoelen zijn 3 jaar oud en nog heel mooi.",
+          "zh": "椅子用了 3 年，还很漂亮。",
+          "en": "The chairs are 3 years old and still very nice."
+        },
+        {
+          "nl": "Alle vier samen kosten 60 euro; één stoel kost 20 euro.",
+          "zh": "四把一起 60 欧元；单买一把 20 欧元。",
+          "en": "All four together cost 60 euros; one chair costs 20 euros."
+        },
+        {
+          "nl": "U kunt de stoelen op zaterdag tussen 10.00 en 14.00 uur bekijken.",
+          "zh": "星期六 10:00 到 14:00 可以来看。",
+          "en": "You can look at the chairs on Saturday between 10.00 and 14.00."
+        },
+        {
+          "nl": "Adres: Kerkstraat 8, Amersfoort. Bel eerst: 06-87654321.",
+          "zh": "地址：阿默斯福特教堂街 8 号。请先打电话：06-87654321。",
+          "en": "Address: Kerkstraat 8, Amersfoort. Call first: 06-87654321."
+        }
+      ],
+      "items": [
+        {
+          "id": "MOCK-R3-1",
+          "question": {
+            "nl": "U wilt één stoel. Wat betaalt u?",
+            "zh": "您只要一把椅子，付多少钱？",
+            "en": "You want one chair. What do you pay?"
+          },
+          "options": [
+            {
+              "nl": "20 euro.",
+              "zh": "20 欧元。",
+              "en": "20 euros."
+            },
+            {
+              "nl": "60 euro.",
+              "zh": "60 欧元。",
+              "en": "60 euros."
+            },
+            {
+              "nl": "80 euro.",
+              "zh": "80 欧元。",
+              "en": "80 euros."
+            }
+          ],
+          "answer": "20 euro."
+        },
+        {
+          "id": "MOCK-R3-2",
+          "question": {
+            "nl": "Wanneer kunt u de stoelen bekijken?",
+            "zh": "什么时候可以看椅子？",
+            "en": "When can you look at the chairs?"
+          },
+          "options": [
+            {
+              "nl": "Op zaterdag om 11.00 uur.",
+              "zh": "星期六 11:00。",
+              "en": "On Saturday at 11.00."
+            },
+            {
+              "nl": "Op zaterdag om 15.00 uur.",
+              "zh": "星期六 15:00。",
+              "en": "On Saturday at 15.00."
+            },
+            {
+              "nl": "Op zondag om 11.00 uur.",
+              "zh": "星期天 11:00。",
+              "en": "On Sunday at 11.00."
+            }
+          ],
+          "answer": "Op zaterdag om 11.00 uur."
+        }
+      ]
+    },
+    {
+      "id": "MOCK-R4",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选出正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Zwemmen in De Vijver",
+          "zh": "来“池塘”游泳馆游泳",
+          "en": "Swimming at De Vijver"
+        },
+        {
+          "nl": "Van maandag tot en met zaterdag zijn wij open van 7.00 tot 21.00 uur.",
+          "zh": "星期一到星期六 7:00 到 21:00 开放。",
+          "en": "Monday to Saturday we are open from 7.00 to 21.00."
+        },
+        {
+          "nl": "Op zondag zijn wij open van 10.00 tot 17.00 uur.",
+          "zh": "星期天 10:00 到 17:00 开放。",
+          "en": "On Sunday we are open from 10.00 to 17.00."
+        },
+        {
+          "nl": "Op woensdag van 14.00 tot 16.00 uur is De Vijver alleen voor kinderen.",
+          "zh": "星期三 14:00 到 16:00 只对儿童开放。",
+          "en": "On Wednesday from 14.00 to 16.00 De Vijver is for children only."
+        },
+        {
+          "nl": "Een kaartje kost 6 euro; een kaart voor 10 keer kost 50 euro.",
+          "zh": "单次票 6 欧元；10 次卡 50 欧元。",
+          "en": "A ticket costs 6 euros; a card for 10 visits costs 50 euros."
+        }
+      ],
+      "items": [
+        {
+          "id": "MOCK-R4-1",
+          "question": {
+            "nl": "Hoe laat gaat De Vijver op zondag dicht?",
+            "zh": "星期天游泳馆几点关门？",
+            "en": "What time does De Vijver close on Sunday?"
+          },
+          "options": [
+            {
+              "nl": "Om 17.00 uur.",
+              "zh": "17:00。",
+              "en": "At 17.00."
+            },
+            {
+              "nl": "Om 21.00 uur.",
+              "zh": "21:00。",
+              "en": "At 21.00."
+            },
+            {
+              "nl": "Om 16.00 uur.",
+              "zh": "16:00。",
+              "en": "At 16.00."
+            }
+          ],
+          "answer": "Om 17.00 uur."
+        },
+        {
+          "id": "MOCK-R4-2",
+          "question": {
+            "nl": "Wat kost een kaart voor 10 keer?",
+            "zh": "10 次卡多少钱？",
+            "en": "What does a card for 10 visits cost?"
+          },
+          "options": [
+            {
+              "nl": "50 euro.",
+              "zh": "50 欧元。",
+              "en": "50 euros."
+            },
+            {
+              "nl": "60 euro.",
+              "zh": "60 欧元。",
+              "en": "60 euros."
+            },
+            {
+              "nl": "6 euro.",
+              "zh": "6 欧元。",
+              "en": "6 euros."
+            }
+          ],
+          "answer": "50 euro."
+        }
+      ]
+    },
+    {
+      "id": "MOCK-R5",
+      "type": "read_passage",
+      "instruction": {
+        "nl": "Lees de tekst en kies het goede antwoord.",
+        "zh": "读短文，选出正确答案。",
+        "en": "Read the text and choose the correct answer."
+      },
+      "passage": [
+        {
+          "nl": "Hallo Anna,",
+          "zh": "你好，安娜：",
+          "en": "Hello Anna,"
+        },
+        {
+          "nl": "Mijn zoon is ziek, dus ik ben vandaag niet op het werk.",
+          "zh": "我儿子病了，所以我今天不上班。",
+          "en": "My son is ill, so I am not at work today."
+        },
+        {
+          "nl": "Morgen om 8.30 uur ben ik er weer.",
+          "zh": "明天 8:30 我回来上班。",
+          "en": "Tomorrow at 8.30 I will be back."
+        },
+        {
+          "nl": "Kun jij om 10.00 uur meneer De Vries bellen? Zijn nummer is 06-11223344.",
+          "zh": "你能在 10:00 给德弗里斯先生打个电话吗？他的号码是 06-11223344。",
+          "en": "Can you call Mr De Vries at 10.00? His number is 06-11223344."
+        },
+        {
+          "nl": "Bedankt! Groeten, Omar",
+          "zh": "谢谢！祝好，奥马尔",
+          "en": "Thanks! Regards, Omar"
+        }
+      ],
+      "items": [
+        {
+          "id": "MOCK-R5-1",
+          "question": {
+            "nl": "Wanneer is Omar weer op het werk?",
+            "zh": "奥马尔什么时候回来上班？",
+            "en": "When is Omar back at work?"
+          },
+          "options": [
+            {
+              "nl": "Morgen om 8.30 uur.",
+              "zh": "明天 8:30。",
+              "en": "Tomorrow at 8.30."
+            },
+            {
+              "nl": "Vandaag om 10.00 uur.",
+              "zh": "今天 10:00。",
+              "en": "Today at 10.00."
+            },
+            {
+              "nl": "Morgen om 10.00 uur.",
+              "zh": "明天 10:00。",
+              "en": "Tomorrow at 10.00."
+            }
+          ],
+          "answer": "Morgen om 8.30 uur."
+        },
+        {
+          "id": "MOCK-R5-2",
+          "question": {
+            "nl": "Wat moet Anna doen?",
+            "zh": "安娜要做什么？",
+            "en": "What does Anna have to do?"
+          },
+          "options": [
+            {
+              "nl": "Meneer De Vries bellen.",
+              "zh": "给德弗里斯先生打电话。",
+              "en": "Call Mr De Vries."
+            },
+            {
+              "nl": "De zoon van Omar bellen.",
+              "zh": "给奥马尔的儿子打电话。",
+              "en": "Call Omar's son."
+            },
+            {
+              "nl": "Morgen om 8.30 uur werken.",
+              "zh": "明天 8:30 上班。",
+              "en": "Work tomorrow at 8.30."
+            }
+          ],
+          "answer": "Meneer De Vries bellen."
+        }
+      ]
+    }
+  ]
+}

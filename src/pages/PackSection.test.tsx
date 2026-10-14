@@ -49,7 +49,7 @@ describe("资料包 settings", () => {
       fireEvent.click(screen.getByRole("button", { name: "导入资料包" }));
     });
     expect(importFrom).toHaveBeenCalledWith("F:\\NN_Pack\\nn-pack");
-    await waitFor(() => expect(screen.getByText("已导入 · 4 课")).toBeTruthy());
+    await waitFor(() => expect(screen.getByText("已导入 · 7 课")).toBeTruthy());
     expect(screen.getByText("导入完成。")).toBeTruthy();
   });
 

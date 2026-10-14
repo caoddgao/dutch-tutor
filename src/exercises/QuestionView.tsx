@@ -323,10 +323,13 @@ function OralView({ q, done, onAnswer }: Props<OralQuestion>) {
           </div>
         </div>
         {q.start && (
-          <p className="nl q-start" lang="nl">
-            {q.start.nl}
-            <span className="muted zh"> （{q.start.zh}）</span>
-          </p>
+          <div className="q-listen">
+            <AudioButton audio={q.start.audio} label="听句子开头" size="sm" />
+            <p className="nl q-start" lang="nl">
+              {q.start.nl}
+              <span className="muted zh"> （{q.start.zh}）</span>
+            </p>
+          </div>
         )}
       </div>
       {!q.example && <RecordButton id={q.id} />}

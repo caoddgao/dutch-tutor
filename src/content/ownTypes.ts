@@ -205,8 +205,15 @@ export interface TtsManifest {
 export interface ContentBundle {
   course: CourseDef;
   lessons: Record<string, OwnLesson>;
+  exams?: Record<string, OwnExam>;
   tips: Record<string, Tip>;
   words: OwnWord[];
   functionWords: FunctionWords;
   tts: TtsManifest;
+}
+
+export interface OwnExam {
+  id: string;
+  title: Trilingual;
+  exercises: OwnExercise[];
 }

@@ -108,6 +108,7 @@ export function loadContent(dir: string): {
   const loader = new Loader(dir);
   const course = loader.json<ContentBundle["course"]>("a1/course.json", "course.schema.json");
   const lessons = loader.jsonDir<ContentBundle["lessons"][string]>("a1/lessons", "own-lesson.schema.json");
+  const exams = loader.jsonDir<NonNullable<ContentBundle["exams"]>[string]>("a1/exams", "exam.schema.json");
   const tips = loader.jsonDir<ContentBundle["tips"][string]>("a1/tips", "tip.schema.json");
   const words = loader.json<ContentBundle["words"]>("a1/words/own.json", "own-words.schema.json") ?? [];
   const functionWords = loader.json<ContentBundle["functionWords"]>(
@@ -120,7 +121,7 @@ export function loadContent(dir: string): {
   const nnIndex = loader.json<PackIndex>("a1/nn-index.json", "pack-index.schema.json", false);
   const ttsDir = join(dir, "audio/tts");
   if (!course) return { loader, ttsDir };
-  return { bundle: { course, lessons, tips, words, functionWords, tts }, nnIndex, loader, ttsDir };
+  return { bundle: { course, lessons, exams, tips, words, functionWords, tts }, nnIndex, loader, ttsDir };
 }
 
 export function loadPack(dir: string): { pack?: PackData; loader: Loader } {

@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import type { ContentBundle } from "../src/content/ownTypes";
 import type { PackData } from "../src/content/validate";
 import { validateContent, type Issue } from "../src/content/validate";
+import { ownTexts } from "../src/content/ttsTexts";
 import { loadContent, loadPack, REPO_ROOT } from "./lib/contentFiles";
 import { runValidation } from "./validate-content";
 import { normalizeRegion, ssml, ttsKey } from "./tts";
@@ -73,6 +74,9 @@ describe("fixture pack covers the whole pack format", () => {
       "dialogue",
       "phonics",
       "reading",
+      "test",
+      "test",
+      "test",
       "text",
     ]);
   });
@@ -108,6 +112,64 @@ describe("fixture pack covers the whole pack format", () => {
     // the official word lists may lack a word: zh_nn / en_nn are null (03 §7)
     expect(pack.words.some((w) => w.zh_nn === null && w.en_nn === null)).toBe(true);
     expect(pack.words.some((w) => w.zh_nn && w.en_nn === null)).toBe(true);
+  });
+});
+
+describe("A1 mock exam", () => {
+  const source = loadContent(join(REPO_ROOT, "content"));
+  if (!source.bundle) throw new Error("repo content missing");
+  const validate = (mutate: (bundle: ContentBundle) => void) => {
+    const content = structuredClone(source.bundle!);
+    mutate(content);
+    return validateContent({ content, nnIndex: source.nnIndex, ttsFileExists: () => true }).issues;
+  };
+
+  it("has the agreed question counts and queues every spoken prompt and answer for synthesis", () => {
+    const exam = source.bundle!.exams!["A1-MOCK-1"];
+    const count = (type: string) =>
+      exam.exercises.filter((ex) => ex.type === type).reduce((n, ex) => n + ex.items.length, 0);
+    expect([
+      count("oral_answer"),
+      count("oral_complete"),
+      count("listen_choose") + count("choose_audio"),
+      count("read_passage"),
+    ]).toEqual([10, 12, 9, 10]);
+    expect(exam.exercises.filter((ex) => ex.type === "read_passage")).toHaveLength(5);
+    expect(ownTexts(source.bundle!).filter((t) => t.where.startsWith("exams/"))).toHaveLength(78);
+    expect(errors(validate(() => {}))).toEqual([]);
+  });
+
+  it("checks answer uniqueness, required counts and unfamiliar words", () => {
+    expect(
+      has(
+        validate((b) => {
+          const ex = b.exams!["A1-MOCK-1"].exercises[4];
+          if (ex.type === "read_passage") ex.items[0].options[0] = ex.items[0].options[1];
+        }),
+        6,
+        "选项重复",
+      ),
+    ).toBe(true);
+    expect(
+      has(
+        validate((b) => {
+          const ex = b.exams!["A1-MOCK-1"].exercises[0];
+          if (ex.type === "oral_answer") ex.items.pop();
+        }),
+        6,
+        "问答 10 题",
+      ),
+    ).toBe(true);
+    expect(
+      has(
+        validate((b) => {
+          const ex = b.exams!["A1-MOCK-1"].exercises[4];
+          if (ex.type === "read_passage") ex.passage[1].nl = "Een ongekend woord.";
+        }),
+        4,
+        "ongekend",
+      ),
+    ).toBe(true);
   });
 });
 
