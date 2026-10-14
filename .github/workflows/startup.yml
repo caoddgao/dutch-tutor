@@ -1,0 +1,78 @@
+name: 冷启动实测
+
+# 02_PLAN 阶段 5 第 5 项：打开到首页可操作 < 3 秒。
+# 打 NSIS 安装包、静默安装，用环境变量 DUTCH_TUTOR_STARTUP_PROBE 让程序在首页可操作时记下用时并退出
+# （src-tauri/src/startup.rs、src/app/startup.ts）；从启动进程开始用秒表计时。
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "src-tauri/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.ts"
+      - ".github/workflows/startup.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: startup-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  startup:
+    name: Windows：安装包冷启动 < 3 秒
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - run: npm ci
+      - name: 打安装包
+        run: npx tauri build --bundles nsis
+      - name: 静默安装
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem src-tauri/target/release/bundle/nsis/*-setup.exe | Select-Object -First 1
+          Start-Process $setup.FullName -ArgumentList '/S' -Wait
+          $dir = Join-Path $env:LOCALAPPDATA 'Dutch Tutor'
+          $exe = Get-ChildItem $dir -Filter *.exe | Where-Object { $_.Name -notmatch 'uninstall' } | Select-Object -First 1
+          if (-not $exe) { Get-ChildItem $dir; throw "没有找到安装后的程序" }
+          "APP_EXE=$($exe.FullName)" >> $env:GITHUB_ENV
+      - name: 测量
+        shell: pwsh
+        run: |
+          $limit = 3000
+          function Measure-Start([string]$label) {
+            $probe = Join-Path $env:RUNNER_TEMP ("probe-" + [guid]::NewGuid() + ".json")
+            $env:DUTCH_TUTOR_STARTUP_PROBE = $probe
+            $sw = [Diagnostics.Stopwatch]::StartNew()
+            $p = Start-Process $env:APP_EXE -PassThru
+            while (-not (Test-Path $probe) -and $sw.Elapsed.TotalSeconds -lt 60) { Start-Sleep -Milliseconds 10 }
+            $total = $sw.Elapsed.TotalMilliseconds
+            if (-not $p.WaitForExit(15000)) { $p.Kill() }
+            if (-not (Test-Path $probe)) { throw "$label：60 秒内首页没有就绪" }
+            $j = Get-Content $probe -Raw | ConvertFrom-Json
+            [pscustomobject]@{ 场景 = $label; 总计_ms = [int]$total; 外壳_ms = [int]$j.shell_ms; 页面_ms = [int]$j.page_ms }
+          }
+          $rows = @()
+          $rows += Measure-Start '安装后第一次打开（无资料包）'
+          1..3 | ForEach-Object { $rows += Measure-Start "再次打开 $_（无资料包）" }
+          # 假资料包放到程序数据目录，相当于导入过
+          $pack = Join-Path $env:APPDATA 'nl.dutchtutor.app\nn-pack'
+          New-Item -ItemType Directory -Force -Path $pack | Out-Null
+          Copy-Item -Recurse -Force fixtures/nn-pack/* $pack
+          1..3 | ForEach-Object { $rows += Measure-Start "再次打开 $_（有资料包）" }
+          $rows | Format-Table -AutoSize | Out-String | Write-Host
+          $md = @('| 场景 | 总计 ms | 外壳 ms | 页面 ms |', '|---|---|---|---|')
+          $md += $rows | ForEach-Object { "| $($_.场景) | $($_.总计_ms) | $($_.外壳_ms) | $($_.页面_ms) |" }
+          $md -join "`n" >> $env:GITHUB_STEP_SUMMARY
+          $slow = $rows | Where-Object { $_.总计_ms -ge $limit }
+          if ($slow) { throw "有 $($slow.Count) 次超过 $limit ms" }

@@ -2,6 +2,7 @@ mod azure;
 mod backup;
 mod pack;
 mod recordings;
+mod startup;
 
 use tauri_plugin_sql::{Migration, MigrationKind};
 
@@ -35,7 +36,9 @@ fn migrations() -> Vec<Migration> {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let probe = startup::Probe::from_env();
     tauri::Builder::default()
+        .manage(probe)
         .plugin(tauri_plugin_dialog::init())
         .plugin(
             tauri_plugin_sql::Builder::default()
@@ -60,6 +63,7 @@ pub fn run() {
             backup::write_export_file,
             backup::read_backup_file,
             backup::save_safety_backup,
+            startup::startup_ready,
         ])
         .setup(|_app| {
             #[cfg(windows)]

@@ -1,5 +1,7 @@
 import { ArrowRight, BookOpen, Flame, MessageSquareText, PackageOpen, Play, Repeat2 } from "lucide-react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { reportHomeReady } from "../app/startup";
 import { ProgressBar } from "../components/ProgressBar";
 import { useContent } from "../content/context";
 import { countByStatus } from "../course/types";
@@ -12,6 +14,10 @@ export function HomePage() {
   const greeting = greetingFor(new Date().getHours());
   const data = useCourseData();
   const { course } = useContent();
+  const ready = data !== null;
+  useEffect(() => {
+    if (ready) reportHomeReady();
+  }, [ready]);
   if (!data) return <p className="muted lesson-loading">正在读取…</p>;
   const allLessons = data.sections.flatMap((s) => s.lessons);
   const courseTotal = course.reduce((n, s) => n + s.lessons.length + s.missing.length, 0);
