@@ -1,5 +1,6 @@
 // Learning-data backup and restore (design §8): one JSON file with the learner's own data.
-// In: lesson progress, review schedule and answers, exam scores, settings, study days, content reports.
+// In: lesson progress, review schedule and answers, exam scores, settings, study days, content reports,
+// "my hard sentences" (version 2).
 // Out: recordings and the "unnatural" marks that travel with them (recording mode has its own export),
 // the resource pack, and the Azure key (kept by the Rust side in its own file, never read here).
 import { normalizeSettings, SETTING_KEYS, type Settings } from "../settings/settings";
@@ -7,7 +8,8 @@ import type { SqlDb } from "./db";
 import type { SettingsStore } from "./settingsStore";
 
 export const BACKUP_FORMAT = "dutch-tutor-backup";
-export const BACKUP_VERSION = 1;
+/** 2 added hard_sentences; version 1 files are still read (see TableSpec.since). */
+export const BACKUP_VERSION = 2;
 
 type Col = "text" | "text?" | "int" | "num" | readonly string[];
 
@@ -18,6 +20,8 @@ interface TableSpec {
   /** Rows of the table that belong to the backup */
   where?: string;
   order: string;
+  /** Backup version that added the table; restoring an older file leaves the table as it is */
+  since?: number;
 }
 
 const TABLES = {
@@ -88,6 +92,12 @@ const TABLES = {
     where: "category <> 'unnatural'",
     order: "id",
   },
+  hard_sentences: {
+    key: "sentence_id",
+    cols: { sentence_id: "text", created_at: "text" },
+    order: "sentence_id",
+    since: 2,
+  },
 } as const satisfies Record<string, TableSpec>;
 
 export type BackupTable = keyof typeof TABLES;
@@ -100,7 +110,8 @@ export interface BackupFile {
   version: number;
   created_at: string;
   settings: Settings;
-  tables: Record<BackupTable, Row[]>;
+  /** A table added after the file's version is missing */
+  tables: Partial<Record<BackupTable, Row[]>> & Record<Exclude<BackupTable, "hard_sentences">, Row[]>;
 }
 
 export type BackupErrorCode = "not_backup" | "newer_version" | "damaged";
@@ -177,10 +188,12 @@ export function parseBackup(text: string): BackupFile {
     throw new BackupError("damaged", "created_at");
   if (!isObject(raw.settings) || !isObject(raw.tables)) throw new BackupError("damaged", "sections");
 
-  const tables = {} as Record<BackupTable, Row[]>;
+  const version = raw.version as number;
+  const tables = {} as BackupFile["tables"];
   for (const name of BACKUP_TABLES) {
     const spec: TableSpec = TABLES[name];
     const rows = raw.tables[name];
+    if (spec.since && version < spec.since && rows === undefined) continue;
     if (!Array.isArray(rows) || rows.length > 500_000) throw new BackupError("damaged", name);
     const keys = new Set<string>();
     tables[name] = rows.map((r: unknown, i) => {
@@ -201,7 +214,7 @@ export function parseBackup(text: string): BackupFile {
   }
   return {
     format: BACKUP_FORMAT,
-    version: raw.version as number,
+    version,
     created_at: raw.created_at,
     settings: normalizeSettings(raw.settings),
     tables,
@@ -232,11 +245,13 @@ async function insertRows(db: SqlDb, table: BackupTable, rows: Row[]) {
  * The caller saves a copy of the current data first and puts it back if this throws.
  */
 export async function restoreBackup(db: SqlDb, store: SettingsStore, backup: BackupFile): Promise<void> {
-  for (const name of BACKUP_TABLES) {
+  // tables an older backup does not have keep their current rows
+  const present = BACKUP_TABLES.filter((name) => backup.tables[name]);
+  for (const name of present) {
     const spec: TableSpec = TABLES[name];
     await db.execute(`DELETE FROM ${name}${spec.where ? ` WHERE ${spec.where}` : ""}`);
   }
-  for (const name of BACKUP_TABLES) await insertRows(db, name, backup.tables[name]);
+  for (const name of present) await insertRows(db, name, backup.tables[name]!);
   for (const key of SETTING_KEYS) await store.save(key, backup.settings[key]);
 }
 
@@ -247,6 +262,8 @@ export interface BackupSummary {
   studyDays: number;
   exams: number;
   reports: number;
+  /** null for a backup made before hard sentences were kept (restoring it leaves them alone) */
+  hardSentences: number | null;
 }
 
 export function summarizeBackup(backup: BackupFile): BackupSummary {
@@ -257,6 +274,7 @@ export function summarizeBackup(backup: BackupFile): BackupSummary {
     studyDays: backup.tables.study_days.length,
     exams: backup.tables.exam_results.length,
     reports: backup.tables.feedback.length,
+    hardSentences: backup.tables.hard_sentences?.length ?? null,
   };
 }
 

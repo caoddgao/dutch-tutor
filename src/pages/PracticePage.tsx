@@ -13,6 +13,8 @@ import type { PracticeSentence } from "../practice/data";
 import { usePracticeData, type PracticeData } from "../practice/usePracticeData";
 import { azureErrorMessage, useAzure } from "../pronunciation/context";
 import { ScorePanel } from "../pronunciation/ScorePanel";
+import { useServices } from "../servicesContext";
+import { setHardSentence } from "../storage/hardSentences";
 import "../components/PlayerBar.css";
 import "../pronunciation/score.css";
 import "./PracticePage.css";
@@ -59,6 +61,7 @@ export function PracticePage() {
 }
 
 function Practice({ data }: { data: PracticeData }) {
+  const { db } = useServices();
   const { status: azure } = useAzure();
   const scoring = !!azure?.enabled;
   const studied = useMemo(() => data.lessons.flatMap((l) => l.sentences), [data]);
@@ -66,7 +69,7 @@ function Practice({ data }: { data: PracticeData }) {
   // start on the lesson studied most recently; the list can be widened to all studied lessons
   const [lessonId, setLessonId] = useState(data.latest ?? ALL);
   const [hardOnly, setHardOnly] = useState(false);
-  const [hard, setHard] = useState<Set<string>>(() => new Set());
+  const [hard, setHard] = useState<Set<string>>(() => new Set(data.hard));
   const [selectedId, setSelectedId] = useState("");
 
   const shown = useMemo(
@@ -74,6 +77,8 @@ function Practice({ data }: { data: PracticeData }) {
     [studied, lessonId, hardOnly, hard],
   );
   const current = shown.find((s) => s.id === selectedId) ?? shown[0];
+  // starred sentences of lessons that cannot be opened now are kept but not counted
+  const hardCount = studied.filter((s) => hard.has(s.id)).length;
   const groups = groupByLesson(shown);
   const labelOf = (id: string) => labels.get(id) ?? id;
   const listRef = useRef<HTMLUListElement>(null);
@@ -91,13 +96,20 @@ function Practice({ data }: { data: PracticeData }) {
       list.scrollTop = top + head + row.offsetHeight - list.clientHeight;
   }, [current?.id]);
 
-  const toggleHard = (id: string) =>
+  const markHard = (id: string, on: boolean) =>
     setHard((old) => {
       const next = new Set(old);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
+      if (on) next.add(id);
+      else next.delete(id);
       return next;
     });
+  const toggleHard = (id: string) => {
+    const on = !hard.has(id);
+    markHard(id, on);
+    db()
+      .then((d) => setHardSentence(d, id, on))
+      .catch(() => markHard(id, !on));
+  };
   const pickRandom = () => {
     const pool = shown.length > 1 ? shown.filter((s) => s.id !== current?.id) : shown;
     const next = pool[Math.floor(Math.random() * pool.length)];
@@ -138,7 +150,7 @@ function Practice({ data }: { data: PracticeData }) {
               onClick={() => setHardOnly(!hardOnly)}
             />
             <span>只看我的难句</span>
-            <span className="practice-hard-count">{hard.size}</span>
+            <span className="practice-hard-count">{hardCount}</span>
           </label>
           <button type="button" className="btn btn-accent btn-small" onClick={pickRandom} disabled={!shown.length}>
             <Shuffle size={15} aria-hidden />
@@ -174,7 +186,7 @@ function Practice({ data }: { data: PracticeData }) {
             ))}
           </ul>
         ) : (
-          <p className="practice-list-empty">{hard.size ? "这一课还没有难句。" : "还没有收藏的难句。"}</p>
+          <p className="practice-list-empty">{hardCount ? "这一课还没有难句。" : "还没有收藏的难句。"}</p>
         )}
       </aside>
 
@@ -196,7 +208,7 @@ function Practice({ data }: { data: PracticeData }) {
       ) : (
         <EmptyState
           icon={Star}
-          title={hard.size ? "这一课还没有难句" : "还没有难句"}
+          title={hardCount ? "这一课还没有难句" : "还没有难句"}
           action={
             <button type="button" className="btn btn-primary" onClick={() => setHardOnly(false)}>
               看全部句子

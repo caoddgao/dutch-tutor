@@ -160,10 +160,13 @@ export function BackupSection({ onRestored = reloadApp }: { onRestored?: () => v
           </div>
           <p id="restore-desc">
             备份时间 {formatDateTime(summary.createdAt)}：学过 {summary.lessons} 课，{summary.reviewItems} 个复习项，
-            {summary.studyDays} 个学习日，{summary.exams} 次测验成绩，{summary.reports} 条报错。
+            {summary.studyDays} 个学习日，{summary.exams} 次测验成绩，{summary.reports} 条报错
+            {summary.hardSentences === null ? "" : `，${summary.hardSentences} 句难句`}。
           </p>
           <p className="restore-confirm-note">
-            恢复会覆盖当前的学习进度、复习、测验成绩、设置、学习天数和报错记录，录音不受影响。恢复前会自动把当前数据另存一份。
+            恢复会覆盖当前的学习进度、复习、测验成绩、设置、学习天数
+            {summary.hardSentences === null ? "和报错记录" : "、报错记录和难句"}
+            ，录音不受影响。恢复前会自动把当前数据另存一份。
           </p>
           <div className="restore-confirm-actions">
             <button type="button" className="btn btn-ghost btn-small" disabled={busy} onClick={() => setPending(null)}>

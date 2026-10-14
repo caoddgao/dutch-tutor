@@ -4,6 +4,7 @@ import { recordAnswer } from "../review/store";
 import { DEFAULT_SETTINGS } from "../settings/settings";
 import {
   BACKUP_TABLES,
+  BACKUP_VERSION,
   BackupError,
   backupErrorMessage,
   collectBackup,
@@ -13,6 +14,7 @@ import {
   summarizeBackup,
 } from "./backup";
 import { saveExamResult } from "./examResults";
+import { hardSentenceIds, setHardSentence } from "./hardSentences";
 import { completeLesson, markStudyDay, savePosition } from "./learning";
 import { createSqliteSettingsStore } from "./sqliteSettingsStore";
 import { createTestDb } from "./testDb";
@@ -37,6 +39,7 @@ async function seed(db: SqlDb) {
   await recordAnswer(db, item, "good", "R1", "daily");
   await markStudyDay(db, NOW, { sentences: 5 });
   await saveExamResult(db, "TT1", 8, 10);
+  await setHardSentence(db, "P01-S03", true);
   await db.execute(
     "INSERT INTO feedback (target_type, target_id, category, note, lesson_id, nl, zh) VALUES ('sentence', 'P01-S01', 'translation', '中文不通顺', 'P01', 'Ik woon hier.', '我住这儿。')",
   );
@@ -137,7 +140,7 @@ describe("backup round trip", () => {
     const text = serializeBackup(await collectBackup(a.db, store, NOW));
     const parsed = JSON.parse(text);
     expect(parsed.format).toBe("dutch-tutor-backup");
-    expect(parsed.version).toBe(1);
+    expect(parsed.version).toBe(2);
     expect(Object.keys(parsed.tables).sort()).toEqual([...BACKUP_TABLES].sort());
     expect(text).not.toMatch(/azure|recordings|file_path|key"/i);
   });
@@ -147,7 +150,28 @@ describe("backup round trip", () => {
     const store = createSqliteSettingsStore(async () => a.db);
     await seed(a.db);
     const s = summarizeBackup(await collectBackup(a.db, store, NOW));
-    expect(s).toMatchObject({ lessons: 1, reviewItems: 2, studyDays: 1, exams: 1, reports: 1 });
+    expect(s).toMatchObject({ lessons: 1, reviewItems: 2, studyDays: 1, exams: 1, reports: 1, hardSentences: 1 });
+  });
+
+  it("restores a version 1 backup (before hard sentences) and keeps the current hard sentences", async () => {
+    const a = createTestDb();
+    const storeA = createSqliteSettingsStore(async () => a.db);
+    await seed(a.db);
+    const old = JSON.parse(serializeBackup(await collectBackup(a.db, storeA, NOW)));
+    old.version = 1;
+    delete old.tables.hard_sentences;
+
+    const b = createTestDb();
+    await setHardSentence(b.db, "NN21-S03", true);
+    const parsed = parseBackup(JSON.stringify(old));
+    expect(summarizeBackup(parsed).hardSentences).toBeNull();
+    await restoreBackup(
+      b.db,
+      createSqliteSettingsStore(async () => b.db),
+      parsed,
+    );
+    expect(await hardSentenceIds(b.db)).toEqual(["NN21-S03"]);
+    expect(dump(b.raw).lesson_progress).toEqual(dump(a.raw).lesson_progress);
   });
 });
 
@@ -184,7 +208,7 @@ describe("bad backup files", () => {
 
   it("rejects backups from a newer program", async () => {
     const b = await good();
-    b.version = 2;
+    b.version = BACKUP_VERSION + 1;
     expect(codeOf(JSON.stringify(b))).toBe("newer_version");
   });
 
@@ -198,6 +222,8 @@ describe("bad backup files", () => {
       (b) => delete b.tables,
       (b) => delete b.settings,
       (b) => delete b.tables.review_items,
+      (b) => delete b.tables.hard_sentences,
+      (b) => b.tables.hard_sentences.push({ ...b.tables.hard_sentences[0] }),
       (b) => (b.tables.review_log = {}),
       (b) => (b.tables.lesson_progress[0].status = "done"),
       (b) => (b.tables.review_items[0].stage = 1.5),

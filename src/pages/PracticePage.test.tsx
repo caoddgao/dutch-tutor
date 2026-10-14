@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../App";
 import { RecordingStore } from "../audio/recordings";
@@ -84,6 +84,24 @@ describe("PracticePage", () => {
     expect(screen.getByRole("heading", { name: "还没有难句" })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "看全部句子" }));
     expect(rows().length).toBeGreaterThan(1);
+  });
+
+  it("keeps starred sentences in the database for the next visit", async () => {
+    const t = await studied();
+    await renderAt("#/practice", t);
+    await screen.findByRole("region", { name: "练习卡" });
+    fireEvent.click(screen.getByRole("button", { name: "收进难句" }));
+    await waitFor(() =>
+      expect(t.raw.prepare("SELECT sentence_id FROM hard_sentences").all()).toEqual([{ sentence_id: "NN21-S01" }]),
+    );
+    cleanup();
+
+    await renderAt("#/practice", t);
+    await screen.findByRole("region", { name: "练习卡" });
+    expect(screen.getByRole("button", { name: "已收进难句" })).toBeTruthy();
+    expect(within(list()).getAllByLabelText("难句")).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", { name: "已收进难句" }));
+    await waitFor(() => expect(t.raw.prepare("SELECT * FROM hard_sentences").all()).toEqual([]));
   });
 
   it("without scoring, points to the settings", async () => {
