@@ -36,7 +36,7 @@ async function seed(db: SqlDb) {
   const [item] = await db.select<never[]>(
     "SELECT item_id, item_type, lesson_id, stage, interval_days, due_at, reps, lapses FROM review_items WHERE item_id = 'P01-S01'",
   );
-  await recordAnswer(db, item, "good", "R1", "daily");
+  await recordAnswer(db, item, "good", "R1", "daily", { now: NOW });
   await markStudyDay(db, NOW, { sentences: 5 });
   await saveExamResult(db, "TT1", 8, 10);
   await setHardSentence(db, "P01-S03", true);
