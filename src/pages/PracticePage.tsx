@@ -1,19 +1,13 @@
-import { ChevronLeft, ChevronRight, Mic, Play, Shuffle, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Mic, PackageOpen, Play, Shuffle, Star } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router";
+import { Link } from "react-router";
 import { EmptyState } from "../components/EmptyState";
 import { Waveform } from "../components/Waveform";
+import type { PracticeSentence } from "../practice/data";
+import { usePracticeData, type PracticeData } from "../practice/usePracticeData";
+import { useAzure } from "../pronunciation/context";
 import { ScorePanel } from "../pronunciation/ScorePanel";
-import {
-  SAMPLE_HARD,
-  SAMPLE_LATEST,
-  SAMPLE_LESSONS,
-  SAMPLE_SENTENCES,
-  sampleAssessment,
-  samplePeaks,
-  sampleTakes,
-  type SampleSentence,
-} from "./practiceSample";
+import { sampleAssessment, samplePeaks, sampleTakes } from "./practiceSample";
 import "../components/PlayerBar.css";
 import "../pronunciation/score.css";
 import "./PracticePage.css";
@@ -21,47 +15,25 @@ import "./PracticePage.css";
 const ALL = "all";
 const BARS = 64;
 
-/**
- * Free shadowing of any studied sentence (design §7, decision 29). Static version with sample data:
- * `?sample=none` shows a learner who has not studied any lesson, `?sample=no-hard` one without hard
- * sentences, `?score=off` the page with pronunciation scoring switched off.
- */
+/** Free shadowing of any studied sentence (design §7, decisions 29, 30). */
 export function PracticePage() {
-  const [params] = useSearchParams();
-  const sample = params.get("sample");
-  const studied = useMemo(() => (sample === "none" ? [] : SAMPLE_SENTENCES), [sample]);
-  const scoring = params.get("score") !== "off";
-  // start on the lesson studied most recently; the list can be widened to all studied lessons
-  const [lessonId, setLessonId] = useState(SAMPLE_LATEST);
-  const [hardOnly, setHardOnly] = useState(sample === "no-hard");
-  const [hard, setHard] = useState<Set<string>>(() => new Set(sample === "no-hard" ? [] : SAMPLE_HARD));
-  const [selectedId, setSelectedId] = useState("");
-  const [slow, setSlow] = useState(false);
-
-  const shown = useMemo(
-    () => studied.filter((s) => (lessonId === ALL || s.lessonId === lessonId) && (!hardOnly || hard.has(s.id))),
-    [studied, lessonId, hardOnly, hard],
-  );
-  const current = shown.find((s) => s.id === selectedId) ?? shown[0];
-  const lessons = SAMPLE_LESSONS.filter((l) => studied.some((s) => s.lessonId === l.id));
-  const groups = groupByLesson(shown);
-  const labelOf = (id: string) => SAMPLE_LESSONS.find((l) => l.id === id)?.label ?? id;
-  const listRef = useRef<HTMLUListElement>(null);
-
-  // keep the selected sentence visible in the list (e.g. after "随机来一句")
-  useEffect(() => {
-    const list = listRef.current;
-    const row = list?.querySelector<HTMLElement>(".is-selected");
-    if (!list || !row) return;
-    // the sticky lesson heading covers the top of the list
-    const head = row.closest(".practice-group")?.querySelector<HTMLElement>(".practice-group-head")?.offsetHeight ?? 0;
-    const top = row.offsetTop - head;
-    if (top < list.scrollTop) list.scrollTop = top;
-    else if (top + row.offsetHeight > list.scrollTop + list.clientHeight)
-      list.scrollTop = top + row.offsetHeight - list.clientHeight;
-  }, [current?.id]);
-
-  if (!studied.length) {
+  const data = usePracticeData();
+  if (!data) return <p className="muted">正在打开…</p>;
+  if (!data.lessons.length) {
+    if (data.missing)
+      return (
+        <EmptyState
+          icon={PackageOpen}
+          title="需要资料包"
+          action={
+            <Link to="/settings" className="btn btn-primary">
+              去导入资料包
+            </Link>
+          }
+        >
+          学过的课在 Naar Nederland 资料包里。导入资料包之后，这些课的句子就能拿来练习。
+        </EmptyState>
+      );
     return (
       <EmptyState
         icon={Mic}
@@ -76,6 +48,42 @@ export function PracticePage() {
       </EmptyState>
     );
   }
+  return <Practice data={data} />;
+}
+
+function Practice({ data }: { data: PracticeData }) {
+  const { status: azure } = useAzure();
+  const scoring = !!azure?.enabled;
+  const studied = useMemo(() => data.lessons.flatMap((l) => l.sentences), [data]);
+  const labels = useMemo(() => new Map(data.lessons.map((l) => [l.id, l.label])), [data]);
+  // start on the lesson studied most recently; the list can be widened to all studied lessons
+  const [lessonId, setLessonId] = useState(data.latest ?? ALL);
+  const [hardOnly, setHardOnly] = useState(false);
+  const [hard, setHard] = useState<Set<string>>(() => new Set());
+  const [selectedId, setSelectedId] = useState("");
+  const [slow, setSlow] = useState(false);
+
+  const shown = useMemo(
+    () => studied.filter((s) => (lessonId === ALL || s.lessonId === lessonId) && (!hardOnly || hard.has(s.id))),
+    [studied, lessonId, hardOnly, hard],
+  );
+  const current = shown.find((s) => s.id === selectedId) ?? shown[0];
+  const groups = groupByLesson(shown);
+  const labelOf = (id: string) => labels.get(id) ?? id;
+  const listRef = useRef<HTMLUListElement>(null);
+
+  // keep the selected sentence visible in the list (e.g. after "随机来一句")
+  useEffect(() => {
+    const list = listRef.current;
+    const row = list?.querySelector<HTMLElement>(".is-selected");
+    if (!list || !row) return;
+    // the sticky lesson heading covers the top of the list
+    const head = row.closest(".practice-group")?.querySelector<HTMLElement>(".practice-group-head")?.offsetHeight ?? 0;
+    const top = row.offsetTop - head;
+    if (top < list.scrollTop) list.scrollTop = top;
+    else if (top + head + row.offsetHeight > list.scrollTop + list.clientHeight)
+      list.scrollTop = top + head + row.offsetHeight - list.clientHeight;
+  }, [current?.id]);
 
   const toggleHard = (id: string) =>
     setHard((old) => {
@@ -101,13 +109,18 @@ export function PracticePage() {
           <span>课程</span>
           <select value={lessonId} onChange={(e) => setLessonId(e.target.value)}>
             <option value={ALL}>全部已学的课</option>
-            {lessons.map((l) => (
+            {data.lessons.map((l) => (
               <option key={l.id} value={l.id}>
                 {l.label}
               </option>
             ))}
           </select>
         </label>
+        {data.missing > 0 && (
+          <p className="practice-list-note">
+            另有 {data.missing} 课学过、但需要资料包才能练。<Link to="/settings">去导入</Link>
+          </p>
+        )}
         <div className="practice-list-tools">
           <label className="practice-hard-toggle">
             <button
@@ -205,7 +218,7 @@ function groupByLesson<T extends { lessonId: string }>(items: T[]): { lessonId: 
 }
 
 interface CardProps {
-  sentence: SampleSentence;
+  sentence: PracticeSentence;
   index: number;
   total: number;
   lessonLabel: string;
