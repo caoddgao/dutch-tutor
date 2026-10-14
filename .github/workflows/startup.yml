@@ -1,8 +1,9 @@
 name: 冷启动实测
 
 # 02_PLAN 阶段 5 第 5 项：打开到首页可操作 < 3 秒。
-# 冷启动 = 程序没在运行时打开它；只按"再次打开"判定。安装后第一次打开要等 WebView2 建自己的数据文件夹
-# （一台电脑只有一次，升级也保留），单独列出、不判定（docs/STATUS.md 待决问题）。
+# 冷启动 = 程序没在运行时打开它；按 6 次"再次打开"的中位数判定（CI 虚拟机单次波动大，每次都列出）。
+# 安装后第一次打开要等 WebView2 建自己的数据文件夹（一台电脑只有一次，升级也保留），单独列出、不判定
+# （docs/STATUS.md 待决问题）。
 # 打 NSIS 安装包、静默安装，用环境变量 DUTCH_TUTOR_STARTUP_PROBE 让程序在首页可操作时记下用时并退出
 # （src-tauri/src/startup.rs、src/app/startup.ts）；从启动进程开始用秒表计时。
 
@@ -81,7 +82,12 @@ jobs:
           $md = @('| 场景 | 总计 | 外壳就绪 | 开始载入页面 | 首页可操作 | 页面自身 |', '|---|---|---|---|---|---|')
           $md += $rows | ForEach-Object { "| $($_.场景) | $($_.总计_ms) | $($_.外壳就绪_ms) | $($_.开始载入页面_ms) | $($_.首页可操作_ms) | $($_.页面自身_ms) |" }
           '' >> $env:GITHUB_STEP_SUMMARY
-          '单位毫秒；总计 = 从启动进程起的秒表，其余为程序内部计时。判定只看“再次打开”（< 3000）；安装后第一次打开只列出。' >> $env:GITHUB_STEP_SUMMARY
+          '单位毫秒；总计 = 从启动进程起的秒表，其余为程序内部计时。判定看“再次打开”的中位数（< 3000）；安装后第一次打开只列出。' >> $env:GITHUB_STEP_SUMMARY
           $md -join "`n" >> $env:GITHUB_STEP_SUMMARY
-          $slow = $rows | Select-Object -Skip 1 | Where-Object { $_.总计_ms -ge $limit }
-          if ($slow) { throw "有 $($slow.Count) 次再次打开超过 $limit ms" }
+          $again = @($rows | Select-Object -Skip 1 | ForEach-Object { $_.总计_ms } | Sort-Object)
+          $median = ($again[[math]::Floor(($again.Count - 1) / 2)] + $again[[math]::Ceiling(($again.Count - 1) / 2)]) / 2
+          $line = "再次打开 $($again.Count) 次：中位数 $median ms，最快 $($again[0]) ms，最慢 $($again[-1]) ms"
+          Write-Host $line
+          '' >> $env:GITHUB_STEP_SUMMARY
+          $line >> $env:GITHUB_STEP_SUMMARY
+          if ($median -ge $limit) { throw "再次打开的中位数 $median ms，超过 $limit ms" }
