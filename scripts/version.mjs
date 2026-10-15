@@ -1,9 +1,10 @@
-// Release version helpers: 0.1.x, where x is one more than the highest existing v0.1.* tag.
+// Release version helpers: 1.0.x, where x is one more than the highest existing v1.0.* tag
+// (v1.0.0 is the first formal release; later builds from main are 1.0.1, 1.0.2 … pre-releases).
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-export const SERIES = "0.1";
+export const SERIES = "1.0";
 
 /** @param {string[]} tags */
 export function nextVersion(tags, series = SERIES) {

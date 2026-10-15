@@ -34,7 +34,7 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-      - name: Next version (0.1.x)
+      - name: Next version (1.0.x)
         id: version
         shell: bash
         run: echo "version=$(node scripts/version.mjs --write)" >> "$GITHUB_OUTPUT"
@@ -44,9 +44,10 @@ jobs:
         with:
           tagName: v${{ steps.version.outputs.version }}
           releaseName: Dutch Tutor ${{ steps.version.outputs.version }}
+          # x.y.0 (e.g. 1.0.0) is a formal release; later builds from main (1.0.1, 1.0.2 …) are test builds
           releaseBody: |
-            预发布版本 ${{ steps.version.outputs.version }}。
+            ${{ endsWith(steps.version.outputs.version, '.0') && '正式版' || '测试版' }} ${{ steps.version.outputs.version }}。
             下载下面的 `Dutch.Tutor_${{ steps.version.outputs.version }}_x64-setup.exe`，双击安装。
           releaseDraft: false
-          prerelease: true
+          prerelease: ${{ !endsWith(steps.version.outputs.version, '.0') }}
           args: --bundles nsis

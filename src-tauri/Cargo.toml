@@ -1,6 +1,6 @@
 [package]
 name = "dutch-tutor"
-version = "0.1.0"
+version = "1.0.0"
 description = "Dutch Tutor"
 authors = ["Dutch Tutor"]
 edition = "2021"
