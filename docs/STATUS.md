@@ -8,21 +8,7 @@
 
 ## 进行中
 
-- 施工者：Claude；分支 `claude/fix-azure-tray`；PR #56。修发音评分读不出结果 + 关闭按钮改为最小化到托盘。
-  - [x] 1. `parse_assessment` 先读 REST 短音频接口的平铺字段（NBest[0] 上的 AccuracyScore 等、Words[] 上的 AccuracyScore / ErrorType），
-    嵌套的 `PronunciationAssessment` 形式也兼容。
-  - [x] 2. 测试：微软文档平铺格式示例响应的单元测试；原有嵌套格式的测试保留。
-  - [x] 3. 只在成功读出分数后才计入"本月用量"。
-    半路决定：1–3 同一个提交（同一个函数）。每个字段先读平铺的、没有再读 `PronunciationAssessment` 里的；`parse_assessment` 不再管用量，
-    新的 `scored()` 读出分数后才调用 `add_usage`（没听清 / 读不出分数都不计）；用量文件写不进去时仍报"本机评分设置无法读取或保存"。
-  - [x] 4. 前端模拟评分的测试数据改成和真实接口一致的格式。
-    半路决定：前端只收 Rust 命令 `assess_pronunciation` 整理后的结果（四项分 + 低分词 + 本月用量），不直接接触 Azure 原始响应，
-    所以格式本来一致；模拟数据改成 Azure 实际给的小数分（如 74.4），并检查界面四舍五入、漏读的词（0 分）也列出。
-  - [x] 5. 点 X 隐藏到托盘；托盘左键显示并聚焦，右键"打开 Dutch Tutor / 退出"；单实例（tauri-plugin-single-instance）；
-    只在桌面平台启用；冷启动实测照常退出；补权限 / 依赖和能测的 Rust 测试。
-    半路决定：新文件 `src-tauri/src/tray.rs`，整块 `#[cfg(desktop)]`；tauri 开 `tray-icon`，`tauri-plugin-single-instance` 只在
-    Windows / macOS / Linux 依赖，且最先注册；托盘和单实例都只在 Rust 里用，前端权限不用加。冷启动实测走 `app.exit`，不经过关窗口，照常退出。
-    测试：菜单项对应动作、只有左键松开才显示窗口、只有主窗口关闭时隐藏（Tauri 的模拟运行时里隐藏 / 显示是空操作，测不了真正的隐藏）。
+（无）
 
 ## 已完成
 
@@ -39,6 +25,9 @@
   "冷启动实测"工作流（`DUTCH_TUTOR_STARTUP_PROBE`，再次打开中位数 < 3 秒）。
 - 阶段 5-5a（PR #51）：发音练习页（已学课的句子、按课分组、随机、录音与上课跟读共用、Azure 评分随录音存、难句收藏；迁移 0004，备份 version 2）。
 - 阶段 5-5b（PR #53）：表格版导出（`write-excel-file`；学习情况表格四页只供查看；报错导出可选 JSON / Excel）。
+- 修发音评分 + 关闭到托盘（PR #56）：REST 短音频接口的分数是平铺字段（NBest[0] / Words[] 上直接有 AccuracyScore 等），
+  `parse_assessment` 先读平铺、再兼容嵌套 `PronunciationAssessment`；读出分数后才计入本月用量。点 X 隐藏到托盘，托盘左键显示、
+  右键"打开 Dutch Tutor / 退出"，单实例（`tauri-plugin-single-instance`），只在桌面平台；Rust 20 项测试。
 - 细节见各 PR 和 git 历史里的旧版 STATUS。
 
 ## 已定事项（摘要；详细见 git 历史里的旧版 STATUS）
