@@ -8,7 +8,7 @@
 
 ## 进行中
 
-- 施工者：Claude；分支 `claude/fix-azure-tray`；PR #（开草稿后补）。修发音评分读不出结果 + 关闭按钮改为最小化到托盘。
+- 施工者：Claude；分支 `claude/fix-azure-tray`；PR #56。修发音评分读不出结果 + 关闭按钮改为最小化到托盘。
   - [ ] 1. `parse_assessment` 先读 REST 短音频接口的平铺字段（NBest[0] 上的 AccuracyScore 等、Words[] 上的 AccuracyScore / ErrorType），
     嵌套的 `PronunciationAssessment` 形式也兼容。
   - [ ] 2. 测试：微软文档平铺格式示例响应的单元测试；原有嵌套格式的测试保留。
