@@ -9,13 +9,15 @@ afterEach(() => vi.unstubAllGlobals());
 
 describe("optional pronunciation scoring", () => {
   it("scores a saved oral take against the selected reference and shows weak words", async () => {
+    // what `assess_pronunciation` returns: Azure's scores as it sends them (decimals), the words to practise,
+    // and this month's usage in seconds
     const assess = vi.fn(async (): Promise<Assessment> => ({
-      accuracy: 65,
-      fluency: 76,
-      completeness: 88,
-      total: 73,
-      low_words: [{ word: "morgen", accuracy: 42 }],
-      month_seconds: 12,
+      accuracy: 65.2,
+      fluency: 76.0,
+      completeness: 88.0,
+      total: 73.4,
+      low_words: [{ word: "morgen", accuracy: 42.0 }],
+      month_seconds: 12.6,
     }));
     vi.stubGlobal(
       "fetch",
@@ -47,5 +49,7 @@ describe("optional pronunciation scoring", () => {
     await waitFor(() => expect(assess).toHaveBeenCalledWith(expect.any(Blob), "Goedemorgen."));
     expect(await screen.findByText("morgen")).not.toBeNull();
     expect(screen.getByText("总分")).not.toBeNull();
+    expect(screen.getByText("73")).not.toBeNull();
+    expect(screen.getByText("42 分")).not.toBeNull();
   });
 });
