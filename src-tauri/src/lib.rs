@@ -3,6 +3,8 @@ mod backup;
 mod pack;
 mod recordings;
 mod startup;
+#[cfg(desktop)]
+mod tray;
 
 use tauri::Manager;
 use tauri_plugin_sql::{Migration, MigrationKind};
@@ -44,7 +46,13 @@ fn migrations() -> Vec<Migration> {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let probe = startup::Probe::from_env();
-    tauri::Builder::default()
+    let builder = tauri::Builder::default();
+    // registered first, so a second launch only brings back the running window
+    #[cfg(desktop)]
+    let builder = builder.plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
+        tray::show_main(app);
+    }));
+    builder
         .manage(probe)
         .plugin(tauri_plugin_dialog::init())
         .plugin(
@@ -72,6 +80,10 @@ pub fn run() {
             backup::save_safety_backup,
             startup::startup_ready,
         ])
+        .on_window_event(|_window, _event| {
+            #[cfg(desktop)]
+            tray::on_window_event(_window, _event);
+        })
         .on_page_load(|webview, payload| {
             if payload.event() == tauri::webview::PageLoadEvent::Started {
                 webview.state::<startup::Probe>().mark_page_start();
@@ -79,6 +91,8 @@ pub fn run() {
         })
         .setup(|app| {
             app.state::<startup::Probe>().mark_setup();
+            #[cfg(desktop)]
+            tray::create(app.handle())?;
             #[cfg(windows)]
             if let Some(window) = tauri::Manager::get_webview_window(app, "main") {
                 microphone::allow_microphone(&window);

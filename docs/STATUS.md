@@ -18,8 +18,11 @@
   - [x] 4. 前端模拟评分的测试数据改成和真实接口一致的格式。
     半路决定：前端只收 Rust 命令 `assess_pronunciation` 整理后的结果（四项分 + 低分词 + 本月用量），不直接接触 Azure 原始响应，
     所以格式本来一致；模拟数据改成 Azure 实际给的小数分（如 74.4），并检查界面四舍五入、漏读的词（0 分）也列出。
-  - [ ] 5. 点 X 隐藏到托盘；托盘左键显示并聚焦，右键"打开 Dutch Tutor / 退出"；单实例（tauri-plugin-single-instance）；
+  - [x] 5. 点 X 隐藏到托盘；托盘左键显示并聚焦，右键"打开 Dutch Tutor / 退出"；单实例（tauri-plugin-single-instance）；
     只在桌面平台启用；冷启动实测照常退出；补权限 / 依赖和能测的 Rust 测试。
+    半路决定：新文件 `src-tauri/src/tray.rs`，整块 `#[cfg(desktop)]`；tauri 开 `tray-icon`，`tauri-plugin-single-instance` 只在
+    Windows / macOS / Linux 依赖，且最先注册；托盘和单实例都只在 Rust 里用，前端权限不用加。冷启动实测走 `app.exit`，不经过关窗口，照常退出。
+    测试：菜单项对应动作、只有左键松开才显示窗口、只有主窗口关闭时隐藏（Tauri 的模拟运行时里隐藏 / 显示是空操作，测不了真正的隐藏）。
 
 ## 已完成
 

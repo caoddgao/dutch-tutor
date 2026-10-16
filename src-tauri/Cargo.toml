@@ -14,7 +14,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2", features = ["protocol-asset"] }
+tauri = { version = "2", features = ["protocol-asset", "tray-icon"] }
 tauri-plugin-sql = { version = "2", features = ["sqlite"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
@@ -22,6 +22,10 @@ tauri-plugin-dialog = "2"
 base64 = "0.22"
 chrono = { version = "0.4", default-features = false, features = ["clock"] }
 reqwest = { version = "0.13", default-features = false, features = ["rustls", "json"] }
+
+[target.'cfg(any(target_os = "windows", target_os = "macos", target_os = "linux"))'.dependencies]
+# desktop only: opening the app again brings back the running window (tray.rs)
+tauri-plugin-single-instance = "2"
 
 [target.'cfg(windows)'.dependencies]
 # must match the version tauri / wry use (Cargo.lock)
