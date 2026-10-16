@@ -9,10 +9,12 @@
 ## 进行中
 
 - 施工者：Claude；分支 `claude/fix-azure-tray`；PR #56。修发音评分读不出结果 + 关闭按钮改为最小化到托盘。
-  - [ ] 1. `parse_assessment` 先读 REST 短音频接口的平铺字段（NBest[0] 上的 AccuracyScore 等、Words[] 上的 AccuracyScore / ErrorType），
+  - [x] 1. `parse_assessment` 先读 REST 短音频接口的平铺字段（NBest[0] 上的 AccuracyScore 等、Words[] 上的 AccuracyScore / ErrorType），
     嵌套的 `PronunciationAssessment` 形式也兼容。
-  - [ ] 2. 测试：微软文档平铺格式示例响应的单元测试；原有嵌套格式的测试保留。
-  - [ ] 3. 只在成功读出分数后才计入"本月用量"。
+  - [x] 2. 测试：微软文档平铺格式示例响应的单元测试；原有嵌套格式的测试保留。
+  - [x] 3. 只在成功读出分数后才计入"本月用量"。
+    半路决定：1–3 同一个提交（同一个函数）。每个字段先读平铺的、没有再读 `PronunciationAssessment` 里的；`parse_assessment` 不再管用量，
+    新的 `scored()` 读出分数后才调用 `add_usage`（没听清 / 读不出分数都不计）；用量文件写不进去时仍报"本机评分设置无法读取或保存"。
   - [ ] 4. 前端模拟评分的测试数据改成和真实接口一致的格式。
   - [ ] 5. 点 X 隐藏到托盘；托盘左键显示并聚焦，右键"打开 Dutch Tutor / 退出"；单实例（tauri-plugin-single-instance）；
     只在桌面平台启用；冷启动实测照常退出；补权限 / 依赖和能测的 Rust 测试。
