@@ -53,13 +53,13 @@ pub struct AzureStatus {
     month_seconds: f64,
 }
 
-#[derive(Serialize)]
+#[derive(Debug, Serialize)]
 pub struct LowWord {
     word: String,
     accuracy: f64,
 }
 
-#[derive(Serialize)]
+#[derive(Debug, Serialize)]
 pub struct Assessment {
     accuracy: f64,
     fluency: f64,
@@ -262,15 +262,23 @@ fn reserve_request<R: Runtime>(app: &AppHandle<R>) -> Result<(), AzureError> {
     )
 }
 
-fn score(value: &Value, key: &str) -> Result<f64, AzureError> {
+/// A score field of an NBest entry or a word. The REST short-audio endpoint we call puts the scores directly
+/// on the entry (`"AccuracyScore": 100.0`); the Speech SDK nests them in `PronunciationAssessment`. Both are read.
+fn field<'a>(value: &'a Value, key: &str) -> Option<&'a Value> {
     value
         .get(key)
+        .or_else(|| value.get("PronunciationAssessment")?.get(key))
+}
+
+fn score(value: &Value, key: &str) -> Result<f64, AzureError> {
+    field(value, key)
         .and_then(Value::as_f64)
         .filter(|n| n.is_finite() && (0.0..=100.0).contains(n))
         .ok_or_else(|| error("response"))
 }
 
-fn parse_assessment(body: &Value, month_seconds: f64) -> Result<Assessment, AzureError> {
+/// The four scores and the words to practise; `month_seconds` is filled in by the caller once usage is counted.
+fn parse_assessment(body: &Value) -> Result<Assessment, AzureError> {
     if body.get("RecognitionStatus").and_then(Value::as_str) != Some("Success") {
         return Err(error("no_speech"));
     }
@@ -279,9 +287,6 @@ fn parse_assessment(body: &Value, month_seconds: f64) -> Result<Assessment, Azur
         .and_then(Value::as_array)
         .and_then(|v| v.first())
         .ok_or_else(|| error("response"))?;
-    let grading = best
-        .get("PronunciationAssessment")
-        .ok_or_else(|| error("response"))?;
     let low_words = best
         .get("Words")
         .and_then(Value::as_array)
@@ -289,25 +294,22 @@ fn parse_assessment(body: &Value, month_seconds: f64) -> Result<Assessment, Azur
         .flatten()
         .filter_map(|item| {
             let word = item.get("Word")?.as_str()?.to_string();
-            let grade = item.get("PronunciationAssessment")?;
-            let accuracy = grade
-                .get("AccuracyScore")
+            let accuracy = field(item, "AccuracyScore")
                 .and_then(Value::as_f64)
                 .unwrap_or(0.0);
-            let error_type = grade
-                .get("ErrorType")
+            let error_type = field(item, "ErrorType")
                 .and_then(Value::as_str)
                 .unwrap_or("None");
             (accuracy < 70.0 || error_type != "None").then_some(LowWord { word, accuracy })
         })
         .collect();
     Ok(Assessment {
-        accuracy: score(grading, "AccuracyScore")?,
-        fluency: score(grading, "FluencyScore")?,
-        completeness: score(grading, "CompletenessScore")?,
-        total: score(grading, "PronScore")?,
+        accuracy: score(best, "AccuracyScore")?,
+        fluency: score(best, "FluencyScore")?,
+        completeness: score(best, "CompletenessScore")?,
+        total: score(best, "PronScore")?,
         low_words,
-        month_seconds,
+        month_seconds: 0.0,
     })
 }
 
@@ -369,14 +371,25 @@ pub async fn assess_pronunciation<R: Runtime>(
         return Err(error("service"));
     }
     let body: Value = response.json().await.map_err(|_| error("response"))?;
-    let used = add_usage(&app, duration)?;
-    parse_assessment(&body, used)
+    scored(&body, || add_usage(&app, duration))
+}
+
+/// Reads the scores, then counts the request towards this month's usage: a response without a usable score
+/// (no speech, unreadable) is not counted.
+fn scored(
+    body: &Value,
+    count_usage: impl FnOnce() -> Result<f64, AzureError>,
+) -> Result<Assessment, AzureError> {
+    let mut assessment = parse_assessment(body)?;
+    assessment.month_seconds = count_usage()?;
+    Ok(assessment)
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{parse_assessment, reserve_window, valid_region};
+    use super::{error, parse_assessment, reserve_window, scored, valid_region};
     use serde_json::json;
+    use std::cell::Cell;
 
     #[test]
     fn region_cannot_change_host() {
@@ -393,10 +406,92 @@ mod tests {
             "Words":[{"Word":"Hallo","PronunciationAssessment":{"AccuracyScore":95.0,"ErrorType":"None"}},
                      {"Word":"morgen","PronunciationAssessment":{"AccuracyScore":60.0,"ErrorType":"None"}}]
         }]});
-        let result = parse_assessment(&body, 12.5).unwrap();
+        let result = parse_assessment(&body).unwrap();
         assert_eq!(result.total, 81.0);
         assert_eq!(result.low_words[0].word, "morgen");
-        assert_eq!(result.month_seconds, 12.5);
+    }
+
+    /// The response of the REST short-audio endpoint as in Microsoft's documentation
+    /// (rest-speech-to-text-short, "Pronunciation assessment" response): scores directly on NBest and on each word.
+    #[test]
+    fn parses_flat_scores_of_the_rest_short_audio_endpoint() {
+        let body = json!({
+            "RecognitionStatus": "Success",
+            "Offset": "400000",
+            "Duration": "11000000",
+            "NBest": [{
+                "Confidence": "0.87",
+                "Lexical": "good morning",
+                "ITN": "good morning",
+                "MaskedITN": "good morning",
+                "Display": "Good morning.",
+                "PronScore": 84.4,
+                "AccuracyScore": 100.0,
+                "FluencyScore": 74.0,
+                "CompletenessScore": 100.0,
+                "Words": [
+                    {"Word": "Good", "AccuracyScore": 100.0, "ErrorType": "None", "Offset": 500000, "Duration": 2700000},
+                    {"Word": "morning", "AccuracyScore": 100.0, "ErrorType": "None", "Offset": 5300000, "Duration": 900000}
+                ]
+            }]
+        });
+        let result = parse_assessment(&body).unwrap();
+        assert_eq!(result.total, 84.4);
+        assert_eq!(result.accuracy, 100.0);
+        assert_eq!(result.fluency, 74.0);
+        assert_eq!(result.completeness, 100.0);
+        assert!(result.low_words.is_empty());
+    }
+
+    #[test]
+    fn flat_words_with_low_scores_or_errors_are_to_practise() {
+        let body = json!({"RecognitionStatus":"Success","NBest":[{
+            "PronScore":71.2,"AccuracyScore":68.0,"FluencyScore":80.0,"CompletenessScore":75.0,
+            "Words":[{"Word":"goedemorgen","AccuracyScore":52.0,"ErrorType":"Mispronunciation"},
+                     {"Word":"mevrouw","AccuracyScore":91.0,"ErrorType":"None"},
+                     {"Word":"wat","AccuracyScore":0.0,"ErrorType":"Omission"}]
+        }]});
+        let words: Vec<_> = parse_assessment(&body)
+            .unwrap()
+            .low_words
+            .into_iter()
+            .map(|w| (w.word, w.accuracy))
+            .collect();
+        assert_eq!(
+            words,
+            vec![("goedemorgen".to_string(), 52.0), ("wat".to_string(), 0.0)]
+        );
+    }
+
+    #[test]
+    fn a_response_without_scores_is_an_error() {
+        let body = json!({"RecognitionStatus":"Success","NBest":[{"Display":"Hallo.","Words":[]}]});
+        assert_eq!(parse_assessment(&body).unwrap_err().code, "response");
+        let silent = json!({"RecognitionStatus":"NoMatch"});
+        assert_eq!(parse_assessment(&silent).unwrap_err().code, "no_speech");
+    }
+
+    #[test]
+    fn usage_is_counted_only_for_a_score() {
+        let counted = Cell::new(0);
+        let count = || {
+            counted.set(counted.get() + 1);
+            Ok(42.5)
+        };
+        let good = json!({"RecognitionStatus":"Success","NBest":[{
+            "PronScore":80.0,"AccuracyScore":80.0,"FluencyScore":80.0,"CompletenessScore":80.0,"Words":[]}]});
+        assert_eq!(scored(&good, count).unwrap().month_seconds, 42.5);
+        assert_eq!(counted.get(), 1);
+
+        for bad in [
+            json!({"RecognitionStatus":"NoMatch"}),
+            json!({"RecognitionStatus":"Success","NBest":[{"Display":"Hallo."}]}),
+        ] {
+            assert!(scored(&bad, count).is_err());
+        }
+        assert_eq!(counted.get(), 1);
+        let storage = scored(&good, || Err(error("storage"))).unwrap_err();
+        assert_eq!(storage.code, "storage");
     }
 
     #[test]

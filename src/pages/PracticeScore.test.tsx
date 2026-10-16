@@ -43,13 +43,18 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
+// what `assess_pronunciation` returns: Azure's scores as it sends them (decimals), the words to practise
+// (low accuracy or an error such as an omission), and this month's usage in seconds
 const result = (total: number): Assessment => ({
   total,
-  accuracy: 80,
-  fluency: 70,
-  completeness: 100,
-  low_words: [{ word: "Goedemorgen", accuracy: 41 }],
-  month_seconds: 30,
+  accuracy: 80.6,
+  fluency: 70.0,
+  completeness: 100.0,
+  low_words: [
+    { word: "Goedemorgen", accuracy: 41.3 },
+    { word: "u", accuracy: 0 },
+  ],
+  month_seconds: 30.4,
 });
 
 async function open() {
@@ -64,7 +69,7 @@ async function open() {
 
 describe("PracticePage with pronunciation scoring", () => {
   it("scores each new take against the sentence and keeps the score with the take", async () => {
-    azure.assess.mockResolvedValueOnce(result(74));
+    azure.assess.mockResolvedValueOnce(result(74.4));
     const { t, card } = await open();
     fireEvent.click(within(card).getByRole("button", { name: "录音" }));
     fireEvent.click(await within(card).findByRole("button", { name: "停止录音" }));
@@ -76,7 +81,10 @@ describe("PracticePage with pronunciation scoring", () => {
     const row = t.raw.prepare("SELECT assessment FROM recordings WHERE audio_id = 'NN21-S01'").get() as {
       assessment: string;
     };
-    expect(JSON.parse(row.assessment)).toMatchObject({ total: 74, low_words: [{ word: "Goedemorgen" }] });
+    expect(JSON.parse(row.assessment)).toMatchObject({
+      total: 74.4,
+      low_words: [{ word: "Goedemorgen" }, { word: "u" }],
+    });
     expect(row.assessment).not.toContain("month_seconds");
   });
 
@@ -85,7 +93,7 @@ describe("PracticePage with pronunciation scoring", () => {
     await completeLesson(t.db, "NN21", [], new Date("2026-10-13T09:00:00Z"));
     const store = new RecordingStore(t.services.db, t.services.recordingFiles);
     const old = await store.savePractice("NN21-S01", { blob: new Blob(["a"]), mime: "audio/webm", duration: 2 });
-    await store.saveAssessment(old.id, result(61));
+    await store.saveAssessment(old.id, result(60.8));
     window.location.hash = "#/practice";
     await act(async () => {
       render(<App services={t.services} />);
@@ -106,7 +114,7 @@ describe("PracticePage with pronunciation scoring", () => {
     fireEvent.click(await within(next).findByRole("button", { name: "给这次录音评分" }));
     expect((await within(next).findByRole("alert")).textContent).toBe("请求太频繁，请 30 秒后再评分。");
 
-    azure.assess.mockResolvedValueOnce(result(88));
+    azure.assess.mockResolvedValueOnce(result(87.6));
     fireEvent.click(within(next).getByRole("button", { name: "再评一次" }));
     await waitFor(() => expect(within(next).getByText("88 分")).toBeTruthy());
   });
