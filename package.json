@@ -1,7 +1,7 @@
 {
   "name": "dutch-tutor",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "tauri": "tauri",
+    "build:family": "tauri build --config src-tauri/tauri.family.conf.json",
+    "postbuild:family": "node scripts/name-family-installer.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "node --import tsx scripts/validate-content.ts"
