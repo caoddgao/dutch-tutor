@@ -13,7 +13,7 @@
 - [x] 1 分支、草稿 PR、清单
 - [x] 2 从 android-spike 挑安卓工程 / 录音权限 / TLS / 依赖，去掉 spike 临时物；.gitignore 防资料、录音、签名、apk（只挑文件不合并；release 改读仓库外签名配置）
 - [x] 3 family.rs 安卓：AssetManager 流式复制 + 打包文件清单，资料包解压后直接换入；Rust 测试（清单 `family-index.txt`；资料包只在 created_at 更新时解压进 `nn-pack.importing` 再换入，只存一份；录音解压到 `family-bundle/`，按清单哈希只解一次）
-- [ ] 4 安卓正式图标
+- [x] 4 安卓正式图标（自适应图标，源文件 `src-tauri/icons/android-icon-source.svg`，用 `tauri icon` 生成后只取 android 部分）
 - [ ] 5 正式签名：gradle 读仓库外配置；生成签名文件；用户备份
 - [ ] 6 `npm run build:family:android`：versionCode 递增、文件名带"家庭版"和版本；本机打包成功
 - [ ] 7 真机验收（用户操作并报告）
