@@ -17,7 +17,7 @@ fn prepare(root: &Path, data: &Path, now: &str) -> Option<BundledRecordings> {
     let _ = pack::import_bundled(&root.join("nn-pack"), &data.join("nn-pack"), now);
     let dir = root.join("recordings");
     let revision = recordings::folder_revision(&dir).ok()?;
-    if fs::read_to_string(data.join(RECEIPT)).ok().as_deref() == Some(&revision) {
+    if fs::read_to_string(data.join(RECEIPT)).ok().as_deref() == Some(revision.as_str()) {
         return None;
     }
     Some(BundledRecordings {

@@ -34,12 +34,12 @@ describe("family startup", () => {
     vi.mocked(invoke).mockImplementation(async (command) => {
       if (command === "prepare_family") return bundle;
       if (command === "import_recording_folder") return transfer();
-      expect(command).toBe("finish_family_recordings");
-      expect(raw.prepare("SELECT kind, file_path FROM recordings").all()).toEqual([
-        { kind: "voice", file_path: "/recordings/new.webm" },
-      ]);
+      return undefined;
     });
     await importFamilyResources({ db: async () => db, recordingFiles: files() });
+    expect(raw.prepare("SELECT kind, file_path FROM recordings").all()).toEqual([
+      { kind: "voice", file_path: "/recordings/new.webm" },
+    ]);
     expect(invoke).toHaveBeenLastCalledWith("finish_family_recordings", { revision: bundle.revision });
     expect(raw.prepare("SELECT * FROM feedback").all()).toEqual([]);
   });

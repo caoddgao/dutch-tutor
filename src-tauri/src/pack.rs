@@ -179,8 +179,9 @@ pub fn import_bundled(source: &Path, target: &Path, now: &str) -> Result<bool> {
     if target.join("manifest.json").is_file() {
         let installed = read_json(&target.join("manifest.json"))?;
         // Unknown installed timestamps must not cause a silent downgrade.
-        if timestamp(&installed).map_or(true, |current| incoming <= current) {
-            return Ok(false);
+        match timestamp(&installed) {
+            Some(current) if incoming > current => {}
+            _ => return Ok(false),
         }
     }
     // Installer resources may later be replaced by an older installer. Do not offer them as
