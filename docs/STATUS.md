@@ -14,10 +14,11 @@
 - [x] 2 从 android-spike 挑安卓工程 / 录音权限 / TLS / 依赖，去掉 spike 临时物；.gitignore 防资料、录音、签名、apk（只挑文件不合并；release 改读仓库外签名配置）
 - [x] 3 family.rs 安卓：AssetManager 流式复制 + 打包文件清单，资料包解压后直接换入；Rust 测试（清单 `family-index.txt`；资料包只在 created_at 更新时解压进 `nn-pack.importing` 再换入，只存一份；录音解压到 `family-bundle/`，按清单哈希只解一次）
 - [x] 4 安卓正式图标（自适应图标，源文件 `src-tauri/icons/android-icon-source.svg`，用 `tauri icon` 生成后只取 android 部分）
-- [ ] 5 正式签名：gradle 读仓库外配置；生成签名文件（已生成在用户目录 `DutchTutorSigning/`，`npm run android:keystore`）；等用户备份
+- [x] 5 正式签名：gradle 读仓库外配置；生成签名文件（已生成在用户目录 `DutchTutorSigning/`，`npm run android:keystore`）；用户已备份（2026-10-17）
 - [x] 6 `npm run build:family:android`：versionCode = 10000000 + 2026-01-01 UTC 起的分钟数；apksigner 校验；输出 `release-apk/`。
   首次只带资料包实测：466MB，6917 个条目，版本 1.1.0 / 10417036，签名 CN=Dutch Tutor；增量打包约 2 分钟
-- [ ] 7 真机验收（用户操作并报告）
+- [ ] 7 真机验收（用户操作并报告）。儿子的录音还没录（以后才录）：本批只带资料包，带录音的打包与播放留到录完后按 ANDROID_BUILD 第八节重打并抽查。
+  用户已卸载第 2 批测试版
 - [ ] 8 `ANDROID_BUILD.md` 全文（初稿已写，真机数字待补）
 - [ ] 9 本地全部检查 → 转正式 → 合并；STATUS 收尾
 
