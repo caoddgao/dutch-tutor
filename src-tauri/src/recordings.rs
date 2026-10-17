@@ -3,6 +3,7 @@
 use crate::pack::resolve_inside;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
+use std::borrow::Cow;
 use std::fs;
 use std::io::Read;
 use std::path::{Path, PathBuf};
@@ -238,14 +239,28 @@ pub fn save_recording<R: Runtime>(
     if !valid_name(&name) {
         return Err(err("bad_name", name));
     }
-    let InvokeBody::Raw(bytes) = request.body() else {
+    let Some(bytes) = body_bytes(request.body()) else {
         return Err(err("bad_body", "expected raw bytes"));
     };
     let dir = dir(&app)?;
     fs::create_dir_all(&dir).map_err(|e| err("io", e))?;
     let path = resolve_inside(&dir, &name).map_err(|_| err("bad_name", &name))?;
-    fs::write(&path, bytes).map_err(|e| err("io", e))?;
+    fs::write(&path, &*bytes).map_err(|e| err("io", e))?;
     Ok(path.display().to_string())
+}
+
+/// Desktop sends the recording as raw bytes; Android has no custom-protocol IPC, so its
+/// postMessage fallback turns the same `Uint8Array` into a JSON array of numbers.
+fn body_bytes(body: &InvokeBody) -> Option<Cow<'_, [u8]>> {
+    match body {
+        InvokeBody::Raw(bytes) => Some(Cow::Borrowed(bytes)),
+        InvokeBody::Json(serde_json::Value::Array(items)) => items
+            .iter()
+            .map(|v| v.as_u64().and_then(|n| u8::try_from(n).ok()))
+            .collect::<Option<Vec<u8>>>()
+            .map(Cow::Owned),
+        _ => None,
+    }
 }
 
 #[tauri::command]
@@ -264,10 +279,20 @@ pub fn delete_recording<R: Runtime>(app: AppHandle<R>, name: String) -> Result<(
 #[cfg(test)]
 mod tests {
     use super::{
-        export_folder_files, folder_revision, import_folder_files, valid_name, validate_manifest,
-        RecordingManifest, UnnaturalMark, VoiceEntry,
+        body_bytes, export_folder_files, folder_revision, import_folder_files, valid_name,
+        validate_manifest, RecordingManifest, UnnaturalMark, VoiceEntry,
     };
     use std::fs;
+    use tauri::ipc::InvokeBody;
+
+    #[test]
+    fn recording_body_is_raw_bytes_or_a_json_byte_array() {
+        assert_eq!(&*body_bytes(&InvokeBody::Raw(vec![1, 2])).unwrap(), &[1, 2]);
+        let json = InvokeBody::Json(serde_json::json!([0, 255, 82]));
+        assert_eq!(&*body_bytes(&json).unwrap(), &[0, 255, 82]);
+        assert!(body_bytes(&InvokeBody::Json(serde_json::json!([256]))).is_none());
+        assert!(body_bytes(&InvokeBody::Json(serde_json::json!({"0": 1}))).is_none());
+    }
 
     #[test]
     fn only_plain_file_names() {

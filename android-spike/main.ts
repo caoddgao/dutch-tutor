@@ -19,13 +19,13 @@ let packDir = "";
 
 $("env").textContent = `${navigator.userAgent}\n${innerWidth}×${innerHeight} @${devicePixelRatio}x`;
 
-// G: timings once the page script runs (the cold-start figure is since_process_ms)
+// G: timings once the page script runs (cold start = since_tap_ms)
 invoke<Record<string, number | null>>("spike_startup", { pageMs })
   .then((t) => {
     const s = (v: number | null | undefined) => (v == null ? "?" : `${(v / 1000).toFixed(2)} 秒`);
     show(
       "g",
-      `从进程启动到页面脚本运行：${s(t.since_process_ms)}\n` +
+      `从点图标到页面脚本运行：${s(t.since_tap_ms)}（其中进程启动后：${s(t.since_process_ms)}）\n` +
         `Rust 启动→窗口：${s(t.setup_ms)}；→开始加载页面：${s(t.page_start_ms)}；页面自身：${s(t.page_ms)}`,
       true,
     );
@@ -78,7 +78,7 @@ $("c-run").onclick = async () => {
       text += `\n已存：${recordingPath}`;
       show("c", text, true);
     } catch (e) {
-      show("c", `${text}\n转 WAV 失败：${fmt(e)}`, false);
+      show("c", `${text}\n转 WAV 或保存失败：${fmt(e)}`, false);
     }
   } catch (e) {
     show("c", fmt(e), false);

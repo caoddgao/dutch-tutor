@@ -34,6 +34,8 @@ jni = "0.21"
 ndk = "0.9"
 ndk-sys = "0.6"
 ndk-context = "0.1"
+# HTTPS roots for reqwest on Android (azure.rs http_client)
+webpki-root-certs = "1"
 
 [target.'cfg(windows)'.dependencies]
 # must match the version tauri / wry use (Cargo.lock)

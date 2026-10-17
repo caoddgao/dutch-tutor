@@ -119,30 +119,30 @@ fn copy_asset(_name: &str, _out: &mut impl io::Write) -> Result<u64, String> {
     Err("android only".into())
 }
 
-/// Milliseconds since the process was forked (Linux `/proc`), plus the existing startup probe.
+/// Cold start as Android sees it: milliseconds since the launch was requested (tap on the icon,
+/// API 33+) and since the process started, plus the existing startup probe.
+/// (`/proc/uptime` is not readable for apps on Android 16, so the first attempt gave nothing.)
 #[tauri::command]
 pub fn spike_startup(probe: State<'_, crate::startup::Probe>, page_ms: f64) -> serde_json::Value {
-    let since_process_ms = (|| {
-        let stat = fs::read_to_string("/proc/self/stat").ok()?;
-        // field 22 (starttime, clock ticks since boot); fields after the ")" start at field 3
-        let start: f64 = stat
-            .rsplit_once(')')?
-            .1
-            .split_whitespace()
-            .nth(19)?
-            .parse()
-            .ok()?;
-        let uptime: f64 = fs::read_to_string("/proc/uptime")
-            .ok()?
-            .split_whitespace()
-            .next()?
-            .parse()
-            .ok()?;
-        // Android kernels use USER_HZ = 100
-        Some((uptime - start / 100.0) * 1000.0)
-    })();
     let mut timings = probe.snapshot();
-    timings["since_process_ms"] = serde_json::json!(since_process_ms);
     timings["page_ms"] = serde_json::json!(page_ms);
+    #[cfg(target_os = "android")]
+    {
+        let clock = |class: &str, method: &str| -> Option<f64> {
+            let ctx = ndk_context::android_context();
+            let vm = unsafe { jni::JavaVM::from_raw(ctx.vm().cast()) }.ok()?;
+            let mut env = vm.attach_current_thread().ok()?;
+            let value = env.call_static_method(class, method, "()J", &[]);
+            if env.exception_check().unwrap_or(false) {
+                let _ = env.exception_clear();
+                return None;
+            }
+            value.ok()?.j().ok().map(|ms| ms as f64)
+        };
+        let now = clock("android/os/SystemClock", "elapsedRealtime");
+        let since = |method: &str| Some(now? - clock("android/os/Process", method)?);
+        timings["since_tap_ms"] = serde_json::json!(since("getStartRequestedElapsedRealtime"));
+        timings["since_process_ms"] = serde_json::json!(since("getStartElapsedRealtime"));
+    }
     timings
 }

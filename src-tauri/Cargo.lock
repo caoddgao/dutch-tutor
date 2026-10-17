@@ -1020,6 +1020,7 @@ dependencies = [
  "tauri-plugin-dialog",
  "tauri-plugin-single-instance",
  "tauri-plugin-sql",
+ "webpki-root-certs",
  "webview2-com",
 ]
 
