@@ -12,10 +12,10 @@
 - [x] 阅读 CLAUDE / main STATUS / android-spike 第 2 批结果及交接 / PR #59，从最新 main 开分支。
 - [x] 安卓首次默认浅色，保留用户主题；手机路由限制与资料包只读状态。
 - [x] 麦克风中文提示、Azure 手机设置接功能及窄屏适配。
-- [ ] 仅移植录音原始字节 / JSON 数组兼容，补平台无关 Rust 测试；不挑安卓 TLS / 工程 / 资源读取。
+- [x] 仅移植录音原始字节 / JSON 数组兼容，补平台无关 Rust 测试（23 项通过，含异常 JSON / 空数组）；不挑安卓 TLS / 工程 / 资源读取。
 - [x] dev + Playwright 411×914：上课六步、复习 R1–R3、录音 / 回放 / 评分、模拟考、设置、更多、导航 / 返回；浅色全查、深色抽查通过（Azure / 原生存储用替身，真实 MediaRecorder + WAV 转换）；修复缺包导入误导、模拟考返回、权限弹窗期间离页麦克风占用及切页停止播放。
-- [ ] typecheck / lint / test / format:check / validate 全通过后转正式，唯一一轮 CI 全绿再 merge commit 合并。
-- [ ] 合并后清空进行中，记录结果与第 4 批交接；截图发会话，不进仓库。
+- [x] typecheck / lint / 241 项 test / format:check / 三种 validate / build 全通过；Rust fmt / 23 项测试通过（clippy 检查中）。
+- [x] 截图保存在会话临时目录，不进仓库；第 4 批交接见下。下一步：clippy 通过后转正式，唯一一轮 CI 全绿再 merge commit 合并并清空进行中。
 
 ## 已完成
 
@@ -78,7 +78,14 @@
 36. 分批：1 手机界面静态版（云端）‖ 2 空壳 apk 实测（本地 Claude Code）→ 3 接功能（云端）→ 4 家庭版 apk 打包 + 签名 + ANDROID_BUILD.md（本地）→ 5 全部完成后用户手动发一次版本。
 37. 安卓不加 GitHub CI，全程不触发 Release；草稿 PR 不跑 CI，每批转正式时跑一次；签名文件不进仓库，用户自行备份。
 
-38. 2026-10-17 用户确认手机采用浅色截图方案；安卓版首次启动默认浅色（第 2 批落地），保留设置里的深色切换与字号设置，电脑版默认不变。
+38. 2026-10-17 用户确认手机采用浅色截图方案；安卓版首次启动默认浅色（第 3 批落地），保留设置里的深色切换与字号设置，电脑版默认不变。
+
+## 给第 4 批
+
+- 从最新 main 接本批；PR #59 不合并，只挑安卓工程 / 权限（RECORD_AUDIO / MODIFY_AUDIO_SETTINGS）、azure.rs 安卓 TLS 与依赖；录音字节兼容已在 main，不要重复挑。
+- family.rs 用 NDK AssetManager 流式复制 + 打包文件清单；resource_dir 是 asset://localhost/，std::fs 不可读；不用会丢偏移的 fs asset 读取。
+- 去掉 spike 临时页 / 模块 / 配置 / 造包脚本与 release 调试签名；补正式图标、签名、家庭版 apk、ANDROID_BUILD.md。真资料 / 密钥 / 签名不进仓库，不改 Release / 安卓 CI。
+- 本批用 Chromium 411×914、假资料、原生存储 / Azure 替身验证前端；Azure 实际联网与计费、APK 内资源、硬件返回键派发与系统权限弹窗仍需真机复测。60 秒录音的 JSON IPC 约 7MB。
 
 ## 待决问题
 
