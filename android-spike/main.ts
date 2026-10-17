@@ -19,6 +19,9 @@ let packDir = "";
 
 $("env").textContent = `${navigator.userAgent}\n${innerWidth}×${innerHeight} @${devicePixelRatio}x`;
 
+// H: the real phone UI (batch 1) is built next to this page
+$("h-run").onclick = () => location.assign("/");
+
 // G: timings once the page script runs (cold start = since_tap_ms)
 invoke<Record<string, number | null>>("spike_startup", { pageMs })
   .then((t) => {

@@ -1,8 +1,17 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "build": {
-    "beforeBuildCommand": "npx vite build --config vite.spike.config.ts",
-    "frontendDist": "../dist-spike"
+    "beforeBuildCommand": "npm run build && npx vite build --config vite.spike.config.ts",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Dutch Tutor",
+        "url": "spike/index.html"
+      }
+    ]
   },
   "bundle": {
     "resources": {
