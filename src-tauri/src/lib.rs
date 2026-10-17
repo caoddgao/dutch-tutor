@@ -3,6 +3,7 @@ mod backup;
 mod family;
 mod pack;
 mod recordings;
+mod spike;
 mod startup;
 #[cfg(desktop)]
 mod tray;
@@ -82,6 +83,8 @@ pub fn run() {
             backup::read_backup_file,
             backup::save_safety_backup,
             startup::startup_ready,
+            spike::spike_copy_pack,
+            spike::spike_startup,
         ])
         .on_window_event(|_window, _event| {
             #[cfg(desktop)]

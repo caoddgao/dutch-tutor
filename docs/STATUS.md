@@ -8,11 +8,12 @@
 
 ## 进行中
 
-- 安卓第 2 批：空壳 apk 实测（只验证可行性，不合并）；施工者 Claude Code（本地）；分支 `android-spike`；PR 待开。
+- 安卓第 2 批：空壳 apk 实测（只验证可行性，不合并）；施工者 Claude Code（本地）；分支 `android-spike`；PR #59。
   与第 1 批（云端 PR #58，`src/` 界面）并行，本批不碰 `src/` 下的界面文件；不加 CI、不发布。
-- [ ] 建分支、草稿 PR、清单。
-- [ ] 安装 JDK 17 / Android SDK / 平台工具 / NDK（16KB 页对齐）/ rustup aarch64-linux-android，设环境变量。
-- [ ] `tauri android init`；桌面专属依赖处理；能编译出调试签名 apk。
+- [x] 建分支、草稿 PR、清单。
+- [x] 安装 JDK 17 / Android SDK / 平台工具 / NDK（16KB 页对齐）/ rustup aarch64-linux-android，设环境变量。
+- [x] `tauri android init`；桌面专属依赖处理；能编译出调试签名 apk。
+  托盘、单实例原来就用 `cfg(desktop)` 隔开，安卓直接编过；NDK r29 产出的 .so 段对齐 0x4000（16KB）、zipalign -P 16 通过。
 - [ ] 临时测试页（只在本分支）：SQLite、麦克风、复制大文件、联网、asset 播放、冷启动。
 - [ ] 350MB 假资源打进 apk，测 apk 大小 / 安装 / 首次复制。
 - [ ] 装到小米 13 Ultra 实测 A–G，结果表写进本区和 PR。

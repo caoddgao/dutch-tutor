@@ -38,6 +38,15 @@ impl Probe {
     pub fn mark_page_start(&self) {
         let _ = self.page_start_ms.set(self.elapsed_ms());
     }
+
+    /// android-spike: timings so far, without the probe file.
+    pub fn snapshot(&self) -> serde_json::Value {
+        json!({
+            "shell_ms": self.elapsed_ms(),
+            "setup_ms": self.setup_ms.get(),
+            "page_start_ms": self.page_start_ms.get(),
+        })
+    }
 }
 
 /// `page_ms`: the page's own clock (time since the web view started loading it).

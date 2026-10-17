@@ -39,6 +39,9 @@ android {
             }
         }
         getByName("release") {
+            // android-spike only: sign with the machine's debug key so the release build installs.
+            // Batch 4 replaces this with the real keystore (never committed).
+            signingConfig = signingConfigs.getByName("debug")
             optimization {
                enable = true
             }

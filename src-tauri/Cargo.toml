@@ -28,6 +28,13 @@ reqwest = { version = "0.13", default-features = false, features = ["rustls", "j
 # desktop only: opening the app again brings back the running window (tray.rs)
 tauri-plugin-single-instance = "2"
 
+[target.'cfg(target_os = "android")'.dependencies]
+# android-spike: read APK assets through the NDK AssetManager (spike.rs)
+jni = "0.21"
+ndk = "0.9"
+ndk-sys = "0.6"
+ndk-context = "0.1"
+
 [target.'cfg(windows)'.dependencies]
 # must match the version tauri / wry use (Cargo.lock)
 webview2-com = "0.39"
