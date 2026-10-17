@@ -32,11 +32,14 @@ export function RecordButton({
   const [state, setState] = useState<"idle" | "recording" | "saving">("idle");
   const [seconds, setSeconds] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const generation = useRef(0);
+  const starting = useRef(false);
   const active = useRef<ActiveRecording | null>(null);
   const timer = useRef<number | null>(null);
 
   useEffect(
     () => () => {
+      generation.current++;
       active.current?.cancel();
       if (timer.current) window.clearInterval(timer.current);
     },
@@ -100,13 +103,24 @@ export function RecordButton({
   };
 
   const start = async () => {
+    if (starting.current || active.current) return;
+    starting.current = true;
+    const session = generation.current;
     player.stop();
     setError(null);
     try {
-      active.current = await startRecording();
+      const recording = await startRecording();
+      if (session !== generation.current) {
+        recording.cancel();
+        return;
+      }
+      active.current = recording;
     } catch (e) {
+      if (session !== generation.current) return;
       setError(recorderErrorMessage(e instanceof RecorderError ? e.code : "unsupported"));
       return;
+    } finally {
+      starting.current = false;
     }
     const t0 = Date.now();
     setSeconds(0);

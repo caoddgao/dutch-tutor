@@ -7,7 +7,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
 import { importFamilyResources } from "./app/family";
-import { applySettings, normalizeSettings } from "./settings/settings";
+import { applySettings, deviceSettings } from "./settings/settings";
 import { isTauri } from "@tauri-apps/api/core";
 import { createDefaultRecordingFiles } from "./audio/recordings";
 import { CONTENT, TTS_URLS } from "./content/bundle";
@@ -21,7 +21,7 @@ import { createSqliteSettingsStore } from "./storage/sqliteSettingsStore";
 // Apply the last known theme and font scales before the first paint.
 applySettings(
   document.documentElement,
-  normalizeSettings(readCachedSettings()),
+  deviceSettings(readCachedSettings()),
   window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false,
 );
 

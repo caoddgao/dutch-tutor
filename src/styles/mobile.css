@@ -1,4 +1,4 @@
-/* Mobile is a layout of the existing pages. No Android services are connected here.
+/* Mobile layout for the shared learning pages.
    Keep all overrides inside this breakpoint so desktop styling stays unchanged. */
 .mobile-nav,
 .mobile-only {
@@ -431,14 +431,6 @@
   .azure-field,
   .azure-field input {
     min-width: 0;
-  }
-  .azure-preview {
-    display: grid;
-    gap: var(--space-4);
-    min-width: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
   }
   .exam-hero {
     padding: var(--space-6);

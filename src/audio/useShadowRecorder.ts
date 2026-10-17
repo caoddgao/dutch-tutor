@@ -15,6 +15,8 @@ export function useShadowRecorder(key: string, maxSeconds: number, onRecorded: (
   const [recOf, setRecOf] = useState<{ key: string; rec: RecState }>({ key: "", rec: IDLE });
   const rec = recOf.key === key ? recOf.rec : IDLE;
   const setRec = useCallback((r: RecState) => setRecOf({ key, rec: r }), [key]);
+  const generation = useRef(0);
+  const starting = useRef(false);
   const active = useRef<ActiveRecording | null>(null);
   const timer = useRef<number | null>(null);
   const save = useRef(onRecorded);
@@ -24,6 +26,8 @@ export function useShadowRecorder(key: string, maxSeconds: number, onRecorded: (
 
   useEffect(
     () => () => {
+      generation.current++;
+      starting.current = false;
       active.current?.cancel();
       active.current = null;
       if (timer.current) window.clearInterval(timer.current);
@@ -46,12 +50,23 @@ export function useShadowRecorder(key: string, maxSeconds: number, onRecorded: (
   }, [setRec]);
 
   const start = useCallback(async () => {
+    if (starting.current || active.current) return;
+    starting.current = true;
+    const session = generation.current;
     player.stop();
     try {
-      active.current = await startRecording();
+      const recording = await startRecording();
+      if (session !== generation.current) {
+        recording.cancel();
+        return;
+      }
+      active.current = recording;
     } catch (e) {
+      if (session !== generation.current) return;
       setRec({ kind: "error", message: recorderErrorMessage(e instanceof RecorderError ? e.code : "unsupported") });
       return;
+    } finally {
+      if (session === generation.current) starting.current = false;
     }
     const started = Date.now();
     setRec({ kind: "recording", seconds: 0 });

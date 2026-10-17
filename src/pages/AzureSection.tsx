@@ -29,36 +29,8 @@ export function AzureSection() {
       <p className="settings-row-desc">
         可选。录完口语后查看准确度、流利度、完整度、总分和需要多练的词。评分需要联网，会使用你的 Azure 语音额度。
       </p>
-      {!isTauri() ? (
-        <>
-          <p className="settings-row-desc desktop-only">请在已安装的程序里设置发音评分。</p>
-          {/* Layout preview only; Android storage and Azure are connected in a later batch. */}
-          <fieldset className="mobile-only azure-preview" disabled aria-label="发音评分设置">
-            <label className="azure-field">
-              Azure 区域
-              <input placeholder="例如 westeurope" />
-            </label>
-            <label className="azure-field">
-              Azure 密钥
-              <input type="password" placeholder="粘贴密钥" autoComplete="new-password" />
-            </label>
-            <p className="settings-row-desc">密钥只保存在这台手机上。</p>
-            <div className="azure-actions">
-              <button type="button" className="btn btn-primary btn-small">
-                保存设置
-              </button>
-              <button type="button" className="btn btn-ghost btn-small">
-                测试连接
-              </button>
-            </div>
-            <div className="settings-row">
-              <span className="settings-row-label">开启发音评分</span>
-              <button type="button" className="switch" role="switch" aria-checked={false} aria-label="开启发音评分" />
-            </div>
-            <p className="settings-row-desc">本月已用 0 / 300 分钟</p>
-            <ProgressBar value={0} label="本月发音评分用量" />
-          </fieldset>
-        </>
+      {!status && !isTauri() ? (
+        <p className="settings-row-desc">请在已安装的应用里设置发音评分。</p>
       ) : !status ? (
         <p className="settings-row-desc">
           {loadError ? "评分设置读取失败，请重新打开程序后再试。" : "正在读取评分设置……"}
@@ -71,6 +43,8 @@ export function AzureSection() {
               value={region}
               onChange={(e) => setDraft({ base: status.region, region: e.target.value })}
               placeholder="例如 westeurope"
+              autoCapitalize="none"
+              autoCorrect="off"
               autoComplete="off"
               spellCheck={false}
             />
@@ -83,8 +57,12 @@ export function AzureSection() {
               onChange={(e) => setKey(e.target.value)}
               placeholder={status.has_key ? "已保存；留空则保持不变" : "粘贴密钥"}
               autoComplete="new-password"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
             />
           </label>
+          <p className="settings-row-desc">密钥只保存在本机，不会随学习进度传到其他设备。</p>
           <div className="azure-actions">
             <button
               type="button"
@@ -94,7 +72,7 @@ export function AzureSection() {
                 void run(async () => {
                   await save(region, key, status.enabled);
                   setKey("");
-                }, "设置已保存在这台电脑上。")
+                }, "设置已保存在本机。")
               }
             >
               保存设置
@@ -102,8 +80,16 @@ export function AzureSection() {
             <button
               type="button"
               className="btn btn-ghost btn-small"
-              disabled={busy || !status.has_key}
-              onClick={() => void run(testConnection, "连接成功，可以开启发音评分。")}
+              disabled={busy || (!status.has_key && !key.trim())}
+              onClick={() =>
+                void run(async () => {
+                  if (key.trim() || region !== status.region) {
+                    await save(region, key, status.enabled);
+                    setKey("");
+                  }
+                  await testConnection();
+                }, "连接成功，可以开启发音评分。")
+              }
             >
               测试连接
             </button>
@@ -134,10 +120,13 @@ export function AzureSection() {
               role="switch"
               aria-checked={status.enabled}
               aria-label="开启发音评分"
-              disabled={busy || !status.has_key}
+              disabled={busy || (!status.has_key && !key.trim())}
               onClick={() =>
                 void run(
-                  () => save(region, "", !status.enabled),
+                  async () => {
+                    await save(region, key, !status.enabled);
+                    setKey("");
+                  },
                   status.enabled ? "发音评分已关闭。" : "发音评分已开启。",
                 )
               }

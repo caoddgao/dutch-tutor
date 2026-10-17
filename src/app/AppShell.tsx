@@ -1,11 +1,17 @@
+import { useEffect } from "react";
+import { player } from "../audio/player";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { useContent } from "../content/context";
 import { useSettings } from "../settings/context";
+import { useMobileLayout } from "./useMobileLayout";
 import { MOBILE_NAV_ITEMS, NAV_ITEMS, titleForPath } from "./nav";
 import "./AppShell.css";
 
 export function AppShell() {
-  const { pathname } = useLocation();
+  const mobile = useMobileLayout();
+  const { pathname, search } = useLocation();
+  // Stop the page being left before the next page starts its own automatic playback.
+  useEffect(() => () => player.stop(), [pathname, search]);
   const { settings, update } = useSettings();
   const { packUpdate } = useContent();
   const mainItems = NAV_ITEMS.filter((n) => n.path !== "/settings");
@@ -70,7 +76,7 @@ export function AppShell() {
           </div>
         </header>
         <main className="content">
-          {packUpdate && pathname !== "/settings" && (
+          {!mobile && packUpdate && pathname !== "/settings" && (
             <div className="notice notice-accent shell-notice" role="status">
               <span>资料包有新版本，重新导入后才能看到新内容。</span>
               <Link to="/settings" className="btn btn-accent btn-small">

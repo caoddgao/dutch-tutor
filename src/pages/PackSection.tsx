@@ -1,5 +1,6 @@
 import { FolderOpen, RefreshCw } from "lucide-react";
 import { useState } from "react";
+import { useMobileLayout } from "../app/useMobileLayout";
 import { useContent } from "../content/context";
 import { formatDateTime } from "../format";
 import { packErrorMessage } from "../pack/backend";
@@ -7,6 +8,7 @@ import { packErrorMessage } from "../pack/backend";
 /** Settings → 资料包: import, re-import, where it lives (design §8, §9). */
 export function PackSection() {
   const { backend, packStatus, packInfo, packIndex, packUpdate, importPack } = useContent();
+  const mobile = useMobileLayout();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
@@ -30,6 +32,30 @@ export function PackSection() {
   const lessons = packIndex?.lessons.length ?? 0;
   const installed = packStatus === "ready" && packInfo?.manifest;
   const broken = packStatus === "outdated" || packStatus === "error";
+
+  if (mobile) {
+    return (
+      <section className="card settings-section" aria-label="资料包">
+        <h2 className="section-title">Naar Nederland 资料包</h2>
+        <div className="settings-row-label">
+          {installed
+            ? `已就绪 · ${lessons} 课`
+            : packStatus === "loading"
+              ? "正在读取…"
+              : broken
+                ? "资料包暂时无法使用"
+                : "暂无资料包"}
+        </div>
+        <p className="settings-row-desc">
+          {installed
+            ? `资料包生成于 ${formatDateTime(packInfo.manifest!.created_at)}，随安装包提供。`
+            : packStatus === "loading"
+              ? "正在检查随安装包提供的资料。"
+              : "资料包随安装包提供，请安装包含完整资料的新版应用。"}
+        </p>
+      </section>
+    );
+  }
 
   return (
     <section className="card settings-section" aria-label="资料包">

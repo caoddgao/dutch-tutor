@@ -23,7 +23,11 @@ export function AzureProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const save = useCallback(async (region: string, key: string, enabled: boolean) => {
-    const value = await invoke<AzureStatus>("save_azure_config", { region, key: key.trim() || null, enabled });
+    const value = await invoke<AzureStatus>("save_azure_config", {
+      region: region.trim(),
+      key: key.trim() || null,
+      enabled,
+    });
     setStatus(value);
   }, []);
   const clearKey = useCallback(async () => setStatus(await invoke<AzureStatus>("clear_azure_key")), []);

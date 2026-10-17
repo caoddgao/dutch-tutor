@@ -1,3 +1,4 @@
+import { useMobileLayout } from "../app/useMobileLayout";
 import { ArrowLeft, Check, ChevronLeft, ChevronRight, PackageOpen } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
@@ -31,6 +32,7 @@ type Load =
   | { state: "missing" };
 
 export function LessonPage() {
+  const mobile = useMobileLayout();
   const { id = "" } = useParams();
   const { loadLesson, packStatus, course } = useContent();
   const [loaded, setLoaded] = useState<{ id: string; lesson: RtLesson | null } | null>(null);
@@ -68,27 +70,33 @@ export function LessonPage() {
         title="需要资料包"
         action={
           <Link to="/settings" className="btn btn-primary">
-            去导入资料包
+            {mobile ? "查看资料包状态" : "去导入资料包"}
           </Link>
         }
       >
-        这一课的课文、原版录音和练习在 Naar Nederland 资料包里。导入一次之后就能学。
+        {mobile
+          ? "这一课需要随安装包提供的资料，请安装包含完整资料的新版应用。"
+          : "这一课的课文、原版录音和练习在 Naar Nederland 资料包里。导入一次之后就能学。"}
       </EmptyState>
     );
   if (load.state === "reimport" || load.state === "not-in-pack")
     return (
       <EmptyState
         icon={PackageOpen}
-        title={load.state === "reimport" ? "资料包需要重新导入" : "资料包里没有这一课"}
+        title={
+          load.state === "reimport" ? (mobile ? "资料包暂时无法使用" : "资料包需要重新导入") : "资料包里没有这一课"
+        }
         action={
           <Link to="/settings" className="btn btn-primary">
-            去重新导入
+            {mobile ? "查看资料包状态" : "去重新导入"}
           </Link>
         }
       >
-        {load.state === "reimport"
-          ? "已导入的资料包读不出来（版本不符或文件损坏）。重新导入一次之后就能学。"
-          : `现在的资料包里还没有这一课（${courseLesson?.code}）。导入包含这一课的新版资料包之后就能学。`}
+        {mobile
+          ? "请安装包含这一课完整资料的新版应用，再回来学习。"
+          : load.state === "reimport"
+            ? "已导入的资料包读不出来（版本不符或文件损坏）。重新导入一次之后就能学。"
+            : `现在的资料包里还没有这一课（${courseLesson?.code}）。导入包含这一课的新版资料包之后就能学。`}
       </EmptyState>
     );
   if (load.state === "missing")
