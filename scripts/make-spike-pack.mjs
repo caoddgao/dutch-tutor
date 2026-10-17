@@ -26,7 +26,11 @@ put("manifest.json", Buffer.from(JSON.stringify({ spike: true, files: count + 2 
 const tts = readdirSync("content/audio/tts").find((f) => f.endsWith(".mp3"));
 if (!tts) throw new Error("no mp3 in content/audio/tts");
 copyFileSync(join("content/audio/tts", tts), join(OUT, "audio/sample.mp3"));
-index.push(`audio/sample.mp3\t${createHash("sha256").update(readFileSync(join(OUT, "audio/sample.mp3"))).digest("hex")}`);
+index.push(
+  `audio/sample.mp3\t${createHash("sha256")
+    .update(readFileSync(join(OUT, "audio/sample.mp3")))
+    .digest("hex")}`,
+);
 for (let i = 0; i < count; i++) put(`audio/fake-${String(i).padStart(4, "0")}.mp3`, randomBytes(FILE_SIZE));
 writeFileSync(join(OUT, "index.txt"), index.join("\n") + "\n");
 console.log(`${OUT}/: ${index.length} files, ${((count * FILE_SIZE) / 1024 / 1024).toFixed(0)} MB`);

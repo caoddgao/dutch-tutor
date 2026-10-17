@@ -122,7 +122,11 @@ $("e-run").onclick = async () => {
     show("e", "意外：假密钥被接受", false);
   } catch (e) {
     const code = (e as { code?: string }).code;
-    show("e", code === "invalid_key" ? "通：服务器回答“密钥无效”（invalid_key）" : `失败：${fmt(e)}`, code === "invalid_key");
+    show(
+      "e",
+      code === "invalid_key" ? "通：服务器回答“密钥无效”（invalid_key）" : `失败：${fmt(e)}`,
+      code === "invalid_key",
+    );
   } finally {
     await invoke("clear_azure_key").catch(() => {});
   }
@@ -143,5 +147,9 @@ $("f-run").onclick = async () => {
   const lines: string[] = [];
   lines.push(recordingPath ? await tryPlay("f-rec", recordingPath) : "（没有录音：先做 C）");
   lines.push(packDir ? await tryPlay("f-pack", `${packDir}/audio/sample.mp3`) : "（没有示例音频：先做 D）");
-  show("f", lines.join("\n"), lines.every((l) => l.startsWith("✓")));
+  show(
+    "f",
+    lines.join("\n"),
+    lines.every((l) => l.startsWith("✓")),
+  );
 };
