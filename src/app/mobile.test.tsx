@@ -99,3 +99,22 @@ describe("mobile access", () => {
     expect(screen.queryByRole("button", { name: /导入/ })).toBeNull();
   });
 });
+
+it("Android route back returns from an exam part to its overview", async () => {
+  window.location.hash = "#/exam";
+  const { services } = testServices();
+  await act(async () => render(<App services={services} />));
+  await act(async () => fireEvent.click(screen.getByRole("button", { name: "开始口语" })));
+  await waitFor(() => expect(window.location.hash).toBe("#/exam?part=oral"));
+  await act(async () => window.history.back());
+  await waitFor(() => expect(screen.getByRole("button", { name: "开始口语" })).toBeTruthy());
+  expect(window.location.hash).toBe("#/exam");
+});
+
+it("a mobile lesson without a pack directs the learner to its status", async () => {
+  window.location.hash = "#/lesson/NN21";
+  const { services } = testServices({ pack: fsPackBackend(null) });
+  await act(async () => render(<App services={services} />));
+  expect(await screen.findByRole("link", { name: "查看资料包状态" })).toBeTruthy();
+  expect(screen.queryByText(/导入一次/)).toBeNull();
+});

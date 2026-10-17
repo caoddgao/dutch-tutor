@@ -1,3 +1,4 @@
+import { useMobileLayout } from "../app/useMobileLayout";
 import { ArrowRight, BookOpen, Flame, MessageSquareText, PackageOpen, Play, Repeat2 } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -10,6 +11,7 @@ import { greetingFor } from "./greeting";
 import "./HomePage.css";
 
 export function HomePage() {
+  const mobile = useMobileLayout();
   const navigate = useNavigate();
   const greeting = greetingFor(new Date().getHours());
   const data = useCourseData();
@@ -48,7 +50,9 @@ export function HomePage() {
             </div>
           ) : (
             <div className="continue-title">
-              <h2 className="continue-nl continue-nl-zh">导入资料包，开始学正课</h2>
+              <h2 className="continue-nl continue-nl-zh">
+                {mobile ? "查看资料包，开始学正课" : "导入资料包，开始学正课"}
+              </h2>
               <p className="zh continue-zh">发音入门都学过了。正课从第 21 课开始，需要 Naar Nederland 资料包。</p>
             </div>
           )}
@@ -86,12 +90,12 @@ export function HomePage() {
                   <button
                     type="button"
                     className="play-button"
-                    aria-label="去导入资料包"
+                    aria-label={mobile ? "查看资料包状态" : "去导入资料包"}
                     onClick={() => navigate("/settings")}
                   >
                     <PackageOpen size={26} aria-hidden />
                   </button>
-                  <span className="continue-action-label">去导入</span>
+                  <span className="continue-action-label">{mobile ? "查看资料包" : "去导入"}</span>
                 </>
               )}
             </div>

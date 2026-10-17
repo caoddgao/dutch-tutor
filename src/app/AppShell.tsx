@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { player } from "../audio/player";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { useContent } from "../content/context";
 import { useSettings } from "../settings/context";
@@ -7,7 +9,10 @@ import "./AppShell.css";
 
 export function AppShell() {
   const mobile = useMobileLayout();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  useEffect(() => {
+    player.stop();
+  }, [pathname, search]);
   const { settings, update } = useSettings();
   const { packUpdate } = useContent();
   const mainItems = NAV_ITEMS.filter((n) => n.path !== "/settings");

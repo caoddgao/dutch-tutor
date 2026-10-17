@@ -1,3 +1,4 @@
+import { useMobileLayout } from "../app/useMobileLayout";
 import { LockOpen, PackageOpen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -11,6 +12,7 @@ import { useServices } from "../servicesContext";
 import { latestExamResults, type ExamResult } from "../storage/examResults";
 
 export function CoursesPage() {
+  const mobile = useMobileLayout();
   const data = useCourseData();
   const { course, bundle, packStatus } = useContent();
   const { db } = useServices();
@@ -100,9 +102,13 @@ export function CoursesPage() {
                         {testId && !test && (
                           <article className="card course-test-missing">
                             <span className="lesson-code">测验 {testId.slice(-1)}</span>
-                            <p>导入包含这次阶段测验的资料包后即可作答。</p>
+                            <p>
+                              {mobile
+                                ? "请安装包含这次阶段测验的新版应用。"
+                                : "导入包含这次阶段测验的资料包后即可作答。"}
+                            </p>
                             <Link to="/settings" className="btn btn-ghost btn-small">
-                              去导入资料包
+                              {mobile ? "查看资料包状态" : "去导入资料包"}
                             </Link>
                           </article>
                         )}
@@ -120,15 +126,19 @@ export function CoursesPage() {
                       <PackageOpen size={20} aria-hidden />
                     </span>
                     <div className="needs-pack-text">
-                      <p className="stat-title">{broken ? "资料包需要重新导入" : "需要资料包"}</p>
+                      <p className="stat-title">
+                        {broken ? (mobile ? "资料包暂时无法使用" : "资料包需要重新导入") : "需要资料包"}
+                      </p>
                       <p className="muted">
-                        {broken
-                          ? `已导入的资料包读不出来（版本不符或文件损坏），重新导入后就能学${missingRanges(missing)}。`
-                          : `${missingRanges(missing)}的课文、原版录音和练习在 Naar Nederland 资料包里，导入一次就能学。`}
+                        {mobile
+                          ? "资料包随安装包提供，请安装包含完整资料的新版应用。"
+                          : broken
+                            ? `已导入的资料包读不出来（版本不符或文件损坏），重新导入后就能学${missingRanges(missing)}。`
+                            : `${missingRanges(missing)}的课文、原版录音和练习在 Naar Nederland 资料包里，导入一次就能学。`}
                       </p>
                     </div>
                     <Link to="/settings" className="btn btn-primary">
-                      {broken ? "去重新导入" : "去导入"}
+                      {mobile ? "查看资料包状态" : broken ? "去重新导入" : "去导入"}
                     </Link>
                   </div>
                 ))}

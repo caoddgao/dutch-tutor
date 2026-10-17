@@ -1,3 +1,4 @@
+import { useMobileLayout } from "../app/useMobileLayout";
 import { ArrowLeft, Check, ChevronRight, Ear, Repeat2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router";
@@ -24,6 +25,7 @@ interface Props {
 }
 
 export function ReviewSession({ source, lessonId, title }: Props) {
+  const mobile = useMobileLayout();
   const data = useReviewSession(source, lessonId);
   const { db } = useServices();
   const navigate = useNavigate();
@@ -58,7 +60,9 @@ export function ReviewSession({ source, lessonId, title }: Props) {
         }
       >
         {data.missing > 0
-          ? `有 ${data.missing} 项来自正课，需要先导入资料包。`
+          ? mobile
+            ? `有 ${data.missing} 项需要完整资料包，请安装包含完整资料的新版应用。`
+            : `有 ${data.missing} 项来自正课，需要先导入资料包。`
           : source === "daily"
             ? "今天到期的都复习完了，明天再来。"
             : "学完一课后，这一课的句子和词会出现在这里。"}

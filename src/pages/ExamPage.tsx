@@ -1,5 +1,6 @@
 import { ArrowLeft, BookOpen, ExternalLink, Mic2, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router";
 import { useContent } from "../content/context";
 import { ownGroup } from "../exercises/build";
 import { ExercisesStep, type Score } from "../exercises/ExercisesStep";
@@ -17,10 +18,13 @@ export function ExamPage() {
   const { bundle, dict } = useContent();
   const { db } = useServices();
   const exam = bundle.exams?.[EXAM_ID];
-  const [part, setPart] = useState<Part | null>(null);
+  const [params, setParams] = useSearchParams();
+  const requestedPart = params.get("part");
+  const part: Part | null = requestedPart === "oral" || requestedPart === "reading" ? requestedPart : null;
   const [run, setRun] = useState(0);
   const [results, setResults] = useState<Record<string, ExamResult>>({});
-  const [completed, setCompleted] = useState<Score | null>(null);
+  const [completion, setCompletion] = useState<{ part: Part; score: Score } | null>(null);
+  const completed = completion?.part === part ? completion.score : null;
 
   useEffect(() => {
     let active = true;
@@ -46,13 +50,13 @@ export function ExamPage() {
   }, [exam, dict, bundle.tts]);
 
   const start = (which: Part) => {
-    setPart(which);
-    setCompleted(null);
+    if (part !== which) setParams({ part: which });
+    setCompletion(null);
     setRun((n) => n + 1);
   };
   const finish = (score: Score) => {
-    setCompleted(score);
     if (!part) return;
+    setCompletion({ part, score });
     const id = `${EXAM_ID}-${part}`;
     setResults((r) => ({ ...r, [id]: { id, ...score, taken_at: new Date().toISOString() } }));
     db()
@@ -109,7 +113,7 @@ export function ExamPage() {
       ) : (
         <section className="card exam-session">
           <div className="exam-session-head">
-            <button type="button" className="btn btn-ghost btn-small" onClick={() => setPart(null)}>
+            <button type="button" className="btn btn-ghost btn-small" onClick={() => setParams({}, { replace: true })}>
               <ArrowLeft size={16} aria-hidden /> 返回考试
             </button>
             <h3>{part === "oral" ? "口语练习" : "阅读练习"}</h3>

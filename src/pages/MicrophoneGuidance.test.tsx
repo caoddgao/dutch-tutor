@@ -26,7 +26,7 @@ it.each(["practice", "lesson/NN21", "exam"])("%s shows Android permission guidan
   }
   if (path === "exam") fireEvent.click(await screen.findByRole("button", { name: "开始口语" }));
   const label = path === "practice" ? "录音" : path === "exam" ? "开口回答" : "跟读录音";
-  fireEvent.click(await screen.findByRole("button", { name: label, exact: true }));
+  fireEvent.click(await screen.findByRole("button", { name: label }));
   const alert = await screen.findByRole("alert");
   expect(alert.textContent).toContain("权限管理 → 麦克风");
   expect(alert.textContent).not.toContain("Windows");

@@ -1,3 +1,4 @@
+import { useMobileLayout } from "../app/useMobileLayout";
 import { ChevronLeft, ChevronRight, Mic, PackageOpen, Pause, Play, Shuffle, Square, Star } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
@@ -26,6 +27,7 @@ const MAX_RECORD_SECONDS = 15;
 
 /** Free shadowing of any studied sentence (design §7, decisions 29, 30). */
 export function PracticePage() {
+  const mobile = useMobileLayout();
   const data = usePracticeData();
   if (!data) return <p className="muted">正在打开…</p>;
   if (!data.lessons.length) {
@@ -36,11 +38,13 @@ export function PracticePage() {
           title="需要资料包"
           action={
             <Link to="/settings" className="btn btn-primary">
-              去导入资料包
+              {mobile ? "查看资料包状态" : "去导入资料包"}
             </Link>
           }
         >
-          学过的课在 Naar Nederland 资料包里。导入资料包之后，这些课的句子就能拿来练习。
+          {mobile
+            ? "学过的课需要完整资料包才能练习，请安装包含这些课的新版应用。"
+            : "学过的课在 Naar Nederland 资料包里。导入资料包之后，这些课的句子就能拿来练习。"}
         </EmptyState>
       );
     return (
@@ -61,6 +65,7 @@ export function PracticePage() {
 }
 
 function Practice({ data }: { data: PracticeData }) {
+  const mobile = useMobileLayout();
   const { db } = useServices();
   const { status: azure } = useAzure();
   const scoring = !!azure?.enabled;
@@ -136,7 +141,8 @@ function Practice({ data }: { data: PracticeData }) {
         </label>
         {data.missing > 0 && (
           <p className="practice-list-note">
-            另有 {data.missing} 课学过、但需要资料包才能练。<Link to="/settings">去导入</Link>
+            另有 {data.missing} 课学过、但需要资料包才能练。
+            <Link to="/settings">{mobile ? "查看资料包状态" : "去导入"}</Link>
           </p>
         )}
         <div className="practice-list-tools">
