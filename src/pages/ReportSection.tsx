@@ -72,7 +72,7 @@ export function ReportSection() {
   };
 
   return (
-    <section className="card settings-section" aria-label="内容报错">
+    <section className="card settings-section desktop-only" aria-label="内容报错">
       <h2 className="section-title">内容报错</h2>
       <div className="settings-row">
         <div className="settings-row-text">
