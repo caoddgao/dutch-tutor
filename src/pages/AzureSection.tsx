@@ -30,7 +30,35 @@ export function AzureSection() {
         可选。录完口语后查看准确度、流利度、完整度、总分和需要多练的词。评分需要联网，会使用你的 Azure 语音额度。
       </p>
       {!isTauri() ? (
-        <p className="settings-row-desc">请在已安装的程序里设置发音评分。</p>
+        <>
+          <p className="settings-row-desc desktop-only">请在已安装的程序里设置发音评分。</p>
+          {/* Layout preview only; Android storage and Azure are connected in a later batch. */}
+          <fieldset className="mobile-only azure-preview" disabled aria-label="发音评分设置">
+            <label className="azure-field">
+              Azure 区域
+              <input placeholder="例如 westeurope" />
+            </label>
+            <label className="azure-field">
+              Azure 密钥
+              <input type="password" placeholder="粘贴密钥" autoComplete="new-password" />
+            </label>
+            <p className="settings-row-desc">密钥只保存在这台手机上。</p>
+            <div className="azure-actions">
+              <button type="button" className="btn btn-primary btn-small">
+                保存设置
+              </button>
+              <button type="button" className="btn btn-ghost btn-small">
+                测试连接
+              </button>
+            </div>
+            <div className="settings-row">
+              <span className="settings-row-label">开启发音评分</span>
+              <button type="button" className="switch" role="switch" aria-checked={false} aria-label="开启发音评分" />
+            </div>
+            <p className="settings-row-desc">本月已用 0 / 300 分钟</p>
+            <ProgressBar value={0} label="本月发音评分用量" />
+          </fieldset>
+        </>
       ) : !status ? (
         <p className="settings-row-desc">
           {loadError ? "评分设置读取失败，请重新打开程序后再试。" : "正在读取评分设置……"}

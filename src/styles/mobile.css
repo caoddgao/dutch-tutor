@@ -118,6 +118,9 @@
   .player-compare button,
   .nav-round,
   .audio-btn,
+  .tip-card-link,
+  .order-block,
+  .match-item,
   .lesson-card-review {
     min-height: 44px;
   }
@@ -283,6 +286,12 @@
   .practice-player-tools {
     gap: var(--space-2);
   }
+  .waveform {
+    gap: 1px;
+  }
+  .waveform > span {
+    min-width: 0;
+  }
   .player-compare {
     flex-wrap: wrap;
   }
@@ -334,6 +343,18 @@
   }
   .q-options {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .match-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+  .match-item {
+    min-width: 0;
+    padding: var(--space-3) var(--space-2);
+    flex-wrap: wrap;
+  }
+  .self-rate {
+    flex-wrap: wrap;
   }
   .practice-list {
     max-height: none;
@@ -410,6 +431,14 @@
   .azure-field,
   .azure-field input {
     min-width: 0;
+  }
+  .azure-preview {
+    display: grid;
+    gap: var(--space-4);
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
   .exam-hero {
     padding: var(--space-6);
