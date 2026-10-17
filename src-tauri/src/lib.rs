@@ -1,3 +1,5 @@
+#[cfg(target_os = "android")]
+mod android_assets;
 mod azure;
 mod backup;
 mod family;
