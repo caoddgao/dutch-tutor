@@ -12,10 +12,15 @@ pub struct BundledRecordings {
     revision: String,
 }
 
+#[cfg_attr(target_os = "android", allow(dead_code))]
 fn prepare(root: &Path, data: &Path, now: &str) -> Option<BundledRecordings> {
     // Either resource can be supplied on its own; a broken pack must not block recordings.
     let _ = pack::import_bundled(&root.join("nn-pack"), &data.join("nn-pack"), now);
-    let dir = root.join("recordings");
+    pending_recordings(root.join("recordings"), data)
+}
+
+/// The bundled voice folder, unless this exact revision was already imported.
+fn pending_recordings(dir: std::path::PathBuf, data: &Path) -> Option<BundledRecordings> {
     let revision = recordings::folder_revision(&dir).ok()?;
     if fs::read_to_string(data.join(RECEIPT)).ok().as_deref() == Some(revision.as_str()) {
         return None;
@@ -31,19 +36,90 @@ pub async fn prepare_family<R: Runtime>(
     app: AppHandle<R>,
     now: String,
 ) -> Result<Option<BundledRecordings>, String> {
-    let root = app
-        .path()
-        .resource_dir()
-        .map_err(|e| e.to_string())?
-        .join("family");
-    // Ordinary installs do not open SQLite, create folders, or change any data here.
-    if !root.is_dir() {
-        return Ok(None);
-    }
     let data = app.path().app_data_dir().map_err(|e| e.to_string())?;
-    tauri::async_runtime::spawn_blocking(move || prepare(&root, &data, &now))
+    #[cfg(target_os = "android")]
+    let job = move || apk::prepare(&data, &now);
+    #[cfg(not(target_os = "android"))]
+    let job = {
+        let root = app
+            .path()
+            .resource_dir()
+            .map_err(|e| e.to_string())?
+            .join("family");
+        // Ordinary installs do not open SQLite, create folders, or change any data here.
+        if !root.is_dir() {
+            return Ok(None);
+        }
+        move || prepare(&root, &data, &now)
+    };
+    tauri::async_runtime::spawn_blocking(job)
         .await
         .map_err(|e| e.to_string())
+}
+
+/// Android: `family/` is inside the APK and only readable as assets (android_assets.rs).
+#[cfg(target_os = "android")]
+mod apk {
+    use super::{pending_recordings, BundledRecordings};
+    use crate::{android_assets, pack};
+    use sha2::{Digest, Sha256};
+    use std::{fs, path::Path};
+
+    /// Written by scripts/build-family-android.mjs: one `path<TAB>sha256` per bundled file.
+    const INDEX: &str = "family-index.txt";
+    /// Extracted voice folder (small), kept until the next bundle revision.
+    const BUNDLE_DIR: &str = "family-bundle";
+    const EXTRACTED: &str = "family-bundle.sha256";
+
+    pub fn prepare(data: &Path, now: &str) -> Option<BundledRecordings> {
+        // Ordinary APKs have no index: no folders are created and nothing changes.
+        let index = String::from_utf8(android_assets::read(INDEX)?).ok()?;
+        let files: Vec<&str> = index
+            .lines()
+            .filter_map(|line| line.split('\t').next())
+            .filter(|path| !path.is_empty())
+            .collect();
+        // Either resource can be supplied on its own; a broken pack must not block recordings.
+        let _ = install_pack(&files, &data.join("nn-pack"), now);
+        let revision = format!("{:x}", Sha256::digest(index.as_bytes()));
+        let root = data.join(BUNDLE_DIR);
+        if fs::read_to_string(data.join(EXTRACTED)).ok().as_deref() != Some(revision.as_str()) {
+            let _ = fs::remove_dir_all(&root);
+            extract(&files, "recordings/", &root.join("recordings")).ok()?;
+            fs::write(data.join(EXTRACTED), &revision).ok()?;
+        }
+        pending_recordings(root.join("recordings"), data)
+    }
+
+    /// Same rule as the desktop installer (newer `created_at` only), but the APK copy is streamed
+    /// straight into the import staging folder: the pack is stored once in the app data, not twice.
+    fn install_pack(files: &[&str], target: &Path, now: &str) -> Result<(), String> {
+        let manifest = android_assets::read("family/nn-pack/manifest.json").ok_or("no pack")?;
+        let manifest = serde_json::from_slice(&manifest).map_err(|e| e.to_string())?;
+        if !pack::bundled_is_newer(&manifest, target).map_err(|e| format!("{e:?}"))? {
+            return Ok(());
+        }
+        let staging = pack::staging_dir(target).map_err(|e| format!("{e:?}"))?;
+        let _ = fs::remove_dir_all(&staging);
+        if let Err(e) = extract(files, "nn-pack/", &staging) {
+            let _ = fs::remove_dir_all(&staging);
+            return Err(e);
+        }
+        pack::install_staged(target, now).map_err(|e| format!("{e:?}"))?;
+        Ok(())
+    }
+
+    fn extract(files: &[&str], prefix: &str, to: &Path) -> Result<(), String> {
+        for rel in files.iter().filter_map(|path| path.strip_prefix(prefix)) {
+            let target = pack::resolve_inside(to, rel).map_err(|e| format!("{e:?}"))?;
+            if let Some(parent) = target.parent() {
+                fs::create_dir_all(parent).map_err(|e| e.to_string())?;
+            }
+            let mut out = fs::File::create(&target).map_err(|e| e.to_string())?;
+            android_assets::copy(&format!("family/{prefix}{rel}"), &mut out)?;
+        }
+        Ok(())
+    }
 }
 
 /// Write the receipt only after the existing recording importer has updated SQLite successfully.

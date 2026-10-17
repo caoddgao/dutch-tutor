@@ -13,6 +13,8 @@
     "tauri": "tauri",
     "build:family": "tauri build --config src-tauri/tauri.family.conf.json",
     "postbuild:family": "node scripts/name-family-installer.mjs",
+    "build:family:android": "node scripts/build-family-android.mjs",
+    "android:keystore": "node scripts/make-android-keystore.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "node --import tsx scripts/validate-content.ts"

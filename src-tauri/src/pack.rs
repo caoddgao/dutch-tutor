@@ -135,17 +135,42 @@ fn import_with_source(
             return Err(PackError::new("same_dir", source.display()));
         }
     }
+    let staging = staging_dir(target)?;
+    let _ = fs::remove_dir_all(&staging);
+    copy_dir(&source, &staging, true)?;
+    let source_dir = remember_source.then(|| source.display().to_string());
+    swap_in(&staging, target, now, source_dir)
+}
+
+/// Where a pack is assembled before it replaces `target` (same parent, so the swap is a rename).
+pub fn staging_dir(target: &Path) -> Result<PathBuf> {
     let parent = target
         .parent()
         .ok_or_else(|| PackError::new("io", "no parent"))?;
     fs::create_dir_all(parent).map_err(|e| PackError::new("io", e))?;
-    let staging = parent.join(format!("{PACK_DIR}.importing"));
-    let old = parent.join(format!("{PACK_DIR}.old"));
-    let _ = fs::remove_dir_all(&staging);
-    let _ = fs::remove_dir_all(&old);
+    Ok(parent.join(format!("{PACK_DIR}.importing")))
+}
 
-    copy_dir(&source, &staging, true)?;
-    let source_dir = remember_source.then(|| source.display().to_string());
+/// Android: the APK's bundled pack was streamed straight into `staging_dir(target)`; check it and
+/// swap it in without a second copy.
+#[cfg_attr(not(target_os = "android"), allow(dead_code))]
+pub fn install_staged(target: &Path, now: &str) -> Result<PackInfo> {
+    let staging = staging_dir(target)?;
+    if let Err(e) = check_source(&staging) {
+        let _ = fs::remove_dir_all(&staging);
+        return Err(e);
+    }
+    swap_in(&staging, target, now, None)
+}
+
+fn swap_in(
+    staging: &Path,
+    target: &Path,
+    now: &str,
+    source_dir: Option<String>,
+) -> Result<PackInfo> {
+    let old = staging.with_file_name(format!("{PACK_DIR}.old"));
+    let _ = fs::remove_dir_all(&old);
     let import = serde_json::json!({ "source_dir": source_dir, "imported_at": now });
     fs::write(staging.join(IMPORT_INFO), import.to_string())
         .map_err(|e| PackError::new("io", e))?;
@@ -153,7 +178,7 @@ fn import_with_source(
     if target.exists() {
         fs::rename(target, &old).map_err(|e| PackError::new("io", e))?;
     }
-    if let Err(e) = fs::rename(&staging, target) {
+    if let Err(e) = fs::rename(staging, target) {
         // put the previous pack back
         let _ = fs::rename(&old, target);
         return Err(PackError::new("io", e));
@@ -164,30 +189,36 @@ fn import_with_source(
 
 /// Bundled packs follow the same format and atomic import path as manual imports.
 /// Content revisions are RFC 3339 instants, not strings (offsets can differ).
+#[cfg_attr(target_os = "android", allow(dead_code))]
 pub fn import_bundled(source: &Path, target: &Path, now: &str) -> Result<bool> {
     if !source.is_dir() {
         return Ok(false);
     }
     let bundled = check_source(source)?;
-    let timestamp = |m: &Value| {
-        m.get("created_at")
-            .and_then(Value::as_str)
-            .and_then(|t| chrono::DateTime::parse_from_rfc3339(t).ok())
-    };
-    let incoming = timestamp(&bundled)
-        .ok_or_else(|| PackError::new("bad_json", "missing or invalid created_at"))?;
-    if target.join("manifest.json").is_file() {
-        let installed = read_json(&target.join("manifest.json"))?;
-        // Unknown installed timestamps must not cause a silent downgrade.
-        match timestamp(&installed) {
-            Some(current) if incoming > current => {}
-            _ => return Ok(false),
-        }
+    if !bundled_is_newer(&bundled, target)? {
+        return Ok(false);
     }
     // Installer resources may later be replaced by an older installer. Do not offer them as
     // a manual "new version" source; the next startup applies the timestamp comparison again.
     import_with_source(source, target, now, false)?;
     Ok(true)
+}
+
+/// Whether a bundled pack (its manifest) should replace the installed one at `target`.
+pub fn bundled_is_newer(bundled: &Value, target: &Path) -> Result<bool> {
+    let timestamp = |m: &Value| {
+        m.get("created_at")
+            .and_then(Value::as_str)
+            .and_then(|t| chrono::DateTime::parse_from_rfc3339(t).ok())
+    };
+    let incoming = timestamp(bundled)
+        .ok_or_else(|| PackError::new("bad_json", "missing or invalid created_at"))?;
+    if !target.join("manifest.json").is_file() {
+        return Ok(true);
+    }
+    let installed = read_json(&target.join("manifest.json"))?;
+    // Unknown installed timestamps must not cause a silent downgrade.
+    Ok(matches!(timestamp(&installed), Some(current) if incoming > current))
 }
 
 /// Resolves a pack-relative path ("lessons/NN21.json") inside `root`, refusing anything that escapes it.
@@ -322,6 +353,23 @@ mod tests {
         assert_eq!((err.code, err.detail.as_str()), ("format_version", "2"));
         fs::write(root.join("manifest.json"), r#"{"format_version": 1}"#).unwrap();
         assert_eq!(check_source(&root).unwrap_err().code, "incomplete");
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn staged_pack_is_swapped_in_and_a_broken_one_is_dropped() {
+        let root = temp("staged");
+        let target = root.join(PACK_DIR);
+        let staging = staging_dir(&target).unwrap();
+        fs::create_dir_all(&staging).unwrap();
+        fs::write(staging.join("manifest.json"), "broken").unwrap();
+        assert!(install_staged(&target, "broken").is_err());
+        assert!(!staging.exists() && !target.exists());
+        copy_dir(&fixture(), &staging, true).unwrap();
+        let info = install_staged(&target, "now").unwrap();
+        assert_eq!(info.imported_at.as_deref(), Some("now"));
+        assert_eq!(info.source_dir, None);
+        assert!(target.join("lessons/NN21.json").is_file() && !staging.exists());
         fs::remove_dir_all(root).unwrap();
     }
 

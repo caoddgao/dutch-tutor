@@ -28,6 +28,15 @@ reqwest = { version = "0.13", default-features = false, features = ["rustls", "j
 # desktop only: opening the app again brings back the running window (tray.rs)
 tauri-plugin-single-instance = "2"
 
+[target.'cfg(target_os = "android")'.dependencies]
+# read bundled family/ resources from the APK through the NDK AssetManager (android_assets.rs)
+jni = "0.21"
+ndk = "0.9"
+ndk-sys = "0.6"
+ndk-context = "0.1"
+# HTTPS roots for reqwest on Android (azure.rs http_client)
+webpki-root-certs = "1"
+
 [target.'cfg(windows)'.dependencies]
 # must match the version tauri / wry use (Cargo.lock)
 webview2-com = "0.39"

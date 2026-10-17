@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-**A1 正式版 v1.0.0 已发布（已定事项 32）。阶段 1–5 全部完成并审核通过；家庭版与费用优化已合并；可以发布 1.1.0，由用户手动触发，尚未发布。安卓第 1 批静态版已确认并合并；第 2 批空壳真机通过（android-spike / 草稿 PR #59，不合并）；第 3 批云端功能已合并（PR #60），下一步由本地 Claude Code 做第 4 批家庭版 apk 与签名。**
+**A1 正式版 v1.0.0 已发布（已定事项 32）。阶段 1–5 全部完成并审核通过；家庭版与费用优化已合并；可以发布 1.1.0，由用户手动触发，尚未发布。安卓第 1 批静态版已确认并合并；第 2 批空壳真机通过（android-spike / 草稿 PR #59，不合并）；第 3 批云端功能已合并（PR #60），第 4 批家庭版 apk + 签名已真机通过并合并（PR #61）。下一步：第 5 批由用户手动发一次版本（先按已知问题重新启用 Actions）。**
 
 ## 进行中
 
@@ -12,11 +12,14 @@
 
 ## 已完成
 
-- 安卓第 3 批（2026-10-17，PR #60）：安卓首次浅色并尊重用户主题；手机路由挡住录音模式，备份 / 导出不挂载，资料包只读，缺包指引一致。
-  麦克风中文权限提示、Azure 粘贴 / 连接测试 / 开关 / 用量接通；录音保存接受 Raw / JSON 字节数组并拒绝非法值（仅移植平台无关修复）。
-  修模拟考分区路由返回、权限等待期间离页录音占用、切页停止旧播放并保留新题自动朗读。Playwright 411×914 浅色全查、深色抽查、150% 字号无横向溢出；
-  上课六步、R1–R3、浏览器录音 / 回放 / WAV 转换、评分展示、设置 / 更多 / 导航返回通过；模拟考口语 22 题 / 阅读 19 题完成并保存成绩。
-  typecheck / lint / 242 项前端测试 / format:check / 三种 validate / build / Rust fmt / clippy / 23 项 Rust 测试通过；CI #205、冷启动 #53 全绿，merge commit 合并，未发布；截图在施工会话，不进仓库。
+- 安卓第 4 批（2026-10-17，PR #61，本地）：从 android-spike 只挑安卓工程 / 录音权限 / 安卓 TLS / jni·ndk 依赖；安卓自适应图标；
+  family.rs 安卓经 NDK AssetManager 读 apk 内 `family-index.txt` 清单，资料包仅 created_at 更新时直接解压进 `nn-pack.importing` 换入（只存一份），
+  录音按清单哈希解到 `family-bundle/` 只解一次；正式签名在仓库外 `~/DutchTutorSigning/`（`npm run android:keystore`，拒绝覆盖，用户已两处备份）；
+  `npm run build:family:android`（versionCode = 10000000 + 2026-01-01 UTC 起分钟数，apksigner 校验，输出 `release-apk/`）；`ANDROID_BUILD.md` 全文。
+  真机（10417036，只带资料包）全部通过：安装、秒开、上课音频、R1–R3、麦克风拒绝提示 / 录音回放 / Azure 连接与评分、模拟考口语、设置、深浅色、返回键、重启进度；
+  占用 0.91GB（应用 469MB + 数据 441MB）。覆盖升级未真机测（用户定：同签名系统保留数据，资料包只在更新时替换，有单元测试）。本地 typecheck / lint / 244 项前端测试 / format:check（`--end-of-line auto`）/ 三种 validate 0 错误 / Rust fmt / clippy（桌面 + aarch64-android）/ 24 项 Rust 测试通过；Actions 已停用未跑 CI，merge commit 合并，未发布。
+- 安卓第 3 批（2026-10-17，PR #60）：手机功能接通（首次浅色、录音模式 / 备份 / 导出不挂载、资料包只读、麦克风中文提示、Azure 设置、模拟考路由返回等）；
+  411×914 Playwright 全查与全部本地检查、CI #205、冷启动 #53 全绿，未发布。细节见 PR。
 - 安卓第 1 批（PR #58）：手机静态版浅色已确认，五项底部导航、更多页、安全区及各页排版；全部检查和 CI 通过，未发布。
 - 家庭版 / Actions 费用优化（PR #57）：family 本机打包、按更新导入、草稿跳过 CI、Release 手动触发，全部检查和 CI 通过，未发布。
 - 阶段 1（PR #1–#4）：骨架、设计规范、SQLite、设置页、首页 / 课程地图静态版、CI 与 NSIS 预发布。
@@ -32,9 +35,7 @@
   "冷启动实测"工作流（`DUTCH_TUTOR_STARTUP_PROBE`，再次打开中位数 < 3 秒）。
 - 阶段 5-5a（PR #51）：发音练习页（已学课的句子、按课分组、随机、录音与上课跟读共用、Azure 评分随录音存、难句收藏；迁移 0004，备份 version 2）。
 - 阶段 5-5b（PR #53）：表格版导出（`write-excel-file`；学习情况表格四页只供查看；报错导出可选 JSON / Excel）。
-- 修发音评分 + 关闭到托盘（PR #56）：REST 短音频接口的分数是平铺字段（NBest[0] / Words[] 上直接有 AccuracyScore 等），
-  `parse_assessment` 先读平铺、再兼容嵌套 `PronunciationAssessment`；读出分数后才计入本月用量。点 X 隐藏到托盘，托盘左键显示、
-  右键"打开 Dutch Tutor / 退出"，单实例（`tauri-plugin-single-instance`），只在桌面平台；Rust 20 项测试。
+- 修发音评分 + 关闭到托盘（PR #56）：`parse_assessment` 先读平铺分数再兼容嵌套；点 X 隐藏到托盘、单实例，仅桌面平台。
 - 细节见各 PR 和 git 历史里的旧版 STATUS。
 
 ## 已定事项（摘要；详细见 git 历史里的旧版 STATUS）
@@ -78,17 +79,20 @@
 
 38. 2026-10-17 用户确认手机采用浅色截图方案；安卓版首次启动默认浅色（第 3 批落地），保留设置里的深色切换与字号设置，电脑版默认不变。
 
-## 给第 4 批
+## 给以后（安卓）
 
-- 从最新 main 接本批；PR #59 不合并，只挑安卓工程 / 权限（RECORD_AUDIO / MODIFY_AUDIO_SETTINGS）、azure.rs 安卓 TLS 与依赖；录音字节兼容已在 main，不要重复挑。
-- family.rs 用 NDK AssetManager 流式复制 + 打包文件清单；resource_dir 是 asset://localhost/，std::fs 不可读；不用会丢偏移的 fs asset 读取。
-- 去掉 spike 临时页 / 模块 / 配置 / 造包脚本与 release 调试签名；补正式图标、签名、家庭版 apk、ANDROID_BUILD.md。真资料 / 密钥 / 签名不进仓库，不改 Release / 安卓 CI。
-- 本批用 Chromium 411×914、自编假资料、虚拟麦克风音源、原生存储 / Azure 替身验证前端；Azure 实际联网与计费、APK 内资源、硬件返回键派发与系统权限弹窗仍需真机复测。60 秒录音的 JSON IPC 约 7MB。
+- 儿子的录音以后才录：录完按 `ANDROID_BUILD.md` 第八节放进 `family/recordings/` 重打，真机抽查一次录音导入与播放（安卓录音解压路径尚未真机跑过）。
+- 第一次真正的覆盖升级时留意进度与自己的录音是否保留（本批未真机测）。
+- 60 秒录音走 JSON IPC 约 7MB；fs 插件读未压缩 asset 会丢偏移，别用。android-spike 分支 / PR #59 已无用，可关闭。
 
 ## 待决问题
 
 ## 已知问题
 
+- GitHub Actions 额度用完（2026-10-17），用户已停用 CI 与冷启动实测；之后各批以本地全部检查代替 CI。
+  **发布 1.1.0 前先在 Actions 页面重新启用这两个工作流，并手动各跑一轮。**
+
+- 本机 Windows 工作区里旧文件是 CRLF：`npm run format:check` 在本机会因换行报错，用 `npx prettier --check --end-of-line auto .` 检查；仓库里都是 LF。
 - 施工方的工具没法把图片传进 PR 描述（GitHub 只支持网页上拖拽上传）：截图在施工会话里直接发给用户，不进仓库；
   用户想留在 PR 上可以自己拖进去。
 - "生成合成音"工作流开的 PR 不会触发 CI（GitHub 的规定），合进主 PR 分支后由主 PR 的 CI 再跑一遍。
