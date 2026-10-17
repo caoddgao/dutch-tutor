@@ -35,6 +35,7 @@ npm run typecheck      # 类型检查
 npm run lint           # ESLint
 npm test               # Vitest 单元测试
 npm run build          # 前端构建到 dist/
+npm run build:family   # Windows 本机家庭版（先按 docs/FAMILY_BUILD.md 放好 family/，不提交）
 npm run validate       # 内容校验（§11 规则 1–7）；加 -- --pack <nn-pack 目录> 做完整检查
 cd src-tauri && cargo fmt --check && cargo clippy -- -D warnings
 ```

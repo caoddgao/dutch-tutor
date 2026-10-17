@@ -12,7 +12,7 @@
 - [x] 省费用：草稿不跑 CI / 冷启动；发布仅手动指定版本，更新版本脚本、测试和 CLAUDE。
 - [x] 家庭版构建配置：忽略 family/、资源打包、安装包名称、build:family。
 - [x] 启动静默导入资料包和真人录音；保留 practice / 学习数据；补测试。
-- [ ] 中文家庭版打包说明 docs/FAMILY_BUILD.md。
+- [x] 中文家庭版打包说明 docs/FAMILY_BUILD.md。
 - [ ] 本地完整检查一次 → 转正式 → CI 一次全绿 → merge commit；不发布。
 - 决定：安装包仅重命名文件，不改 productName / identifier，保留 NSIS 安装位置和覆盖升级识别。
 - 决定：录音内容 SHA-256 指纹成功导入后落盘；相同自带录音不重复覆盖，变更后替换 voice，忽略 marks。
