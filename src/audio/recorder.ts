@@ -1,3 +1,5 @@
+import { isAndroid } from "../app/platform";
+
 // Microphone recording for shadowing (design §5.3), through the WebView's media APIs.
 
 export type RecorderErrorCode = "denied" | "no_device" | "busy" | "unsupported";
@@ -8,7 +10,21 @@ export class RecorderError extends Error {
   }
 }
 
-export function recorderErrorMessage(code: RecorderErrorCode): string {
+export function recorderErrorMessage(code: RecorderErrorCode, userAgent = navigator.userAgent): string {
+  if (isAndroid(userAgent)) {
+    const permission =
+      "请打开手机“设置 → 应用设置 → 应用管理 → Dutch Tutor → 权限管理 → 麦克风”，选择“仅在使用中允许”，并检查系统的“麦克风访问”开关。";
+    switch (code) {
+      case "denied":
+        return `还没有获得麦克风权限。${permission}返回应用后再试一次。`;
+      case "no_device":
+        return `没有找到可用的麦克风。${permission}也可以断开蓝牙耳机后再试。`;
+      case "busy":
+        return `麦克风暂时无法使用。请先结束通话或关闭其他正在录音的应用，然后重试。${permission}`;
+      default:
+        return `手机暂时无法录音。${permission}如果仍不行，请重新打开应用后再试。`;
+    }
+  }
   switch (code) {
     case "denied":
       return "无法使用麦克风。请在 Windows 设置 → 隐私和安全性 → 麦克风 里，打开“允许桌面应用访问麦克风”，然后再试。";
@@ -56,14 +72,21 @@ export async function startRecording(): Promise<ActiveRecording> {
     throw new RecorderError("unsupported");
   }
   const mime = pickMime();
-  const rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+  const release = () => stream.getTracks().forEach((t) => t.stop());
+  let rec: MediaRecorder;
+  try {
+    rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    rec.start();
+  } catch {
+    release();
+    throw new RecorderError("unsupported");
+  }
   const chunks: Blob[] = [];
   rec.ondataavailable = (ev) => {
     if (ev.data.size > 0) chunks.push(ev.data);
   };
   const started = performance.now();
-  rec.start();
-  const release = () => stream.getTracks().forEach((t) => t.stop());
+
   return {
     stop: () =>
       new Promise<Recording>((resolve) => {

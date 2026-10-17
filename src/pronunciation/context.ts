@@ -57,7 +57,7 @@ export function azureErrorMessage(error: unknown): string {
     case "audio_length":
       return "录音时长或格式不适合评分，请重新录一次。";
     case "audio_unsupported":
-      return "这台电脑暂时无法转换录音格式。";
+      return "本机暂时无法转换录音格式，请重新录一次。";
     case "network":
       return "暂时连不上 Azure，请检查网络后再试。";
     case "disabled":
