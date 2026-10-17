@@ -1,4 +1,5 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router";
+import { DesktopOnlyRoute } from "./app/DesktopOnlyRoute";
 import { AppShell } from "./app/AppShell";
 import { AudioProvider } from "./audio/AudioProvider";
 import { ContentProvider } from "./content/ContentProvider";
@@ -38,7 +39,9 @@ export function App({ services }: { services: AppServices }) {
                     <Route path="exam" element={<ExamPage />} />
                     <Route path="more" element={<MorePage />} />
                     <Route path="settings" element={<SettingsPage />} />
-                    <Route path="settings/recording" element={<RecordingPage />} />
+                    <Route element={<DesktopOnlyRoute />}>
+                      <Route path="settings/recording/*" element={<RecordingPage />} />
+                    </Route>
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Route>
                 </Routes>

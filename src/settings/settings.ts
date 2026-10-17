@@ -1,3 +1,5 @@
+import { isAndroid } from "../app/platform";
+
 export type ThemePreference = "system" | "light" | "dark";
 export type ResolvedTheme = "light" | "dark";
 
@@ -77,6 +79,11 @@ export function normalizeSettings(raw: Partial<Record<string, unknown>>): Settin
       raw.dailyReviewLimit === undefined ? DEFAULT_SETTINGS.dailyReviewLimit : clampReviewLimit(raw.dailyReviewLimit),
     ...reviewModes(raw),
   };
+}
+
+/** Startup defaults depend on the device; an explicit saved preference always wins. */
+export function deviceSettings(raw: Partial<Record<string, unknown>>, userAgent = navigator.userAgent): Settings {
+  return normalizeSettings({ theme: isAndroid(userAgent) ? "light" : "system", ...raw });
 }
 
 export function resolveTheme(pref: ThemePreference, systemPrefersDark: boolean): ResolvedTheme {

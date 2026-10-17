@@ -1,10 +1,12 @@
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { useContent } from "../content/context";
 import { useSettings } from "../settings/context";
+import { useMobileLayout } from "./useMobileLayout";
 import { MOBILE_NAV_ITEMS, NAV_ITEMS, titleForPath } from "./nav";
 import "./AppShell.css";
 
 export function AppShell() {
+  const mobile = useMobileLayout();
   const { pathname } = useLocation();
   const { settings, update } = useSettings();
   const { packUpdate } = useContent();
@@ -70,7 +72,7 @@ export function AppShell() {
           </div>
         </header>
         <main className="content">
-          {packUpdate && pathname !== "/settings" && (
+          {!mobile && packUpdate && pathname !== "/settings" && (
             <div className="notice notice-accent shell-notice" role="status">
               <span>资料包有新版本，重新导入后才能看到新内容。</span>
               <Link to="/settings" className="btn btn-accent btn-small">

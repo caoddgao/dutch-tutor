@@ -1,7 +1,14 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { readCachedSettings, writeCachedSettings, type SettingsStore } from "../storage/settingsStore";
 import { SettingsContext } from "./context";
-import { applySettings, DEFAULT_SETTINGS, normalizeSettings, type SettingKey, type Settings } from "./settings";
+import {
+  applySettings,
+  deviceSettings,
+  DEFAULT_SETTINGS,
+  normalizeSettings,
+  type SettingKey,
+  type Settings,
+} from "./settings";
 
 const DARK_QUERY = "(prefers-color-scheme: dark)";
 
@@ -10,7 +17,7 @@ function systemPrefersDark(): boolean {
 }
 
 export function SettingsProvider({ store, children }: { store: SettingsStore; children: ReactNode }) {
-  const [settings, setSettings] = useState<Settings>(() => normalizeSettings(readCachedSettings()));
+  const [settings, setSettings] = useState<Settings>(() => deviceSettings(readCachedSettings()));
   const [systemDark, setSystemDark] = useState(systemPrefersDark);
 
   useEffect(() => {
@@ -18,7 +25,7 @@ export function SettingsProvider({ store, children }: { store: SettingsStore; ch
     store
       .load()
       .then((stored) => {
-        if (!cancelled) setSettings(normalizeSettings(stored));
+        if (!cancelled) setSettings(deviceSettings(stored));
       })
       .catch((err: unknown) => console.error("settings load failed", err));
     return () => {
