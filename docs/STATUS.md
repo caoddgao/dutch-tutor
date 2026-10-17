@@ -8,29 +8,29 @@
 
 ## 进行中
 
-- 安卓第 2 批：空壳 apk 实测（只验证可行性，不合并）；施工者 Claude Code（本地）；分支 `android-spike`；PR #59。
-  与第 1 批（云端 PR #58，`src/` 界面）并行，本批不碰 `src/` 下的界面文件；不加 CI、不发布。
-- [x] 建分支、草稿 PR、清单。
-- [x] 安装 JDK 17 / Android SDK / 平台工具 / NDK（16KB 页对齐）/ rustup aarch64-linux-android，设环境变量。
-- [x] `tauri android init`；桌面专属依赖处理；能编译出调试签名 apk。
-  托盘、单实例原来就用 `cfg(desktop)` 隔开，安卓直接编过；NDK r29 产出的 .so 段对齐 0x4000（16KB）、zipalign -P 16 通过。
-- [ ] 临时测试页（只在本分支）：SQLite、麦克风、复制大文件、联网、asset 播放、冷启动。
-- [ ] 350MB 假资源打进 apk，测 apk 大小 / 安装 / 首次复制。
-- [ ] 装到小米 13 Ultra 实测 A–G，结果表写进本区和 PR。
-- [ ] `docs/ANDROID_BUILD.md` 草稿。
+- 安卓第 2 批：空壳 apk 实测（不合并，后续批次沿用结论）；施工者 Claude Code（本地）；分支 `android-spike`；PR #59。清单全勾，等用户看报告。
+- [x] 环境（JDK 17 / SDK / NDK r29 / aarch64）、`tauri android init`、测试页 + 350MB 假资料、真机实测、`ANDROID_BUILD.md` 草稿、合并 main（无冲突，未改 `src/`）。
+
+| 项目 | 结果 | 实测 / 原因 | 修法（已在本分支） |
+|---|---|---|---|
+| A 安装 / B SQLite | 通过 | 文件管理点 apk 安装，HyperOS 只有风险提示；.so 16KB 对齐；迁移 1–4 执行，重启后计数 +1 | — |
+| C 麦克风 | 修后通过 | webm/opus（3 秒 38KB）；wav.ts 转 16kHz 正常；存录音报 bad_body：安卓 IPC 把 Uint8Array 转成 JSON 数组 | `save_recording` 兼容 JSON 字节数组；清单加 RECORD_AUDIO（wry 自带权限弹窗） |
+| D 大资料包 | 通过 | apk 360MB（含正式界面 410MB）；复制 1894 个 / 350MB 0.6–0.8 秒，校验 0 错；占用合计 790MB（apk + 数据各一份）；`resource_dir` = `asset://localhost/`，std::fs 读不了 | NDK AssetManager 流式复制 + 打包时生成文件清单（`spike.rs`）；family.rs 第 4 批照此改 |
+| E 联网 | 修后通过 | 首版闪退：reqwest 的 rustls-platform-verifier 安卓需 JNI 初始化，否则 panic | 安卓改用内置根证书（`azure.rs` `http_client`） |
+| F asset 播放 | 通过 | recordings/、nn-pack/ 下文件经 asset.localhost 播放 | 现有 scope 即可 |
+| G 冷启动 | 通过 | 重装后首次打开：点图标→页面脚本 0.59 秒 | — |
+| H 正式界面 | 通过 | 用户实测：安全区正常，能学、能录音（自编内容；无资料包） | — |
+
+- 误提交 350MB 假资料（gen/android assets 未忽略），用户批准破例 `--force-with-lease` 删掉该提交，已加忽略。已定事项 38"默认浅色第 2 批落地"要改 `src/`，与任务说明冲突，按任务说明不做，建议第 3 批。
+- 给第 3/4 批：去掉仅实测用的 `spike.rs`、`android-spike/`、`vite.spike.config.ts`、`tauri.android-spike.conf.json`、
+  `make-spike-pack.mjs`、release 调试签名；保留安卓工程、录音 / TLS 修复、jni/ndk 依赖（family 复制要用）。图标仍是 Tauri 默认；fs 插件读未压缩 asset 会丢偏移（看源码），别用；60 秒录音走 JSON 数组约 7MB。
 
 ## 已完成
 
-- 安卓第 1 批手机静态版（2026-10-17，PR #58，用户确认浅色）：≤ 600px 使用五项底部导航、更多页及各页手机排版，适配安全区和大点击区域，隐藏电脑版专用入口。
-  411×914 浅 / 深各页截图已交施工会话，不入仓库；Azure 浏览器手机设置区为禁用静态样式，未接安卓服务。
-  typecheck / lint / 211 项测试 / format:check / 三种 validate / build 通过；40 组视口 / 字号检查通过，28 张电脑版对照与 main 像素一致。
-  唯一一轮 CI #190、冷启动 #40 全绿；merge commit 合并，未发布版本。真机安全区与默认浅色留第 2 批本地空壳 apk 实测。
-
-- 家庭版 + 省 Actions 费用（2026-10-17，PR #57）：私有 family/ 资源打包、安装包文件名带“家庭版”，保留 identifier / productName；
-  启动按 manifest.created_at 导入更新资料，录音 SHA-256 指纹成功导入后落盘，仅替换 voice，保留 practice / 评分 / 学习数据。
-  中文说明见 FAMILY_BUILD.md。草稿跳过 CI / 冷启动；Release 仅手动输入版本号，x.y.0 正式版、其余测试版，拒绝已有 tag。
-  本地 typecheck / lint / 211 项测试 / 三种 validate / format:check / cargo fmt / build 通过；唯一一轮 CI #186、冷启动 #37 全绿，
-  Rust 22 项测试通过，6 次再次打开中位数 891.5 ms；merge commit 合并后未发布版本，等待用户触发 1.1.0。
+- 安卓第 1 批手机静态版（2026-10-17，PR #58，用户确认浅色）：≤ 600px 五项底部导航、更多页、各页手机排版、安全区与大点击区，隐藏电脑版专用入口；
+  全部检查与 CI #190、冷启动 #40 通过，merge commit 合并，未发布。细节见 PR。
+- 家庭版 + 省 Actions 费用（2026-10-17，PR #57）：family/ 资源本机打包（说明见 FAMILY_BUILD.md），启动按 created_at / 录音指纹导入，只替换 voice；
+  草稿跳过 CI；Release 仅手动输入版本号（x.y.0 正式版，拒绝已有 tag）；CI #186、冷启动 #37 全绿，未发布 1.1.0。细节见 PR。
 - 阶段 1（PR #1–#4）：骨架、设计规范、SQLite、设置页、首页 / 课程地图静态版、CI 与 NSIS 预发布。
 - 阶段 2（PR #5–#12）：内容格式 + JSON Schema + `npm run validate`；假资料包；导入；音频层；上课页六步；练习 E1–E8；
   复习 R1–R3；首页 / 课程地图接真实数据；"生成合成音"工作流。
@@ -82,12 +82,10 @@
 32. T3 通过，发布正式版 v1.0.0（2026-10-15 用户决定）；版本号改为 1.0.x 系列；旧的 0.1.x 预发布及其 tag 按用户要求删除。
 33. 家庭版使用同一应用标识和产品名覆盖安装；family/ 绝不提交。更新录音后在 Windows 本机重新打包，无需发布 GitHub 版本。
     发布改为手动 workflow_dispatch 指定版本号；合并 main 不再自动发布。v1.1.0 由用户触发。
-
 34. 安卓手机版：小米 13 Ultra / HyperOS 3.0，直接装 apk；手机重排，底部首页 / 课程 / 复习 / 发音练习 / 更多，更多放模拟考试和设置；先静态版确认再接功能。
 35. 资料包和儿子录音本机打进 apk，不进仓库 / CI；第一版上课、复习、发音练习（录音 + Azure 评分）、模拟考试、设置；录音模式、备份、表格 / 报错导出只留电脑版；手机电脑进度独立；Azure 密钥手机设置里自己输入，不进 apk。
 36. 分批：1 手机界面静态版（云端）‖ 2 空壳 apk 实测（本地 Claude Code）→ 3 接功能（云端）→ 4 家庭版 apk 打包 + 签名 + ANDROID_BUILD.md（本地）→ 5 全部完成后用户手动发一次版本。
 37. 安卓不加 GitHub CI，全程不触发 Release；草稿 PR 不跑 CI，每批转正式时跑一次；签名文件不进仓库，用户自行备份。
-
 38. 2026-10-17 用户确认手机采用浅色截图方案；安卓版首次启动默认浅色（第 2 批落地），保留设置里的深色切换与字号设置，电脑版默认不变。
 
 ## 待决问题
