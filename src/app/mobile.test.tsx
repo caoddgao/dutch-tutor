@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../App";
+import { player } from "../audio/player";
 import { deviceSettings } from "../settings/settings";
 import { fsPackBackend, testServices } from "../test/services";
 
@@ -22,7 +23,10 @@ beforeEach(() => {
     },
   }));
 });
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
 
 describe("Android startup theme", () => {
   it("uses light only as the Android default and respects every explicit preference", () => {
@@ -117,4 +121,21 @@ it("a mobile lesson without a pack directs the learner to its status", async () 
   await act(async () => render(<App services={services} />));
   expect(await screen.findByRole("link", { name: "查看资料包状态" })).toBeTruthy();
   expect(screen.queryByText(/导入一次/)).toBeNull();
+});
+
+it("route cleanup preserves the next exam question's automatic playback", async () => {
+  window.location.hash = "#/exam";
+  const events: string[] = [];
+  vi.spyOn(player, "stop").mockImplementation(() => {
+    events.push("stop");
+  });
+  vi.spyOn(player, "play").mockImplementation(async () => {
+    events.push("play");
+  });
+  const { services } = testServices({ ttsUrls: new Proxy({}, { get: () => "/sample.mp3" }) });
+  await act(async () => render(<App services={services} />));
+  await act(async () => fireEvent.click(screen.getByRole("button", { name: "开始口语" })));
+  await waitFor(() => expect(events).toContain("play"));
+  expect(events.lastIndexOf("play")).toBeGreaterThan(events.lastIndexOf("stop"));
+  vi.restoreAllMocks();
 });

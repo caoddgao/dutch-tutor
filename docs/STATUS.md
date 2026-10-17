@@ -13,9 +13,9 @@
 - [x] 安卓首次默认浅色，保留用户主题；手机路由限制与资料包只读状态。
 - [x] 麦克风中文提示、Azure 手机设置接功能及窄屏适配。
 - [x] 仅移植录音原始字节 / JSON 数组兼容，补平台无关 Rust 测试（23 项通过，含异常 JSON / 空数组）；不挑安卓 TLS / 工程 / 资源读取。
-- [x] dev + Playwright 411×914：上课六步、复习 R1–R3、录音 / 回放 / 评分、模拟考、设置、更多、导航 / 返回；浅色全查、深色抽查通过（Azure / 原生存储用替身，真实 MediaRecorder + WAV 转换）；修复缺包导入误导、模拟考返回、权限弹窗期间离页麦克风占用及切页停止播放。
-- [x] typecheck / lint / 241 项 test / format:check / 三种 validate / build 全通过；Rust fmt / 23 项测试通过（clippy 检查中）。
-- [x] 截图保存在会话临时目录，不进仓库；第 4 批交接见下。下一步：clippy 通过后转正式，唯一一轮 CI 全绿再 merge commit 合并并清空进行中。
+- [x] dev + Playwright 411×914：上课六步、复习 R1–R3、录音 / 回放 / 评分、模拟考、设置、更多、导航 / 返回；浅色全查、深色抽查通过（Azure / 原生存储用替身，真实 MediaRecorder + WAV 转换）；修复缺包导入误导、模拟考返回、权限弹窗期间离页麦克风占用及切页停止旧播放、保留新题自动朗读。
+- [x] typecheck / lint / 242 项 test / format:check / 三种 validate / build 全通过；Rust fmt / clippy（all-targets，-D warnings）/ 23 项测试通过。
+- [x] 截图保存在会话临时目录，不进仓库；第 4 批交接见下。下一步：转正式，唯一一轮 CI 全绿再 merge commit 合并并清空进行中。
 
 ## 已完成
 

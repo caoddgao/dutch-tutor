@@ -10,9 +10,8 @@ import "./AppShell.css";
 export function AppShell() {
   const mobile = useMobileLayout();
   const { pathname, search } = useLocation();
-  useEffect(() => {
-    player.stop();
-  }, [pathname, search]);
+  // Stop the page being left before the next page starts its own automatic playback.
+  useEffect(() => () => player.stop(), [pathname, search]);
   const { settings, update } = useSettings();
   const { packUpdate } = useContent();
   const mainItems = NAV_ITEMS.filter((n) => n.path !== "/settings");
