@@ -1,0 +1,453 @@
+/* Mobile is a layout of the existing pages. No Android services are connected here.
+   Keep all overrides inside this breakpoint so desktop styling stays unchanged. */
+.mobile-nav,
+.mobile-only {
+  display: none;
+}
+
+.more-page,
+.more-links {
+  display: grid;
+  gap: var(--space-4);
+}
+.more-intro {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+.more-intro img {
+  border-radius: var(--radius-sm);
+}
+.more-intro h2 {
+  font-size: var(--fs-xl);
+}
+.more-intro p {
+  color: var(--immersive-text-2);
+  font-size: var(--fs-sm);
+}
+.more-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--text);
+  text-decoration: none;
+}
+.more-link-text {
+  flex: 1;
+  display: grid;
+  gap: var(--space-1);
+}
+.more-link-text .muted,
+.more-note {
+  font-size: var(--fs-sm);
+}
+.more-note {
+  padding: var(--space-2) var(--space-4);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .desktop-only,
+  .sidebar,
+  .report-btn {
+    display: none !important;
+  }
+  .mobile-only {
+    display: inline;
+  }
+  .shell {
+    height: 100dvh;
+    flex-direction: column;
+  }
+  .main {
+    min-height: 0;
+  }
+  .topbar {
+    height: auto;
+    min-height: calc(64px + env(safe-area-inset-top, 0px));
+    padding: calc(10px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 10px
+      max(20px, env(safe-area-inset-left, 0px));
+  }
+  .topbar-title {
+    font-size: var(--fs-xl);
+  }
+  .en-toggle {
+    min-height: 44px;
+    font-size: var(--fs-sm);
+    letter-spacing: 0;
+  }
+  .content {
+    padding: var(--space-2) max(16px, env(safe-area-inset-right, 0px)) var(--space-6)
+      max(16px, env(safe-area-inset-left, 0px));
+    overscroll-behavior-y: contain;
+  }
+  .mobile-nav {
+    flex: none;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2px;
+    padding: 8px max(8px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px))
+      max(8px, env(safe-area-inset-left, 0px));
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .mobile-nav .nav-link {
+    width: auto;
+    min-width: 0;
+    min-height: 58px;
+    padding: 6px 2px;
+    flex-direction: column;
+    gap: 5px;
+    font-size: calc(11px * var(--scale-zh));
+    line-height: 1.3;
+    text-align: center;
+    white-space: normal;
+  }
+  .mobile-nav .nav-label {
+    display: block;
+  }
+  .card {
+    padding: var(--space-5);
+  }
+  .btn,
+  .btn-small,
+  .segmented-option,
+  .level-tab,
+  .practice-star,
+  .player-pill,
+  .player-compare button,
+  .nav-round,
+  .audio-btn,
+  .tip-card-link,
+  .order-block,
+  .match-item,
+  .lesson-card-review {
+    min-height: 44px;
+  }
+  .btn {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal;
+  }
+  .btn svg,
+  .more-link > svg {
+    flex: none;
+  }
+  .nav-round,
+  .audio-btn {
+    min-width: 44px;
+  }
+  /* The switch stays visually compact, with a 44px touch target. */
+  .switch::before {
+    content: "";
+    position: absolute;
+    inset: -9px 0;
+  }
+  .page {
+    overflow-wrap: anywhere;
+  }
+
+  /* Home: one clear learning card, then compact review and progress cards. */
+  .home,
+  .home-grid {
+    gap: var(--space-4);
+  }
+  .home-hello {
+    font-size: calc(26px * var(--scale-nl));
+  }
+  .home-greeting .zh {
+    margin-top: var(--space-2);
+    font-size: var(--fs-sm);
+  }
+  .continue-card {
+    min-height: 285px;
+    padding: var(--space-6);
+    gap: var(--space-6);
+  }
+  .continue-top,
+  .continue-progress-text {
+    flex-wrap: wrap;
+  }
+  .continue-nl {
+    font-size: calc(30px * var(--scale-nl));
+  }
+  .continue-bottom {
+    gap: var(--space-4);
+  }
+  .stats-pair {
+    gap: var(--space-3);
+  }
+  .stats-pair .stat-head {
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  .map-card {
+    gap: var(--space-3);
+  }
+  .map-card .btn {
+    width: 100%;
+  }
+  .map-card-text {
+    flex-basis: calc(100% - 56px);
+  }
+
+  /* Courses: full-width list cards and readable level tabs. */
+  .courses {
+    gap: var(--space-6);
+  }
+  .level-tabs {
+    width: 100%;
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+  }
+  .level-tab {
+    flex: 1;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-2) var(--space-1);
+    border-radius: var(--radius-sm);
+  }
+  .level-soon {
+    white-space: nowrap;
+  }
+  .lesson-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+  .lesson-card {
+    min-height: 0;
+  }
+  .lesson-card-link {
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+  }
+  .lesson-card-review {
+    bottom: var(--space-3);
+  }
+  .lesson-card-progress.has-review {
+    min-height: 44px;
+  }
+
+  /* Lessons: visible step names, stacked word help, and a player above the nav. */
+  .lesson {
+    min-height: 0;
+  }
+  .lesson-head {
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .lesson-head > .lesson-title {
+    width: 100%;
+    font-size: var(--fs-md);
+  }
+  .stepper ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+  }
+  .stepper li {
+    min-width: 0;
+  }
+  .stepper button {
+    min-height: 48px;
+    height: 100%;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-xs);
+  }
+  .stepper li:not([data-state="current"]) .stepper-label {
+    display: inline;
+  }
+  .stepper-label {
+    white-space: normal;
+  }
+  .lesson-main {
+    min-height: 300px;
+  }
+  .sentence-display {
+    padding: var(--space-6) 0;
+  }
+  .sentence-zh {
+    font-size: calc(20px * var(--scale-zh));
+  }
+  .lesson-player {
+    bottom: 0;
+  }
+  .player-bar,
+  .practice-player {
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+  .player-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .player-tools,
+  .practice-player-tools {
+    gap: var(--space-2);
+  }
+  .waveform {
+    gap: 1px;
+  }
+  .waveform > span {
+    min-width: 0;
+  }
+  .player-compare {
+    flex-wrap: wrap;
+  }
+  .listen-intro,
+  .listen-toggles,
+  .done-stats,
+  .ex-head,
+  .ex-footer,
+  .review-head,
+  .exam-session-head {
+    flex-wrap: wrap;
+  }
+  .listen-toggles > .btn {
+    flex: 1;
+  }
+  .word-entry-card .word-entry-lemma {
+    font-size: calc(36px * var(--scale-nl));
+  }
+  .verb-forms {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .done-step,
+  .review-done {
+    padding: var(--space-5);
+  }
+  .done-stats {
+    justify-content: center;
+    gap: var(--space-5);
+  }
+
+  /* Review and practice: keep the prompt central and choices easy to tap. */
+  .review-today {
+    padding: var(--space-6);
+  }
+  .review-lesson-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-4);
+  }
+  .review-lesson-row > .lesson-code-chip {
+    justify-self: start;
+  }
+  .review-lesson-row > div {
+    grid-column: 1;
+  }
+  .review-lesson-row > .btn {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .q-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .match-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+  .match-item {
+    min-width: 0;
+    padding: var(--space-3) var(--space-2);
+    flex-wrap: wrap;
+  }
+  .self-rate {
+    flex-wrap: wrap;
+  }
+  .practice-list {
+    max-height: none;
+    gap: var(--space-3);
+  }
+  .practice-rows {
+    max-height: 150px;
+    overscroll-behavior-y: contain;
+  }
+  .practice-list-tools {
+    gap: var(--space-4);
+  }
+  .practice-lesson-select select {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+  }
+  .practice-card {
+    gap: var(--space-4);
+  }
+  .practice-sentence {
+    padding: var(--space-4) 0;
+  }
+  .practice-takes li {
+    flex-wrap: wrap;
+  }
+  .practice-star {
+    margin-left: 0;
+  }
+  .practice-nav {
+    flex-wrap: wrap;
+  }
+  .practice-nav > .btn {
+    flex: 1;
+  }
+
+  /* Settings: sliders span the card, switches stay beside their labels. */
+  .settings-row {
+    gap: var(--space-3);
+  }
+  .settings-row-text {
+    flex-basis: 100%;
+  }
+  .settings-row:has(> .switch) {
+    flex-wrap: nowrap;
+  }
+  .settings-row:has(> .switch) .settings-row-text {
+    flex-basis: auto;
+  }
+  .settings .segmented {
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+  .settings .segmented-option {
+    flex: 1;
+    white-space: normal;
+    padding: 8px;
+  }
+  .scale-row {
+    grid-template-columns: 54px minmax(0, 1fr) 52px;
+    gap: var(--space-2);
+    min-height: 44px;
+  }
+  .slider {
+    margin: 0;
+    height: 44px;
+    background-size: 100% 8px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .scale-preview {
+    padding: var(--space-4);
+  }
+  .azure-field,
+  .azure-field input {
+    min-width: 0;
+  }
+  .azure-preview {
+    display: grid;
+    gap: var(--space-4);
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .exam-hero {
+    padding: var(--space-6);
+  }
+  .exam-hero h2 {
+    font-size: var(--fs-2xl);
+  }
+  .exam-part-card .btn,
+  .exam-official .btn {
+    width: 100%;
+  }
+}

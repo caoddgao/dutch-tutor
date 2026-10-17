@@ -167,7 +167,7 @@ export function BackupSection({ onRestored = reloadApp }: { onRestored?: () => v
   const summary = pending ? summarizeBackup(pending) : null;
 
   return (
-    <section className="card settings-section" aria-label="学习数据">
+    <section className="card settings-section desktop-only" aria-label="学习数据">
       <h2 className="section-title">学习数据</h2>
       <div className="settings-row">
         <div className="settings-row-text">

@@ -5,6 +5,7 @@ import { ContentProvider } from "./content/ContentProvider";
 import { LessonPage } from "./lesson/LessonPage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { ExamPage } from "./pages/ExamPage";
+import { MorePage } from "./pages/MorePage";
 import { HomePage } from "./pages/HomePage";
 import { PracticePage } from "./pages/PracticePage";
 import { RecordingPage } from "./pages/RecordingPage";
@@ -14,6 +15,8 @@ import type { AppServices } from "./services";
 import { ServicesContext } from "./servicesContext";
 import { SettingsProvider } from "./settings/SettingsContext";
 import { AzureProvider } from "./pronunciation/AzureProvider";
+
+import "./styles/mobile.css";
 
 export function App({ services }: { services: AppServices }) {
   return (
@@ -33,6 +36,7 @@ export function App({ services }: { services: AppServices }) {
                     <Route path="review/:source" element={<ReviewSessionPage />} />
                     <Route path="practice" element={<PracticePage />} />
                     <Route path="exam" element={<ExamPage />} />
+                    <Route path="more" element={<MorePage />} />
                     <Route path="settings" element={<SettingsPage />} />
                     <Route path="settings/recording" element={<RecordingPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
