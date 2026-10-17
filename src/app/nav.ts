@@ -1,4 +1,4 @@
-import { BookOpen, ClipboardCheck, House, Mic, Repeat2, Settings, type LucideIcon } from "lucide-react";
+import { BookOpen, ClipboardCheck, House, Mic, MoreHorizontal, Repeat2, Settings, type LucideIcon } from "lucide-react";
 
 export interface NavItem {
   path: string;
@@ -15,7 +15,13 @@ export const NAV_ITEMS: NavItem[] = [
   { path: "/settings", label: "设置", icon: Settings },
 ];
 
+export const MOBILE_NAV_ITEMS: NavItem[] = [
+  ...NAV_ITEMS.slice(0, 4),
+  { path: "/more", label: "更多", icon: MoreHorizontal },
+];
+
 export function titleForPath(pathname: string): string {
+  if (pathname === "/more") return "更多";
   if (pathname === "/settings/recording") return "录音模式";
   if (pathname.startsWith("/lesson/")) return "上课";
   if (pathname.startsWith("/review/")) return "复习";

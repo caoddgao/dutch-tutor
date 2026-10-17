@@ -60,7 +60,10 @@ export function SettingsPage() {
         <div className="settings-row">
           <div className="settings-row-text">
             <div className="settings-row-label">主题</div>
-            <div className="settings-row-desc">跟随系统时，会随 Windows 的浅色 / 深色模式自动切换。</div>
+            <div className="settings-row-desc">
+              <span className="desktop-only">跟随系统时，会随 Windows 的浅色 / 深色模式自动切换。</span>
+              <span className="mobile-only">跟随手机的浅色 / 深色模式自动切换。</span>
+            </div>
           </div>
           <Segmented<ThemePreference>
             label="主题"
@@ -104,7 +107,10 @@ export function SettingsPage() {
         <div className="settings-row">
           <div className="settings-row-text">
             <div className="settings-row-label">显示英文释义</div>
-            <div className="settings-row-desc">关闭后，所有页面只显示荷兰语和中文。顶栏的"EN"按钮也可以随时切换。</div>
+            <div className="settings-row-desc">
+              关闭后，所有页面只显示荷兰语和中文。顶栏的<span className="desktop-only">"EN"</span>
+              <span className="mobile-only">“英文”</span>按钮也可以随时切换。
+            </div>
           </div>
           <button
             type="button"
@@ -190,7 +196,7 @@ export function SettingsPage() {
 
       <AzureSection />
 
-      <section className="card settings-section">
+      <section className="card settings-section desktop-only">
         <h2 className="section-title">真人录音</h2>
         <div className="settings-row">
           <div className="settings-row-text">

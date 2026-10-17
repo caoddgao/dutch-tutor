@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { useContent } from "../content/context";
 import { useSettings } from "../settings/context";
-import { NAV_ITEMS, titleForPath } from "./nav";
+import { MOBILE_NAV_ITEMS, NAV_ITEMS, titleForPath } from "./nav";
 import "./AppShell.css";
 
 export function AppShell() {
@@ -19,7 +19,13 @@ export function AppShell() {
         to={item.path}
         end={item.path === "/"}
         className={({ isActive }) =>
-          `nav-link${isActive || (item.path === "/courses" && pathname.startsWith("/lesson/")) ? " active" : ""}`
+          `nav-link${
+            isActive ||
+            (item.path === "/courses" && pathname.startsWith("/lesson/")) ||
+            (item.path === "/more" && (pathname.startsWith("/settings") || pathname === "/exam"))
+              ? " active"
+              : ""
+          }`
         }
         title={item.label}
       >
@@ -57,7 +63,8 @@ export function AppShell() {
                 title={settings.showEnglish ? "隐藏英文释义" : "显示英文释义"}
                 onClick={() => update("showEnglish", !settings.showEnglish)}
               >
-                EN
+                <span className="desktop-only">EN</span>
+                <span className="mobile-only">英文</span>
               </button>
             </div>
           </div>
@@ -77,6 +84,9 @@ export function AppShell() {
           </div>
         </main>
       </div>
+      <nav className="mobile-nav" aria-label="手机导航">
+        {MOBILE_NAV_ITEMS.map(renderLink)}
+      </nav>
     </div>
   );
 }
