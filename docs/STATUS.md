@@ -13,7 +13,9 @@
 - [x] 家庭版构建配置：忽略 family/、资源打包、安装包名称、build:family。
 - [x] 启动静默导入资料包和真人录音；保留 practice / 学习数据；补测试。
 - [x] 中文家庭版打包说明 docs/FAMILY_BUILD.md。
-- [ ] 本地完整检查一次 → 转正式 → CI 一次全绿 → merge commit；不发布。
+- [ ] 收尾：本地检查已过 → 转正式跑一轮 CI → 全绿后 merge commit；不发布。
+- 本地：typecheck / lint / 211 项测试 / 三种 validate / format:check / cargo fmt --check / build 已过。
+  环境预装依赖缺 Excel 包，npm ci 后只补跑受影响检查；Rust 编译、测试和 Windows 安装冷启动交给唯一一轮 CI。
 - 决定：安装包仅重命名文件，不改 productName / identifier，保留 NSIS 安装位置和覆盖升级识别。
 - 决定：录音内容 SHA-256 指纹成功导入后落盘；相同自带录音不重复覆盖，变更后替换 voice，忽略 marks。
 - 决定：资料包新旧按 manifest.created_at（03_PACK_FORMAT §9），format_version 只用于兼容性检查。
