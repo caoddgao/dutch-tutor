@@ -4,9 +4,16 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 
-/** Validate an explicitly requested release; never guess or increment a version. */
+/** Validate an explicitly requested release; never guess or increment a version.
+ * @param {string | undefined} version
+ * @param {string[]} tags
+ */
 export function releaseVersion(version, tags = []) {
-  if (typeof version !== "string" || !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version)) {
+  if (
+    typeof version !== "string" ||
+    version.trim() !== version ||
+    !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version)
+  ) {
     throw new Error("请指定版本号，例如 --version 1.1.0（x.y.0 正式版，其余测试版）");
   }
   if (tags.some((tag) => tag.trim() === `v${version}`)) {

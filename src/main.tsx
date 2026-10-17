@@ -6,6 +6,7 @@ import "./styles/ui.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
+import { importFamilyResources } from "./app/family";
 import { applySettings, normalizeSettings } from "./settings/settings";
 import { isTauri } from "@tauri-apps/api/core";
 import { createDefaultRecordingFiles } from "./audio/recordings";
@@ -36,8 +37,13 @@ const services: AppServices = {
   dataFiles: createDefaultDataFiles(),
 };
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App services={services} />
-  </StrictMode>,
-);
+async function start() {
+  if (isTauri()) await importFamilyResources(services);
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <App services={services} />
+    </StrictMode>,
+  );
+}
+
+void start();

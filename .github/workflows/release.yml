@@ -39,7 +39,9 @@ jobs:
         shell: bash
         env:
           RELEASE_VERSION: ${{ inputs.version }}
-        run: echo "version=$(node scripts/version.mjs --version "$RELEASE_VERSION" --write)" >> "$GITHUB_OUTPUT"
+        run: |
+          version="$(node scripts/version.mjs --version "$RELEASE_VERSION" --write)"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
