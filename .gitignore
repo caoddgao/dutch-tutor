@@ -11,3 +11,11 @@ validate-report.md
 
 # 本机家庭版资料与真人录音，绝不提交
 /family/
+
+# 安卓：签名文件、签名配置、打好的安装包，绝不提交
+*.jks
+*.keystore
+keystore.properties
+*.apk
+*.aab
+/release-apk/

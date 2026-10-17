@@ -195,6 +195,19 @@ pub fn clear_azure_key<R: Runtime>(app: AppHandle<R>) -> Result<AzureStatus, Azu
     status(&app)
 }
 
+/// reqwest's rustls verifier (rustls-platform-verifier) needs JNI setup on Android and panics
+/// without it, which aborts the app; Android uses the bundled Mozilla roots instead.
+fn http_client(timeout: Duration) -> reqwest::Result<reqwest::Client> {
+    let builder = reqwest::Client::builder().timeout(timeout);
+    #[cfg(target_os = "android")]
+    let builder = builder.tls_certs_only(
+        webpki_root_certs::TLS_SERVER_ROOT_CERTS
+            .iter()
+            .filter_map(|cert| reqwest::Certificate::from_der(cert).ok()),
+    );
+    builder.build()
+}
+
 #[tauri::command]
 pub async fn test_azure_connection<R: Runtime>(app: AppHandle<R>) -> Result<(), AzureError> {
     let config = read_config(&app)?;
@@ -208,9 +221,7 @@ pub async fn test_azure_connection<R: Runtime>(app: AppHandle<R>) -> Result<(), 
         "https://{}.api.cognitive.microsoft.com/sts/v1.0/issueToken",
         config.region
     );
-    let response = reqwest::Client::builder()
-        .timeout(Duration::from_secs(15))
-        .build()
+    let response = http_client(Duration::from_secs(15))
         .map_err(|_| error("network"))?
         .post(url)
         .header("Ocp-Apim-Subscription-Key", config.key)
@@ -348,9 +359,7 @@ pub async fn assess_pronunciation<R: Runtime>(
     });
     let assessment_header = base64::engine::general_purpose::STANDARD.encode(settings.to_string());
     let url = format!("https://{}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=nl-NL&format=detailed", config.region);
-    let response = reqwest::Client::builder()
-        .timeout(Duration::from_secs(35))
-        .build()
+    let response = http_client(Duration::from_secs(35))
         .map_err(|_| error("network"))?
         .post(url)
         .header("Ocp-Apim-Subscription-Key", config.key)

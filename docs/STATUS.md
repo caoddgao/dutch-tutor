@@ -8,10 +8,10 @@
 
 ## 进行中
 
-- 安卓第 4 批：家庭版 apk 打包 + 签名 + 真机验收；施工者 Claude Code（本地）；分支 `feat/android-family-apk`；PR #（待填）。
+- 安卓第 4 批：家庭版 apk 打包 + 签名 + 真机验收；施工者 Claude Code（本地）；分支 `feat/android-family-apk`；PR #61。
   Actions 额度用完、CI / 冷启动已停用：本批以本地全部检查代替 CI，不触发任何工作流、不发布。
-- [ ] 1 分支、草稿 PR、清单
-- [ ] 2 从 android-spike 挑安卓工程 / 录音权限 / TLS / 依赖，去掉 spike 临时物；.gitignore 防资料、录音、签名、apk
+- [x] 1 分支、草稿 PR、清单
+- [x] 2 从 android-spike 挑安卓工程 / 录音权限 / TLS / 依赖，去掉 spike 临时物；.gitignore 防资料、录音、签名、apk（只挑文件不合并；release 改读仓库外签名配置）
 - [ ] 3 family.rs 安卓：AssetManager 流式复制 + 打包文件清单，资料包解压后直接换入；Rust 测试
 - [ ] 4 安卓正式图标
 - [ ] 5 正式签名：gradle 读仓库外配置；生成签名文件；用户备份
