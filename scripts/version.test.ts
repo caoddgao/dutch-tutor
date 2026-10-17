@@ -1,18 +1,34 @@
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { nextVersion } from "./version.mjs";
+import { releaseVersion, writeTauriVersion } from "./version.mjs";
 
-describe("nextVersion", () => {
-  it("starts at 1.0.0 when there are no tags of the series", () => {
-    expect(nextVersion([])).toBe("1.0.0");
-    expect(nextVersion(["v0.1.35", "v0.1.36"])).toBe("1.0.0");
+describe("manual release versions", () => {
+  it("accepts an explicit formal or test version across series", () => {
+    for (const version of ["1.1.0", "1.1.1", "2.0.0", "0.1.12"]) {
+      expect(releaseVersion(version, ["v1.0.0", "v1.0.9"])).toBe(version);
+    }
   });
 
-  it("increments the highest patch number numerically", () => {
-    expect(nextVersion(["v1.0.0", "v1.0.9", "v1.0.10", "v1.0.2"])).toBe("1.0.11");
-    expect(nextVersion(["v0.1.0", "v0.1.9", "v0.1.10"], "0.1")).toBe("0.1.11");
+  it("refuses missing, malformed, or already released versions", () => {
+    for (const version of [undefined, "", "v1.1.0", "1.1", "1.01.0", "1.1.0-beta", "1.1.0\n", "$(echo x)"]) {
+      expect(() => releaseVersion(version)).toThrow();
+    }
+    expect(() => releaseVersion("1.1.0", ["v1.1.0"])).toThrow("已存在");
+    expect(releaseVersion("1.1.0", ["v1.1.01", "v1.1.0-beta"])).toBe("1.1.0");
   });
 
-  it("ignores tags from other series and malformed tags", () => {
-    expect(nextVersion(["v0.2.5", "v1.0.3-beta", "v0.1.9", "v1.0.4"])).toBe("1.0.5");
+  it("writes only the version, preserving the application identity and configuration", () => {
+    const root = mkdtempSync(join(tmpdir(), "dutch-version-"));
+    try {
+      const file = join(root, "tauri.conf.json");
+      const conf = { version: "1.0.0", identifier: "nl.dutchtutor.app", bundle: { targets: ["nsis"] } };
+      writeFileSync(file, JSON.stringify(conf));
+      writeTauriVersion("1.1.0", file);
+      expect(JSON.parse(readFileSync(file, "utf8"))).toEqual({ ...conf, version: "1.1.0" });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

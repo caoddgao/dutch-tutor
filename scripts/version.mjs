@@ -1,23 +1,18 @@
-// Release version helpers: 1.0.x, where x is one more than the highest existing v1.0.* tag
-// (v1.0.0 is the first formal release; later builds from main are 1.0.1, 1.0.2 … pre-releases).
+// Manual releases: require x.y.z; x.y.0 is formal, other patch versions are test builds.
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { parseArgs } from "node:util";
 
-export const SERIES = "1.0";
-
-/** @param {string[]} tags */
-export function nextVersion(tags, series = SERIES) {
-  const prefix = `v${series}.`;
-  let max = -1;
-  for (const tag of tags) {
-    const t = tag.trim();
-    if (!t.startsWith(prefix)) continue;
-    const rest = t.slice(prefix.length);
-    if (!/^\d+$/.test(rest)) continue;
-    max = Math.max(max, Number(rest));
+/** Validate an explicitly requested release; never guess or increment a version. */
+export function releaseVersion(version, tags = []) {
+  if (typeof version !== "string" || !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version)) {
+    throw new Error("请指定版本号，例如 --version 1.1.0（x.y.0 正式版，其余测试版）");
   }
-  return `${series}.${max + 1}`;
+  if (tags.some((tag) => tag.trim() === `v${version}`)) {
+    throw new Error(`版本 v${version} 已存在，请使用新的版本号`);
+  }
+  return version;
 }
 
 /** @param {string} version */
@@ -28,10 +23,9 @@ export function writeTauriVersion(version, file = "src-tauri/tauri.conf.json") {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const tags = execFileSync("git", ["tag", "--list", `v${SERIES}.*`], { encoding: "utf8" })
-    .split("\n")
-    .filter(Boolean);
-  const version = nextVersion(tags);
-  if (process.argv.includes("--write")) writeTauriVersion(version);
+  const { values } = parseArgs({ options: { version: { type: "string" }, write: { type: "boolean" } } });
+  const tags = execFileSync("git", ["tag", "--list"], { encoding: "utf8" }).split("\n");
+  const version = releaseVersion(values.version, tags);
+  if (values.write) writeTauriVersion(version);
   process.stdout.write(version + "\n");
 }

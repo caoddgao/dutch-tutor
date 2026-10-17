@@ -8,8 +8,8 @@
 
 ## 进行中
 
-- 施工者：Codex；分支：`codex/family-build`；PR：待创建（草稿）。
-- [ ] 省费用：草稿不跑 CI / 冷启动；发布仅手动指定版本，更新版本脚本、测试和 CLAUDE。
+- 施工者：Codex；分支：`codex/family-build`；PR：#57（草稿）。
+- [x] 省费用：草稿不跑 CI / 冷启动；发布仅手动指定版本，更新版本脚本、测试和 CLAUDE。
 - [ ] 家庭版构建配置：忽略 family/、资源打包、安装包名称、build:family。
 - [ ] 启动静默导入资料包和真人录音；保留 practice / 学习数据；补测试。
 - [ ] 中文家庭版打包说明 docs/FAMILY_BUILD.md。
