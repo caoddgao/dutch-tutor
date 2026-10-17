@@ -2,7 +2,9 @@
 
 use crate::pack::resolve_inside;
 use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 use std::fs;
+use std::io::Read;
 use std::path::{Path, PathBuf};
 use std::time::{SystemTime, UNIX_EPOCH};
 use tauri::ipc::{InvokeBody, Request};
@@ -148,6 +150,41 @@ fn import_folder_files(source: &Path, target: &Path) -> Result<RecordingManifest
     Ok(manifest)
 }
 
+/// Hash the exported manifest and referenced audio, including same-name audio updates.
+/// Only exported voice files participate; unrelated files (including practice) are ignored.
+pub fn folder_revision(source: &Path) -> Result<String, RecordingError> {
+    let bytes = fs::read(source.join(MANIFEST)).map_err(|e| err("io", e))?;
+    if bytes.len() > 2_000_000 {
+        return Err(err("bad_manifest", "recording list is too large"));
+    }
+    let manifest: RecordingManifest =
+        serde_json::from_slice(&bytes).map_err(|e| err("bad_manifest", e))?;
+    validate_manifest(&manifest)?;
+    let mut hash = Sha256::new();
+    hash.update((bytes.len() as u64).to_le_bytes());
+    hash.update(&bytes);
+    for entry in manifest.recordings {
+        let path = source.join(entry.file_name);
+        plain_file(&path)?;
+        let mut file = fs::File::open(path).map_err(|e| err("io", e))?;
+        hash.update(
+            file.metadata()
+                .map_err(|e| err("io", e))?
+                .len()
+                .to_le_bytes(),
+        );
+        let mut buffer = [0; 65536];
+        loop {
+            let count = file.read(&mut buffer).map_err(|e| err("io", e))?;
+            if count == 0 {
+                break;
+            }
+            hash.update(&buffer[..count]);
+        }
+    }
+    Ok(format!("{:x}", hash.finalize()))
+}
+
 #[tauri::command]
 pub fn export_recording_folder<R: Runtime>(
     app: AppHandle<R>,
@@ -227,8 +264,8 @@ pub fn delete_recording<R: Runtime>(app: AppHandle<R>, name: String) -> Result<(
 #[cfg(test)]
 mod tests {
     use super::{
-        export_folder_files, import_folder_files, valid_name, validate_manifest, RecordingManifest,
-        UnnaturalMark, VoiceEntry,
+        export_folder_files, folder_revision, import_folder_files, valid_name, validate_manifest,
+        RecordingManifest, UnnaturalMark, VoiceEntry,
     };
     use std::fs;
 
@@ -286,6 +323,12 @@ mod tests {
             }],
         };
         export_folder_files(&original, &exported, &manifest).unwrap();
+        let revision = folder_revision(&exported).unwrap();
+        assert_eq!(folder_revision(&exported).unwrap(), revision);
+        // Even an edited audio file with an unchanged name/list is a new bundled revision.
+        fs::write(exported.join("NN21-S01.webm"), b"new voice").unwrap();
+        assert_ne!(folder_revision(&exported).unwrap(), revision);
+        fs::write(exported.join("NN21-S01.webm"), b"audio").unwrap();
         let restored = import_folder_files(&exported, &imported).unwrap();
         assert_eq!(restored.marks[0].target_id, "NN21-S02");
         assert_eq!(

@@ -238,7 +238,7 @@ export class RecordingStore {
     });
   }
 
-  async importFolder(dir: string): Promise<void> {
+  async importFolder(dir: string, options: { voiceOnly?: boolean } = {}): Promise<void> {
     const result = await invoke<ImportResult>("import_recording_folder", { dir });
     const db = await this.db();
     for (const row of result.recordings) {
@@ -257,6 +257,8 @@ export class RecordingStore {
         await this.files.remove(previous.file_path).catch(() => undefined);
       }
     }
-    for (const mark of result.marks) await this.markUnnatural(mark.target_id, mark.target_type, true);
+    if (!options.voiceOnly) {
+      for (const mark of result.marks) await this.markUnnatural(mark.target_id, mark.target_type, true);
+    }
   }
 }

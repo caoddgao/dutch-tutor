@@ -35,6 +35,7 @@ npm run typecheck      # 类型检查
 npm run lint           # ESLint
 npm test               # Vitest 单元测试
 npm run build          # 前端构建到 dist/
+npm run build:family   # Windows 本机家庭版（先按 docs/FAMILY_BUILD.md 放好 family/，不提交）
 npm run validate       # 内容校验（§11 规则 1–7）；加 -- --pack <nn-pack 目录> 做完整检查
 cd src-tauri && cargo fmt --check && cargo clippy -- -D warnings
 ```
@@ -46,5 +47,5 @@ cd src-tauri && cargo fmt --check && cargo clippy -- -D warnings
 - `content/`：我们自己的内容（`a1/` 课程编排、发音课、小贴士、词；`audio/tts/` 合成音）；`content/schema/` JSON Schema。
 - `fixtures/nn-pack/` 自编的假资料包（`scripts/make-fixture-pack.ts` 生成）；`fixtures/content/` 配套的测试内容。
 - `src/content/`：资料包和内容的类型、分词、校验规则；`scripts/validate-content.ts` 命令行校验；`scripts/tts.ts` 合成音。
-- `scripts/version.mjs` 发布版本号（1.0.x，按已有 tag 递增；v1.0.0 是正式版，之后合并到 main 自动出 1.0.1、1.0.2… 测试版）。
-- CI：`.github/workflows/ci.yml`（每个 PR）、`release.yml`（合并到 main → NSIS 预发布）。
+- `scripts/version.mjs` 校验手动指定的版本号（`--version 1.1.0 --write`）；拒绝已有 tag，不自动递增。x.y.0 为正式版，其余为测试版。
+- CI：`ci.yml`、`startup.yml` 草稿 PR 不跑；转正式及之后推送才跑（也可手动）。`release.yml` 只允许手动 workflow_dispatch，输入版本号；合并 main 不发布。

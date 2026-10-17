@@ -9,6 +9,7 @@ name: 冷启动实测
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - "src/**"
       - "src-tauri/**"
@@ -25,6 +26,7 @@ concurrency:
 
 jobs:
   startup:
+    if: github.event.pull_request.draft == false
     name: Windows：安装包冷启动 < 3 秒
     runs-on: windows-latest
     steps:

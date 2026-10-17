@@ -1,5 +1,6 @@
 mod azure;
 mod backup;
+mod family;
 mod pack;
 mod recordings;
 mod startup;
@@ -61,6 +62,8 @@ pub fn run() {
                 .build(),
         )
         .invoke_handler(tauri::generate_handler![
+            family::prepare_family,
+            family::finish_family_recordings,
             pack::pack_info,
             pack::inspect_pack,
             pack::import_pack,

@@ -119,6 +119,15 @@ fn info_for(dir: &Path) -> PackInfo {
 
 /// Copies `source` into `target` atomically enough for a single user: build next to it, then swap.
 pub fn import_into(source: &Path, target: &Path, now: &str) -> Result<PackInfo> {
+    import_with_source(source, target, now, true)
+}
+
+fn import_with_source(
+    source: &Path,
+    target: &Path,
+    now: &str,
+    remember_source: bool,
+) -> Result<PackInfo> {
     check_source(source)?;
     let source = source.canonicalize().map_err(|e| PackError::new("io", e))?;
     if let Ok(t) = target.canonicalize() {
@@ -136,8 +145,8 @@ pub fn import_into(source: &Path, target: &Path, now: &str) -> Result<PackInfo> 
     let _ = fs::remove_dir_all(&old);
 
     copy_dir(&source, &staging, true)?;
-    let import =
-        serde_json::json!({ "source_dir": source.display().to_string(), "imported_at": now });
+    let source_dir = remember_source.then(|| source.display().to_string());
+    let import = serde_json::json!({ "source_dir": source_dir, "imported_at": now });
     fs::write(staging.join(IMPORT_INFO), import.to_string())
         .map_err(|e| PackError::new("io", e))?;
 
@@ -151,6 +160,34 @@ pub fn import_into(source: &Path, target: &Path, now: &str) -> Result<PackInfo> 
     }
     let _ = fs::remove_dir_all(&old);
     Ok(info_for(target))
+}
+
+/// Bundled packs follow the same format and atomic import path as manual imports.
+/// Content revisions are RFC 3339 instants, not strings (offsets can differ).
+pub fn import_bundled(source: &Path, target: &Path, now: &str) -> Result<bool> {
+    if !source.is_dir() {
+        return Ok(false);
+    }
+    let bundled = check_source(source)?;
+    let timestamp = |m: &Value| {
+        m.get("created_at")
+            .and_then(Value::as_str)
+            .and_then(|t| chrono::DateTime::parse_from_rfc3339(t).ok())
+    };
+    let incoming = timestamp(&bundled)
+        .ok_or_else(|| PackError::new("bad_json", "missing or invalid created_at"))?;
+    if target.join("manifest.json").is_file() {
+        let installed = read_json(&target.join("manifest.json"))?;
+        // Unknown installed timestamps must not cause a silent downgrade.
+        match timestamp(&installed) {
+            Some(current) if incoming > current => {}
+            _ => return Ok(false),
+        }
+    }
+    // Installer resources may later be replaced by an older installer. Do not offer them as
+    // a manual "new version" source; the next startup applies the timestamp comparison again.
+    import_with_source(source, target, now, false)?;
+    Ok(true)
 }
 
 /// Resolves a pack-relative path ("lessons/NN21.json") inside `root`, refusing anything that escapes it.
@@ -227,6 +264,52 @@ mod tests {
             import_into(&target, &target, "x").unwrap_err().code,
             "same_dir"
         );
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn bundled_pack_imports_only_missing_or_newer_content() {
+        let root = temp("bundled-pack");
+        let source = root.join("bundle");
+        let target = root.join("data/nn-pack");
+        copy_dir(&fixture(), &source, true).unwrap();
+        assert!(!import_bundled(&root.join("absent"), &target, "now").unwrap());
+        assert!(!target.exists());
+        assert!(import_bundled(&source, &target, "first").unwrap());
+        assert!(info_for(&target).source_dir.is_none());
+        fs::write(target.join("keep"), "installed").unwrap();
+        assert!(!import_bundled(&source, &target, "same").unwrap());
+
+        let mut manifest = read_json(&source.join("manifest.json")).unwrap();
+        // Same instant in a different timezone must not be treated as a new pack.
+        manifest["created_at"] = "2026-10-09T10:00:00Z".into();
+        fs::write(source.join("manifest.json"), manifest.to_string()).unwrap();
+        assert!(!import_bundled(&source, &target, "same-instant").unwrap());
+        // Lexically greater, but chronologically older than the installed 10:00 UTC.
+        manifest["created_at"] = "2026-10-09T12:30:00+03:00".into();
+        fs::write(source.join("manifest.json"), manifest.to_string()).unwrap();
+        assert!(!import_bundled(&source, &target, "older").unwrap());
+        assert!(target.join("keep").exists());
+
+        manifest["created_at"] = "2026-10-10T00:00:00Z".into();
+        fs::write(source.join("manifest.json"), manifest.to_string()).unwrap();
+        assert!(import_bundled(&source, &target, "newer").unwrap());
+        assert!(!target.join("keep").exists());
+        assert_eq!(info_for(&target).imported_at.as_deref(), Some("newer"));
+        // A pack from a future app must not be silently downgraded just because its format is unknown.
+        let mut installed = read_json(&target.join("manifest.json")).unwrap();
+        installed["format_version"] = 2.into();
+        installed["created_at"] = "2027-01-01T00:00:00Z".into();
+        fs::write(target.join("manifest.json"), installed.to_string()).unwrap();
+        assert!(!import_bundled(&source, &target, "future-format").unwrap());
+        // Reject invalid bundled metadata without damaging the installed pack.
+        manifest["created_at"] = "bad-date".into();
+        fs::write(source.join("manifest.json"), manifest.to_string()).unwrap();
+        assert!(import_bundled(&source, &target, "bad").is_err());
+        assert_eq!(info_for(&target).imported_at.as_deref(), Some("newer"));
+        manifest["format_version"] = 2.into();
+        fs::write(source.join("manifest.json"), manifest.to_string()).unwrap();
+        assert!(import_bundled(&source, &target, "unsupported").is_err());
         fs::remove_dir_all(root).unwrap();
     }
 
