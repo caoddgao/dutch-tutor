@@ -1,12 +1,12 @@
 name: Release
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - "docs/**"
-      - "**/*.md"
   workflow_dispatch:
+    inputs:
+      version:
+        description: "版本号（如 1.1.0；x.y.0 为正式版，其余为测试版）"
+        required: true
+        type: string
 
 concurrency:
   group: release
@@ -34,17 +34,19 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-      - name: Next version (1.0.x)
+      - name: Set requested version
         id: version
         shell: bash
-        run: echo "version=$(node scripts/version.mjs --write)" >> "$GITHUB_OUTPUT"
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: echo "version=$(node scripts/version.mjs --version "$RELEASE_VERSION" --write)" >> "$GITHUB_OUTPUT"
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: v${{ steps.version.outputs.version }}
           releaseName: Dutch Tutor ${{ steps.version.outputs.version }}
-          # x.y.0 (e.g. 1.0.0) is a formal release; later builds from main (1.0.1, 1.0.2 …) are test builds
+          # x.y.0 is a formal release; other patch versions are test builds
           releaseBody: |
             ${{ endsWith(steps.version.outputs.version, '.0') && '正式版' || '测试版' }} ${{ steps.version.outputs.version }}。
             下载下面的 `Dutch.Tutor_${{ steps.version.outputs.version }}_x64-setup.exe`，双击安装。
